@@ -1,0 +1,29 @@
+\chapter{Konzeption}
+\label{c:konz}
+
+\section{Auswahl der Modelle}
+\label{s:konz:mod}
+
+Nach der Analyse beginnt die Konzeption. Die erste Frage, die beantwortet werden muss, ist, welche Modelle werden benutzt. Es werden Modelle an zwei Stellen benötigt. Die erste Frage ist, welches Modell soll generell für den Chatbot benutzt werden. Hier gibt es ein paar Möglichkeiten. Die Einschränkungen die hier bestehen sind, da ein paar Confluence Pages Kundendaten beinhalten, daher sollte es keine API wie ChatGPT sein, bei der die Datensicherheit nicht besteht und Daten teilweise benutzt werden, um die Modelle weiter zu trainieren. Also ist die beste Möglichkeit, ein lokales LLM zu benutzen. Hier gibt es zur Zeit fast täglich neue Modelle. Die bekanntesten Modelle sind aktuell: Mistral von Mistral AI, Llama von Meta und Gemma von Google. Um eins auszuwählen, muss erst einmal betrachtet werden, was es für weitere Einschränkungen gibt. Der Großteil der Firma kommuniziert auf Deutsch, es gibt aber auch einige Mitarbeiter, die lieber auf Englisch kommunizieren, daher wäre ein mindestens bilinguales Modell zu bevorzugen. In den Support Channels werden zu dem Support Chat passende Fragen gestellt, daher braucht das Modell kein großes Standardwissen. Das Modell sollte Fragen möglichst schnell beantworten können. Durch diese Einschränkungen sollte am Besten ein Modell der Größe 13B oder kleiner verwendet werden. Je größer das Modell, desto sicherer werden die Antworten, aber bessere Karten werden benötigt und das Modell antwortet auch langsamer. Aktuell werden jeden Tag neue Modelle veröffentlicht. Die meisten der Open Source Modelle basieren aber auf den Modellen von Meta AI und Mistral AI. Ein Hub auf dem viele der Modelle veröffentlicht werden ist hugginface.co. Hier werden viele Open Source Modelle veröffentlicht und man kann sie downloaden und verschiedene Benchmarks, etc. einsehen. Einige der größeren Modelle wie beispielsweise Gemma und Llama3 wurden multilingual trainiert und verstehen in ihrer Grundversion bereits beide Sprachen, die wir brauchen. 
+
+\section{Prompting}
+\label{s:konz:prom}
+Ein wichtiger Teil, den man beim Erstellen von Modellen beachten muss, ist das Prompting. Es gibt hier zwei Aspekte, die man beachten muss. 
+
+\section{Auswahl der Vektor Datenbank}
+\label{s:konz:vec}
+Im nächsten Schritt wird die Art des Chat Modells ausgesucht. Hier gibt es einige Möglichkeiten. Eine Möglichkeit wäre es, mittels API auf ein Modell wie Chat-GPT 4 zuzugreifen. Die Probleme hierbei sind, dass die Modelle nicht speziell mit unseren benötigten APIs/Infos vertraut sind. Wir könnten ein Modell suchen, dem wir unsere Daten schicken, aber das könnte teils Probleme mit Datenschutz geben. Durch diese Probleme fallen diese Optionen weg. Das heißt, das Modell muss lokal gehostet werden. Lokal heißt hierbei einfach auf einem Server von uns oder einem Server, bei dem man weiss, dass keiner auf die Daten zugreifen kann. 
+
+\section{Architektur des Systems}
+\label{s:konz:arc}
+Nachdem die Auswahl des Development Tools und des Models abgeschlossen ist, ist die nächste Frage, welche Architektur das gesamte System haben soll. Die Schnittstelle, über die der Nutzer später mit dem Chatbot kommunizieren soll, ist bestenfalls eine Schnittstelle zu Google Chat. Dies ist aber der unwichtigste Part an diesem Punkt. Notfalls kann man auch ein anderes Chat System anbinden, daher kümmern wir uns als erstes um die anderen Teile der Architektur. 
+
+\label{Chatbot}
+\label{s:konz:bot}
+
+\label{RAG}
+\label{s:konz:rag}
+Hierbei geht es um das Thema des Hinzufügens von neuem Wissen zum Chatbot. Das Problem bei einem trainierten Modell ist es, dass es keine neue Information ohne ein neues Training in seine Wissensdatenbank aufnehmen kann. Da sich die Daten in den jeweiligen APIs ständig ändern können, stellt das ein Problem dar. Hier ist aber nicht nur neue Information ein Problem, sondern auch geänderte alte. Woher soll der Chatbot wissen, dass sich irgendeine Information, die bereits in der Wissensdatenbank vorhanden ist, geändert hat. Für das Problem von neuen Informationen gibt es hier zwei Optionen. Das Modell, auf dem der Chatbot aufbaut, könnte neu trainiert werden, mithilfe der neuen Informationen. Hier sind die Fragen, wie oft es neu trainiert werden soll, wie lange dieser Prozess dauert und wie viel dieser Prozess kostet. Wir können das Modell nicht bei jedem neuen Update neu trainieren. Das würde zu lange dauern, aber das heisst dass es einen Zeitraum gibt in dem der Bot nicht die aktuellsten Informationen hat. Wir benutzen hier die vorher bereits erwähnte RAG in Kombination mit einer Vektor Datenbank.
+
+
+
