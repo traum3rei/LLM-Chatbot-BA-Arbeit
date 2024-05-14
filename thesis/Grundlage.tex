@@ -13,13 +13,45 @@ daraus eine GmbH, gegründet von den Brüdern Stefan und Josef Willkommer.
 
 \section{Chatbots}
 \label{s:intro:bot}
-Laut Wikipedia ist ein Chatbot “ein Chatbot oder kurz Bot ein textbasiertes Dialogsystem, das Chatten mit einem technischen System erlaubt” (Wikipedia 8.5.2024 https://de.wikipedia.org/wiki/Chatbot). Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots haben einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit den meisten Chatbots kann man heutzutage über die natürliche menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. Mit einigen Chatbots kommuniziert man jedoch über Befehle, die dann eine Aktion hervorrufen. 
+Laut Wikipedia ist ein Chatbot “ein Chatbot oder kurz Bot ein textbasiertes Dialogsystem, das Chatten mit einem technischen System erlaubt” (Wikipedia 8.5.2024 https://de.wikipedia.org/wiki/Chatbot). Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots haben einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit den meisten Chatbots kann man heutzutage über die natürliche menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. Mit einigen Chatbots kommuniziert man jedoch über Befehle, die dann eine Aktion hervorrufen.
+Die Generation des Textes eines Chatbots kann in drei verschiedene Kategorien untergeordnet werden: Retrieval based, generation based und rule based. Wir können beobachten, wie sich diese drei Kategorien im Laufe der Zeit entwickeln.
 Im Jahr 1950 hat Alan Turing den Turing Test vorgeschlagen, bei dem es darum geht zu erkennen, ob eine Maschine das gleiche Denkvermögen hat wie ein Mensch. Bei diesem Test werden einem Tester zwei Gesprächspartner vorgelegt, von denen einer ein Mensch und der andere eine Maschine ist. Der Tester führt dann ein Gespräch mit beiden Gesprächspartnern und befragt diese. Nach der Befragung wird überprüft, ob der Tester in der Lage ist, zu sagen, welcher der Partner eine Maschine ist. Falls der Tester nicht in der Lage ist zu erkennen, welcher der Partner die Maschine ist, gilt der Turing Test als bestanden und die Maschine ist laut Turing intelligent. Es gibt Kritik am Turing Test, welche der Meinung ist, dass der Test die Maschine nur auf ihre Funktionalität getestet und nicht wirklich auf Intelligenz. Ein weiterer Kritikpunkt, den Menschen an dem Turing Test haben, ist, dass einige Menschen der Meinung sind, dass der Test eher die menschliche Leichtgläubigkeit testet, als die Intelligenz der Maschine. Viele sind der Meinung, dass dieser Test die Grundsteine für die Idee der Chatbots gelegt hat.  
-Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten Chatbot aus dem Jahr 1966. Der Name des Chatbots war ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt. Weizenbaum hat fünf Grundprobleme aufgestellt, welche er bekämpfen musste für die Entwicklung von ELIZA. Die Probleme waren: “(1) the identification of key words, (2) the discovery of minimal context, (3) the choice of appropriate transformations, (4) generation of responses in the absence of key words, and (5) the provision of an editing capability for ELIZA "scripts"”. ELIZA wurde so entwickelt, dass sie versucht hat, menschliche Sprache zu imitieren, indem sie den eingegebenen Text nach Stichwörtern durchsucht. Stichwörter sind Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA-Script gegeben wurde. Es lässt sich vermuten, dass hierbei besonders Wörter mit einem hohen Informationsgehalt verwendet wurden. Jedes Stichwort hatte noch einen sogenannten RANK, welcher die Wichtigkeit des jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt hat. Nachdem die Stichwörter entdeckt wurden, geht es weiter mit einer sogenannten “Transformation Rule”. Diese besteht aus einer Zerlegungs-Phase und einer Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beides. Anhand der Syntax wird ausgemacht, welche Regel für die Zerlegung in Frage kommt und anhand dieser wird dann die Zusammensetzung ausgemacht. /Vllt mehr dazu vllt weniger?/. Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine emotionale Bindung zu seinem System aufgebaut haben. Eliza verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sonder antwortet, je nach seinem aktuellen Skript auf den aktuellen Satz.
+Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten Chatbot aus dem Jahr 1966. Damals waren die Chatbots rule based. Der Name des Chatbots war ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt. Weizenbaum hat fünf Grundprobleme aufgestellt, welche er bekämpfen musste für die Entwicklung von ELIZA. Die Probleme waren: “(1) the identification of key words, (2) the discovery of minimal context, (3) the choice of appropriate transformations, (4) generation of responses in the absence of key words, and (5) the provision of an editing capability for ELIZA "scripts"”. ELIZA wurde so entwickelt, dass sie versucht hat, menschliche Sprache zu imitieren, indem sie den eingegebenen Text nach Stichwörtern durchsucht. Stichwörter sind Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA-Script gegeben wurde. Es lässt sich vermuten, dass hierbei besonders Wörter mit einem hohen Informationsgehalt verwendet wurden. Jedes Stichwort hatte noch einen sogenannten RANK, welcher die Wichtigkeit des jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt hat. Nachdem die Stichwörter entdeckt wurden, geht es weiter mit einer sogenannten “Transformation Rule”. Diese besteht aus einer Zerlegungs-Phase und einer Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beides. Anhand der Syntax wird ausgemacht, welche Regel für die Zerlegung in Frage kommt und anhand dieser wird dann die Zusammensetzung ausgemacht. /Vllt mehr dazu vllt weniger?/. Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine emotionale Bindung zu seinem System aufgebaut haben. Eliza verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sonder antwortet, je nach seinem aktuellen Skript auf den aktuellen Satz.
+Nach Eliza kam ein Chabot namens Parry der an der Stanford University entwickelt wurde. Während Eliza eher einen Psychotherapeuten imitiert hat, hat Parry einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines Experiments, der einem Turing Test gleicht. Hier wurden verschieden Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen von einem echten Schizophrenen Patienten kommen oder von einem Chatbot. Teil des Experiments waren 5 Psychiater die jeweils 2 "Patienten" zur Beurteilung bekommen haben. Der erste lag bei beiden richtig, der zweite lag bei beiden falsch. Der dritte dachte beide Patienten sind echte Patienten und die letzten zwei dachten beide sind Chatbots \citation{Adamopoulou and Moussiades, “Chatbots.”}).
+
+
 
 \section{LLMs}
 \label{s:intro:llm}
-Heutzutage basieren Chatbots auf sogenannten Large Language Models. 
+Heutzutage basieren Chatbots auf sogenannten Large Language Models. LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet, damit man dieses Neural Network ausführen kann.
+Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abhängigkeiten. Der größere und aufwändigere Part sind die Gewichte. Die Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur basiert, welche 2017 im Paper "All you need is attention" vorgestellt wurde.
+
+\subsection{Transformer}
+Die Technologie auf der die heutigen LLMs im Grunde basieren ist die sogenannte Transformer Technologie.
+\subsection{Training}
+Der erste Schritt beim erstellen eines LLM nachdem die technischen Grundlagen stehen ist es, das Modell zu trainieren. Hierbei wurde der Transformer bereits entwickelt und wird im nächsten Schritt mit Daten trainiert. 
+\subsection{Inference}
+Wenn man ein fertig trainiertes und finetuned Modell hat, kann man das Modell ausführen. Dieser Prozess nennt sich Inference. 
+Hierbei werden die Parameter in einer File gestored, welche 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel=Woche,
+            ylabel=LLM,
+            date coordinates in=x,
+            xticklabel style={rotate=45,anchor=near xticklabel},
+            date ZERO=2019-05-12, % Set the reference date
+            ]
+        
+            \addplot table [x=Woche, y=LLM, col sep=comma] {data/LLM.csv};
+        
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Your Caption Here}
+    \label{fig:my_label}
+\end{figure}
 
 \section{Vektor Datenbanken}
 \label{s:intro:dat}

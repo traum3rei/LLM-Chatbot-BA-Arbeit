@@ -1,0 +1,6 @@
+langchain
+langchain-chroma
+chainlit
+python-dotenv
+ollama
+
