@@ -3,4 +3,9 @@ langchain-chroma
 chainlit
 python-dotenv
 ollama
+langsmith
+langserve
+beautifulsoup4
+sse_starlette
+chainlit
 
