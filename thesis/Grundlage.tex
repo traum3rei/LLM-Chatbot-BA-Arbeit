@@ -50,11 +50,16 @@ Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abh�
     \caption{LLM Google Trends}
     \label{fig:my_label}
 \end{figure}
-Wir sehen anhand der Grafik 2.1, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. Die Daten von Google Trends sind normalisiert zwischen 0 und 100 also können wird dadurch zwar keine genauen Angaben machen, wir sehen aber, dass das Wachstum stetig am steigen ist. 
+Wir sehen anhand der Grafik 2.1, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. 
+Die Daten von Google Trends sind normalisiert zwischen 0 und 100 also können wird dadurch zwar keine genauen Angaben machen, wir sehen aber, dass das Wachstum stetig am steigen ist.\par
+Im Grunde sind die LLMs die hinter Chatbots wie ChatGPT von OpenAI und LeChat von MistralAI sogenannte GPTs. Wenn man den Begriff aufteilt sieht man was dahinter steckt. GPT steht für Generative pretrained Transformer. Generative steht für die Art und Weise
+auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM vor ihrer Nutzung auf einer Datenmenge trainiert wurde und Transformer steht heir für die Transformer Architektur.
 
 \subsection{Transformer}
 \label{s:intro:llm:trans}
-Die Technologie auf der die heutigen LLMs im Grunde basieren ist die sogenannte Transformer Technologie. Diese Architektur wurde im Research Paper "Attention is all you need" im Jahr 2017 von Google Forschern vorgestellt. Laut ihrer Forschung behaupteten sie, dass ihre neue Architektur signifikant weniger Zeit zum Training braucht, während es besser parallelisierbar ist und die Ergebnisse trotzdem besser sind. Nach 3.5 Tagen Training auf nur 8 Grafikkarten hat ihr Modell einen neuen Single Model Rekord aufgestellt in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttentionAllYou2023}. 
+Die Technologie auf der die heutigen LLMs im Grunde basieren ist die sogenannte Transformer Technologie. Diese Architektur wurde im Research Paper "Attention is all you need" im Jahr 2017 von Google Forschern vorgestellt. Laut ihrer Forschung behaupteten 
+sie, dass ihre neue Architektur signifikant weniger Zeit zum Training braucht, während es besser parallelisierbar ist und die Ergebnisse trotzdem besser sind. Nach 3.5 Tagen Training auf nur 8 Grafikkarten hat ihr Modell einen neuen Single Model Rekord aufgestellt 
+in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttentionAllYou2023}. 
 
 \begin{figure}[t]
 \centering
@@ -81,7 +86,8 @@ Vektor Datenkbanken sind die Datenbanken.
 
 \section{RAG}
 \label{s:intro:rag}
-Eines der größten Probleme der LLMs heutzutage ist, dass die Informationen, die sie zum beantworten für Fragen benutzen, teilweise veraltet sind oder sehr allgemein. Eine Technologie, die versucht, dieses Problem zu beseitigen, ist die sogenannte RAG (Retrieval Augmented Generation).  
+Eines der größten Probleme der LLMs heutzutage ist, dass die Informationen, die sie zum beantworten für Fragen benutzen, teilweise veraltet sind oder sehr allgemein. Eine Technologie, die versucht, dieses Problem zu beseitigen, ist die sogenannte RAG 
+(Retrieval Augmented Generation).  
 
 \section{Ragas}
 \label{s:intro:ragas}
