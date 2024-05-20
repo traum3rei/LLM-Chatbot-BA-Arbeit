@@ -20,7 +20,10 @@ from langchain_core.prompts import MessagesPlaceholder
 from langchain_community.vectorstores import Chroma
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.messages import AIMessage, HumanMessage
 
+chat_history = []
+from langchain.agents import tool
 import chainlit as cl
 
 loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
@@ -54,12 +57,37 @@ template = ChatPromptTemplate.from_messages([
 
 llm = ChatOllama(model="llama3")
 
+MEMORY_KEY = "chat_history"
+prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are very powerful assistant, but bad at calculating lengths of words.",
+        ),
+        MessagesPlaceholder(variable_name=MEMORY_KEY),
+        ("user", "{input}"),
+        MessagesPlaceholder(variable_name="agent_scratchpad"),
+    ]
+)
+
+
 chain = (
     {"context": retriever, "user_input": RunnablePassthrough()}
     | template
     | llm
     | StrOutputParser()
 )
+
+agent = (
+    {
+        "input": lambda x: x["input"],
+        "agent_scratchpad": lambda x: x["intermediate_steps"],
+        "chat_history": lambda x: x["chat_history"],
+    }
+    | prompt
+    | StrOutputParser()
+)
+agent_executor = AgentExecutor(agent=agent, verbose=True)
 
 '''while True:
         inp = input()
@@ -78,7 +106,7 @@ chain = (
 @cl.step
 def tool(message):
     print(message)
-    return chain.invoke(message)
+    return agent.invoke(message)
 
 @cl.on_message
 async def main(message: cl.Message):

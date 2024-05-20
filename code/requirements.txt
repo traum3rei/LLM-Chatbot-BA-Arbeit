@@ -8,4 +8,4 @@ langserve
 beautifulsoup4
 sse_starlette
 chainlit
-
+fake_useragent

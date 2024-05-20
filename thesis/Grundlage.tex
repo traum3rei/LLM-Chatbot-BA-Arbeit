@@ -1,7 +1,7 @@
 \chapter{Grundlagen}
 \label{c:grun}
 
-\section{Techdivision I\& Services}
+\section{Techdivision \& IT-Services}
 \label{s:intro:tech}
 TD kurz vorstellen
 Die Techdivision ist ein Unternehmen, welches 2007 in Kolbermoor, Deutschland 
@@ -25,12 +25,18 @@ Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Tei
 Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickelt wurde. Während Eliza eher einen Psychotherapeuten imitiert hat, hat Parry einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines Experiments, der einem Turing Test gleicht. Hier wurden verschieden Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen von einem echten Schizophrenen Patienten kommen oder von einem Chatbot. Teil des Experiments waren 5 Psychiater die jeweils 2 "Patienten" zur Beurteilung bekommen haben. Der erste lag bei beiden richtig, der zweite lag bei beiden falsch. Der dritte dachte beide Patienten sind echte Patienten und die letzten zwei dachten beide sind Chatbots. Das Problem hierbei war, dass der Pool an Probanden mit 5 Psychiatern sehr klein war. Dazu kommt noch der Fakt, dass Patienten mit Schizophrenie ein gewisses Level an Unverständlichkeit in ihren Konversationen haben, welches die Beurteilung, ob es generell ein guter Chatbot erschwert. Heute wird Parry eher als ein schwacher Chatbot gesehen, da er nicht von Konversationen lernen kann, keinen richtigen Kontext hat und sehr langsam ist. Natürlich ist ein Teil davon abhängig von den technischen Limitationen die es damals gab, aber es ist dennoch wichtig zu beachten\cite{adamopoulouChatbotsHistoryTechnology2020}. 
 1995 wurde der Internet Chatbot ALICE veröffentlicht. Er war im Internet zu finden und er wurde als Open Source Software veröffentlicht, hat aber nicht viele Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die Programmiersprache Java gewechselt ist. Das Problem war, dass SETL eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen Preise ausgezeichnet, wie beispielsweise dem Loebner Prize. Dieser Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der die Beziehung zwischen Menschen und Maschinen beleuchtet wird\cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie reagieren konnte als Eliza, aber von den Grundprinzipien her, hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020}.
 
-
+\section{Künstliche Intelligenz}
+\subsection{Machine Learning}
+\subsection{NN}
+Neuronale Netze sind ein Teil des Maschinellen Lernens, welche versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
+Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. 
+Ein Neuronales Netz lernt, indem es Daten bekommt, mit denen es trainiert wird. Danach orientiert es sich an dem bisherig
+erlangtem Wissen und gibt die jeweilige Ausgabe aus. 
 
 
 \section{LLMs}
 \label{s:intro:llm}
-Heutzutage basieren Chatbots auf sogenannten Large Language Models. LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet, damit man dieses Neural Network ausführen kann.
+Large Language Models sind eine Art der künstlichen Intelligenz, welche mithilfe probalistischer Methoden Text generiert. Im Grunde sind diese LLMs Text Vervollständigungsgeneratoren. Heutzutage basieren Chatbots auf sogenannten Large Language Models. LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet, damit man dieses Neural Network ausführen kann.
 Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abhängigkeiten. Der größere und aufwändigere Part sind die Gewichte. Die Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur basiert, welche 2017 im Paper "All you need is attention" vorgestellt wurde. Der genaue Stack den bspw. OpenAI heutzutage benutzt ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Architektur basiert. 
 \begin{figure}[htbp]
     \centering
@@ -62,24 +68,30 @@ Der erste Schritt beim erstellen eines LLM nachdem die technischen Grundlagen st
 \subsection{Inference}
 \label{s:intro:llm:inf}
 Wenn man ein fertig trainiertes und finetuned Modell hat, kann man das Modell ausführen. Dieser Prozess nennt sich Inference. 
-Hierbei werden die zwei Programme die Teil  
 
 \subsection{Prompting}
 \label{s:intro:llm:prom}
 
 \section{Transformer}
 \label{s:intro:llm:trans}
-Die Technologie auf der die heutigen LLMs im Grunde basieren ist die sogenannte Transformer Technologie. Diese Architektur wurde im Research Paper "Attention is all you need" im Jahr 2017 von Google Forschern vorgestellt. Laut ihrer Forschung behaupteten 
+Die Technologie auf der die heutigen LLMs im Grunde basieren ist die sogenannte Transformer Technologie.\par
+Diese Architektur wurde im Research Paper "Attention is all you need" im Jahr 2017 von Google Forschern vorgestellt. Laut ihrer Forschung behaupteten 
 sie, dass ihre neue Architektur signifikant weniger Zeit zum Training braucht, während es besser parallelisierbar ist und die Ergebnisse trotzdem besser sind. Nach 3.5 Tagen Training auf nur 8 Grafikkarten hat ihr Modell einen neuen Single Model Rekord aufgestellt 
 in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttentionAllYou2023}. 
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{\figdir/transformer}
 \caption{Transformer Architektur}
 \end{figure}
 Von Yuening Jia - DOI:10.1088/1742-6596/1314/1/012186, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=121340680
-\subsection{}
+\subsection{Attention}
+Die Grundidee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 im Paper "Neural Machine Translation by Jointly Learning to Align and Translate" vorgestellt wurde. \cite{bahdanauNeuralMachineTranslation2016}
+Beim Attention Mechanism geht es darum, 
+
+
+\subsection{Encoder}
+
+\subsection{Decoder}
 
 \section{Vektor Datenbanken}
 \label{s:intro:dat}
