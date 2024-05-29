@@ -26,10 +26,32 @@ Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickel
 1995 wurde der Internet Chatbot ALICE veröffentlicht. Er war im Internet zu finden und er wurde als Open Source Software veröffentlicht, hat aber nicht viele Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die Programmiersprache Java gewechselt ist. Das Problem war, dass SETL eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen Preise ausgezeichnet, wie beispielsweise dem Loebner Prize. Dieser Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der die Beziehung zwischen Menschen und Maschinen beleuchtet wird\cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie reagieren konnte als Eliza, aber von den Grundprinzipien her, hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020}.
 
 \section{Künstliche Intelligenz}
+
 \subsection{Machine Learning}
 \subsection{NN}
 Neuronale Netze sind ein Teil des Maschinellen Lernens, welche versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
-Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. 
+Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese ``Neuronen''
+sind stark miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der Abbildung 2.1 dargestellt.\par
+Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
+keine Verbindung miteinander haben. Wenn die Gewichtung positiv ist, dann hat es eine bestärkende Wirkung und, falls die Gewichtung negativ
+ist, dann hat es eine hemmende Wirkung. \par %wikipedia https://de.wikipedia.org/wiki/Künstliches_Neuron
+Jedes Neuron ha
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{\figdir/neuron}
+    \caption{Neural Network}
+\end{figure}
+Die zwei Reihen die es immer gibt sind die Eingabe Reihe und die Ausgabe Reihe. Dazwischen kann es verstecke Reihen geben, muss es aber nicht.
+Die Eingabe Reihe erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Reihe. Falls es versteckte Reihen gibt, dann 
+werden die 
+
+%hier definitiv neues bild machen das kleiner und besser ist 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{\figdir/neuralnet}
+    \caption{Neural Network}
+\end{figure}
 Ein Neuronales Netz lernt, indem es Daten bekommt, mit denen es trainiert wird. Danach orientiert es sich an dem bisherig
 erlangtem Wissen und gibt die jeweilige Ausgabe aus. 
 
@@ -86,12 +108,16 @@ in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttent
 Von Yuening Jia - DOI:10.1088/1742-6596/1314/1/012186, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=121340680
 \subsection{Attention}
 Die Grundidee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 im Paper "Neural Machine Translation by Jointly Learning to Align and Translate" vorgestellt wurde. \cite{bahdanauNeuralMachineTranslation2016}
-Beim Attention Mechanism geht es darum, 
+Beim Attention Mechanism geht es darum, Deep Learning Modelle zu verbessern, indem 
 
 
 \subsection{Encoder}
 
+
+
 \subsection{Decoder}
+
+
 
 \section{Vektor Datenbanken}
 \label{s:intro:dat}
