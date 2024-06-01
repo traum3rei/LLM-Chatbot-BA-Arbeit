@@ -18,42 +18,71 @@ Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Ar
 Die Generation des Textes eines Chatbots kann in drei verschiedene Kategorien untergeordnet werden: Retrieval based, generation based und rule based. Wir können beobachten, wie sich diese drei Kategorien im Laufe der Zeit entwickeln.\par
 Im Jahr 1950 hat Alan Turing den Turing Test vorgeschlagen, bei dem es darum geht zu erkennen, ob eine Maschine das gleiche Denkvermögen hat wie ein Mensch. Bei diesem Test werden einem Tester zwei Gesprächspartner vorgelegt, von denen einer ein Mensch und der andere eine Maschine ist. Der Tester führt dann ein Gespräch mit beiden Gesprächspartnern und befragt diese. Nach der Befragung wird überprüft, ob der Tester in der Lage ist, zu sagen, welcher der Partner eine Maschine ist. Falls der Tester nicht in der Lage ist zu erkennen, welcher der Partner die Maschine ist, gilt der Turing Test als bestanden und die Maschine ist laut Turing intelligent. Es gibt Kritik am Turing Test, welche der Meinung ist, dass der Test die Maschine nur auf ihre Funktionalität getestet und nicht wirklich auf Intelligenz. Ein weiterer Kritikpunkt, den Menschen an dem Turing Test haben, ist, dass einige Menschen der Meinung sind, dass der Test eher die menschliche Leichtgläubigkeit testet, als die Intelligenz der Maschine. Viele sind der Meinung, dass dieser Test die Grundsteine für die Idee der Chatbots gelegt hat.\par  
 Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten Chatbot aus dem Jahr 1966. Damals waren die Chatbots rule based. Der Name des Chatbots war ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt.
-Weizenbaum hat fünf Grundprobleme aufgestellt, welche er bekämpfen musste für die Entwicklung von ELIZA. Die Probleme waren: “(1) the identification of key words, (2) the discovery of minimal context, (3) the choice of appropriate transformations, (4) generation of responses in the absence of key words, and (5) the provision of an editing capability for ELIZA "scripts"”\cite{weizenbaumELIZAComputerProgram1966}.\par
+Weizenbaum hat fünf Grundprobleme aufgestellt, welche er bekämpfen musste für die Entwicklung von ELIZA. Die Probleme waren: \begin{quote} ``(1) the identification of key words, (2) the discovery of minimal context, (3) the choice of appropriate transformations, (4) generation of responses in the absence of key words, and (5) the provision of an editing capability for ELIZA ``scripts''''\cite{weizenbaumELIZAComputerProgram1966}.\end{quote}\par
 ELIZA wurde so entwickelt, dass sie versucht hat, menschliche Sprache zu imitieren, indem sie den eingegebenen Text nach Stichwörtern durchsucht. Stichwörter sind Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA-Script gegeben wurde. Es lässt sich vermuten, dass hierbei besonders Wörter mit einem hohen Informationsgehalt verwendet wurden. Jedes Stichwort hatte noch einen sogenannten RANK, welcher die Wichtigkeit des jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt hat. Nachdem die Stichwörter entdeckt wurden, geht es weiter mit einer sogenannten “Transformation Rule”. Diese besteht aus einer Zerlegungs-Phase und einer Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beides. Anhand der Syntax wird ausgemacht, welche Regel für die Zerlegung in Frage kommt und anhand dieser wird dann die Zusammensetzung ausgemacht. /Vllt mehr dazu vllt weniger?/.
 Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine emotionale Bindung zu seinem System aufgebaut haben. Eliza verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sondern antwortet, je nach seinem aktuellen Skript auf den aktuellen Satz. Selbst Weizenbaum selbst hat scheinbar mit der Eröffnung in seine Arbeit gezeigt, dass er selbst nicht der Meinung war, dass ELIZA wirklich ein intelligentes System ist:\par
-``It is said that to explain is to explain away. This maxim is nowhere so well fulfilled as in the area of computer programming, especially in what is called heuristic programming and artificial intelligence. For in those realms machines are made to behave in wondrous ways, often sufficient to dazzle even the most experienced observer. But once a particular program is unmasked, once its inner workings are explained in language sufficiently plain to induce understanding, its magic crumbles away; it stands revealed as a mere collection of procedures, each quite comprehensible. The observer says to himself ``I could have written that''. With that thought he moves the program in question from the shelf marked ``intelligent'', to that reserved for curios, fit to be discussed only with people less enlightened than he. The object of this paper is to cause just such a reevaluation of the program about to be ``explained''. Few programs ever needed it more''\cite{weizenbaumELIZAComputerProgram1966}.\par
+\begin{quote}``It is said that to explain is to explain away. This maxim is nowhere so well fulfilled as in the area of computer programming, especially in what is called heuristic programming and artificial intelligence. For in those realms machines are made to behave in wondrous ways, often sufficient to dazzle even the most experienced observer. But once a particular program is unmasked, once its inner workings are explained in language sufficiently plain to induce understanding, its magic crumbles away; it stands revealed as a mere collection of procedures, each quite comprehensible. The observer says to himself ``I could have written that''. With that thought he moves the program in question from the shelf marked ``intelligent'', to that reserved for curios, fit to be discussed only with people less enlightened than he. The object of this paper is to cause just such a reevaluation of the program about to be ``explained''. Few programs ever needed it more''\cite{weizenbaumELIZAComputerProgram1966}.\end{quote}\par
 Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickelt wurde. Während Eliza eher einen Psychotherapeuten imitiert hat, hat Parry einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines Experiments, der einem Turing Test gleicht. Hier wurden verschieden Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen von einem echten Schizophrenen Patienten kommen oder von einem Chatbot. Teil des Experiments waren 5 Psychiater die jeweils 2 "Patienten" zur Beurteilung bekommen haben. Der erste lag bei beiden richtig, der zweite lag bei beiden falsch. Der dritte dachte beide Patienten sind echte Patienten und die letzten zwei dachten beide sind Chatbots. Das Problem hierbei war, dass der Pool an Probanden mit 5 Psychiatern sehr klein war. Dazu kommt noch der Fakt, dass Patienten mit Schizophrenie ein gewisses Level an Unverständlichkeit in ihren Konversationen haben, welches die Beurteilung, ob es generell ein guter Chatbot erschwert. Heute wird Parry eher als ein schwacher Chatbot gesehen, da er nicht von Konversationen lernen kann, keinen richtigen Kontext hat und sehr langsam ist. Natürlich ist ein Teil davon abhängig von den technischen Limitationen die es damals gab, aber es ist dennoch wichtig zu beachten\cite{adamopoulouChatbotsHistoryTechnology2020}. 
 1995 wurde der Internet Chatbot ALICE veröffentlicht. Er war im Internet zu finden und er wurde als Open Source Software veröffentlicht, hat aber nicht viele Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die Programmiersprache Java gewechselt ist. Das Problem war, dass SETL eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen Preise ausgezeichnet, wie beispielsweise dem Loebner Prize. Dieser Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der die Beziehung zwischen Menschen und Maschinen beleuchtet wird\cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie reagieren konnte als Eliza, aber von den Grundprinzipien her, hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020}.
 
 \section{Künstliche Intelligenz}
+Künstliche Intelligenz wird ein immer größerer Part der Technikwelt. Es gibt viele Formen von dieser. 
 
-\subsection{Machine Learning}
-\subsection{NN}
+\subsection{Machinelles Lernen}
+
+
+\subsection{Neuronale Netzwerke}
 Neuronale Netze sind ein Teil des Maschinellen Lernens, welche versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
 Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese ``Neuronen''
 sind stark miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der Abbildung 2.1 dargestellt.\par
+
 Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
 keine Verbindung miteinander haben. Wenn die Gewichtung positiv ist, dann hat es eine bestärkende Wirkung und, falls die Gewichtung negativ
 ist, dann hat es eine hemmende Wirkung. \par %wikipedia https://de.wikipedia.org/wiki/Künstliches_Neuron
-Jedes Neuron ha
+Jedes Neuron hat zudem einen sogenannten Bias, der Bias wird benötigt, damit man die Aktivierungsschwelle der Aktivierungsfunktion 
+verschieben kann. Dies sorgt für eine erhöhte Flexibilität, da der Wert der Aktivierungsfunktion ohne den Bias immer null wäre, wenn alle
+Eingaben null sind. Durch den Bias hat das Neuron also eine Grundaktivität, welche während dem Training angepasst werden kann, damit die Ergebnisse 
+besser für den eigenen Fall werden. 
+Das aktuelle Neuron summiert dann alle gewichteten Werte und addiert den Bias. Wie in dieser Formel dargestellt:
+\[
+\sum_{i} w_i x_i + b
+\] 
+Der summierte Wert wird durch die Aktivierungsfunktion transformiert und das Ergebnis wird dann dem nächsten Neuron in der nächsten Schicht weitergeleitet.
+Typische Aktivierungsfunktionen sind
+\begin{itemize}
+    \item Sigmoid Function : \[f(x) = \frac{1}{1 + e^{-x}}\]
+    \item ReLu (Rectified Linear Unit): \[f(x) = \max(0, x)\]
+    \item Tanh: \[f(x)=tanh(x)\]
+\end{itemize}
+\cite{kempkesNeuronUndAktivierungsfunktion2023}
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/neuron}
-    \caption{Neural Network}
+    \caption{Neuron eines Neuronalen Netzwerks}
 \end{figure}
-Die zwei Reihen die es immer gibt sind die Eingabe Reihe und die Ausgabe Reihe. Dazwischen kann es verstecke Reihen geben, muss es aber nicht.
-Die Eingabe Reihe erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Reihe. Falls es versteckte Reihen gibt, dann 
-werden die 
+Die zwei Schichten die es immer gibt sind die Eingabe Schicht und die Ausgabe Schicht. Dazwischen kann es verstecke Schicht geben, die benötigt werden um 
+komplexere Zusammenhänge zu bearbeiten, muss es aber nicht.
+Die Eingabe Schicht erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Schicht. 
+Als nächstes werden die Daten weiter an eine verborgene Schicht gegeben, die die Werte dann bearbeitet. 
+Es gibt X verschieden verborgene Reih in einem Neuronalen Netzwerk. Die Anzahl der Reihen und die Anzahl 
+der Neuronen pro versteckter Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
+die für alle Fälle passt. Stattdessen kommen hierbei Erfahrung und Experimentation ins Spiel.\par 
+Es kann sogar sein, dass gar keine versteckte Reihen notwendig sind, wenn das Model linear seperierbar ist. 
+Das liegt daran, dass ein Modell ohne versteckte Schichten bereits in der Lage ist diese Grenze zu erlernen 
+und die Daten dann korrekt zu klassifizieren.\par
+
+
+\cite{krishnanHowDetermineNumber2022}
 
 %hier definitiv neues bild machen das kleiner und besser ist 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{\figdir/neuralnet}
-    \caption{Neural Network}
+    \includegraphics[width=\linewidth]{\figdir/nn}
+    \caption{Neuronale Netz}
 \end{figure}
-Ein Neuronales Netz lernt, indem es Daten bekommt, mit denen es trainiert wird. Danach orientiert es sich an dem bisherig
-erlangtem Wissen und gibt die jeweilige Ausgabe aus. 
+\subsection{Training}
+
 
 
 \section{LLMs}
