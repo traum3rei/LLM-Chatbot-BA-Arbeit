@@ -90,6 +90,7 @@ Die verschiedenen Aufgaben werden teils in verschiedenen Teilbereichen der küns
 
 
 \subsection{Neuronale Netzwerke}
+\label{s:intro:nn}
 Neuronale Netze sind ein Teil des Maschinellen Lernens, welche versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
 Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese ``Neuronen''
 sind stark miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der Abbildung 2.1 dargestellt.\par
@@ -155,7 +156,7 @@ Beispiele hierfür sind:
 Die Klassifikatoren haben ein oder auch mehrere Ausgabe Neuronen. Die Anzahl der Neuronen kommt auf die Anzahl der möglichen Ausgaben an.
 Beispielsweise könnte man ein System betrachten, welches lernen soll, welche Art von Fahrzeug auf einem Bild dargestellt ist. 
 In der Abbildung 2.2 ist ein simpler Decision Tree dargestellt. Anhand dieser kann man sehen, welche Optionen es als Asugaben gibt. 
-In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögliche Ausgaben gibt. 
+In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögliche Ausgaben gibt. \par
 
 %vmtl raus nehmen is kinda dogshit
 \begin{figure}[t]
@@ -175,14 +176,14 @@ Um ein Modell nach der
 
 \section{LLMs}
 \label{s:intro:llm}
-Large Language Models sind eine Art der künstlichen Intelligenz, welche mithilfe probalistischer Methoden Text generiert. Im Grunde sind diese LLMs
-Text Vervollständigungsgeneratoren. Heutzutage basieren Chatbots auf sogenannten Large Language Models. LLMs sind in ihrem Kern nur 2 Dateien. Eine
-Datei die die sogenannten Gewichte des Neural Networks beinhaltet, welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet,
-damit man dieses Neural Network ausführen kann.
-Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abhängigkeiten. Der größere und aufwändigere Part sind die Gewichte. Die
-Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur basiert, welche 2017 im Paper "All you need
-is attention" vorgestellt wurde. Der genaue Stack den bspw. OpenAI heutzutage benutzt ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der
-Transformer Architektur basiert. 
+Large Language Models sind eine Art der künstlichen Intelligenz, welche mithilfe probalistischer Methoden Text generiert. 
+Im Grunde sind diese LLMs Text Vervollständigungsgeneratoren. Heutzutage basieren Chatbots auf sogenannten Large Language 
+Models. LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, 
+welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet,damit man dieses Neural Network ausführen kann.
+Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abhängigkeiten. Der größere und aufwändigere Part sind 
+die Gewichte. Die Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur 
+basiert, welche 2017 im Paper "All you need is attention" vorgestellt wurde. Der genaue Stack den bspw. OpenAI heutzutage benutzt 
+ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Architektur basiert. 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -199,25 +200,30 @@ Transformer Architektur basiert.
         \end{axis}
     \end{tikzpicture}
     \caption{LLM Google Trends}
-    \label{fig:my_label}
+    \label{fig:trend_llm}
 \end{figure}
-Wir sehen anhand der Grafik 2.1, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse
+Wir sehen anhand der \ref{fig:trend_llm}, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse
 an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. 
 Die Daten von Google Trends sind normalisiert zwischen 0 und 100 also können wird dadurch zwar keine genauen Angaben machen, wir sehen aber, dass das
 Wachstum stetig am steigen ist.\par
 Im Grunde sind die LLMs die hinter Chatbots wie ChatGPT von OpenAI und LeChat von MistralAI sogenannte GPTs. Wenn man den Begriff aufteilt sieht man
 was dahinter steckt. GPT steht für Generative pretrained Transformer. Generative steht für die Art und Weise
 auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM vor ihrer Nutzung auf einer Datenmenge trainiert wurde und Transformer
-steht heir für die Transformer Architektur.
+steht hier für die Transformer Architektur.
 
 \subsection{Training}
 \label{s:intro:llm:train}
-Der erste Schritt beim erstellen eines LLM nachdem die technischen Grundlagen stehen ist es, das Modell zu trainieren. Hierbei wurde der Transformer
-bereits entwickelt und wird im nächsten Schritt mit Daten trainiert.  
+Der erste Schritt um eine LLM zu erstellen 
 
 \subsection{Inference}
 \label{s:intro:llm:inf}
-Wenn man ein fertig trainiertes und finetuned Modell hat, kann man das Modell ausführen. Dieser Prozess nennt sich Inference. 
+Sobald ein Model trainiert wurde und bereit ist benutzt zu werden, muss man es ausführen. Dieser Prozess nennt sich Inference.
+Um Inference ausführen zu können gibt es heutzutage verschiedene Möglichkeiten. Es gibt zwar die Möglichkeit Inference über 
+online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen, 
+wir behandeln hier aber nur lokale Optionen. \par
+Das Hauptproblem bei der Inference von diesen Modellen war zu Beginn, dass sie sehr viele Ressourcen benötigt haben und nur über
+spezielle Hardware ausführbar waren. Spezielle Hardware heißt in diesem Fall, dass sie zu Beginn nur über Grafikkarten mit sehr
+viel VRAM nutzbar waren. 
 
 \subsection{Prompting}
 \label{s:intro:llm:prom}
@@ -225,7 +231,19 @@ Wenn man ein fertig trainiertes und finetuned Modell hat, kann man das Modell au
 \subsection{Encoder-Decoder Architektur}
 Bevor auf die Transformer Architektur eingegangen werden kann, muss auf die vorangeganen Architekturen eingeganen werden.
 %erklaeren wieso das erklaert werden muss
-Diese Technologien haben sich damals durch 
+Diese Technologien haben sich damals vorallem im Kontext des Sequence-to-Sequence Learnings weiterentwickelt. 
+Sequence-to-Sequence Learning oder kurz Seq2Seq Learning, bringt eine Sequenz variabler Länge in eine andere
+Sequenz variabler Länge.\cite{sutskeverSequenceSequenceLearning2014} Beispiele hierfür wären Text Zusammenfassungen und Übersetzungen. Die Architektur aus der sich
+der Transformer, der in dem Abschnitt \ref{s:intro:llm:trans} behandelt wird, der in den LLMs heutzutage 
+verwendet wird, entwickelt hat, ist die Encoder - Decoder Architektur.\par
+Die Encoder-Decoder Architektur besteht aus zwei Rekurrenten Neuralen Netzen. Wie ein Neurales Netz funktioniert wurde bereits im 
+Abschnitt \ref*{s:intro:nn} behandelt. Das besondere an einem Rekurrenten Neuralen Netz ist, dass dieses die vorherigen Aktivierungen 
+der einzelnen Neuronen mit berücksichtigt. Dadurch, dass die vorangeganen Aktivierungen ebenfalls beachtet werden, können Kontexte 
+erkannt werden und Sätze können sinnvoll übersetzt werden.\par
+Hierbei erhählt der Encoder eine Eingabe Sequenz, welche dann Kontext Vektoren erstellt, welcher vom Decoder in eine Ausgabe Sequez
+umgewandelt wird.  
+Das Problem bei der originalen Encoder-Decoder Architektur ist, dass die Vektoren eine festgesetzte Größe hatten und  
+
 
 \section{Transformer}
 \label{s:intro:llm:trans}
@@ -240,7 +258,8 @@ in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttent
 \caption{Transformer Architektur}
 \end{figure}
 Von Yuening Jia - DOI:10.1088/1742-6596/1314/1/012186, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=121340680
-\subsection{Attention}
+
+\subsection{Attention Mechanismus}
 Die Grundidee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 im Paper ``Neural Machine Translation by Jointly Learning
 to Align and Translate'' von Bahdanau et al. vorgestellt wurde.
 Beim Attention Mechanism geht es darum, Deep Learning Modelle zu verbessern, indem 
@@ -254,10 +273,70 @@ Vektor Datenkbanken sind die Datenbanken.
 \section{Embeddings}
 \label{s:intr:emb}
 
+
 \section{RAG}
 \label{s:intro:rag}
-Eines der größten Probleme der LLMs heutzutage ist, dass die Informationen, die sie zum beantworten für Fragen benutzen, teilweise veraltet sind oder sehr allgemein. Eine Technologie, die versucht, dieses Problem zu beseitigen, ist die sogenannte RAG 
-(Retrieval Augmented Generation).  
+Eines der größten Probleme der LLMs heutzutage ist, dass die Informationen, die sie zum beantworten für Fragen benutzen, 
+teilweise veraltet sind oder sehr allgemein. Ein weiteres großes Problem ist die im Abschnitt \ref{s:intro:llm} genannte 
+Halluzination, die passieren kann, wenn eine LLM eine Frage zu der es eigentlich nichts weiß, beantwortet. Eine Technologie, 
+die versucht, dieses Problem zu beseitigen, ist die sogenannte Retrieval Augmented Generation. 
+Die Retrieval Augmented Generation soll das parametrische Gedächtnis der LLM
+mittels eines nicht parametrischen Gedächtnisses erweitern.\cite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021} \par 
+Retrieval Augmented Generation löst ein paar Probleme vor denen LLMs heutzutage 
+stehen, ist aber keine perfekte Lösung und muss sich auch seinen eigenen Problemen
+stellen. In diesem Zusammenhang gibt kann man heute RAG in drei Stufen 
+einordnen.\cite{gaoRetrievalAugmentedGenerationLarge2024}
+
+\subsection*{Naive RAG}
+%schreib das nochmal um das ist kinda hart geklaut
+Naive RAG ist die traditionelle Herangehensweise and das Problem der RAG.
+Sie besteht aus drei Stufen. Indexing(Indizierung??), Abfrage und Generierung.\par
+Beim Indizieren werden die rohen Eingabedaten gereinigt und extrahiert.
+Dies ist wichtig, da es verschieden Formate haben kann, bei Textdaten 
+gibt es bspw. PDF Dateien, Markdown oder HTML. Diese Texte werden nach der Reinigung
+in Plain Text umgewandelt und dieser Plain Text wird dann in kleinere Teile unterteilt .
+Diese kleineren Parts werden dann über ein Embedding modell in eine 
+Vektordarstellung umgewandelt und dann in einer Vektordatenbank abgespeichert.\par
+Bei der Abfrage erhält das RAG System eine Anfrage und benutzt das selbe 
+Embedding Modell, wie in der Indizierungsphase, um die Abfrage in eine 
+Vektordarstellung umzuwandeln. Im Anschluss wird durch einen Semantischen
+Vergleich nach den Top-k Ergebnissen gesucht und diese werden dann 
+ausgegeben.\par
+Bei der Generation bekommt die LLM dann die Abfrage und die ausgegeben 
+Ergebnisse in einem Prompt zurück und generiert daraus dann eine Antwort. 
+Was genau hier beachtet wird kommt auf die LLM, das Kontext Fenster und den
+ benutzten Prompt an\cite{gaoRetrievalAugmentedGenerationLarge2024}.\par
+Wie in \ref{s:intro:rag} bereits erwähnt gibt es hierbei ein paar Probleme.
+Das Hauptproblem, welches hier besteht ist die der Abfrage. Bei der Abfrage 
+gibt es oft Probleme, welche mit der Genauigkeit zu tun haben. Dementsprechend
+kann es passieren, dass das RAG System falsche oder unpassende Informationen
+zurück gibt. Aufgrund der Probleme bei der Abfrage entstehen dann ebenfalls 
+Probleme bei der Generation der Antwort. Was dazu führt, dass die Qualität 
+der Antworten sinkt. Dadurch sinkt dann ebenfalls die Verlässlichkeit auf 
+das System. 
+
+\subsection{Advanced RAG}
+Advanced RAG wurde entwickelt um den Problemen der naiven RAG entgegenzuwirken
+bzw. sie zu beseitigen. Dementsprechend werden hier einige Dinge geändert. Vorallem
+in der Stufe der Abfrage wurde hier einiges geändert. Um die Qualität zu erhöhen 
+wurden der Abfrage pre- und post Strategien hinzugefügt.
+Dazu wurde der Indexing Prozess angepasst.
+Beim Indexing wird nun Metadata mit eingebunden und der Text wird genauer unterteilt.
+Pre-retrieval:
+Beim pre-retrieval wird vorallem darauf geachtet die Anfrage so klar wie möglich zu machen.
+Hierfür werden Metadaten angehängt, Anfragen umgewandelt, Anfragen erweitert und noch 
+einige weitere Dinge abgeändert. Das Ziel hier ist es die Anfrage zu ändern, sodass sie so 
+klar wie möglich ist und sie für Retrival zu optimieren.\par
+Post Retrieval: 
+Nachdem der Kontext nach dem Retrieval Prozess abgefragt wurde, wird
+versucht die abgerufenen Daten möglichst optimal mit der Anfrage zu verbinden.
+Hierfür werden vorallem das komprimieren und das neu Anordnen des Kontexts 
+verwendet. Die wichtigsten Dokumente werden an eines der Enden der Anfrage 
+geschoben und es wird versucht die wichtigsten Informationen heraus zu suchen
+und nur diese zurück zu geben. Dadurch sollte die LLM genug Informationen 
+erlangen, aber nicht zu viele und die Antworten sollten besser werden.
+
+\subsection{Modular RAG}
 
 \section{Ragas}
 \label{s:intro:ragas}
@@ -265,5 +344,29 @@ Eines der größten Probleme der LLMs heutzutage ist, dass die Informationen, di
 \section{Langchain}
 \label{s:intro:lang}
 
-\section{Ollama \& Llama.cpp}
+\section{Huggingface}
+\label{s:intro:hug}
+
+\section{llama.cpp \& Ollama}
 \label{s:intro:oll}
+Ein Problem, welches 
+
+\section{Google}
+\subsection{Google Cloud}
+Dadurch, dass die Techdivision ein Google Partner ist und intern versucht 
+möglichst viele Produkte von Google zu nutzen 
+
+\subsection{Google Chat}
+Google Chat ist eine von Google entwickelte Chatplattform. Diese Plattform 
+hat 2017 Google Hangout zusammen mit Google Meet ersetzt. Zu Beginn war das 
+Projekt nur im Zusammenhang mit Google Workspace erhältlich und somit war es 
+eine Chatplattform die hauptsächlich für Teams und Unternehmen benutzbar war. 
+2021 wurde die Plattform im Early Access auch für normale Benutzer erreichbar 
+gemacht und ist seit 2022 für jeden benutzbar.\par
+Diese Plattform ist die Plattform, die die Techdivision hauptsächlich intern 
+zur Kommunikation benutzt. Es gibt auf der einen Seite 1 zu 1 Chat in der eine 
+Person mit nur einer anderer Person kommuniziert und auf der anderen Seite gibt es 
+Innerhalb dieses Services die Möglichkeit 
+sogenannte Spaces zu erstellen, welche Gruppenchats ähneln. Ein Teil dieser
+Gruppenchats sind die in \ref*{s:intro:tech} genannten Supportchats in die 
+der Chatbot final eingebaut werden soll.
