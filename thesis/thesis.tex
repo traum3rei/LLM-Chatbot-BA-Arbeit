@@ -54,6 +54,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
+\usepackage{acro}
 % Ende eigene Packages
 
 
@@ -78,6 +79,17 @@
 
 \newcommand{\real}{\mathord{\mathrm{I\!R}}}
 
+\DeclareAcronym{nlp}{
+  short=NLP,
+  long=Natural Language Processing,
+}
+
+\DeclareAcronym{llm}{
+  short=LLM,
+  long=Large Language Model,
+}
+
+
 \begin{document}
 \selectlanguage{ngerman}
 \def\figdir{figures}
@@ -95,7 +107,14 @@
 
 \pagestyle{scrplain}
 \pagenumbering{roman}
+
 \include{toc}
+
+
+
+\printacronyms
+
+
 
 \pagestyle{scrheadings}
 

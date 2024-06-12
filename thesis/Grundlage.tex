@@ -211,9 +211,49 @@ was dahinter steckt. GPT steht für Generative pretrained Transformer. Generativ
 auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM vor ihrer Nutzung auf einer Datenmenge trainiert wurde und Transformer
 steht hier für die Transformer Architektur.
 
+\subsection{Tokenizer}
+\label{s:intro:llm:token}
+Tokenizer sind ein wichtiger Part der Machine Learning Toolchain 
+im Zusammenhang mit dem Lernen von menschlicher Sprache.
+Wenn man im Bereich des Natural Language Processing ein Machine 
+Learning trainieren möchte stellt sich die Frage, wie man Texte
+aufteilen kann, damit das Modell, welches trainiert wird diese 
+verarbeiten kann.\par
+Die Tokenizer teilen die Texte so auf, dass das zu trainierende
+Modell komplexe Sätze besser aufteilen und verstehen kann. 
+Der Tokenizer macht das, indem er den Text in sogenannte
+Tokens aufteilt. Ein Token kann ein ganzes Wort, ein Teil eines
+Worts oder ein Satzzeichen sein.\par
+Dies ist ein wichtiger Teil des \ac{nlp}, da die Aufteilung der 
+Trainingsdaten einen großen Einfluss darauf hat, wie gut die 
+\ac{llm} funktioniert. Genau wie bei Compilern, die Programme in
+Tokens aufteilen, benutzen wir bei \ac{llm} Tokenizer, damit wir
+die Texte aufteilen können und die dabei entstandenen Tokens über 
+verschiedene grammatikalische Regeln zusammensetzen können.\par
+Eines der größten Probleme hierbei ist, dass verschiedene Sprachen verschiedene
+grammatikalische Regeln haben und somit verschiedene Arten des 
+Zerlegens oder Zusammensetzens brauchen. 
+Ein weiteres Problem ist, dass das selbe Wort teils verschiedene Bedeutungen haben
+kann. Hierbei ist der Kontext wichtig und die Anzahl der Tokens, die das 
+Modell erkennen kann. Man könnte hierbei alle möglichen Token aufnehmen, 
+was aber dafür sorgen kann, dass das System overfitted beim Training.
+Dazu kommt, dass das die notwendigen Kosten zum Trainieren und für die Inference 
+des Systems erhöhen würde.\cite{perryWhatTokenizationNatural2021} \cite{chenStrategiesTrainingLarge2016}
+
+
 \subsection{Training}
 \label{s:intro:llm:train}
-Der erste Schritt um eine LLM zu erstellen 
+Der erste Schritt um eine \ac{llm} zu erstellen ist es diese zu trainieren. 
+Die \ac{llm} trainieren heißt in diesem Fall die LLM mit Daten zu trainieren.
+Dafür werden viele verschiedene Daten gesammelt und die LLM wird dann 
+mit Hilfe dieser Daten trainiert.\par
+Die \ac{llm} teilt in diesem Prozess die Daten die sie erhalten hat mit Hilfe eines
+Tokenizers in verschieden Tokens ab und lernt in diesem Zusammenhang, den 
+Aufbau menschlicher Sprache in der jeweiligen Sprache, die zum trainieren 
+verwendet wird. \par
+
+\subsection{Hypertraining}
+
 
 \subsection{Inference}
 \label{s:intro:llm:inf}
