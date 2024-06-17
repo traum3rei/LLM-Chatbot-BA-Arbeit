@@ -1,13 +1,47 @@
 \chapter{Anforderungen}
 \section{Anforderungsanalyse}
-Es gibt fünf Punkte die laut Experteninterviews gefordert sind. 
+Es gibt sechs Punkte die laut Experteninterviews gefordert sind. 
 
 \begin{enumerate}
-    \item Der Bot soll lokal laufen aufgrund von Datenschutz
+    \item Der Bot soll selbst gehostet werden
+Das größte Problem, welches beim Betreiben des Chatbots beachtet, ist die 
+DSGVO. Datenschutz ist ein großes Thema bei Unternehmen und vor allem, bei 
+Unternehmen die mit Kundendaten arbeiten müssen oder auch Betriebsgehemnisse,
+die nicht an die Öffentlichkeit weiter gegeben werden sollen. 
+Die Techdivision ist ein IT-Dienstleister und somit ist dies auch ein
+Bereicht der bei der Konzeption und Entwicklung dieses Chatbots beachtet werden 
+muss. Aufgrund dieser Sorgen wird gefordert, dass der Chatbot beziehungsweise das 
+LLM von der Techdivision gehostet wird, was bedeutet es dürfen keine APIs verwendet 
+werden von LLM Systemen, die von anderen Unternehmen gehostet werden, wie beispielsweise
+die ChatGPT API.
     \item Der Bot soll in einer Chatgruppe laufen, damit IT-Supportmitarbeiter eingreifen können, falls nötig
+Auch, wenn die LLMs heutzutage weit entwickelt sind, können diese die
+falschen Informationen weiter geben, oder komplett neue halluzinieren
+und diese dann dem Supportsuchenden weiter geben. Es könnte auch sein, dass
+der Bot dem Mitarbeiter überhaupt nicht helfen kann. Damit in diesen Fällen
+ein Supportmitarbeiter eingreifen kann, sollte der Bot in einer Chatgruppe 
+laufen, von der ein Mitarbeiter des Support Teams ebenfalls Teil ist.
     \item Der Bot soll Unternehmensdaten verwenden
+Da die Bots nicht von Haus aus Zugriff auf spezifische Informationen 
+der Techdivion Zugriff haben, soll der Bot auf Unternehmensdaten 
+zugreifen können. Dadurch kann der Bot spezifischer Hilfe leisten und 
+nicht nur allgemeine Hinweise geben, die im Internet zu finden sind.
     \item Der Bot soll mit der Zeit auf neues Wissen zugreifen können
+Da sich die Unternehmensdaten mit der Zeit ändern und auch neue 
+Datenquellen hinzukommen können, sollte der Bot in der Lage sein 
+mit der Zeit auf neues Wissen zuzugreifen.
     \item Der Bot soll auf Deutsch arbeiten
-    \item Der Bot soll Anfragedaten speichern können, damit falls notwendig Kurse zu bestimmten Themen gegeben werden können oder bestimmte Personen ein FAQ Termin kriegen
+Der Großteil der Techdivion ist deutschsprachig. Die meisten Teile von 
+Datenquellen, wie beispielsweise Confluence sind ebenfalls auf Deutsch. 
+Es gibt ein paar englischsprachige Mitarbeiter, daher wäre ein Bilingualer 
+Bot der beste Fall, da aber die meisten Deutsch sind, wäre Deutsch die bessere
+Option, falls es nur eine Sprache sein kann.
+    \item Der Bot soll Anfragedaten speichern können
+Dies ist eine optionale Anfrage des IT-Supports.
+Der Bott soll Anfragedaten speichern können, damit eingesehen werden kann,
+ob zu manchen Themen viele Fragen gestellt werden oder manche Personen 
+besonders viele Fragen stellen. So könnte, falls notwendig zu einem bestimmten
+Thema ein Workshop angeboten werden oder es könnte ein Kurs mit einer 
+Person geben, in der diese Person alles, was sie will erklärt kriegt.
 \end{enumerate}
 

@@ -67,6 +67,8 @@ eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals 
 Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der die Beziehung zwischen Menschen und Maschinen beleuchtet
 wird\cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie reagieren konnte als Eliza, aber von den Grundprinzipien her,
 hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020}.
+Nach diesen anfänglichen Versuchen im Bereich der Chatbots, welche vorallem im Bereich der 
+Psychologie aufgebaut wurden,  
 
 \section{Künstliche Intelligenz}
 Künstliche Intelligenz ist ein Teil der Informatik der sich damit beschäftigt, Aufgaben, die früher menschliche Intelligenz benötigt hat, von Maschinen bzw. Computern 
@@ -84,9 +86,59 @@ Die verschiedenen Aufgaben werden teils in verschiedenen Teilbereichen der küns
     \item Natural Language Processing
     \item Robotik
 \end{itemize}
+Nun ist die Frage wie man Intelligenz definieren kann.
+Das ist keine einfache Aufgabe und nicht der Schwerpunkt dieser 
+Arbeit. Im Kontext dieser Arbeit wird das Buch ``Knowledge Science – 
+Grundlagen: Methoden der Künstlichen Intelligenz für die 
+Wissensextraktion aus Texten'' von Lanquillong und Schacht 
+betrachtet. Laut Lanquillon und Schacht ist eine Möglichkeit
+ein paar Eigenschaften anzuschauen, welche an menschliches Verhalten 
+angelehnt sind anzuschauen und davon ausgehend künstliche Intelligenz 
+betrachten oder definieren. Diese Liste ist offen und nicht vollständig. 
+Die Eigenschaften die im Buch genannt werden sind: 
+\begin{itemize}
+    \item Wahrnehmung
+    \item Schlussfolgerung
+    \item Handeln
+    \item Planung und zielgerichtete Problemlösung
+    \item Kommunikation
+    \item Anpassungsfähigkeit und Lernen
+    \item Autonomie
+    \item Kreativität
+    \item Reflexion und Bewusstheit
+    \item Ästhetik
+    \item Organisation
+\end{itemize}
+Die meisten Menschen weisen alle diese Eigenschaften auf, aber 
+es gibt noch keine künstliche Intelligenz, die all diese Eigenschaften 
+aufweisen kann. Da es noch kein System gibt, welches in diese Kategorie 
+fällt, aber es bereits Systeme gibt, die teils ein paar dieser Eigenschaften
+aufweisen und dazu noch Probleme in eng definierten Problembereichen lösen 
+können. Ist eine weitere Unterscheidung innerhalb des Bereichs der 
+künstlichen Intelligenz nötig. Daraus formen sich die zwei Begriffe 
+schwache künstliche Intelligenz und starke künstliche Intelligenz\cite{lanquillonKnowledgeScienceGrundlagen2023}.
 
 
-\subsection{Machinelles Lernen}
+\subsection{Schwache künstliche Intelligenz}
+Die schwache künstliche 
+Intelligenz ist ein System, welches Probleme innerhalb einer Domäne 
+lösen kann. Nachdem es trainiert wurde, kann es durch dieses Training
+Probleme innerhalb der Domäne in der es trainiert wurde lösen. Es kann
+dieses "Wissen" aber nicht auf andere Problembereiche übertragen und 
+dadurch Probleme in dieser neuen Domäne lösen\cite{lanquillonKnowledgeScienceGrundlagen2023}.
+
+\subsection{Starke künstliche Intelligenz}
+Starke künstliche Intelligenz, wäre ein System, welches
+die oben genannte Liste an Eigenschaften aufweisen kann und 
+dazu Probleme lösen kann ohne explizit für diese trainiert worden 
+zu sein. Eine starke künstliche Intelligenz wäre ebenfalls in der 
+Lage sich selbst weiterzuentwickeln und würde somit irgendwann 
+die menschliche Intelligenz übertreffen. Ein solches System existiert 
+noch nicht und es ist davon auszugehen, dass dies auch in naher Zukunft
+nicht der Fall sein wird\cite{lanquillonKnowledgeScienceGrundlagen2023}.
+
+\subsection{Natural Language Processing}
+Natural Language Processing oder natürliche Spracherkennung, 
 
 
 \subsection{Neuronale Netzwerke}
@@ -241,16 +293,23 @@ Dazu kommt, dass das die notwendigen Kosten zum Trainieren und für die Inferenc
 des Systems erhöhen würde.\cite{perryWhatTokenizationNatural2021} \cite{chenStrategiesTrainingLarge2016}
 
 
-\subsection{Training}
+\section{Training}
 \label{s:intro:llm:train}
-Der erste Schritt um eine \ac{llm} zu erstellen ist es diese zu trainieren. 
+Bevor betrachtet wird wie ein \ac*{llm} trainiert wird, wird ein grober 
+Überblick über das Trainieren eines neuronalen Netzes betrachtet.\par
+Wenn ein neuronales Netz trainiert wird, wird ein Datensatz benötigt.
+Dieser Datensatz ist beschriftet, was bedeutet die Ausgabe und die 
+Eingabe wird dem Modell gegeben. Das Modell benutzt  
+
+Der erste Schritt um ein \ac{llm} zu erstellen ist es diese zu trainieren. 
 Die \ac{llm} trainieren heißt in diesem Fall die LLM mit Daten zu trainieren.
 Dafür werden viele verschiedene Daten gesammelt und die LLM wird dann 
 mit Hilfe dieser Daten trainiert.\par
-Die \ac{llm} teilt in diesem Prozess die Daten die sie erhalten hat mit Hilfe eines
+Das \ac{llm} teilt in diesem Prozess die Daten die sie erhalten hat mit Hilfe eines
 Tokenizers in verschieden Tokens ab und lernt in diesem Zusammenhang, den 
 Aufbau menschlicher Sprache in der jeweiligen Sprache, die zum trainieren 
 verwendet wird. \par
+
 
 \subsection{Hypertraining}
 
