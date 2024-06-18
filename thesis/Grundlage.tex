@@ -163,7 +163,32 @@ nicht der Fall sein wird\cite{lanquillonKnowledgeScienceGrundlagen2023, leeraini
 
 \subsection{Natural Language Processing}
 Natural Language Processing oder natürliche Spracherkennung, ist ein Teil des Machine Learnings der sich
-auf das 
+auf die Arbeit mit menschlicher, natürlicher Sprache fokussiert. Das Ziel von \ac*{nlp} ist es, Computern 
+die Möglichkeit zu geben, menschliche Sprache zu verstehen und zu verarbeiten, um mit den Menschen 
+kommunizieren zu können. Die schließt Kommunikation in Form von Audio als auch über Text mit ein.\par
+\ac*{nlp} ermöglicht es Computern, durch Kombination verschiedener Machine Learning Verfahren und
+andere linguistischen Verfahren menschliche Sprache zu verstehen und diese auch wiederzugeben.
+Diese System können im Zusammenhang damit, Texte zusammenzufassen, sie zu analysieren, ihre Bedeutung
+zu verstehen und mit Hilfe dieser Fähigkeiten dann sinnvolle und passende Antworten zu generieren.\par
+Anwendungen die \ac*{nlp} nutzen sind vielfältig und beispielsweise Chatbos und Übersetzungssoftware
+implementieren auch NLP Verfahren.\par
+
+Da Sprache oft kontextabhängig ist und manche Sprachen, wie Japanisch 
+komplette Satzteile weg lassen, wenn diese durch den Kontext erkenntlich 
+sein sollten, ist es
+ein wichtiger Teil des \ac*{nlp}, in der Lage zu sein kontextuelle
+Informationen zu berücksichtigen. Dadurch kann das System Kontext verstehen
+und richtig interpretieren. Dies wird über verschiedene Methoden erreicht, wie
+Tokenisierung, Parsing und Named Entity Recognition. Tokenisierung ist 
+ein Verfahren, welches LLMs nutzen. Dieses wird in \ref*{s:intro:llm:token} 
+genauer erklärt.\par
+
+NLP stellt eine wichtige Schlüsselstelle in der Human-Computer Interaction 
+oder zu deutsch Mensch-Computer-Interaktion dar. Sie hilft nicht nur dabei
+menschliche Kommunikation mit Computern einfacher und schneller zu machen,
+sondern gibt auch Menschen, die beispielweise aufgrund von körperlichen 
+Problemen ein Handy nicht ohne Probleme bedienen können, die Möglichkeit 
+mit diesen Geräten zu interagieren\cite{WhatNLPNatural2021}. 
 
 
 \subsection{Neuronale Netzwerke}
@@ -349,9 +374,7 @@ Sobald ein Model trainiert wurde und bereit ist benutzt zu werden, muss man es a
 Um Inference ausführen zu können gibt es heutzutage verschiedene Möglichkeiten. Es gibt zwar die Möglichkeit Inference über 
 online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen, 
 wir behandeln hier aber nur lokale Optionen. \par
-Das Hauptproblem bei der Inference von diesen Modellen war zu Beginn, dass sie sehr viele Ressourcen benötigt haben und nur über
-spezielle Hardware ausführbar waren. Spezielle Hardware heißt in diesem Fall, dass sie zu Beginn nur über Grafikkarten mit sehr
-viel VRAM nutzbar waren. 
+
 
 \subsection{Prompting}
 \label{s:intro:llm:prom}
@@ -395,7 +418,7 @@ den Trainingsdaten, kann es hier zu Problemen kommen.
 \cite{sutskeverSequenceSequenceLearning2014, bahdanauNeuralMachineTranslation2016}
 
 \subsection{Attention Mechanismus}
-Die Idee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 im Paper ``Neural Machine Translation by Jointly Learning
+Die Idee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 in der Arbeit ``Neural Machine Translation by Jointly Learning
 to Align and Translate'' von Bahdanau et al. vorgestellt wurde.
 Zu Beginn wurde der Mechanismus genutzt um die in \ref*{s:intro:edar} beschriebene Encode-Decoder Architektur zu verbessern,
 indem es vorallem auf das Problem der festen Vektorgröße des Kontextfensters eingeht.\par
@@ -404,8 +427,11 @@ den Stellen an denen sich die relevantesten Informationen sucht und mithilfe der
 diesen Stellen und der Kontextvektoren der Wörter die bereits übersetzt wurden, wird das nächste Wort generiert.\par
 Der größte Unterschied zu originalen Encoder-Decoder Architektur ist dadurch, dass diese neue Architektur nicht
 versucht die gesamte Eingabesequenz in einen Kontextvektor umzuwandeln, sondern die Eingabesequenz in eine Sequenz
-von Vektoren umzuwandelt. Dadurch können die Modelle besser mit längeren Sätzen umgehen.
+von Vektoren umzuwandelt. Dadurch können die Modelle besser mit längeren Sätzen umgehen.\par
+
+
 \cite{bahdanauNeuralMachineTranslation2016}
+
 
 \subsection*{Backpropagation}
 \label{s:intro:bp}
@@ -526,19 +552,62 @@ und nur diese zurück zu geben. Dadurch sollte die LLM genug Informationen
 erlangen, aber nicht zu viele und die Antworten sollten besser werden.
 
 
+\section{llama.cpp}
+\label{s:intro:oll}
+Ein Problem, welches im Abschnitt \ref*{s:intro:llm:inf} bereits angesprochen wurde, 
+ist, dass es schwierig sein kann, für Personen oder Unternehmen, die nicht 
+über die nötige Hardware verfügen, LLM Inferenz zu betreiben. 
+Desto größer die LLM, die benutzt werden soll, wird, desto aufwändiger werden
+die Anforderungen an die Hardware. Ein großes Open Source Projekt, welches
+sich mit diesem Problem auseinander setzt ist llama.cpp, gestartet von 
+Georgi Gerganov auf Github.\par
+Dieses Projekt hat zu Beginn viele Nutzer angezogen, da man hier, ohne 
+spezielle Hardware, Inferenz betreiben konnte. Die anderen Bibliotheken,
+die hierfür zu Verfügung standen, wurden oft in Verbindung mit Closed-Source 
+Bibliotheken, wie zum Beispiel Nvidias Cuda entwickelt und waren 
+dadurch nur über bestimmte Hardware zu benutzen.\par
+Zu Beginn wurde das Projekt hauptsächlich auf Inferenz auf der CPU
+ausgelegt. Dies gab den Nutzern zwar die Möglichkeit auf ihren
+Maschinen ohne GPU Inferenz zu betreiben, aber durch fehlende 
+GPU Einbindung hatte dies Begrenzungen in der Geschwindigkeit und 
+der Größe der Modelle, die benutzt werden konnten.\par
+Mit der Zeit wurde dem Projekt auch die Möglichkeit hinzugefügt, GPUs
+für die Inferenz zu benutzen, wodurch die Nutzer in der Lage sind 
+schnellere Inferenz mit größeren Modellen auszuführen.\par
+Damit die verschiedenen Modelle über llama.cpp nutzbar sind, gab 
+es hier zu Beginn das GGML format. Dies wurde ebenfalls von Gerganov 
+im Zusammenhang mit seinen Projekten entwickelt.Ein Vorteil hierbei war,
+dass das GGML Format das speichern von quantisierten Modellen erlaubt. 
+Quantisierte Modelle haben hierbei den Vorteil, dass die Präzision 
+der einzelnen Parameter von bspw. 32 Bit Gleitkommazahlen auf eine niedrigere 
+Genauigkeit, wie bspw. 8 Bit Gleitkommazahlen konvertiert wurde. Der Vorteil 
+hier war, dass die Inferenz der einzelnen Modelle hier weniger intensive
+Rechenarbeiten erfordert haben und auch durch die kleinere Größe auch weniger
+Speicher benötigt. Dadurch war es einfacher möglich, die Inferenz auf der
+CPU durchzuführen. \par Jedoch hatte diese Format einige Probleme. 
+Zum einen hat jede Architektur ihr eigenes Skript benötigt, damit 
+sie in das GGML Format konvertiert werden kann, dazu kam, dass 
+in der Datei nicht erkennbar war, für welche Architektur das Modell war.  
+Heutzutage benutzt llama.cpp ein neues Format, namens GGUF, welche einige 
+der Probleme mit GGML beseitigen soll. \par \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}
+
+\section{Ollama}
 
 \section{Ragas}
 \label{s:intro:ragas}
 
+\section{AI Frameworks}
+Durch den 
 \section{Langchain}
 \label{s:intro:lang}
+
+\subsection{Haystack}
+
 
 \section{Huggingface}
 \label{s:intro:hug}
 
-\section{llama.cpp \& Ollama}
-\label{s:intro:oll}
-Ein Problem, welches 
+
 
 \section{Google}
 \subsection{Google Cloud}
