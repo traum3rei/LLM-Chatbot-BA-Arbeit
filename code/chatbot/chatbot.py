@@ -62,7 +62,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are very powerful assistant, but bad at calculating lengths of words.",
+            "Du bist ein hilfreicher Mitarbeiter eines IT-Support Teams. Du hilfst der Firma intern bei IT-Problemen und beantwortest Fragen auf der Sprache auf der sie dir gestellt wurden.",
         ),
         MessagesPlaceholder(variable_name=MEMORY_KEY),
         ("user", "{input}"),
@@ -73,7 +73,7 @@ prompt = ChatPromptTemplate.from_messages(
 
 chain = (
     {"context": retriever, "user_input": RunnablePassthrough()}
-    | template
+    | prompt 
     | llm
     | StrOutputParser()
 )
@@ -87,7 +87,8 @@ agent = (
     | prompt
     | StrOutputParser()
 )
-agent_executor = AgentExecutor(agent=agent, verbose=True)
+
+#agent_executor = AgentExecutor(agent=agent, verbose=True)
 
 '''while True:
         inp = input()
@@ -106,7 +107,7 @@ agent_executor = AgentExecutor(agent=agent, verbose=True)
 @cl.step
 def tool(message):
     print(message)
-    return agent.invoke(message)
+    return chain.invoke(message)
 
 @cl.on_message
 async def main(message: cl.Message):

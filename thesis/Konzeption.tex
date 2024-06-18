@@ -46,9 +46,8 @@ Die Modelle die innerhalb dieser Arbeit miteinander verglichen werden sind
 
 \section{Auswahl der Embedding Modelle}
 \label{s:konz:emod}
+Nach der Auswahl des Chatmodels geht es um die Auswahl der nächsten Modelle.
 
-Die nächsten Modelle über die man sich Gedanken machen muss sind die sogenannten Embedding Modelle. 
-Hier werden einmal die importierten Texte für die Vektor Datenbank in eine Vektor repräsentation umgewandelt.
 
 \section{Prompting}
 \label{s:konz:prom}
@@ -57,12 +56,20 @@ Aspekte, die man beachten muss.
 
 \section{Auswahl der Vektor Datenbank}
 \label{s:konz:vec}
-Im nächsten Schritt wird die Art des Chat Modells ausgesucht. Hier gibt es einige Möglichkeiten. 
+\iffalse
 Eine Möglichkeit wäre es, mittels API auf ein Modell wie Chat-GPT 4 zuzugreifen. Die Probleme hierbei 
 sind, dass die Modelle nicht speziell mit unseren benötigten APIs/Infos vertraut sind. Wir könnten ein 
 Modell suchen, dem wir unsere Daten schicken, aber das könnte teils Probleme mit Datenschutz geben. Durch 
 diese Probleme fallen diese Optionen weg. Das heißt, das Modell muss lokal gehostet werden. Lokal heißt hierbei 
 einfach auf einem Server von uns oder einem Server, bei dem man weiss, dass keiner auf die Daten zugreifen kann. 
+\fi
+
+
+\section{Server}
+
+\section{Chainlit}
+
+\section{Verbindung zu Google Chat}
 
 \section{Architektur des Systems}
 \label{s:konz:arc}
@@ -87,6 +94,3 @@ Informationen. Hier sind die Fragen, wie oft es neu trainiert werden soll, wie l
 dieser Prozess kostet. Wir können das Modell nicht bei jedem neuen Update neu trainieren. Das würde zu lange dauern, 
 aber das heisst dass es einen Zeitraum gibt in dem der Bot nicht die aktuellsten Informationen hat. Wir benutzen hier 
 die vorher bereits erwähnte RAG in Kombination mit einer Vektor Datenbank.
-
-
-

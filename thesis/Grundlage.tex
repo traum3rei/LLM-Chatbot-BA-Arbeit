@@ -86,7 +86,7 @@ Die verschiedenen Aufgaben werden teils in verschiedenen Teilbereichen der küns
     \item Natural Language Processing
     \item Robotik
 \end{itemize}
-Nun ist die Frage wie man Intelligenz definieren kann.
+Nun ist die Frage wie Intelligenz definiert werden kann.
 Das ist keine einfache Aufgabe und nicht der Schwerpunkt dieser 
 Arbeit. Im Kontext dieser Arbeit wird das Buch ``Knowledge Science – 
 Grundlagen: Methoden der Künstlichen Intelligenz für die 
@@ -121,24 +121,49 @@ schwache künstliche Intelligenz und starke künstliche Intelligenz\cite{lanquil
 
 \subsection{Schwache künstliche Intelligenz}
 Die schwache künstliche 
-Intelligenz ist ein System, welches Probleme innerhalb einer Domäne 
-lösen kann. Nachdem es trainiert wurde, kann es durch dieses Training
-Probleme innerhalb der Domäne in der es trainiert wurde lösen. Es kann
-dieses "Wissen" aber nicht auf andere Problembereiche übertragen und 
-dadurch Probleme in dieser neuen Domäne lösen\cite{lanquillonKnowledgeScienceGrundlagen2023}.
+Intelligenz ist ein System, welches spezifische Probleme innerhalb einer bestimmten 
+Domäne lösen kann. Diese Art der künstlichen Intelligenz wird darauf trainiert, 
+Probleme innerhalb eines eng begrenzten Bereichs zu lösen, indem sie speziell auf 
+diesen Bereich trainiert wird und im Laufe dessen dann die Regeln dieses Bereichs 
+kennen lernt. Nachdem es trainiert wurde, kann die schwache künstliche Intelligenz 
+durch die beim Training erlernten Regeln und Muster, Probleme innerhalb der Domäne 
+in der es trainiert wurde lösen. Es kann dieses "Wissen" aber nicht auf andere 
+Problembereiche übertragen und dadurch Probleme in dieser neuen Domäne lösen.\par
+Ein Beispiel für eine schwache künstliche Intelligenz wäre ein System, welches 
+darauf trainiert wurde Texte von einer Sprache in einer andere zu übersetzen. 
+Das System kann vielleicht innerhalb dieser Domäne die Aufgabe sehr gut erfüllen, 
+was heißt, dass sie die Texte mit hoher Genauigkeit in die Zielsprache übersetzen 
+kann, ohne den Verlust von Informationen, aber egal wie gut es in dieser Domäne 
+ist, bleibt das System auf diese Domäne beschränkt. Das heißt, es kann
+das erlente Wissen, nicht auf unverwandte Aufgaben übertragen. 
+\cite{lanquillonKnowledgeScienceGrundlagen2023}.
 
 \subsection{Starke künstliche Intelligenz}
-Starke künstliche Intelligenz, wäre ein System, welches
-die oben genannte Liste an Eigenschaften aufweisen kann und 
-dazu Probleme lösen kann ohne explizit für diese trainiert worden 
-zu sein. Eine starke künstliche Intelligenz wäre ebenfalls in der 
-Lage sich selbst weiterzuentwickeln und würde somit irgendwann 
-die menschliche Intelligenz übertreffen. Ein solches System existiert 
-noch nicht und es ist davon auszugehen, dass dies auch in naher Zukunft
-nicht der Fall sein wird\cite{lanquillonKnowledgeScienceGrundlagen2023}.
+Starke künstliche Intelligenz oder Allgemeine künstliche Intelligenz, 
+wäre ein System, welches die oben genannte Liste an Eigenschaften aufweisen könnte, 
+sondern auch in der Lage wäre, Probleme zu lösen, ohne  explizit für diese trainiert worden 
+zu sein. 
+Die starke künstliche Intelligenz, wäre in der Lage Wissen zu verallgemeinern und es 
+dadurch auf neue Anwendungsbereiche anzuwenden, ähnlich wie ein Mensch. 
+Darüber hinaus, wäre eine starke künstliche Intelligenz ebenfalls in der 
+Lage sich selbst weiterzuentwickeln und zu lernen, ohne das menschliches Eingreifen 
+erforderlich wäre. Diese Fähigkeit würde bedeuten, dass starke künstliche Intelligenz,
+durch diese Selbstverberbesserungsfähikeit in der Lage wäre ihr eigenes System und ihre eigenene
+Algorithmen zu optimieren 
+und somit irgendwann die menschliche Intelligenz zu übertreffen. \par
+Solch ein System würde nicht nur durch seine Problemlösungfähigkeit ausgezeichnet sein, 
+sonder ebenfalls durch Dinge wie kreatives Denken und emotionale Intelligenz. 
+Dadurch wäre sie in fast allen Bereichen einsetzbar, in denen diese Eigenschaften 
+gefragt sind.\par
+Mit dem Aufstieg von künstlichen Intelligenzen im Auge der Öffentlichkeit, zeigen 
+sich einige Menschen besorgt, was passieren würde, wenn solch ein System
+erschaffen werden würde. Es ist jedoch zu betonen, dass ein solches System  
+noch nicht existiert und es ist davon auszugehen, dass dies auch in naher Zukunft
+nicht der Fall sein wird\cite{lanquillonKnowledgeScienceGrundlagen2023, leerainieExpertsImagineImpact2024}.
 
 \subsection{Natural Language Processing}
-Natural Language Processing oder natürliche Spracherkennung, 
+Natural Language Processing oder natürliche Spracherkennung, ist ein Teil des Machine Learnings der sich
+auf das 
 
 
 \subsection{Neuronale Netzwerke}
@@ -211,6 +236,7 @@ In der Abbildung 2.2 ist ein simpler Decision Tree dargestellt. Anhand dieser ka
 In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögliche Ausgaben gibt. \par
 
 %vmtl raus nehmen is kinda dogshit
+\iffalse
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/decision-tree}
@@ -223,6 +249,7 @@ In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögli
     \includegraphics[width=\linewidth]{\figdir/nn}
     \caption{Neuronale Netz}
 \end{figure}
+\fi
 \subsection{Training}
 Um ein Modell nach der 
 
@@ -236,6 +263,7 @@ Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abh�
 die Gewichte. Die Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur 
 basiert, welche 2017 im Paper "All you need is attention" vorgestellt wurde. Der genaue Stack den bspw. OpenAI heutzutage benutzt 
 ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Architektur basiert. 
+\iffalse
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -254,6 +282,7 @@ ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Ar
     \caption{LLM Google Trends}
     \label{fig:trend_llm}
 \end{figure}
+\fi
 Wir sehen anhand der \ref{fig:trend_llm}, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse
 an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. 
 Die Daten von Google Trends sind normalisiert zwischen 0 und 100 also können wird dadurch zwar keine genauen Angaben machen, wir sehen aber, dass das
@@ -328,20 +357,58 @@ viel VRAM nutzbar waren.
 \label{s:intro:llm:prom}
 
 \subsection{Encoder-Decoder Architektur}
-Bevor auf die Transformer Architektur eingegangen werden kann, muss auf die vorangeganen Architekturen eingeganen werden.
+\label{s:intro:edar}
+Bevor auf die Transformer Architektur eingegangen werden kann, ist es wichtig, die 
+vorangegangenen Architekturen zu verstehen. Dies ist wichtig, um zu verstehen, 
+wie es zu den heutigen Architekturen gekommen ist und um zu erkennen, welche
+Vorteile diese bieten. 
 %erklaeren wieso das erklaert werden muss
 Diese Technologien haben sich damals vorallem im Kontext des Sequence-to-Sequence Learnings weiterentwickelt. 
 Sequence-to-Sequence Learning oder kurz Seq2Seq Learning, bringt eine Sequenz variabler Länge in eine andere
 Sequenz variabler Länge.\cite{sutskeverSequenceSequenceLearning2014} Beispiele hierfür wären Text Zusammenfassungen und Übersetzungen. Die Architektur aus der sich
 der Transformer, der in dem Abschnitt \ref{s:intro:llm:trans} behandelt wird, der in den LLMs heutzutage 
 verwendet wird, entwickelt hat, ist die Encoder - Decoder Architektur.\par
+
 Die Encoder-Decoder Architektur besteht aus zwei Rekurrenten Neuralen Netzen. Wie ein Neurales Netz funktioniert wurde bereits im 
 Abschnitt \ref*{s:intro:nn} behandelt. Das besondere an einem Rekurrenten Neuralen Netz ist, dass dieses die vorherigen Aktivierungen 
 der einzelnen Neuronen mit berücksichtigt. Dadurch, dass die vorangeganen Aktivierungen ebenfalls beachtet werden, können Kontexte 
 erkannt werden und Sätze können sinnvoll übersetzt werden.\par
 Hierbei erhählt der Encoder eine Eingabe Sequenz, welche dann Kontext Vektoren erstellt, welcher vom Decoder in eine Ausgabe Sequez
-umgewandelt wird.  
-Das Problem bei der originalen Encoder-Decoder Architektur ist, dass die Vektoren eine festgesetzte Größe hatten und  
+umgewandelt wird. Das revolutionäre an dieser Technologie war damals, dass 
+die Eingbae und Ausgabesequenzen variable Längen haben konnten. Der Kontext Vektor
+hatte jedoch eine feste Länge.
+Dieses Originale Encoder-Decoder Modell hatte trotz der Vorteile, die es geboten hat, jedoch einige Probleme: \par
+\begin{enumerate}
+    \item Sequenzielles Verarbeiten: RNNs und LSTMs verarbeiten Sequenzen 
+sequentiell. Dadurch, dass die Daten nich parallel verarbeitet werden, kommt
+es zu längeren Trainingszeiten.
+    \item Abhängigkeiten: In RNNs ist es schwierig langfristige Abhängigkeiten zu erfassen,
+aufgrund des Vanishing Gradient Problems, welches im Abschnitt \ref*{s:intro:bp}
+genauer erklärt wird.
+    \item Festes Kontextfenster: Da die meisten RNNs und LSTMs eine feste
+Kontextgröße haben, kann nur eine begrenzte Menge an Informationen als 
+Kontext, zu einem bestimmte Zeipunkt, beachtet werden. Dadurch kann
+es zum Verlust von Informationen oder zur Verringerung der Genauigkeit
+der Antworten kommen. Besonders bei Sätzen die länger sind als die, in 
+den Trainingsdaten, kann es hier zu Problemen kommen. 
+\end{enumerate}
+\cite{sutskeverSequenceSequenceLearning2014, bahdanauNeuralMachineTranslation2016}
+
+\subsection{Attention Mechanismus}
+Die Idee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 im Paper ``Neural Machine Translation by Jointly Learning
+to Align and Translate'' von Bahdanau et al. vorgestellt wurde.
+Zu Beginn wurde der Mechanismus genutzt um die in \ref*{s:intro:edar} beschriebene Encode-Decoder Architektur zu verbessern,
+indem es vorallem auf das Problem der festen Vektorgröße des Kontextfensters eingeht.\par
+Die Grundidee hierbei ist, dass jedes mal, wenn das System ein Wort übersetzt, es im zu übersetzenden Satz an 
+den Stellen an denen sich die relevantesten Informationen sucht und mithilfe der Kontextvektoren der Wörter an 
+diesen Stellen und der Kontextvektoren der Wörter die bereits übersetzt wurden, wird das nächste Wort generiert.\par
+Der größte Unterschied zu originalen Encoder-Decoder Architektur ist dadurch, dass diese neue Architektur nicht
+versucht die gesamte Eingabesequenz in einen Kontextvektor umzuwandeln, sondern die Eingabesequenz in eine Sequenz
+von Vektoren umzuwandelt. Dadurch können die Modelle besser mit längeren Sätzen umgehen.
+\cite{bahdanauNeuralMachineTranslation2016}
+
+\subsection*{Backpropagation}
+\label{s:intro:bp}
 
 
 \section{Transformer}
@@ -351,25 +418,48 @@ Diese Architektur wurde im Research Paper "Attention is all you need" im Jahr 20
 sie, dass ihre neue Architektur signifikant weniger Zeit zum Training braucht, während es besser parallelisierbar ist und die Ergebnisse trotzdem
 besser sind. Nach 3.5 Tagen Training auf nur 8 Grafikkarten hat ihr Modell einen neuen Single Model Rekord aufgestellt 
 in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttentionAllYou2023}. 
+\iffalse
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{\figdir/transformer}
 \caption{Transformer Architektur}
 \end{figure}
+\fi
 Von Yuening Jia - DOI:10.1088/1742-6596/1314/1/012186, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=121340680
 
-\subsection{Attention Mechanismus}
-Die Grundidee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 im Paper ``Neural Machine Translation by Jointly Learning
-to Align and Translate'' von Bahdanau et al. vorgestellt wurde.
-Beim Attention Mechanism geht es darum, Deep Learning Modelle zu verbessern, indem 
-Der Attention Mechanism basiert 
-\cite{bahdanauNeuralMachineTranslation2016}
+
 
 \section{Vektor Datenbanken}
 \label{s:intro:dat}
-Vektor Datenkbanken sind die Datenbanken.
+Vektor Datenkbanken sind Datenbanken, die hochdimensionale Vektoren 
+speichern können. Diese Vektoren sind mathematische Repräsentationen
+von Attributen oder Merkmalen. Je nachdem wie granular die Daten, die 
+abgespeichert werden sollen sind, kann es sein, dass die Daten tausende
+Dimensionen haben. Die Rohdaten werden mittels Einbettungsfunktion oder 
+Transformationen in ihre Vektordarstellung umgewandelt und dann abgespeichert.\par
+Diese Art der Datenbanken hat für den AI und Machine Learning Bereich ein 
+paar Vorteile im Vergleich zu traditionellen Datenbanken. \par
+Ähnlichkeitssuche: Traditionell Datenbanken brauchen klar definierte 
+Kriterien für die Suche. Hier ist es nicht möglich eine Ähnlichkeitssuche, 
+wie bei Vektordatenbanken durchzuführen. Bei Vektordatenbanken kann
+man mittels Ähnlichkeitssuche-Verfahren schnell ähnliche Datensätze
+finden und dann ausgeben. \par
+Support für unstrukturierte und komplexe Daten: 
+Traditionelle Datenbanken brauchen strukturierte Daten. Die Daten 
+die man für Machine Learning benutzt sind oft unstrukturierte Daten,
+die verschieden Formate haben oder komplett verschiedene Datentypen sind,
+dies schließt auch Audio und Videodateien mit ein. Vektordatenbanken
+können diese Dateien durch die Vektordarstellung abspeichern und sind 
+damit besser für diesen Fall geeignet.\par
+Skalierbarkeit und Performance:
+Dadurch, dass Vektordatenbanken oft mit Big Data verwendet werden,
+gibt es einige Ansätze zum Verbessern der Performance und Skalierbarkeit.
+Ein paar der Methoden die verwendet werden sind Partitioning, 
+Sharding und Caching. Wie genau diese Methoden funktioniert sind
+irrelevant für diese Arbeit und werden daher nicht weiter angesprochen.
 
-\section{Embeddings}
+
+\section{Embedding Modelle}
 \label{s:intr:emb}
 
 
@@ -383,7 +473,7 @@ Die Retrieval Augmented Generation soll das parametrische Gedächtnis der LLM
 mittels eines nicht parametrischen Gedächtnisses erweitern.\cite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021} \par 
 Retrieval Augmented Generation löst ein paar Probleme vor denen LLMs heutzutage 
 stehen, ist aber keine perfekte Lösung und muss sich auch seinen eigenen Problemen
-stellen. In diesem Zusammenhang gibt kann man heute RAG in drei Stufen 
+stellen. In diesem Zusammenhang gibt kann man heute RAG in verschiedene Stufen 
 einordnen.\cite{gaoRetrievalAugmentedGenerationLarge2024}
 
 \subsection*{Naive RAG}
@@ -435,7 +525,7 @@ geschoben und es wird versucht die wichtigsten Informationen heraus zu suchen
 und nur diese zurück zu geben. Dadurch sollte die LLM genug Informationen 
 erlangen, aber nicht zu viele und die Antworten sollten besser werden.
 
-\subsection{Modular RAG}
+
 
 \section{Ragas}
 \label{s:intro:ragas}
@@ -454,6 +544,9 @@ Ein Problem, welches
 \subsection{Google Cloud}
 Dadurch, dass die Techdivision ein Google Partner ist und intern versucht 
 möglichst viele Produkte von Google zu nutzen 
+
+\subsection*{Chainlit}
+
 
 \subsection{Google Chat}
 Google Chat ist eine von Google entwickelte Chatplattform. Diese Plattform 
