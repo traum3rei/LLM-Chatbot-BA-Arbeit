@@ -216,12 +216,13 @@ Typische Aktivierungsfunktionen sind
     \item Tanh: \[f(x)=tanh(x)\]
 \end{itemize}
 \cite{kempkesNeuronUndAktivierungsfunktion2023}
-
+\iffalse
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/neuron}
     \caption{Neuron eines Neuronalen Netzwerks}
 \end{figure}
+\fi
 Die zwei Schichten die es immer gibt sind die Eingabe Schicht und die Ausgabe Schicht. Dazwischen kann es verstecke Schicht geben, die benötigt werden um 
 komplexere Zusammenhänge zu bearbeiten, muss es aber nicht.
 Die Eingabe Schicht erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Schicht. 
@@ -276,7 +277,6 @@ In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögli
 \end{figure}
 \fi
 \subsection{Training}
-Um ein Modell nach der 
 
 \section{LLMs}
 \label{s:intro:llm}
@@ -528,7 +528,7 @@ kann es passieren, dass das RAG System falsche oder unpassende Informationen
 zurück gibt. Aufgrund der Probleme bei der Abfrage entstehen dann ebenfalls 
 Probleme bei der Generation der Antwort. Was dazu führt, dass die Qualität 
 der Antworten sinkt. Dadurch sinkt dann ebenfalls die Verlässlichkeit auf 
-das System. 
+das System\cite{gaoRetrievalAugmentedGenerationLarge2024}.
 
 \subsection{Advanced RAG}
 Advanced RAG wurde entwickelt um den Problemen der naiven RAG entgegenzuwirken
@@ -549,11 +549,11 @@ Hierfür werden vorallem das komprimieren und das neu Anordnen des Kontexts
 verwendet. Die wichtigsten Dokumente werden an eines der Enden der Anfrage 
 geschoben und es wird versucht die wichtigsten Informationen heraus zu suchen
 und nur diese zurück zu geben. Dadurch sollte die LLM genug Informationen 
-erlangen, aber nicht zu viele und die Antworten sollten besser werden.
+erlangen, aber nicht zu viele und die Antworten sollten besser werden\cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 
 
 \section{llama.cpp}
-\label{s:intro:oll}
+\label{s:intro:llama}
 Ein Problem, welches im Abschnitt \ref*{s:intro:llm:inf} bereits angesprochen wurde, 
 ist, dass es schwierig sein kann, für Personen oder Unternehmen, die nicht 
 über die nötige Hardware verfügen, LLM Inferenz zu betreiben. 
@@ -589,20 +589,106 @@ Zum einen hat jede Architektur ihr eigenes Skript benötigt, damit
 sie in das GGML Format konvertiert werden kann, dazu kam, dass 
 in der Datei nicht erkennbar war, für welche Architektur das Modell war.  
 Heutzutage benutzt llama.cpp ein neues Format, namens GGUF, welche einige 
-der Probleme mit GGML beseitigen soll. \par \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}
+der Probleme mit GGML beseitigen soll. Ein großer Vorteil von diesem Format ist,
+dass das Modell nun alle Informationen die zum laden des Modells notwendig
+sind beinhaltet und es müssen keine zusätzlichen Informationen mehr vom Nutzer 
+gegeben werden. Unter anderem beinhaltet die Datei nun die Architektur 
+des Modells\par \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}.
 
 \section{Ollama}
+Ollama ist ein Open Source Projekt, welches seinen Nutzern dabei helfen 
+soll, auf der Plattform LLMs schneller auf ihren lokalen Maschinen 
+zu starten und mit diesen zu interagieren. 
+Das Backend das Ollama unterstützt ist llama.cpp und es soll das Downloaden, 
+Installieren und das Interagieren mit den LLMs einfacher machen. \par
+Ollama hat seine eigene Modellbibliothek über die Nutzer LLM Modelle 
+downloaden können und diese dann direkt nutzen. 
+Wenn ein Modell nicht in der Bibliothek zu finden ist, kann man 
+Modelle selbst importieren. Dies kann man mit Modellen im GGUF 
+Format, welches in \ref*{s:intro:llama} genauer erklärt wurde, 
+ gemacht werden und mit sogenannten safetensor Dateien\cite{Ollama}. Das Safetensor 
+Format wurde von Huggingface eingeführt um die Unsicherheiten des 
+vorher genutzten Pickle Formats zu beseitigen. Eines der größten
+Probleme dieses Formats war es, dass beim deserialisieren eines
+Pickle Objekts boshafter Code ausgeführt werden konnte, da 
+Pickle den unterschied zwischen boshaften und nicht boshaften 
+Code nicht erkennen kann.\cite{Safetensors}
+Mit dem neuen Safetensor Format konnte vorallem dieses Problem beseitigt werden.\par
+Ollama kann Safetensor Dateien für die drei Architekturen LlamaForCausalLM, 
+MistralForCausalLM und GemmaForCausalLM ausführen. Wenn man ein Modell hat, welches nicht 
+das GGUF Format oder das Safetensor Format für eine der drei genannten Architekturen 
+ist dann muss man dieses Modell in GGUF umwandeln. Dafür kann man in das llama.cpp Github
+Projekt und das convert script benutzen.\par
+Im Anschluss kann man dann das Modell mithilfe einer Modelfile importieren. 
+Innerhalb dieser Modelfile kann man ebenfalls noch weitere Dinge vorher festlegen,
+wie zum Beispiel das System Prompt für das Model\cite{Ollama}.
 
 \section{Ragas}
 \label{s:intro:ragas}
 
 \section{AI Frameworks}
-Durch den 
-\section{Langchain}
-\label{s:intro:lang}
+Dadurch, dass künstliche Intelligenz nun ein größeres Thema in den Augen der 
+Öffentlichkeit ist und es durch Bibliotheken wie llama.cpp einfacher geworden ist, 
+für Personen ohne besondere Hardware LLMs zu nutzen, gibt es immer mehr Entwickler,
+die Applikationen, die LLMs nutzen, entwickeln wollen.\par
+Da es immer mehr Applikationen dafür gibt, gibt es auch einige KI Frameworks, die 
+das Arbeiten mit diesen Modellen vereinfachen sollen. Hier werden einige der größten 
+Frameworks vorgestellt.
 
 \subsection{Haystack}
+Haystack ist ein Open Source Framework, welches LLM Applikationen erstellen
+kann. Der Fokus hier liegt vorallem auf RAG Applikationen und Such Systemen,
+welche mit großen Mengen an Daten arbeiten können.\par
+Bei Open Source Frameworks ist die Community einer der wichtigsten Faktoren. 
+Umso mehr Teilnehmer an einem Open Source Projekt es gibt, umso mehr
+Unterstützung gibt es und umso mehr Fehler fallen den Leuten auf, die 
+dann beseitigt werden können. Haystack hat 14.3k Sterne auf Github, zum 
+Zeitpunkt dieser Arbeit. Das macht es zum kleinsten Projekt auf dieser
+Liste. \par
+Haystack kann direkt Modelle von Huggingface, OpenAI und anderen Quellen beziehen 
+und diese ausführen. Dazu kann man Modelle nutzen die auf Hosting Plattformen, 
+wie Azure oder Sagemaker gehostet werden.\par
+Die zwei Konzepte die hierbei am wichtigsten sind sind Komponenten und Pipelines. 
+Komponenten sind Blöcke, welche Aufgaben durchführen können. Aufgaben, die eine 
+Komponente ausführen kann, sind zum Beispiel Text Generation und das Erzeugen von
+Einbettungen.\par
+Eine Pipeline besteht aus verschiedenen Komponenten. Man setzt diese Komponenten
+zusammen und erhält dadurch eine Pipeline. Dadurch kann man den Datenfluss innerhalb
+seiner Applikation genau beeinflussen.\par
+Die Programmiersprache mit der Haystack arbeiten kann ist Python\cite{WhatHaystack, DeepsetaiHaystackMag}. 
 
+\subsection{Langchain}
+\label{s:intro:lang}
+Langchain ist ein weiteres Open Source Framework, welches für das Erstellen von 
+LLM Applikationen erstellt wurde. Im Gegensatz zu Haystack ist Langchain nicht 
+nur auf das Erstellen von RAG Applikationen und Such Systemen fokussiert. Langhchain 
+versucht möglichst vielseitig einsetzbar zu sein. "One Framework. Infinite Use Cases" 
+werben sie auf ihrer Homepage.\par
+Langchain ist, in Hinsicht auf die Github Sterne das größte Framwork, welches 
+hier vorgestellt wird. Zur Zeitpunkt des Schreibens dieser Arbeit, hat das 
+Projekt 87.6k Sterne auf Github. \par
+Für die Entwicklung liegt der Fokus bei Langchain auf Chains. Welche ähnlich
+wie Pipelines den Datenfluss bestimmen. Man erstellt hier die einzelnen
+Teile die man braucht, wie einen Retriever der mit einer Vektor 
+Datenbank verbunden ist und einer LLM. Diese verbindet man dann noch 
+mit der Eingabe des Nutzers und hat dann eine fertige Chain, die man 
+dann einsetzen kann, wie man möchte. Eine Möglichkeit wäre es diese 
+per RestAPI verfügbar zu machen.\par
+Dazu hat gibt es das Paket Langserve, welches darauf ausgelegt 
+ist, einfach Chains als RestAPIs zu veröffentlichen. 
+Dazu kommt ein Paket namens Langsmith, welches zum Monitoring 
+und zum Evaluieren von LLM Applikation dient. Langsmith ist nicht 
+Open Source und kostet für Teams oder für Hobby Entwickler ab einer gewissen
+Menge an Nutzungen ein monatliches Abbonement.\par
+Langchain ist ein Framwork, welches für Javascript und für Python zur Verfügung steht. 
+
+
+\subsection{LlamaIndex}
+LlamaIndex ist ein weiteres Open Source Framework, das entwickelt wurde, um die Erstellung 
+von LLM Applikationen zu erleichtern.
+Zum Zeitpunkt des Schreibens dieser Arbeit hat das Projekt 32.8k Sterne auf GitHub und ist
+damit das zweitgrößte Projekt, welches hier vorgestellt wird, aber es ist trotzdem
+weniger als halb so groß, wie Langchain. 
 
 \section{Huggingface}
 \label{s:intro:hug}
