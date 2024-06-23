@@ -27,6 +27,7 @@ Falls der Tester nicht in der Lage ist zu erkennen, welcher der Partner die Masc
 intelligent. Es gibt Kritik am Turing Test, welche der Meinung ist, dass der Test die Maschine nur auf ihre Funktionalität getestet und nicht wirklich auf
 Intelligenz. Ein weiterer Kritikpunkt, den Menschen an dem Turing Test haben, ist, dass einige Menschen der Meinung sind, dass der Test eher die menschliche
 Leichtgläubigkeit testet, als die Intelligenz der Maschine. Viele sind der Meinung, dass dieser Test die Grundsteine für die Idee der Chatbots gelegt hat.\par  
+\subsection{ELIZA}
 Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten Chatbot aus dem Jahr 1966. Damals waren die Chatbots rule based. Der Name des Chatbots war
 ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt.
 Weizenbaum hat fünf Grundprobleme aufgestellt, welche er bekämpfen musste für die Entwicklung von ELIZA. Die Probleme waren:
@@ -38,35 +39,64 @@ Weizenbaum hat fünf Grundprobleme aufgestellt, welche er bekämpfen musste für
     \item Bearbeitung der Eliza Skripte
 \end{enumerate}
 \cite{weizenbaumELIZAComputerProgram1966}. \par
-ELIZA wurde so entwickelt, dass sie versucht hat, menschliche Sprache zu imitieren, indem sie den eingegebenen Text nach Stichwörtern durchsucht. Stichwörter sind
-Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA-Script gegeben wurde. Es lässt sich vermuten, dass hierbei besonders Wörter mit einem hohen Informationsgehalt
-verwendet wurden. Jedes Stichwort hatte noch einen sogenannten RANK, welcher die Wichtigkeit des jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt
-hat. Nachdem die Stichwörter entdeckt wurden, geht es weiter mit einer sogenannten “Transformation Rule”. Diese besteht aus einer Zerlegungs-Phase und einer
-Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beides. Anhand der Syntax wird ausgemacht, welche Regel für die Zerlegung in Frage kommt und anhand dieser
+ELIZA wurde so entwickelt, dass sie versucht hat, menschliche Sprache zu imitieren, indem sie den 
+eingegebenen Text nach Stichwörtern durchsucht. Stichwörter sind
+Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA-Script gegeben wurde. Es lässt sich vermuten, 
+dass hierbei besonders Wörter mit einem hohen Informationsgehalt
+verwendet wurden. Jedes Stichwort hatte noch einen sogenannten RANK, welcher die Wichtigkeit des 
+jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt
+hat. Nachdem die Stichwörter entdeckt wurden, geht es weiter mit einer sogenannten “Transformation Rule”. 
+Diese besteht aus einer Zerlegungs-Phase und einer
+Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beides. Anhand der Syntax wird ausgemacht, 
+welche Regel für die Zerlegung in Frage kommt und anhand dieser
 wird dann die Zusammensetzung ausgemacht. /Vllt mehr dazu vllt weniger?/.
-Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine emotionale Bindung zu seinem System aufgebaut haben. Eliza
-verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen
-Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sondern antwortet, je nach seinem aktuellen Skript auf den aktuellen Satz. Selbst
-Weizenbaum selbst hat scheinbar mit der Eröffnung in seine Arbeit gezeigt, dass er selbst nicht der Meinung war, dass ELIZA wirklich ein intelligentes System ist:\par
-Er ist der Meinung, dass Programme im Bereich der künstlichen Intelligenz und im Bereich des heuristischen Programmierens so aufgebaut sind, dass sie auf wundersame
-Weise funktionieren, sodass sie selbst erfahrene Beobachter faszinieren. Aber sobald man herausfindet, wie diese Programme funktionieren, verlieren sie ihre Magie 
-und es entarnt sich als nichts mehr als eine Reihe von Anweisung, die alleine betrachtet sehr simple sind. Das Ziel seiner Forschungsarbeit ist es, die Magie hinter 
-Eliza zu enttarnen, da er der Meinung ist, dass es wenig andere Dinge gibt, die diese Enttarnung so sehr nötig hatten, wie Eliza\cite{weizenbaumELIZAComputerProgram1966}.\par
-Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickelt wurde. Während Eliza eher einen Psychotherapeuten imitiert hat, hat Parry
-einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines Experiments, der einem Turing Test gleicht. Hier wurden verschieden
-Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen von einem echten Schizophrenen Patienten kommen oder von einem
-Chatbot. Teil des Experiments waren 5 Psychiater die jeweils 2 "Patienten" zur Beurteilung bekommen haben. Der erste lag bei beiden richtig, der zweite lag bei
-beiden falsch. Der dritte dachte beide Patienten sind echte Patienten und die letzten zwei dachten beide sind Chatbots. Das Problem hierbei war, dass der Pool an
-Probanden mit 5 Psychiatern sehr klein war. Dazu kommt noch der Fakt, dass Patienten mit Schizophrenie ein gewisses Level an Unverständlichkeit in ihren Konversationen
-haben, welches die Beurteilung, ob es generell ein guter Chatbot erschwert. Heute wird Parry eher als ein schwacher Chatbot gesehen, da er nicht von Konversationen
-lernen kann, keinen richtigen Kontext hat und sehr langsam ist. Natürlich ist ein Teil davon abhängig von den technischen Limitationen die es damals gab, aber es ist
+Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine 
+emotionale Bindung zu seinem System aufgebaut haben. Eliza
+verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift 
+Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen
+Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sondern antwortet, 
+je nach seinem aktuellen Skript auf den aktuellen Satz. Selbst
+Weizenbaum selbst hat scheinbar mit der Eröffnung in seine Arbeit gezeigt, dass er selbst nicht der 
+Meinung war, dass ELIZA wirklich ein intelligentes System ist:\par
+Er ist der Meinung, dass Programme im Bereich der künstlichen Intelligenz und im Bereich des heuristischen 
+Programmierens so aufgebaut sind, dass sie auf wundersame
+Weise funktionieren, sodass sie selbst erfahrene Beobachter faszinieren. Aber sobald man herausfindet, 
+wie diese Programme funktionieren, verlieren sie ihre Magie 
+und es entarnt sich als nichts mehr als eine Reihe von Anweisung, die alleine betrachtet sehr simple sind. 
+Das Ziel seiner Forschungsarbeit ist es, die Magie hinter 
+Eliza zu enttarnen, da er der Meinung ist, dass es wenig andere Dinge gibt, die diese Enttarnung so sehr 
+nötig hatten, wie Eliza\cite{weizenbaumELIZAComputerProgram1966}.\par
+\subsection{Parry}
+Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickelt wurde. Während Eliza 
+eher einen Psychotherapeuten imitiert hat, hat Parry
+einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines 
+Experiments, der einem Turing Test gleicht. Hier wurden verschieden
+Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen 
+von einem echten Schizophrenen Patienten kommen oder von einem
+Chatbot. Teil des Experiments waren 5 Psychiater die jeweils 2 "Patienten" zur Beurteilung bekommen 
+haben. Der erste lag bei beiden richtig, der zweite lag bei
+beiden falsch. Der dritte dachte beide Patienten sind echte Patienten und die letzten zwei dachten 
+beide sind Chatbots. Das Problem hierbei war, dass der Pool an
+Probanden mit 5 Psychiatern sehr klein war. Dazu kommt noch der Fakt, dass Patienten mit Schizophrenie 
+ein gewisses Level an Unverständlichkeit in ihren Konversationen
+haben, welches die Beurteilung, ob es generell ein guter Chatbot erschwert. Heute wird Parry eher als 
+ein schwacher Chatbot gesehen, da er nicht von Konversationen
+lernen kann, keinen richtigen Kontext hat und sehr langsam ist. Natürlich ist ein Teil davon abhängig 
+von den technischen Limitationen die es damals gab, aber es ist
 dennoch wichtig zu beachten\cite{adamopoulouChatbotsHistoryTechnology2020}. 
-1995 wurde der Internet Chatbot ALICE veröffentlicht. Er war im Internet zu finden und er wurde als Open Source Software veröffentlicht, hat aber nicht viele
-Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die Programmiersprache Java gewechselt ist. Das Problem war, dass SETL
-eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen Preise ausgezeichnet, wie beispielsweise dem Loebner Prize. Dieser
-Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der die Beziehung zwischen Menschen und Maschinen beleuchtet
-wird\cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie reagieren konnte als Eliza, aber von den Grundprinzipien her,
-hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020}.
+\subsection{ALICE}
+1995 wurde der Internet Chatbot ALICE veröffentlicht. Er war im Internet zu finden und er wurde als Open 
+Source Software veröffentlicht, hat aber nicht viele
+Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die 
+Programmiersprache Java gewechselt ist. Das Problem war, dass SETL
+eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen 
+Preise ausgezeichnet, wie beispielsweise dem Loebner Prize. Dieser
+Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der 
+die Beziehung zwischen Menschen und Maschinen beleuchtet
+wird\cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie 
+reagieren konnte als Eliza, aber von den Grundprinzipien her,
+hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach 
+ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020}.
 Nach diesen anfänglichen Versuchen im Bereich der Chatbots, welche vorallem im Bereich der 
 Psychologie aufgebaut wurden,  
 
@@ -317,6 +347,48 @@ was dahinter steckt. GPT steht für Generative pretrained Transformer. Generativ
 auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM vor ihrer Nutzung auf einer Datenmenge trainiert wurde und Transformer
 steht hier für die Transformer Architektur.
 
+\subsection{Transformer}
+Die Transformer Architektur wurde 2017 von Vaswani et al im Paper "Attention is all you need"
+vorgestellt. Vor dieser Architektur waren die besten Modelle Encoder-Decoder Architekturen (siehe \ref{s:intro:edar}), 
+die mit dem Attention Mechanismus (siehe \ref{s:intro:att}) ergänzt wurden und
+ die auf Rekurrenten oder Convolutional Neuronalen Netzen
+aufgebaut haben. \par
+Der Originale Transformer, der von Vaswani et al vorgestellt wurde, bestand ebenfalls aus einem 
+Encoder und einem Decoder. Jedoch wurden keine Recurrent oder Convolutional Neuronalen Netze mehr 
+genutzt. 
+Die großen Neuheiten in dieser Architektur war das Konzept der Self-Attention, Parallelisierbarkeit, 
+"Multi-Head Attention" und das weg lassen der recurrent oder Convolutional neuronalen
+Netzen. 
+
+\subsubsection{Self-Attention}
+Während beim ursprünglichen Attention Mechanismus (siehe \ref*{s:intro:att}) Beziehungen 
+zwischen dem Encoder und dem Decoder modelliert, ermöglicht Self-Attention es dem Modell, 
+ Beziehungen innerhalb einer einzelnen Sequenz zu erfassen. \par
+Dies wird erreicht indem jedes Element einer Sequenz mit allen andere Elementen in Beziehung 
+gesetzt wird. Dies hilft dabei den Kontext zu bestimmen. \par
+\iffalse
+Bei Self-Attention wird jedes Wort durch drei Vektoren repräsentiert: Query (Q), Key (K) und Value (V), 
+die durch lineare Transformationen der Eingabe-Embeddings erzeugt werden:
+$[Q = X\mathbf{W}^Q, K = X\mathbf{W}^K, V = X\mathbf{W}^V]$
+wobei $X$ die Eingabe-Matrix und $\mathbf{W}^Q$, $\mathbf{W}^K$, $\mathbf{W}^V$ gelernte Gewichtsmatrizen sind.
+Die Aufmerksamkeitsgewichte werden berechnet, indem das Produkt von Q und K gebildet und durch einen Skalierungsfaktor geteilt wird:
+$[\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V]$
+Hier ist $d_k$ die Dimension der Key-Vektoren, und der Skalierungsfaktor $\sqrt{d_k}$ wird verwendet, um numerische 
+Stabilität zu gewährleisten.
+Diese gewichtete Summe der Value-Vektoren führt zu einer kontextualisierten Repräsentation jedes Wortes. In der Praxis wird 
+oft Multi-Head Attention verwendet, bei der mehrere Attention-Operationen parallel ausgeführt und ihre Ergebnisse kombiniert werden:
+$[\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}^O]$
+$[\text{where } \text{head}_i = \text{Attention}(Q\mathbf{W}^Q_i, K\mathbf{W}^K_i, V\mathbf{W}^V_i)]$
+Ein wesentlicher Vorteil von Self-Attention ist die Fähigkeit, Langzeitabhängigkeiten in Sequenzen effizient zu modellieren, 
+da jedes Element direkten Zugang zu jedem anderen Element hat, unabhängig von ihrer Position. Dies ermöglicht es Transformer-basierten 
+Modellen, komplexe Beziehungen in Texten zu erfassen und hat zu bedeutenden Fortschritten in verschiedenen NLP-Aufgaben geführt.
+\fi
+
+
+\subsubsection{Multi-Head Attention}
+
+
+
 \subsection{Tokenizer}
 \label{s:intro:llm:token}
 Tokenizer sind ein wichtiger Part der Machine Learning Toolchain 
@@ -346,7 +418,7 @@ was aber dafür sorgen kann, dass das System overfitted beim Training.
 Dazu kommt, dass das die notwendigen Kosten zum Trainieren und für die Inference 
 des Systems erhöhen würde.\cite{perryWhatTokenizationNatural2021} \cite{chenStrategiesTrainingLarge2016}
 
-
+\iffalse
 \section{Training}
 \label{s:intro:llm:train}
 Bevor betrachtet wird wie ein \ac*{llm} trainiert wird, wird ein grober 
@@ -363,9 +435,47 @@ Das \ac{llm} teilt in diesem Prozess die Daten die sie erhalten hat mit Hilfe ei
 Tokenizers in verschieden Tokens ab und lernt in diesem Zusammenhang, den 
 Aufbau menschlicher Sprache in der jeweiligen Sprache, die zum trainieren 
 verwendet wird. \par
+\fi
+\section{Pretraining}
+Das Pretraining einer LLM setzt die Grundlage für die LLM.
+Für das Pretraining einer LLM werden sehr viele Daten benötigt 
+und diese sollten eine hohe Qualität haben. Bessere Qualität 
+dieser Daten, hilft der LLM später bessere Ausgaben zu generieren.
+Daher ist es wichtig eine gute Datenpipeline für die Trainingsdaten
+vorzubereiten, welche die Datenqualität sicherstellen.\par
+Um ein etwas besseres Bild davon zu haben, wie viele Daten benötigt werden, 
+ wird Llama3 von Meta 
+betrachtet. Llama3 wurde mit 15 Billionen Tokens trainiert. \par
+Um einen Vergleich zu haben, wird der fineweb Datensatz, welcher 
+auf Huggingface zur Verfügung steht, betrachtet. 
+Dieser Datensatz hat ebenfalls 15T Token und hat eine Speichergröße
+von 47.6TB. \par
+Für das Pretraining werden Daten aus den Bereichen benötigt, in denen 
+die LLM später Dinge generieren soll. Ebenfalls die Sprache der Daten
+ist wichtig. Das Verhältnis der Menge der 
+Daten zueinander beeinflusst ebenfalls die Performance der 
+LLM. \par
+Das Training ist der rechnerisch aufwändigste Teil der LLM 
+Erstellung. Für das Training des Llama3 8B Parameter Models hat 
+Meta 1.3 Millionen GPU Stunden gebraucht. Mit dem GPU Cluster, 
+den Meta zur Vefügung hat, mit 24,576 H100 CPUs, hat es ca 2.2 Tage
+gedauert dies zu trainieren.\cite{Llama3MODEL_CARDMd, IntroducingMetaLlama, BuildingMetaGenAI2024}\par 
 
 
-\subsection{Hypertraining}
+
+\subsection{Finetuning}
+Beim Finetuning einer LLM wird auf dem vortrainierten Model aufgebaut und 
+das Model wird mit einem kleineren spezifischeren Datensatz weiter trainiert. 
+Dieser Schritt ist rechnerisch weniger aufwändig als das vortrainieren und 
+ist daher für mehr Unternehmen und Instiutionen zugänglich. Hinzu kommt, dass
+dieser Schritt weniger zeitaufwändig ist.\par
+Um einen Vergleich für den Aufwand zu haben wird "DiscoResearch/Llama3-German-8B"
+auf Huggingface betrachtet. Das Model, welches 1.3 Millionen GPU Stunden für das 
+Pretraining gekostet hat, wird jetzt gefinetuned. DiscoResearch hat hierfür Zugriff 
+auf den Supercomputer 42 von hessian.Ai bekommen. Das Model wurde von 128 GPUs innerhalb 
+von ca 60 Stunden über 65 Milliarden Tokens gefinetuned. Dies heißt, es hat ca 7680 GPU Stunden
+gekostet. Dieser Vergleich zeigt, dass dieser Schritt weniger aufwändig ist 
+als das Pretraining. 
 
 
 \subsection{Inference}
@@ -376,8 +486,56 @@ online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInf
 wir behandeln hier aber nur lokale Optionen. \par
 
 
+\subsection{Limitationen}
+
 \subsection{Prompting}
 \label{s:intro:llm:prom}
+Ein Prompt im Bereich der LLMs ist die Texteingabe des Nutzers, welche die Ausgabe des LLMs bestimmt. 
+Die Art und Weise der Eingabe kann von LLM zu LLM unterschiedlich sein. Bei Modellen, welche 
+Bilder generieren, wie Midjourney oder DALLE-3 sind die Prompts eher beschreibend und bei 
+Prompts für Chatbots, wie ChatGPT sind die Prompts eher Fragestellungen oder Anfragen \cite{amatriainPromptDesignEngineering2024}. \par
+Die Prompts können starken Einfluss auf die Qualität der Ausgaben des Systems haben.
+Es gibt verschiedene Methoden, die mit der Zeit gefunden wurden um die Ausgaben 
+des Systems zu verbessern. 
+Aufgrund dessen hat sich im Bereich der LLMs eine neue Disziplin namens Prompt Engineering 
+gebildet. Innerhalb dieser geht es darum, Prompts so zu optimieren, dass das LLM System genau 
+das macht was der Nutzer will.\par
+Egal wie gut eine Prompt ist, manchmal kann eine LLM Applikation die gewollte Ausgabe nicht
+ausgeben. Dies kann verschiedene Gründe haben, wie zum Beispiel fehlende Informationen, die 
+Informationen können fehlen, weil sie nicht mit in den Trainingsdatensatz der LLM aufgenommen 
+wurden, obwohl es sie schon gab, aber es könnte auch sein, dass die Informationen erst veröffentlicht wurden, 
+nachdem die LLM zu Ende trainiert wurde. Aufgrund dessen ist es wichtig, die Limitationen der
+LLM, die verwendet wird, zu kennen.\par
+Es gibt zwar keinen eindeutigen Weg gute Prompts zu generieren, aber es gibt ein paar
+Best Practices, welche generell anerkannt sind. 
+Im Prompt nur die Aufgaben mitteilen nennt sich Zero-Shot Prompting.
+Das heißt es werden keine Beispiele mitgegeben und manche LLMs 
+sind in der Lage Zero-Shot prompts in manchen Aufgabenbereichen zu lösen.
+Der LLM im Prompt ein Beispiel für die gewollte Ausgabe mitzugeben
+nennt sich One-Shot Prompting und mehrere mitegeben 
+heißt few-shot prompting. Die Qualität der gewollten Ausgaben lässt sich teils mithilfe
+von Zero-Shot oder Few-Shot Prompts statt Zero-Shot Prompts verbessern.
+Fine-Tuning kann die Performance von Zero-Shot Prompts verbessern \cite{}.
+Jedoch hat der Input Kontext eine begrenzte Größe und umso größer 
+der Input ist, umso größer ist der computational(was heißt das auf deutsch?) Aufwand,
+daher ist das eine begrenzte Lösung, die nicht alle Probleme beseitigen kann.
+Ein paar der davon sind: 
+\begin{itemize}
+    \item Anweisungen an den Anfang oder das Ende des Prompts stellen.
+    \item Spezifische Anweisungen und genaue Beschreibungen geben. Auch spezifisch und genau bei den gewollten Ausgaben sein.
+    \item Anweisungen die der LLM mitteilen was sie tun soll, statt den Dingen die sie nicht tun soll, sind zu bevorzugen.
+\end{itemize}
+Es gibt auch ein paar fortgeschrittene Methoden die verwendet werden können.
+Hierzu gehören: \par
+\begin{itemize}
+    \item Der LLM "kraftvoll" mitteilen, was man von ihr möchte.\par
+    \item Gedankengang Prompting, bei der man die LLM, die einzelnen Schritte die sie 
+    gemacht hat und die Gründe dafür erklären lässt.\cite{amatriainPromptDesignEngineering2024}
+\end{itemize}
+Es gibt eine spezielle Art der Prompts namens System Prompt. Dieses System Prompt dient dazu 
+das Verhalten der LLM in einem Rahmen zu steuern.
+Durch dieses System Prompt kann der LLM mitgeteilt werden, welche Rolle sie einnimt und 
+unter anderem auch ihren Stil beeinflussen. \par
 
 \subsection{Encoder-Decoder Architektur}
 \label{s:intro:edar}
@@ -418,6 +576,7 @@ den Trainingsdaten, kann es hier zu Problemen kommen.
 \cite{sutskeverSequenceSequenceLearning2014, bahdanauNeuralMachineTranslation2016}
 
 \subsection{Attention Mechanismus}
+\label{s:intro:att}
 Die Idee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 in der Arbeit ``Neural Machine Translation by Jointly Learning
 to Align and Translate'' von Bahdanau et al. vorgestellt wurde.
 Zu Beginn wurde der Mechanismus genutzt um die in \ref*{s:intro:edar} beschriebene Encode-Decoder Architektur zu verbessern,
@@ -666,6 +825,7 @@ wie zum Beispiel das System Prompt für das Model\cite{OllamaOllama2024}.
 \label{s:intro:ragas}
 
 \section{AI Frameworks}
+\label{s:intr:frame}
 Dadurch, dass künstliche Intelligenz nun ein größeres Thema in den Augen der 
 Öffentlichkeit ist und es durch Bibliotheken wie llama.cpp einfacher geworden ist, 
 für Personen ohne besondere Hardware LLMs zu nutzen, gibt es immer mehr Entwickler,
@@ -741,12 +901,30 @@ LlamaParse und lässt sich mit LlamaIndex integrieren. LlamaParse kann man auch 
 die LlamaCloud nutzen. Wenn man die LlamaCloud nutzt hat man noch die Option seine 
 RAG Daten dort über eine API zu speichern. Über die API kann man sich direkt mit 
 verschiedenen Datenquellen verbinden.\par
-LlamaIndex ist ein Framework, welches, wie Langchain, für Javascript und für Python zur Verfügung steht.\cite{LlamaCloudLlamaIndex, IntroducingLlamaCloudLlamaParse, liuLlamaIndex2022, LlamaIndexLlamaIndex}
+LlamaIndex ist ein Framework, welches, wie Langchain, für Javascript und für Python zur Verfügung steht\cite{LlamaCloudLlamaIndex, IntroducingLlamaCloudLlamaParse, liuLlamaIndex2022, LlamaIndexLlamaIndex}.
 
-\section{Huggingface}
+\section{Huggingface / MTEB }
 \label{s:intro:hug}
-
-
+Huggingface ist eine Plattform, auf der verschiedene Daten 
+gehostet werden, Diskussionen stattfinden und KI Apps 
+zu finden sind. \par
+Auf dieser Plattform werden Daten in Git basierten Repositories 
+gelagert. Zu den Daten die hier zu finden sind,
+gehören unter anderem Open Source LLM Modelle, Open Source Embedding Modelle 
+und Datensätze zum trainieren von solchen Modellen. 
+Es gibt die Möglichkeit KI-basierte Demo Apps in sogenannten Spaces auszuprobieren 
+oder zu hosten. Hinzu kommt es die Möglichkeit Beiträge zu veröffentlichen, 
+ähnlich wie auf Social Media Plattformen, wie X oder Threads.\par
+Neben den Demo Apps die in Spaces zu finden sind, werden auch Ranglisten 
+veröffentlicht. Eine der größten Ranglisten ist die MTEB Rangliste. MTEB 
+steht für Massive Text Embedding Benchmark. Diese Rangliste wurde für Einbettungsmodelle 
+erstellt und wird regelmäßig geupdated. Die Modelle werden hier in 8 verschiedenen Aufgabenbereichen
+verglichen. \par 
+Ein paar der Aufgabenbereiche sind Clustering, Semantische Nähe und Zusammenfassungen. 
+Die Datensätze wurden so ausgewählt, dass es eine verschiedene Länge an Texten gibt,
+damit die verglichen werden kann, wie die Modelle mit kurzen und auch mit langen 
+Texten umgehen können. Aktuell ist das beste Modell im Durchschnitt in dieser 
+Rangliste das Modell ``SFR-Embedding-2\_R'' von Salesforce Research \cite{muennighoffMTEBMassiveText2023, MTEBLeaderboardHugging}.
 
 \section{Google}
 \subsection{Google Cloud}

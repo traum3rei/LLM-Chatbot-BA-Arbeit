@@ -6,7 +6,6 @@ die Programmiersprache, die Umgebung und die Modelle die benutzt werden sollen.
 
 \section{Auswahl der Chatmodelle}
 \label{s:konz:mod}
-
 Nach der Analyse beginnt die Konzeption. Die erste Frage, die beantwortet werden muss, ist, 
 welche Modelle werden benutzt. Es werden Modelle an zwei Stellen benötigt. Die erste Frage ist, 
 welches Modell soll generell für den Chatbot benutzt werden. Hier gibt es ein paar Möglichkeiten. 
@@ -21,7 +20,7 @@ Modelle zu trainieren und zu veröffentlichen. Zu den bekanntesten Open Source M
     \item Llama von Meta AI  
     \item Gemma von Google
 \end{enumerate}
-Wir werden im Kontext dieser Arbeit 5 verschiedene Modelle miteinander vergleichen. Die meisten der Open 
+In dieser Arbeit werden 5 verschiedene Modelle miteinander verglichen. Die meisten der Open 
 Source Modelle basieren aber auf den Modellen von Meta AI und Mistral AI, das heißt sie sind finetuned 
 Versionen von diesen. Ein Hub auf dem viele der Modelle veröffentlicht werden ist hugginface.co. Hier 
 werden viele Open Source Modelle veröffentlicht und man kann sie downloaden und verschiedene Benchmarks, 
@@ -47,12 +46,27 @@ Die Modelle die innerhalb dieser Arbeit miteinander verglichen werden sind
 \section{Auswahl der Embedding Modelle}
 \label{s:konz:emod}
 Nach der Auswahl des Chatmodels geht es um die Auswahl der nächsten Modelle.
+Es wäre hier möglich das extra Einbettungsmodell weg zu lassen und es mit den 
+Chatmodellen einbetten zu lassen. Damit der Vergleich zwischen den verschiedenen 
+Chatmodellen nicht durch die Einbettungen beeinflusst wird, wird für alle 
+Chatmodelle das selbe Einbettungsmodell verwendet.\par
+Ebenfalls, wie bei den Chat Modellen werden hier Open Source Modelle benötigt, 
+welche auf einem eigenen Server gehosted werden können. 
+Die Gründe sind die selben, wie bei den in \ref*{s:konz:mod} erwähnten Chat Modellen.\par
+Hierfür wird das Massive Text Embedding Leaderboard (MTEB) auf Huggingface betrachtet. 
+Das MTEB Leaderboard sortiert Embedding Modelle nach ihrem durchschnittlichen Benchmark.
+Es gibt zur Zeit der Verfassung dieser Arbeit keine Möglichkeit nach deutschen Modellen 
+zu filtern. Daher wird das aktuell generell beste mehrsprachige Modell verwendet.
+Aktuell ist das das "multilingual-e5-large-instruct" Model, von intfloat, wer 
+Teil von Microsoft Research in Asien ist. Dieses Model baut auf dem Model 
+"xlm-roberta-large" von FacebookAI auf, bevor es MetaAI wurde. Das Model wurde finetuned
+indem es mit 1 Milliarde Datensätzen kontrastiv vor trainiert wurde und im 
+zweiten Schritt mit den Datensätzen, die für das E5-Mistral Model in der Arbeit 
+"Improving Text Embeddings with Large Language Models" verwendet wurden, trainiert.
 
 
 \section{Prompting}
 \label{s:konz:prom}
-Ein wichtiger Teil, den man beim Erstellen von Modellen beachten muss, ist das Prompting. Es gibt hier zwei 
-Aspekte, die man beachten muss. 
 
 \section{Auswahl der Vektor Datenbank}
 \label{s:konz:vec}
@@ -63,7 +77,10 @@ Modell suchen, dem wir unsere Daten schicken, aber das könnte teils Probleme mi
 diese Probleme fallen diese Optionen weg. Das heißt, das Modell muss lokal gehostet werden. Lokal heißt hierbei 
 einfach auf einem Server von uns oder einem Server, bei dem man weiss, dass keiner auf die Daten zugreifen kann. 
 \fi
+Für die Vektordatenbank wird eine Open Source Vektordatenbank bevorzugt.
+Dazu wird eine LangChain Integration gefordert. 
 
+Wir werden hierfür eine self hosted Instanz von Milvus 
 
 \section{Server}
 
@@ -79,10 +96,73 @@ Chatbot kommunizieren soll, ist bestenfalls eine Schnittstelle zu Google Chat. D
 Part an diesem Punkt. Notfalls kann man auch ein anderes Chat System anbinden, daher kümmern wir uns als erstes 
 um die anderen Teile der Architektur. 
 
-\label{Chatbot}
-\label{s:konz:bot}
+\subsection{Verbindungen}
+Abbildung zeigt den konzeptionellen Aufbau des Systems.
+Der Chatbot wird auf einem REST-Server laufen, welcher auf einem dedicated Server läuft, der genauer 
+in \ref{s:konz:ser} erklärt wird. Der Rest Server ist ein Python LangServe Server, der auf FastAPI 
+basiert. \par
+Die Python Applikation ist mit einer Vektordatenbank verbunden, die auf dem selben Server in einem 
+Docker Container in Betrieb genommen wird. 
+Die Daten die auf den Docker Container geladen werden kommen von der Confluence Instanz der Techdivision. 
+Um die Daten auf die Datenbank zu laden gibt es ein weiteres Python System, welches über einen Cron Job, 
+alle 24 Stunden die neuen Daten von der REST-API des Confluence Systems abfragt und diese in die 
+Datenbank überträgt.\par
+Die Anbindung der Vektordatenbank und der Aufbau des RAG-Systems wird in \ref{s:konz:rag}
+erklärt.\par
+Das System wird erst ohne Anbindung an das externe Chat-System gebaut und wird daher erst
+mit Chainlit gebaut. Sobald hierbei alles abgeschlossen ist, wird die Verbindung zum anderen 
+Chat-System hergestellt.
+Die Python Applikation des Chatbots ist dann mit der Google Chat API verbunden, welche eingestellt ist, 
+über HTTPS-Server Instruktionen zu erhalten. Wie genau dies eingestellt ist und welche anderen Optionen 
+es gibt wird in \ref{s:konz:chat} erklärt.\par
+Die Nachrichten, die das System erhält werden ebenfalls in der Datenbank abgespeichert, wo sie nachher 
+analysiert werden können, um die Anforderung A6 zu erfüllen.
+Damit wäre die grobe Architektur beschrieben.
 
-\label{RAG}
+\subsection{Chatbot}
+\label{s:konz:bot}
+Bei der Auswahl der Konzeption für den Chatbot ist die Frage, welches Framework verwendet werden soll.
+Die drei Stück die zu Auswahl stehen wurden in \ref*{s:intr:frame} vorgestellt.
+Haystack, Langchain und Llamaindex. Vom Grundprinzip her könnte man jedes 
+der drei Frameworks verwenden um einen nützlichen Chatbot mit RAG zu bauen. 
+Bei allen drei gibt es die Möglichkeit mit RAG zu arbeiten und es ist ein Punkt
+auf den sich alle drei Stück fokussieren. \par 
+Einer der wichtigsten Punkte in Hinsicht auf das Framwork, welches verwendet werden soll, 
+ist die Langlebigkeit des Projekts und ebenfalls die Menge an Dokumentation und Support.
+Da die Welt der LLM Systeme sich aktuell schnell ändert und viele neue Erkentnisse 
+in der Forschung gesammelt werden, verändern sich auch die AI Frameworks mit den 
+LLM Systemen zusammen \cite{naveedComprehensiveOverviewLarge2024}. Da das System möglichst 
+langlebig sein soll und im besten Fall nur die einzelnen Bauteile, wie beispielsweise die 
+LLM, mit der Zeit ausgetauscht werden sollten, ist es wichtig zu beachten, dass es ein 
+Framework ist, welches möglichst lange bestehen bleibt und das Austauschen von einzelnen 
+Teilen ohne großen Aufwand erlaubt. Dies hilft auch bei der Entwicklung bzw. Weiterentwicklung, 
+da dadurch verschiedene Setups ausprobiert werden können ohne große Veränderungen
+durchführen zu müssen.
+ Die Community von Langchain ist die größte von den 
+drei Framworks die in dieser Arbeit betrachtet werden, daher ist anzunehmen, dass der 
+Support den man durch die Community erhält und die Menge an Dokumentation, die man finden
+kann hierfür am größten sind. Eine Github Suche nach Haystack gibt uns 1.7k Ergebnisse. 
+Eine Suche nach Langchain gibt uns 25k Ergebnisse. Und eine Suche nach LlamaIndex gibt uns
+1.3k Ergebnisse. Eine Google Trends Analyse in diesem Bereich wäre vermutlich nicht
+sehr aussagekräftig, da der Begriff Haystack von verschiedenen Unternehmen benutzt wird 
+und dazu noch ein normal gebrauchtes Wort ist, daher werden wir uns an den Github Ergebnissen
+orientieren, da auch, wenn dies möglicherweise nicht alle Projekte auflistet, es uns 
+zumindest eine Orientierungsrichtung gibt. Langchain hat hier den absoluten Vorteil. \par
+Das Austauschen von einzelnen Teilen des Systems scheint mit Langchain am einfachsten 
+zu sein, aber ist je nachdem, was man austauchst mit allen drei Framworks relativ 
+einfach. Wenn man eine größere Änderung durchführen will, wie beispielweise das
+Ändern von einem simplen Text-System zu einem multimodalen System, welches ebenfalls 
+mit Bildern arbeiten kann dann würde es relevant aufwändige Änderungen in allen
+drei Frameworks erfordern. Daher nehmen wir hier an, dass es bei allen drei 
+den gleichen Aufwand kosten würde.\par
+Hinzu kommt, dass Langchain bereits ein Datenladensystem für Confluence hat, 
+welches das System ist welches an die Vektordatenbank angebunden werden soll.
+Dadurch, dass Langchain vielseitiger einsetzbar ist, als LlamaIndex und und Haystack, kommt der Vorteil dazu, 
+dass Erfahrung mit dem Framework gesammelt werden kann und 
+im Anschluss weitere Projekte, die über Chatbots und RAG Systeme hinaus gehen 
+entwickelt werden könnten. Aus diesen Gründen wird Langchain für diese Projekt ausgewählt.\par 
+
+\subsection{Datenupdates}
 \label{s:konz:rag}
 Hierbei geht es um das Thema des Hinzufügens von neuem Wissen zum Chatbot. Das Problem bei einem trainierten 
 Modell ist es, dass es keine neue Information ohne ein neues Training in seine Wissensdatenbank aufnehmen kann. 
@@ -93,4 +173,36 @@ gibt es hier zwei Optionen. Das Modell, auf dem der Chatbot aufbaut, könnte neu
 Informationen. Hier sind die Fragen, wie oft es neu trainiert werden soll, wie lange dieser Prozess dauert und wie viel 
 dieser Prozess kostet. Wir können das Modell nicht bei jedem neuen Update neu trainieren. Das würde zu lange dauern, 
 aber das heisst dass es einen Zeitraum gibt in dem der Bot nicht die aktuellsten Informationen hat. Wir benutzen hier 
-die vorher bereits erwähnte RAG in Kombination mit einer Vektor Datenbank.
+die vorher bereits erwähnte RAG in Kombination mit einer Vektor Datenbank.\par
+Welche RAG Variante benutzt wird, wird durch unser Framework, welches in \ref*{s:konz:bot} ausgewählt wurde,
+bestimmt. Jedoch gibt es verschiedene Vektordatenbanken für die sich entschieden werden muss. 
+
+\subsection{Server}
+Bei der Auswahl des Systems muss beachtet werden, dass die Techdivision den Server
+für weitere AI Projekte verwenden will und daher ein System, welches den Chatbot
+und die Datenbank betreiben kann ohne ausgelastet zu sein benötigt wird.\par
+Hierfür gibt es zwei Optionen, die zur Verfügung stehen. 
+\begin{enumerate}
+    \item Eine Compute Engine Instanz in der Google Cloud 
+    \item Ein dedicated Hetzner Server
+\end{enumerate}
+Der Hetzner Server der zur Auswahl stehen würde ist der aktuell einzige 
+dedicated GPU Server, der bei Hetzner angeboten wird. 
+Er hat einen Intel Core i5-13500 als CPU mit 6 Performance Cores und 
+8 Efficient Cores. 64 GB DDR4 RAM, 2x 1.92 TB Gen3 NVMe SSDs und eine 
+Nvidia RTX 4000 SFF Ada Generation mit 20GB GDDR6 ECC. 
+Die Kosten für diesen Server wären maximal, wenn der Server 730 Stunden im Monat 
+läuft, 218.96€ + 94.01€ einmalige Setupgebühr.\par
+Diese Hardware ist mehr als ausreichend für das System und ermöglicht 
+ihn für mehr Applikationen als diesen Chatbot zu benutzen.\par
+Wenn man einen ähnlichen Server in der Compute Engine von Google zusammenstellen 
+würde, dann hat man aktuell die Möglichkeit GPUs hinzuzufügen in den 
+Maschinen Kategorien Allzweck, Rechen optimiert und Beschleunigungsoptimiert.
+Für die Berechnung der Kosten wird erneut angenommen, dass der Server 730 Stunden 
+im Monat läuft. Wenn wir einem N1 Allzweck Server 64GB RAM, 10 vCPUs, welche 
+mindestens beötigt werden um 64 GB RAM auswählen zu könne, und eine 
+Nvidia T4 GPU mit 16GB VRAM hinzufügen, befinden wir uns bei ca 650€.
+Augrund dessen wird der Hetzner Server, der bei voller Nutzung ca 430€
+billiger im Monat ist bevorzugt.\par
+
+\subsection{Anbindung Google Chat}
