@@ -25,7 +25,7 @@ Source Modelle basieren aber auf den Modellen von Meta AI und Mistral AI, das he
 Versionen von diesen. Ein Hub auf dem viele der Modelle veröffentlicht werden ist hugginface.co. Hier 
 werden viele Open Source Modelle veröffentlicht und man kann sie downloaden und verschiedene Benchmarks, 
 etc. einsehen.\par
- Einige der größeren Modelle wie beispielsweise Gemma und Llama3 wurden multilingual trainiert 
+ Einige der größeren Modelle wie beispielsweise Gemma und Llama3 wurden mehrsprachig trainiert 
 und verstehen in ihrer Grundversion bereits teilweise beide Sprachen, die wir brauchen. Aus Speicher, Leistungs
 und Generationtime Gründen werden in dieser Arbeit nur Modelle unter 12B Parametern miteinander verglichen.
 Obwohl die oben genannten Modelle Deutsch in einem gewissen Rahmen bereits verstehen, ist in der 8B und 7B 
@@ -36,11 +36,14 @@ Zwei Organisationen die sich damit beschäftigen, Open Source Modelle auch auf D
 sich DiscoResearch \cite{DiscoResearchDiscoResearch2024} und LAION LeoLM \cite{LeoLMLAIONLeoLM2023}. 
 LAION LeoLM hat mithilfe des Supercomputers
 Die Modelle die innerhalb dieser Arbeit miteinander verglichen werden sind
-\begin{enumerate}
-    \item Llama3 von MetaAI
-    \item Gemma von GoogleAI
-    \item Mistral2 von MistralAI
-\end{enumerate}
+\begin{itemize}
+    \item Llama3 von MetaAI in der Version Llama3-DiscoLeo-Instruct-8B-v0.1 von DiscoResearch
+    \item Gemma von GoogleAI in der Version SauerkrautLM-Gemma-7b von VAGOsolutions
+    \item Mistral2 von MistralAI in der Version em\_german\_leo\_mistral von jphme
+    \item Phi-3 Von Microsoft in der Version Phi-3-small-8k-instruct von microsoft
+\end{itemize}
+
+
 
 
 \section{Auswahl der Embedding Modelle}
