@@ -34,6 +34,25 @@
   file = {/Users/traumerei/Documents/Utils/Zotero/storage/BYFRANTX/Adewumi et al. - 2024 - On the Limitations of Large Language Models (LLMs).pdf}
 }
 
+@misc{adewumiLimitationsLargeLanguage2024a,
+  title = {On the {{Limitations}} of {{Large Language Models}} ({{LLMs}}): {{False Attribution}}},
+  shorttitle = {On the {{Limitations}} of {{Large Language Models}} ({{LLMs}})},
+  author = {Adewumi, Tosin and Habib, Nudrat and Alkhaled, Lama and Barney, Elisa},
+  year = {2024},
+  month = apr,
+  number = {arXiv:2404.04631},
+  eprint = {2404.04631},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  urldate = {2024-06-26},
+  abstract = {In this work, we provide insight into one important limitation of large language models (LLMs), i.e. false attribution, and introduce a new hallucination metric - Simple Hallucination Index (SHI). The task of automatic author attribution for relatively small chunks of text is an important NLP task but can be challenging. We empirically evaluate the power of 3 open SotA LLMs in zero-shot setting (LLaMA-2-13B, Mixtral 8x7B, and Gemma7B), especially as human annotation can be costly. We collected the top 10 most popular books, according to Project Gutenberg, divided each one into equal chunks of 400 words, and asked each LLM to predict the author. We then randomly sampled 162 chunks for human evaluation from each of the annotated books, based on the error margin of 7\% and a confidence interval of 95\% for the book with the most chunks (Great Expectations by Charles Dickens, having 922 chunks). The average results show that Mixtral 8x7B has the highest prediction accuracy, the lowest SHI, and a Pearson's correlation (r) of 0.737, 0.249, and -0.9996, respectively, followed by LLaMA-2-13B and Gemma-7B. However, Mixtral 8x7B suffers from high hallucinations for 3 books, rising as high as an SHI of 0.87 (in the range 0-1, where 1 is the worst). The strong negative correlation of accuracy and SHI, given by r, demonstrates the fidelity of the new hallucination metric, which is generalizable to other tasks. We publicly release the annotated chunks of data and our codes to aid the reproducibility and evaluation of other models.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Computation and Language},
+  note = {Comment: 8 pages, 5 figures},
+  file = {/Users/traumerei/Documents/Utils/Zotero/storage/BSA64ZSL/Adewumi et al. - 2024 - On the Limitations of Large Language Models (LLMs).pdf}
+}
+
 @misc{alammarIllustratedTransformer,
   title = {The {{Illustrated Transformer}}},
   author = {Alammar, Jay},
@@ -102,6 +121,25 @@
   abstract = {A goal of statistical language modeling is to learn the joint probability function of sequences of words in a language. This is intrinsically difficult because of the curse of dimensionality: a word sequence on which the model will be tested is likely to be different from all the word sequences seen during training. Traditional but very successful approaches based on n-grams obtain generalization by concatenating very short overlapping sequences seen in the training set. We propose to fight the curse of dimensionality by learning a distributed representation for words which allows each training sentence to inform the model about an exponential number of semantically neighboring sentences. The model learns simultaneously (1) a distributed representation for each word along with (2) the probability function for word sequences, expressed in terms of these representations. Generalization is obtained because a sequence of words that has never been seen before gets high probability if it is made of words that are similar (in the sense of having a nearby representation) to words forming an already seen sentence. Training such large models (with millions of parameters) within a reasonable time is itself a significant challenge. We report on experiments using neural networks for the probability function, showing on two text corpora that the proposed approach significantly improves on state-of-the-art n-gram models, and that the proposed approach allows to take advantage of longer contexts.},
   langid = {english},
   file = {/Users/traumerei/Documents/Utils/Zotero/storage/3TPKESEW/Bengio et al. - A Neural Probabilistic Language Model.pdf}
+}
+
+@misc{berglundReversalCurseLLMs2024,
+  title = {The {{Reversal Curse}}: {{LLMs}} Trained on "{{A}} Is {{B}}" Fail to Learn "{{B}} Is {{A}}"},
+  shorttitle = {The {{Reversal Curse}}},
+  author = {Berglund, Lukas and Tong, Meg and Kaufmann, Max and Balesni, Mikita and Stickland, Asa Cooper and Korbak, Tomasz and Evans, Owain},
+  year = {2024},
+  month = may,
+  number = {arXiv:2309.12288},
+  eprint = {2309.12288},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  urldate = {2024-06-26},
+  abstract = {We expose a surprising failure of generalization in auto-regressive large language models (LLMs). If a model is trained on a sentence of the form "A is B", it will not automatically generalize to the reverse direction "B is A". This is the Reversal Curse. For instance, if a model is trained on "Valentina Tereshkova was the first woman to travel to space", it will not automatically be able to answer the question, "Who was the first woman to travel to space?". Moreover, the likelihood of the correct answer ("Valentina Tershkova") will not be higher than for a random name. Thus, models do not generalize a prevalent pattern in their training set: if "A is B" occurs, "B is A" is more likely to occur. It is worth noting, however, that if "A is B" appears in-context, models can deduce the reverse relationship. We provide evidence for the Reversal Curse by finetuning GPT-3 and Llama-1 on fictitious statements such as "Uriah Hawthorne is the composer of Abyssal Melodies" and showing that they fail to correctly answer "Who composed Abyssal Melodies?". The Reversal Curse is robust across model sizes and model families and is not alleviated by data augmentation. We also evaluate ChatGPT (GPT-3.5 and GPT-4) on questions about real-world celebrities, such as "Who is Tom Cruise's mother? [A: Mary Lee Pfeiffer]" and the reverse "Who is Mary Lee Pfeiffer's son?". GPT-4 correctly answers questions like the former 79\% of the time, compared to 33\% for the latter. Code available at: https://github.com/lukasberglund/reversal\_curse.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning},
+  note = {Comment: 21 pages, 11 figures},
+  file = {/Users/traumerei/Documents/Utils/Zotero/storage/C7KLALEQ/Berglund et al. - 2024 - The Reversal Curse LLMs trained on A is B fail .pdf}
 }
 
 @article{brownLanguageModelsAre,

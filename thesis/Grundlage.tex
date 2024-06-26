@@ -670,7 +670,9 @@ Die Generation der LLMs kommt auf ihre Trainingsdaten an. Genau wie beim Trainin
 beim generieren ihrer Ausgaben in Tokens. 
 
 \subsection{Limitationen \& Halluzinationen}
-
+Reversal Curse
+\cite{huangSurveyHallucinationLarge2023,
+berglundReversalCurseLLMs2024}
 
 \subsection{Prompting}
 \label{s:intro:llm:prom}
@@ -698,8 +700,7 @@ sind in der Lage Zero-Shot prompts in manchen Aufgabenbereichen zu lösen.
 Der LLM im Prompt ein Beispiel für die gewollte Ausgabe mitzugeben
 nennt sich One-Shot Prompting und mehrere mitegeben 
 heißt few-shot prompting. Die Qualität der gewollten Ausgaben lässt sich teils mithilfe
-von Zero-Shot oder Few-Shot Prompts statt Zero-Shot Prompts verbessern.
-Fine-Tuning kann die Performance von Zero-Shot Prompts verbessern \cite{}.
+von One-Shot oder Few-Shot Prompts statt Zero-Shot Prompts verbessern.
 Jedoch hat der Input Kontext eine begrenzte Größe und umso größer 
 der Input ist, umso größer ist der computational(was heißt das auf deutsch?) Aufwand,
 daher ist das eine begrenzte Lösung, die nicht alle Probleme beseitigen kann.

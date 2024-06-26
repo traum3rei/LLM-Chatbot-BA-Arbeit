@@ -1,23 +1,65 @@
 \chapter{Vergleich}
 \label{vergleich}
 
-\section{Vergleich}
+\section{Evaluierung}
 Der finale Teil der Arbeit beschäftigt sich mit dem Vergleich der Performance,
 des Systems. Das System wurde mit vier verschiedenen LLM Modellen implementiert und 
-wird im Anschluss mit dem Framework RAGAS miteinander 
+wird im ersten Schritt mit dem Framework RAGAS (siehe \ref{s:intro:ragas}) miteinander 
 verglichen. Nach diesem Schritt werden die zwei bestabschneidensten Modelle 
 für die finale Bewertung von Mitarbeitern aus der Techdivision miteinander 
 verglichen. 
 
-\subsection{RAGAS Vergleich}
-Die erste Ausscheidungsrunde wird über Benchmarking Frameworks entschieden.
-Die vier LLM Modelle die hier zur Auswahl stehen können
+\section{RAGAS Vergleich}
+Die erste Ausscheidungsrunde wird über das Benchmarking Frameworks entschieden.
+Die vier LLM Modelle die hier zur Auswahl stehen sind finetuned von Metas Llama3,
+Mistrals Mistral 2 und Googles Gemma. Dazu kommt noch die originale Version von 
+Microsofts Phi 3.\par
 
-\subsection{Umfrage Vergleich}
+\subsection{Testset}
+Der erste Schritt für den Vergleich ist es Testsets herzustellen anhand
+derer Ragas den Benchmark Test durchführen kann.\par
+Die Variante die hierfür verwendet wird ist es einen TestsetGenerator per 
+\par\verb+TestsetGenerator.from_langchain()+
+herzustellen und mit diesem dann das Testset erstellen zu lassen.\par
+Als Vorbereitung hierfür werden Daten benötigt. 
+Die Daten die als Dokument geladen werden haben alle ein 
+Metadata Dictionary. Damit der Generator erkennen kann,
+welche Daten zusammengehören brauchen die Dokumente in 
+diesem Metadata Dictionary ein Key Value Pair mit dem Namen
+''filename``. Der Wert des ''filename`` Schlüssels wird verwendet 
+um bei der Generation der Testdaten zusammengehörige 
+Dokumententeile zusammenzufügen.\par
+Nach dem Vorbereiten der Daten kann man damit beginnen den 
+Generator zu erstellen.
+Für diesen Generator werden drei Parameter verwendet.
+Die \verb+generator_llm+, \verb+critic_llm+ und \verb+embeddings+.
+Als Embedding Model benutzen wir ebenfalls das Model 
+"intfloat/multilingual-e5-large", wie für den Chatbot und 
+den Importer. 
+Als Critic und Generator LLM werden wir zwei verschiedene LLMs
+nutzen. Da die Geschwindigkeit der Erstellung dieser Daten
+keine große Rolle spielt werden hierfür große Modelle genutzt.
+Das Generator Modell wird eine auf Deutsch finetuned Version
+von Mistrals Mixtral 8x7B sein und zwar 
+"VAGOsolutions/SauerkrautLM-Mixtral-8x7B" \cite{VAGOsolutionsSauerkrautLMMixtral8x7BHugging2023}.
+Als Critic Modell wird eine Version von Microsofts Phi 3 genutzt, welche
+ebenfalls auf Deutsch finetuned wurde. Die Version die genutzt wird ist 
+"VAGOsolutions/SauerkrautLM-Phi-3-medium", welche eine finetuned Version 
+von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \par
+Nach dem Erstellen des Generators und dem vor und aufbereiten der 
+Daten kann man das Testset generieren lassen. 
+Für die Generierung kann man zwei Parameter setzen.
+Man kann bestimmen, wie viele Elemente im Set enthalten sein sollen.
+Dazu kann man die Verteilung der Fragen bestimmen.
+Die Fragen die durch den Generator erstellt werden können drei verschiedene
+Typen haben. 
+Das Datenset, welches man als Ausgabe bekommt 
+
+\section{Umfrage Vergleich}
 Hierfür wurden 5 Mitarbeiter aus dem Unternehmen mit einem Fragebogen 
 ausgestattet und ihnen wurde Zugang zum System gegeben. 
 
-\subsubsection{Fragebogen}
+\subsection{Fragebogen}
 Der Fragebogen wurde so erstellt, dass es keine genauen Fragen gibt, 
 sondern nur Themengebiete, die abgefragt werden sollen. Das wichtige 
 beim Auswählen der Themengebiete war, dass es Informationen waren, die 
