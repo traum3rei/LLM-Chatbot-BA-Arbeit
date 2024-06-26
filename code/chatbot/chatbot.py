@@ -21,6 +21,14 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.messages import AIMessage, HumanMessage
+import chromadb
+from chromadb.config import Settings
+
+
+#DB
+client = chromadb.HttpClient(settings=Settings())
+collection =client.create_collection("docs")
+collection.add(ids=[])
 
 chat_history = []
 from langchain.agents import tool

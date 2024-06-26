@@ -10,15 +10,19 @@ Garage von Tim Wagner, dem aktuellen CTO, gelegt. Zusammen mit Thomas
 Kalteis begann hier eine kleine Technologie-Schmiede. Im Jahr 2007 wurde 
 daraus eine GmbH, gegründet von den Brüdern Stefan und Josef Willkommer. 
 
-
 \section{Chatbots}
 \label{s:intro:bot}
 Laut Wikipedia ist ein Chatbot “ein Chatbot oder kurz Bot ein textbasiertes Dialogsystem, das Chatten mit einem technischen System erlaubt” \cite{Chatbot2024}. 
-Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots, die 
-in den letzten Jahren an großer Popularität gewonnen haben, wie OpenAis ChatGPT und Anthropics Claude, haben
+Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots, wie OpenAis ChatGPT und Anthropics Claude, haben
 einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit Chatbots wie diesen kann man heutzutage über die natürliche
 menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. \par
 Die Generation des Textes eines Chatbots kann in drei verschiedene Kategorien untergeordnet werden: abfragebasiert, generationsbasiert und regelbasiert \cite{adamopoulouChatbotsHistoryTechnology2020}. 
+Abfragebasierte Chatbots haben eine Wissensdatenbank in der sie nach dem am besten zur Eingabe passenden Eintrag suchen.
+Generationsbasierte Chatbots generieren ihre Antworten selbst, wie ein paar dieser Modelle ihre Antworten generieren wird in 
+\ref{s:intro:gen} erklärt.
+Regelbasierte Chatbos antworten nach vorher in ihrem Skript bestimmten Regeln. Hierbei vergleichen sie die Eingabe 
+mit ihren vorher definierten Regeln und transformieren die Eingabe, falls möglich, in eine vorher 
+definierte Satzstruktur. \cite{adamopoulouChatbotsHistoryTechnology2020}
 Im nächsten Schritt wird darauf eingegangen, wie sich Chatbots in dieser Hinsicht mit der Zeit verändert haben.\par
 Im Jahr 1950 hat Alan Turing den Turing Test vorgeschlagen, bei dem es darum geht zu erkennen, ob eine Maschine das gleiche Denkvermögen hat wie ein Mensch. Bei
 diesem Test werden einem Tester zwei Gesprächspartner vorgelegt, von denen einer ein Mensch und der andere eine Maschine ist. Der Tester führt dann ein Gespräch
@@ -62,6 +66,7 @@ Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Konte
 je nach seinem aktuellen Skript auf den aktuellen Satz. Selbst
 Weizenbaum selbst hat scheinbar mit der Eröffnung in seine Arbeit gezeigt, dass er selbst nicht der 
 Meinung war, dass ELIZA wirklich ein intelligentes System ist.\par
+%TODO umschreiben
 Er ist der Meinung, dass Programme im Bereich der künstlichen Intelligenz und im Bereich des heuristischen 
 Programmierens so aufgebaut sind, dass sie auf wundersame
 Weise funktionieren, sodass sie selbst erfahrene Beobachter faszinieren. Aber sobald man herausfindet, 
@@ -102,8 +107,44 @@ wird \cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an
 reagieren konnte als Eliza, aber von den Grundprinzipien her,
 hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach 
 ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020, Wallace2009}.
+
+
+
+\subsection{Siri, Google Assistant, Alexa}
 Nach diesen anfänglichen Versuchen im Bereich der Chatbots, welche vorallem im Bereich der 
-Psychologie aufgebaut wurden und die regelbasiert waren.
+Psychologie aufgebaut wurden und die regelbasiert waren wurden immer weiter Fortschritte gemacht.\par
+Eine große Neuerung im Jahr 2010 war Siri, ein persönlicher Assistent, auf dem eigenen Handy.
+Siri, welches nur auf Apple Geräten zur Vefügung steht, hilft den Nutzern, welche 
+über Text oder Sprachbefehle mit dem Assistenten kommunizieren können, mit verschiedenen Aufgaben.
+Unter anderem können die Nutzer mittels Siri unter anderem Erinnerungen setzen, Nachrichten senden
+und Anrufe tätigen. \cite{Siri} \par
+Sprachassistenten wie Siri gibt es auch auf anderen Plattformen, wie auf Samsung Galaxy Geräten mit Galaxy Ai \cite{GalaxyAISamsung} 
+und verschiedenen Android Geräten mit Google Assistant \cite{GoogleAssistantYour}. Diese Bots haben ähnliche Funktionen wie 
+Siri und versuchen dem Nutzer zu helfen\cite{GoogleAssistantYour}.\par
+SmartHome Geräte, wie Smarte Lampen und Steckdosen kann man mit hilfe von diesen 
+Sprachassisten auch kontrollieren.\par
+Man kann auf manche Sprachassistenten auch teilweise über extra Geräte, die für sie 
+hergestellt wurden zugreifen. Ein Beispiel hierfür Amazon Alexa, die 
+der Sprachassistent von Amazon ist, auf dem Echo Dot.
+Der Echo Dot ist ein kleiner Lautsprecher, welcher mit dem internet verbunden ist. 
+Durch diesen kann man dann mit Alexa kommunizieren.
+Diese Sprachassisten werden immer weiter entwickelt und bekommen dadurch neue Funktionen, 
+mehr Sprachen oder ein besseres Verständnis für die menschliche Sprache. 
+
+\subsection{ChatGPT, Claude, Gemini}
+Mit der erhöhten Popularität von Chatbots wie ChatGPT und Claude sind
+Chatbots, wie diese, die größte Neuerung in dieser Welt. 
+Diese Chatbots basieren auf Large Language Models, welche in \ref{s:intro:llm}
+genauer erklärt werden. Nutzer können teils über Apps und teils über 
+die Website, des jeweiligen Services, mit diesen Bots kommunizieren.\par
+Den bots kann man fragen stellen und diese werden vom jeweiligen System beantwortet.
+Sie können nicht nur per Text antworten, sondern auch in Form von Bildern. ChatGPT 
+kann durch die DALL·E Integration, welches ein weiteres System von OpenAI ist, 
+Bilder generieren.
+ChatGPT hat in der Premium Variante die Möglichkeit Bilder zu generieren.
+Die Bots haben die Fähigkeit viele verschiedene Dinge zu tun. Unter anderem 
+können sie Code, einen Essay oder ein Film Script schreiben.\par
+
 
 \section{Künstliche Intelligenz}
 \label{s:intro:ki}
@@ -207,7 +248,7 @@ andere linguistischen Verfahren menschliche Sprache zu verstehen und diese auch 
 Diese System können im Zusammenhang damit, Texte zusammenzufassen, sie zu analysieren, ihre Bedeutung
 zu verstehen und mit Hilfe dieser Fähigkeiten dann sinnvolle und passende Antworten zu generieren.\par
 Anwendungen die \ac*{nlp} nutzen sind vielfältig und beispielsweise Chatbos und Übersetzungssoftware
-implementieren auch NLP Verfahren.\par
+implementieren auch NLP Verfahren.\cite{WhatNLPNatural2021}\par
 
 Da Sprache oft kontextabhängig ist und manche Sprachen, wie Japanisch 
 komplette Satzteile weg lassen, wenn diese durch den Kontext erkenntlich 
@@ -217,7 +258,7 @@ Informationen zu berücksichtigen. Dadurch kann das System Kontext verstehen
 und richtig interpretieren. Dies wird über verschiedene Methoden erreicht, wie
 Tokenisierung, Parsing und Named Entity Recognition. Tokenisierung ist 
 ein Verfahren, welches LLMs nutzen. Dieses wird in \ref*{s:intro:llm:token} 
-genauer erklärt.\par
+genauer erklärt.\cite{WhatNLPNatural2021}\par
 
 NLP stellt eine wichtige Schlüsselstelle in der Human-Computer Interaction 
 oder zu deutsch Mensch-Computer-Interaktion dar. Sie hilft nicht nur dabei
@@ -406,6 +447,13 @@ auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM
 steht hier für die Transformer Architektur.
 
 \subsection{Transformer}
+\iffalse
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{\figdir/transformer}
+\caption{Transformer Architektur}
+\end{figure}
+\fi
 Die Transformer Architektur wurde 2017 von Vaswani et al im Paper "Attention is all you need"
 vorgestellt. Vor dieser Architektur waren die besten Modelle Encoder-Decoder Architekturen (siehe \ref{s:intro:edar}), 
 die mit dem Attention Mechanismus (siehe \ref{s:intro:att}) ergänzt wurden und
@@ -430,7 +478,7 @@ einbetten zu können.\par
 Bei Self-Attention wird jeder Eingabe-Vektor durch drei Vektoren repräsentiert.
 Einem Query Vektor $\mathbf{Q}$, einem Key Vektor $\mathbf{K}$ und einem Value Vektor $\mathbf{V}$.
 Diese Vektoren werden erstellt indem der eingebette Eingabe Vektor $\mathbf{X}$ mit jeweils einer
-Matrix multipliziert wird, welche während dem Training erstellt wurde.\par
+der Gewichts Matrizen $W^Q, W^K, W^V$ multipliziert wird, welche während dem Training erstellt wurden.\par
 \[Q = X\mathbf{W}^Q, K = X\mathbf{W}^K, V = X\mathbf{W}^V\]
 
 Im nächstren Schritt werden die Skalarprodukte, die hier als Score bezeichnet werden,
@@ -457,33 +505,34 @@ Dies wird durch Matrix Berechnungen in einem Schritt erledigt mit der Formel:
 
 \[Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V\]
 
-Dies gibt uns den Attention Vektor für jeden Token.\par
-
-\iffalse
-Bei Self-Attention wird jedes Wort durch drei Vektoren repräsentiert: Query (Q), Key (K) und Value (V), 
-die durch lineare Transformationen der Eingabe-Embeddings erzeugt werden:
-$[Q = X\mathbf{W}^Q, K = X\mathbf{W}^K, V = X\mathbf{W}^V]$
-wobei $X$ die Eingabe-Matrix und $\mathbf{W}^Q$, $\mathbf{W}^K$, $\mathbf{W}^V$ gelernte Gewichtsmatrizen sind.
-Die Aufmerksamkeitsgewichte werden berechnet, indem das Produkt von Q und K gebildet und durch einen Skalierungsfaktor geteilt wird:
-$[\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V]$
-Hier ist $d_k$ die Dimension der Key-Vektoren, und der Skalierungsfaktor $\sqrt{d_k}$ wird verwendet, um numerische 
-Stabilität zu gewährleisten.
-Diese gewichtete Summe der Value-Vektoren führt zu einer kontextualisierten Repräsentation jedes Wortes. In der Praxis wird 
-oft Multi-Head Attention verwendet, bei der mehrere Attention-Operationen parallel ausgeführt und ihre Ergebnisse kombiniert werden:
-$[\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}^O]$
-$[\text{where } \text{head}_i = \text{Attention}(Q\mathbf{W}^Q_i, K\mathbf{W}^K_i, V\mathbf{W}^V_i)]$
-Ein wesentlicher Vorteil von Self-Attention ist die Fähigkeit, Langzeitabhängigkeiten in Sequenzen effizient zu modellieren, 
-da jedes Element direkten Zugang zu jedem anderen Element hat, unabhängig von ihrer Position. Dies ermöglicht es Transformer-basierten 
-Modellen, komplexe Beziehungen in Texten zu erfassen und hat zu bedeutenden Fortschritten in verschiedenen NLP-Aufgaben geführt.
-\fi
-
+Dies gibt uns den Attention Vektor für jeden Token.\cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}\par
 
 \subsubsection{Multi-Head Attention}
-Das nächste Konzept, welches vorgestellt werden muss ist das 
-Konzept der Multi-Head Attention. Diese wurde eingeführt um 
+Multi-Head Attention wurde ebenfalls mit dem Self-Attention Mechanismus
+in die Transformer Architektur eingeführt. 
+Multi-Head Attention wurde eingeführt, damit das Model 
+\par
+Dieser Mechanismus funktioniert so, dass man statt nur einem Attention
+Head in der Attention Layer mehrere Attention Heads in dieser sind. 
+Im originalen Transformer wird mit 8 Attention Heads gearbeitet. 
+jeder dieser Heads führt den Self-Attention Mechanismus aus, aber jeder 
+hat unterschiedliche Gewichts Matrizen 
+ 
+\[W^Q, W^K, W^V\]
 
+Jeder der Heads führt seine Berechnung mit unterschiedlichen 
+Matrizen durch, was dazu führt, dass verschiedene Heads verschiedene 
+Werte auf unterschiedliche Teile des Satzes legen können. Durch diesen 
+Mechanismus kann es zu einem besseren Verständnis für Nuancen kommen.\par
 
+Die finalen Attention Matrix $z$, die dem jeweiligen Token zugeschrieben 
+wird, wird über eine weitere Matrix berechnet. Hierfür werden die 
+Ergebnisse der Attention Heads $head_1, head_2, ..., head_n$ aneinander 
+konkateniert und im Anschluss mit der Gewichts Matrix $W_0$ multipliziert.
 
+\[z = Concat(head_1, head_2, ..., head_n)W_0\]
+
+%TODO Dimension hinzufügen, falls ich raus finde, welche es sind
 
 \subsection{Tokenizer}
 \label{s:intro:llm:token}
@@ -512,7 +561,7 @@ kann. Hierbei ist der Kontext wichtig und die Anzahl der Tokens, die das
 Modell erkennen kann. Man könnte hierbei alle möglichen Token aufnehmen, 
 was aber dafür sorgen kann, dass das System overfitted beim Training.
 Dazu kommt, dass das die notwendigen Kosten zum Trainieren und für die Inference 
-des Systems erhöhen würde.\cite{perryWhatTokenizationNatural2021} \cite{chenStrategiesTrainingLarge2016}
+des Systems erhöhen würde \cite{perryWhatTokenizationNatural2021, Llama2RunMaster}.
 
 \iffalse
 \section{Training}
@@ -555,9 +604,13 @@ Das Training ist der rechnerisch aufwändigste Teil der LLM
 Erstellung. Für das Training des Llama3 8B Parameter Models hat 
 Meta 1.3 Millionen GPU Stunden gebraucht. Mit dem GPU Cluster, 
 den Meta zur Vefügung hat, mit 24,576 H100 CPUs, hat es ca 2.2 Tage
-gedauert dies zu trainieren.\cite{Llama3MODEL_CARDMd, IntroducingMetaLlama, BuildingMetaGenAI2024}\par 
-
-
+gedauert dies zu trainieren.\cite{Llama3MODEL_CARDMd, IntroducingMetaLlama, BuildingMetaGenAI2024}\par
+In diesem Kontext gibt es auch verschiedene Unternehmen die Partnerschaften
+mit KI Unternehmen schließen und diesen Zugriff auf ihre Daten geben, damit
+sie besser in diesem Bereich werden. Ein Beispiel für so einen Zusammenschluss
+ist der Zusammenschluss von OpenAI und Stackoverflow, wobei OpenAI hofft, dadurch 
+ein Model mit besseren Coding Kompetenzen zu erhalten und Stackoverflow
+hofft, dass ihre Nutzer dadurch mehr mit Inhalt auf der Seite interagieren \cite{StackOverflowOpenAI}. 
 
 \subsection{Finetuning}
 Beim Finetuning einer LLM wird auf dem vortrainierten Model aufgebaut und 
@@ -571,18 +624,53 @@ Pretraining gekostet hat, wird jetzt gefinetuned. DiscoResearch hat hierfür Zug
 auf den Supercomputer 42 von hessian.Ai bekommen. Das Model wurde von 128 GPUs innerhalb 
 von ca 60 Stunden über 65 Milliarden Tokens gefinetuned. Dies heißt, es hat ca 7680 GPU Stunden
 gekostet. Dieser Vergleich zeigt, dass dieser Schritt weniger aufwändig ist 
-als das Pretraining. 
+als das Pretraining.\par
+Teilweise wird Finetuning verwendet um sogenannte Instruct Modelle zu erstellen.
+Diese Instruct Modelle sind Versionen des Standard Models, die darauf finetuned 
+wurden, Instruktion zu befolgen. Bei einem Model, wie Llama3 von Meta, ist die 
+nicht finetuned Variante des Models bereits in der Lage Instruktionen zu befolgen, 
+wird aber durch ein kurzes Finetuning messbar besser in diesem Bereich \cite{touvronLLaMAOpenEfficient}.\par
+Eine weitere Richtung in die Finetuning gehen kann ist das Trainieren eines Models 
+auf einer neuen Sprache. Hierfür betrachten wir "DiscoResearch/Llama3-German-8B" auf 
+Hugginface. Eine auf deutsch fine-tuned Version von Llama3. Sie wurde mit Benchmarks 
+veröffentlicht, die uns zeigen, dass die deutsche Leistung des Models sich durch 
+das finetuning mittels 65 Milliarden Tokens verbessert hat. Die Englische Leistung ist 
+etwas verschlechtert, aber vorallem beim hellaswag\_de \cite{LeoLMHellaSwagdeDatasets} 
+Benchmark, sieht man, dass die Leistung sich messbar bessert.
+\cite{DiscoResearchLlama3German8BHugging2024}
 
 
-\subsection{Inference}
+
+\subsection{Inference \& Generation}
 \label{s:intro:llm:inf}
 Sobald ein Model trainiert wurde und bereit ist benutzt zu werden, muss man es ausführen. Dieser Prozess nennt sich Inference.
-Um Inference ausführen zu können gibt es heutzutage verschiedene Möglichkeiten. Es gibt zwar die Möglichkeit Inference über 
-online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen, 
-wir behandeln hier aber nur lokale Optionen. \par
+Um Inference ausführen zu können gibt es heutzutage verschiedene Möglichkeiten. Es gibt die Möglichkeit Inference über 
+online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen,
+oder man kann die Modelle lokal ausführen. \par
+Wenn man eine der APIs nutzt um ein Model zu nutzen, dann kann man Anfragen an die API schicken und das Ausführen des Models 
+wird von den Betreibern der API übernommen.\par
+Die andere Option, das Model lokal auszuführen, kann über verschiedene Methoden passieren. Eine Option ist es einen Service
+wie Ollama (siehe \ref{s:intro:oll}) \cite{OllamaOllama2024} oder LM Studio nutzen \cite{LMStudioDiscover}, worüber 
+man die Modelle downloaden und ausführen kann. Mit Ollama kann man das Model über die CLI ausführen und mit ihr kommunizieren
+und über LM Studio kann man das mittels der GUI machen. Beide Projekte basieren auf llama.cpp (\ref{s:intro:llama}).\par
+Eine andere Option, das Model lokal auszuführen, ist es die Gewichte der Modelle zu downloaden und diese mittels 
+Code auszuführen. Hierfür kann man die Modelle teils direkt bei den Unternehmen downloaden wie bei Llama von Meta,
+aber eine andere Website auf der viele Modelle veröffentlicht werden, auf der man auch Vergleiche zwischen 
+mancher dieser Modelle sehen kann ist hugginface.co (siehe \ref*{s:intro:hug}).\par
+Andrej Karpathy \cite{KarpathyAndrej} hat gezeigt, dass man mit einen 15 Millionen Parameter Model von Llama2 in C ohne externe Libraries innerhalb von
+unter 1000 Zeilen Inferenz betreiben kann \cite{Llama2RunMaster}. Modelle die heute veröffentlicht werden haben aber weit über 15 Millionen Parameter 
+und daher ist die Inferenz mit so einem simplen Programm nicht sehr effektiv. Das Llama2 Model mit 7 Milliarden Parametern generiert auf einem M1 
+Macbook Air einen Token pro 30 Sekunden. Die Modelle in einer Milliarden Größe, brauchen aufgrund ihrer
+Größe ein paar Optimierungen. \par 
+Eine Möglichkeit Modelle schneller zu machen ist es sie zu quantisieren, dieser Prozess wird in \ref{s:intro:llama} genauer 
+erklärt.\par
+Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Framworks zu verwenden.
+Drei dieser Frameworks werden in \ref*{s:intro:frame} vorgestellt und erklärt.\par
+Die Generation der LLMs kommt auf ihre Trainingsdaten an. Genau wie beim Training arbeiten die LLMs 
+beim generieren ihrer Ausgaben in Tokens. 
 
+\subsection{Limitationen \& Halluzinationen}
 
-\subsection{Limitationen}
 
 \subsection{Prompting}
 \label{s:intro:llm:prom}
@@ -639,25 +727,6 @@ unter anderem auch ihren Stil beeinflussen. \par
 \subsection*{Backpropagation}
 \label{s:intro:bp}
 
-
-\section{Transformer}
-\label{s:intro:llm:trans}
-Die Technologie auf der die heutigen LLMs im Grunde basieren ist die sogenannte Transformer Technologie.\par
-Diese Architektur wurde im Research Paper "Attention is all you need" im Jahr 2017 von Google Forschern vorgestellt. Laut ihrer Forschung behaupteten 
-sie, dass ihre neue Architektur signifikant weniger Zeit zum Training braucht, während es besser parallelisierbar ist und die Ergebnisse trotzdem
-besser sind. Nach 3.5 Tagen Training auf nur 8 Grafikkarten hat ihr Modell einen neuen Single Model Rekord aufgestellt 
-in der WMT 2014 Englisch-zu-Französisch Übersetzungsaufgabe\cite{vaswaniAttentionAllYou2023}. 
-\iffalse
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{\figdir/transformer}
-\caption{Transformer Architektur}
-\end{figure}
-\fi
-Von Yuening Jia - DOI:10.1088/1742-6596/1314/1/012186, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=121340680
-
-
-
 \section{Vektor Datenbanken}
 \label{s:intro:dat}
 Vektor Datenkbanken sind Datenbanken, die hochdimensionale Vektoren 
@@ -702,7 +771,7 @@ verschiedene mathematische Verfahren auf diesen Vektor angewendet werden.
 Dazu zählen Verfahren wie Semantische Suche und Semantische Nähe.
 Dies sorgt ebenfalls dafür, dass das Arbeiten mit den Daten schneller ist.\par
 Embedding Modelle werden in LLM Applikationen dafür benutzt, Daten in ihre 
-Vektorrepräsentation umzuwandeln und diese Vekotren dann zusammen mit den 
+Vektorrepräsentation umzuwandeln und diese Vektoren zusammen mit den 
 dazugehörigen Daten in einer Vektordatenbank zu speichern.  
 \cite{leeNVEmbedImprovedTechniques2024a, mikolovDistributedRepresentationsWords2013, NVIDIAGlossaryWhat}
 
@@ -712,7 +781,8 @@ dafür genutzt wird Daten semantisch zu vergleichen.
 Die Daten werden hierfür in ihre Vektordarstellung umgewandelt und dann werden 
 die Vektoren miteinander verglichen und die top k Vektoren mit der höchsten 
 Semantischen Nähe werden zurückgegeben.\par
-Hierfür gibt es verschiedene Verfahren, hier werden drei Stück vorgestellt. 
+Hierfür gibt es verschiedene Verfahren, drei Verfahren, die oft verwendet 
+werden sind: 
 \begin{itemize}
     \item Euklidischer Abstand
     \begin{equation}
@@ -745,7 +815,7 @@ stellen. In diesem Zusammenhang gibt kann man heute RAG in verschiedene Stufen
 einordnen.\cite{gaoRetrievalAugmentedGenerationLarge2024}
 
 \subsection{Naive RAG}
-%schreib das nochmal um das ist kinda hart geklaut
+%TODO schreib das nochmal um das ist kinda hart geklaut
 Naive RAG ist die traditionelle Herangehensweise and das Problem der RAG.
 Sie besteht aus drei Stufen. Indexing(Indizierung??), Abfrage und Generierung.\par
 Beim Indizieren werden die rohen Eingabedaten gereinigt und extrahiert.
@@ -793,7 +863,6 @@ geschoben und es wird versucht die wichtigsten Informationen heraus zu suchen
 und nur diese zurück zu geben. Dadurch sollte die LLM genug Informationen 
 erlangen, aber nicht zu viele und die Antworten sollten besser werden\cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 
-
 \section{llama.cpp}
 \label{s:intro:llama}
 Ein Problem, welches im Abschnitt \ref*{s:intro:llm:inf} bereits angesprochen wurde, 
@@ -838,6 +907,7 @@ gegeben werden. Unter anderem beinhaltet die Datei nun die Architektur
 des Modells\par \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}.
 
 \section{Ollama}
+\label{s:intro:oll}
 Ollama ist ein Open Source Projekt, welches seinen Nutzern dabei helfen 
 soll, auf der Plattform LLMs schneller auf ihren lokalen Maschinen 
 zu starten und mit diesen zu interagieren. 
@@ -846,9 +916,9 @@ Installieren und das Interagieren mit den LLMs einfacher machen. \par
 Ollama hat seine eigene Modellbibliothek über die Nutzer LLM Modelle 
 downloaden können und diese dann direkt nutzen. 
 Wenn ein Modell nicht in der Bibliothek zu finden ist, kann man 
-Modelle selbst importieren. Dies kann man mit Modellen im GGUF 
+Modelle mittels Modelfile selbst importieren. Dies kann man mit Modellen im GGUF 
 Format, welches in \ref*{s:intro:llama} genauer erklärt wurde, 
- gemacht werden und mit sogenannten safetensor Dateien\cite{Ollama}. Das Safetensor 
+ gemacht werden und mit sogenannten safetensor Dateien\cite{OllamaOllama2024}. Das Safetensor 
 Format wurde von Huggingface eingeführt um die Unsicherheiten des 
 vorher genutzten Pickle Formats zu beseitigen. Eines der größten
 Probleme dieses Formats war es, dass beim deserialisieren eines
