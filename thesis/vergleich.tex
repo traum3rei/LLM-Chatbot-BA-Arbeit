@@ -47,13 +47,46 @@ ebenfalls auf Deutsch finetuned wurde. Die Version die genutzt wird ist
 "VAGOsolutions/SauerkrautLM-Phi-3-medium", welche eine finetuned Version 
 von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \par
 Nach dem Erstellen des Generators und dem vor und aufbereiten der 
-Daten kann man das Testset generieren lassen. 
-Für die Generierung kann man zwei Parameter setzen.
-Man kann bestimmen, wie viele Elemente im Set enthalten sein sollen.
+Daten kann man das Testset generieren lassen über die Funktion 
+\verb+generate_with_langchain_docs()+. 
+Für die Generierung kann man drei Parameter setzen.
+Als erstes die \verb+documents+ von denen man die Testsets 
+generieren will.
+Hier werden Documents verwendet die über den \verb+ConfluenceLoader+
+von Langchain geladen werden. Parallel wie beim Importer (\ref{s:dev:imp}).
+Dazu kann man bestimmen, wie viele Elemente im Set enthalten sein sollen.
+Diese \verb+test_size+ bestimmt wie viele Fragen vom \verb+TestsetGenerator+ generiert werden.
 Dazu kann man die Verteilung der Fragen bestimmen.
-Die Fragen die durch den Generator erstellt werden können drei verschiedene
-Typen haben. 
-Das Datenset, welches man als Ausgabe bekommt 
+Die Fragen die durch den Generator erstellt werden können dazu drei verschiedene
+Typen haben. Diese drei Typen sind: \verb+simple+, \verb+reasoning+ und \verb+multi_context+.
+Diese kann man der \verb+generate+ Funktion als dict mitgeben mit der Verteilung 
+die man verwenden möchte. Hier werden diese Werte verwendet: \verb+simple: 0.5+,
+\verb+reasoning: 0.2+ und \verb+multi_context: 0.3+.\par
+Das Testset welches hierbei generiert wird kann man mittels 
+\verb+to_pandas()+ als pandas Dataframe ausgeben.
+Wenn man dieses Dataframe betrachtet sieht man, 4 relevante Spalten.\par
+\verb+question+: Die Frage die dem Chatbot für das Benchmarking gestellt wird. \par
+\verb+context+: Der Context aus dem die Frage erstellt wurde. \par
+\verb+answer+: Die Antwort auf die Frage. \par
+\verb+question_type+: Der Question Typ, dessen Verhältnis in der \verb+generate+ Funktion bestimmt wurde.\par
+Mit diesem Testset kann man nun die Chain bewerten.
+
+\subsection{Evaluation}
+Nachdem das Testset generiert wurde kann es zum bewerten
+übergehen. Für die Bewertung gibt es verschiedene Metriken, die man 
+betrachten kann. 
+
+\subsubsection{Metriken}
+\begin{itemize}
+    \item Faithfulness
+    \item Answer relevancy
+    \item Answer semantic similarity
+    \item Answer correctness
+    \item Context recall
+    \item Context precision
+    \item Context relevancy
+    \item Context entity recall
+\end{itemize}
 
 \section{Umfrage Vergleich}
 Hierfür wurden 5 Mitarbeiter aus dem Unternehmen mit einem Fragebogen 
