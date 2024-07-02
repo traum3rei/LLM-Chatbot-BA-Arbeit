@@ -36,8 +36,8 @@ Die \verb+generator_llm+, \verb+critic_llm+ und \verb+embeddings+.
 Als Embedding Model benutzen wir ebenfalls das Model 
 "intfloat/multilingual-e5-large", wie für den Chatbot und 
 den Importer. 
-Als Critic und Generator LLM werden wir zwei verschiedene LLMs
-nutzen. Da die Geschwindigkeit der Erstellung dieser Daten
+\iffalse Als Critic und Generator LLM werden wir zwei verschiedene LLMs
+nutzen.  Da die Geschwindigkeit der Erstellung dieser Daten
 keine große Rolle spielt werden hierfür große Modelle genutzt.
 Das Generator Modell wird eine auf Deutsch finetuned Version
 von Mistrals Mixtral 8x7B sein und zwar 
@@ -45,7 +45,12 @@ von Mistrals Mixtral 8x7B sein und zwar
 Als Critic Modell wird eine Version von Microsofts Phi 3 genutzt, welche
 ebenfalls auf Deutsch finetuned wurde. Die Version die genutzt wird ist 
 "VAGOsolutions/SauerkrautLM-Phi-3-medium", welche eine finetuned Version 
-von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \par
+von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \par\fi
+Als Critic und als Generator LLM wird das 70 Milliarden 
+Parameter Model Llama3 von Meta verwendet. 
+Die Nutzung von Hugginface Modellen mit Ragas scheint aktuell 
+nicht zu funktionieren, daher wird das Llama3 Model, welches 
+man direkt über Ollama beziehen kann, verwendet.
 Nach dem Erstellen des Generators und dem vor und aufbereiten der 
 Daten kann man das Testset generieren lassen über die Funktion 
 \verb+generate_with_langchain_docs()+. 
@@ -67,26 +72,128 @@ Das Testset welches hierbei generiert wird kann man mittels
 Wenn man dieses Dataframe betrachtet sieht man, 4 relevante Spalten.\par
 \verb+question+: Die Frage die dem Chatbot für das Benchmarking gestellt wird. \par
 \verb+context+: Der Context aus dem die Frage erstellt wurde. \par
-\verb+answer+: Die Antwort auf die Frage. \par
+\verb+ground_truth+: Die Antwort auf die Frage. \par
 \verb+question_type+: Der Question Typ, dessen Verhältnis in der \verb+generate+ Funktion bestimmt wurde.\par
 Mit diesem Testset kann man nun die Chain bewerten.
 
 \subsection{Evaluation}
 Nachdem das Testset generiert wurde kann es zum bewerten
-übergehen. Für die Bewertung gibt es verschiedene Metriken, die man 
-betrachten kann. 
+übergehen. Für die Bewertung gibt es acht verschiedene Metriken, die man 
+betrachten kann. Hiermit kann man die verschiedenen Teile der Rag-Pipeline bewerten.
+Im Folgenden werden die acht Metriken die zu Verfügung stehen betrachtet.
+Standardmäßig verwendet die \verb|evaluate| Funktion die OpenAI API, 
+dies kann überschrieben werden indem man der der Funktion ein \verb|llm| 
+und ein \verb|embedding| übergibt. Man kann hierbei die Llm und das Embedding Model 
+in \verb|LangchainLLMWrapper| und in \verb|LangchainEmbeddingsWrapper| verpacken,
+falls man kein Langchain LLM oder Embedding verwendet. Wenn die LLM und das 
+Embedding von Langchain ist, dann kann man diese direkt übergeben und sie werden 
+in der Funktion verpackt.
 
-\subsubsection{Metriken}
-\begin{itemize}
-    \item Faithfulness
-    \item Answer relevancy
-    \item Answer semantic similarity
-    \item Answer correctness
-    \item Context recall
-    \item Context precision
-    \item Context relevancy
-    \item Context entity recall
-\end{itemize}
+\subsubsection{Faithfulness}
+''Faithfulness`` zu Deutsch ''Genauigkeit`` ist die Metrik, die die 
+generierte Antwort mit dem abgerufenen Kontext vergleicht. Dieser Wert ist 
+eine Gleitkommazahl zwischen 0 und 1. Hierbei werden erst die Behauptungen 
+aus der Antwort heraus gesucht und diese werden dann mit dem abgerufenen 
+Kontext verglichen und es wird überprüft, ob die Behauptung aus dem Kontext 
+gezogen werden kann.\par
+Die Formel die hierfür verwendet wird ist wie folgt:
+\[\text{Faithfulness score}= \frac{|\text{Anzahl der Behauptung die man aus dem Kontext schließen kann}|}{|\text{Gesamtzahl der Behauptungen}|}\]
+\subsubsection{Answer relevancy}
+''Answer relevancy`` zu Deutsch ''Relevanz der Antwort``, bewertet wie 
+relevant die Antwort für die Eingabe ist. Hier werden Antworten
+mit überflüssigen Informationen oder unvollständige Antworten 
+geringer bewertet und Antworten die die Frage vollständig beantworten 
+und keine überflüssigen Informationen beinhalten, werden höher bewertet.
+Der Wert der Relevanz der Antwort kann zwischen -1 und 1, ist 
+in der Praxis aber meisten zwischen 0 und 1 sein.
+Die Formel die hierfür verwendet wird ist: 
+\[\text{answer relevancy} = \frac{1}{N}\sum_{1}^{N}\cos(E_i, E_0)\]
+\subsubsection{Answer semantic similarity}
+Bei der Metrik ''Answer semantic similarity``, zu Deutsch ''Semantische Ähnlichkeit der Antwort``,
+werden die \verb|answer| und \verb|ground_truth| miteinander verglichen.
+Hierbei wird die Semantische Ähnlichkeit der beiden Werte gemessen.
+Dieser Wert ist eine Gleitkommazahl zwischen 0 und 1. Ein höherer
+Wert steht hierbei für eine höhere Genauigkeit. Hierfür wird das
+embedding Model verwendet um die \verb|answer| und \verb|ground_truth| 
+in Vektoren einzubetten und diese werden dann mittels Kosinus-Ähnlichkeit 
+verglichen. Die Formel hierfür ist in \ref*{s:intro:semsea} 
+bereits vorgestellt worden.
+
+\subsubsection{Answer correctness}
+Bei der Metrik ''Answer correctness`` oder zu Deutsch ''Korrektheit der Antwort``,
+wird die Korrektheit der Antwort überprüft. 
+Dieser Wert ist ebenfalls eine Gleitkommazahl zwischen 0 und 1.
+Höhere Werte bedeuten hier eine höhere Korrektheit.
+Hierfür werden \verb|ground_truth| und \verb|answer| miteinander
+verglichen. Hierfür wird einmal die Semantische Ähnlichkeit 
+betrachtet und dazu die faktische Ähnlichkeit. Diese Werte werden 
+im Anschluss mittels einer gewichtet Formel 
+benutzt um den Answer correctness Score zu erhalten.
+\[\text{F1 Score} = \frac{|\text{TP}|}{(|\text{TP}| + 0.5 * (|\text{FP}| + |\text{FN}|))}\]
+Wobei TP Richtig positive Fakten sind, Werte
+die laut Antwort wahr sind und auch in der \verb|ground_truth|
+enthalten sind.
+FP sind falsch positive Fakten. Fakten die laut \verb|answer| wahr 
+sind aber nicht in der \verb|ground_truth| enthalten sind.
+FN sind falsch negative Fakten. Fakten die in der 
+\verb|ground_truth| enthalten sind, aber nicht in der \verb|answer|.
+
+\subsubsection{Context recall}
+Die Metrik ''Context recall`` oder zu Deutsch ''Kontext Rückruf`` beurteilt, 
+wie gut die abgerufenen RAG Dokumente mit der \verb|ground_truth| übereinstimen.
+Der Wert kann zwischen 0 und 1 liegen. Hierfür werden die einzelnen 
+Sätze in der \verb|ground_truth| mit den abgerufenen Dokumenten verglichen 
+und es wird überprüft, ob man die Behauptungen in der \verb|ground_truth|
+dem abgerufenen Dokument zuschreiben könnte.
+\[\text{context recall} = \frac{|\text{Anzahl von Ground Truth Sätze die man von Dokumenten herleiten kann}|}{|\text{Anzahl von Sätzen in der Ground Truth}}|\]
+\subsubsection{Context precision}
+''Context precision`` oder zu Deutsch ''Kontexgenauigkeit``
+
+\subsubsection{Context relevancy}
+''Context relevancy`` oder zu Deutsch ''Kontextrelevanz``
+\subsubsection{Context entity recall}
+''Context entity recall`` oder zu Deutsch ''Kontext-Entitäts-Rückruf``
+
+\subsection{Ergebnisse}
+Nach erstellen von mehreren Testsets mit verschiedene 
+Modellen sind bei einer \verb|test_size| von 10 jedes mal 
+mehrere Reihen in der \verb|ground_truth| Spalte leer geblieben.
+Deshalb wurde ein Testset verwendet, welches 8 Reihen hatte, bei
+denen alle Werte gefüllt waren.\par
+Ebenfalls wie der TestsetGenerator scheint die \verb|evaluate|
+Funktion aktuell nicht mehr in der Lage zu sein, mit Hugginface
+Modellen zu arbeiten. Weder wenn diese Modelle über Ollama geladen 
+wurden noch über die Transfomer Library, die direkt von Huggingface 
+erstellt wurde. \par
+
+\begin{center}
+    \begin{figure}
+        
+    
+    \begin{tabular}{ |p{3.5cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+        \hline
+        \multicolumn{5}{|c|}{Model Bewertung} \\
+        \hline
+        Metrik & llama3 & mistral & phi3 & gemma2 \\
+        \hline
+        answer\_relevancy   & 0.9998   & 0.9802 &  0.9981 & 0\\
+        answer\_correctness & 0.6126  & 0.3717  &  0.4172 & 0\\
+        answer\_similarity & 0.9032 & 0.8995    &  0.8992 & 0\\
+        context\_relevancy & 0.0017 & 0.0017    &  0.0017 & 0\\
+        faithfulness&   0.7415  & 0.8444       &  0.6852 & 0\\
+        \hline
+       
+       \end{tabular}
+       \caption{Ragas Ergebnisse der vier Modelle.}
+       \label{tab:evaluation}
+    \end{figure}
+\end{center}
+
+In der Tabelle \ref*{tab:evaluation} sieht man die Ergebnisse des Ragas Benchmarks.
+Die verschiedenen Metriken die betrachtet wurden sind \verb|answer_relevancy|, 
+\verb|answer_correctness|, \verb|answer_similarity|, \verb|context_relevancy| und \verb|faithfulness|.
+Alle Metriken außer \verb|faithfulness| sind am höchsten bei llama3 von Meta. \verb|Faithfulness| 
+hat den höchsten Wert bei Mistral2 von Mistral.
 
 \section{Umfrage Vergleich}
 Hierfür wurden 5 Mitarbeiter aus dem Unternehmen mit einem Fragebogen 

@@ -4,11 +4,16 @@ Bevor mit der Entwicklung begonnen werden kann, muss das Konzept erstellt werden
 Zur Konzeption gehört in dieser Arbeit, die Auswahl der technischen Werkzeuge, 
 die Programmiersprache, die Umgebung und die Modelle die benutzt werden sollen.
 
-\section{Auswahl der Chatmodelle}
+\section{Auswahl der Modelle}
 \label{s:konz:mod}
-Nach der Analyse beginnt die Konzeption. Die erste Frage, die beantwortet werden muss, ist, 
-welche Modelle werden benutzt. Es werden Modelle an zwei Stellen benötigt. Die erste Frage ist, 
-welches Modell soll generell für den Chatbot benutzt werden. Hier gibt es ein paar Möglichkeiten. 
+Die erste Frage, die beantwortet werden muss, ist, 
+welche Modelle werden benutzt. Da innerhalb dieser Arbeit LLMs miteinander verglichen werden, werden fünf Modelle benötigt. 
+Vier LLMs für
+den Chatbot selbst, der die Nachrichten generieren soll. Des weiteren wird ein Embedding Modell,
+welches für die Einbettungen der Vektordatenbank und der Anfragen zuständig sein wird.
+
+\subsection{Auswahl der Chat LLM}
+Als erstes werden die Chat LLMs ausgwählt.
 Die Anforderung die hier relevant ist, ist die Anforderung Nummer 1. Da der Bot lokal laufen sollte,
 werden keine Modelle benutzt, die nur über eine externe API erreichbar sind, wie beispielsweise 
 OpenAIs ChatGPT, um Datensicherheit sicherzustellen. Also ist die einzige Option ein Modell zu downloaden
@@ -20,11 +25,8 @@ Modelle zu trainieren und zu veröffentlichen. Zu den bekanntesten Open Source M
     \item Llama von Meta AI  
     \item Gemma von Google
 \end{enumerate}
-In dieser Arbeit werden 5 verschiedene Modelle miteinander verglichen. Die meisten der Open 
-Source Modelle basieren aber auf den Modellen von Meta AI und Mistral AI, das heißt sie sind finetuned 
-Versionen von diesen. Ein Hub auf dem viele der Modelle veröffentlicht werden ist hugginface.co. Hier 
-werden viele Open Source Modelle veröffentlicht und man kann sie downloaden und verschiedene Benchmarks, 
-etc. einsehen.\par
+In dieser Arbeit werden 4 verschiedene Modelle miteinander verglichen. Ein Hub auf dem viele der Modelle 
+veröffentlicht werden ist hugginface.co (siehe hierzu \ref{s:intro:hug}).\par
  Einige der größeren Modelle wie beispielsweise Gemma und Llama3 wurden mehrsprachig trainiert 
 und verstehen in ihrer Grundversion bereits teilweise beide Sprachen, die wir brauchen. Aus Speicher, Leistungs
 und Generationtime Gründen werden in dieser Arbeit nur Modelle unter 12B Parametern miteinander verglichen.
@@ -67,7 +69,6 @@ indem es mit 1 Milliarde Datensätzen kontrastiv vor trainiert wurde und im
 zweiten Schritt mit den Datensätzen, die für das E5-Mistral Model in der Arbeit 
 "Improving Text Embeddings with Large Language Models" verwendet wurden, trainiert.
 
-
 \section{Prompting}
 \label{s:konz:prom}
 
@@ -80,16 +81,18 @@ Modell suchen, dem wir unsere Daten schicken, aber das könnte teils Probleme mi
 diese Probleme fallen diese Optionen weg. Das heißt, das Modell muss lokal gehostet werden. Lokal heißt hierbei 
 einfach auf einem Server von uns oder einem Server, bei dem man weiss, dass keiner auf die Daten zugreifen kann. 
 \fi
-Für die Vektordatenbank wird eine Open Source Vektordatenbank bevorzugt.
-Dazu wird eine LangChain Integration gefordert. 
+Als nächstes kommt die Auswahl der Vektordatenbank.
+Für diesen Protoyp wird eine Vektordatenbank verwendet, die in einem Docker Container betrieben wird.
+Die Vektordatenbank hat drei Anforderungen. 
+\begin{enumerate}
+    \item Open Source \& selbst hostbar
+    \item Integration in Langchain
+    \item Einfache Bedienung
+\end{enumerate}
+Hierfür stehen zwei Optionen zur Vefügung. Chroma und Milvus. 
+Beide Optionen sind Open Source und selbst hostbar.
+Beide Optionen erfüllen auch die zweite Anforderung und haben eine Langchain Integration.
 
-Wir werden hierfür eine self hosted Instanz von Milvus 
-
-\section{Server}
-
-\section{Chainlit}
-
-\section{Verbindung zu Google Chat}
 
 \section{Architektur des Systems}
 \label{s:konz:arc}
@@ -120,10 +123,14 @@ Die Python Applikation des Chatbots ist dann mit der Google Chat API verbunden, 
 es gibt wird in \ref{s:konz:chat} erklärt.\par
 Die Nachrichten, die das System erhält werden ebenfalls in der Datenbank abgespeichert, wo sie nachher 
 analysiert werden können, um die Anforderung A6 zu erfüllen.
-Damit wäre die grobe Architektur beschrieben.
 
 \subsection{Chatbot}
 \label{s:konz:bot}
+Nach der groben Architektur des Systems kommt es zu der Architektur der einzelnen Teile. 
+Begonnen wird hierbei mit dem Chatbot, also dem System, welches direkt auf dem Server
+laufen wird und das LLM hosten wird.
+
+\subsubsection{Framework}
 Bei der Auswahl der Konzeption für den Chatbot ist die Frage, welches Framework verwendet werden soll.
 Die drei Stück die zu Auswahl stehen wurden in \ref*{s:intr:frame} vorgestellt.
 Haystack, Langchain und Llamaindex. Vom Grundprinzip her könnte man jedes 
@@ -150,7 +157,8 @@ Eine Suche nach Langchain gibt uns 25k Ergebnisse. Und eine Suche nach LlamaInde
 sehr aussagekräftig, da der Begriff Haystack von verschiedenen Unternehmen benutzt wird 
 und dazu noch ein normal gebrauchtes Wort ist, daher werden wir uns an den Github Ergebnissen
 orientieren, da auch, wenn dies möglicherweise nicht alle Projekte auflistet, es uns 
-zumindest eine Orientierungsrichtung gibt. Langchain hat hier den absoluten Vorteil. \par
+zumindest eine Orientierungsrichtung gibt. Langchain hat hier den Vorteil. \par
+%relevant??
 Das Austauschen von einzelnen Teilen des Systems scheint mit Langchain am einfachsten 
 zu sein, aber ist je nachdem, was man austauchst mit allen drei Framworks relativ 
 einfach. Wenn man eine größere Änderung durchführen will, wie beispielweise das
@@ -163,8 +171,12 @@ welches das System ist welches an die Vektordatenbank angebunden werden soll.
 Dadurch, dass Langchain vielseitiger einsetzbar ist, als LlamaIndex und und Haystack, kommt der Vorteil dazu, 
 dass Erfahrung mit dem Framework gesammelt werden kann und 
 im Anschluss weitere Projekte, die über Chatbots und RAG Systeme hinaus gehen 
-entwickelt werden könnten. Aus diesen Gründen wird Langchain für diese Projekt ausgewählt.\par 
+entwickelt werden können. Aus diesen Gründen wird Langchain für diese Projekt ausgewählt.\par 
 
+\subsubsection{}
+
+
+\iffalse
 \subsection{Datenupdates}
 \label{s:konz:rag}
 Hierbei geht es um das Thema des Hinzufügens von neuem Wissen zum Chatbot. Das Problem bei einem trainierten 
@@ -179,6 +191,7 @@ aber das heisst dass es einen Zeitraum gibt in dem der Bot nicht die aktuellsten
 die vorher bereits erwähnte RAG in Kombination mit einer Vektor Datenbank.\par
 Welche RAG Variante benutzt wird, wird durch unser Framework, welches in \ref*{s:konz:bot} ausgewählt wurde,
 bestimmt. Jedoch gibt es verschiedene Vektordatenbanken für die sich entschieden werden muss. 
+\fi
 
 \subsection{Server}
 Bei der Auswahl des Systems muss beachtet werden, dass die Techdivision den Server
@@ -202,10 +215,27 @@ Wenn man einen ähnlichen Server in der Compute Engine von Google zusammenstelle
 würde, dann hat man aktuell die Möglichkeit GPUs hinzuzufügen in den 
 Maschinen Kategorien Allzweck, Rechen optimiert und Beschleunigungsoptimiert.
 Für die Berechnung der Kosten wird erneut angenommen, dass der Server 730 Stunden 
-im Monat läuft. Wenn wir einem N1 Allzweck Server 64GB RAM, 10 vCPUs, welche 
-mindestens beötigt werden um 64 GB RAM auswählen zu könne, und eine 
+im Monat läuft. Wenn man einen N1 Allzweck Server mit 64GB RAM, 10 vCPUs, welche 
+mindestens beötigt werden um 64 GB RAM auswählen zu können, und eine 
 Nvidia T4 GPU mit 16GB VRAM hinzufügen, befinden wir uns bei ca 650€.
 Augrund dessen wird der Hetzner Server, der bei voller Nutzung ca 430€
 billiger im Monat ist bevorzugt.\par
 
 \subsection{Anbindung Google Chat}
+Die Anbindung an den Google Chat erfolgt über die Google Chat API.
+Hierbei gibt Google vier Optionen, wie man mit der API interagieren kann.
+\begin{enumerate}
+    \item App URL mittels https Server mit authentifiziertem SSL Zertifikat
+    \item Apps Script Projekt 
+    \item Cloud Pub/Sub
+    \item Dialogflow
+\end{enumerate}
+Dialogflow ist keine Option in diesem Fall, da uns dadurch die Option genommen wird 
+unsere eigenen Open Source LLMs selbst zu hosten, wodurch Anforderung A1 verletzt werden 
+würde. \par
+Die anderen drei Optionen wären alle möglich, während die Anforderung eingehalten wird.
+Da bereits ein HTTPS REST Server geplant ist, wird hier die App URL verwendet, wodurch
+direkt mit der API interagiert werden kann und die API Calls, bei ankommenden Nachrichten, 
+direkt an den Server gesendet.\par
+Pub/Sub wäre eine alternative, falls eine Firewall im Weg stehen würde, was hier aber 
+nicht der Fall sein wird.

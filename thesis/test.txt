@@ -1,0 +1,20 @@
+\iffalse llama3
+Faithfulness: 0.7415
+Answer-relevancy: 0.9998
+answercorrectness: 0.6126
+answersimilarity: 0.9032
+contextrelevancy: 0.0017
+
+mistral 
+answer correctness: 0.3717
+answersimilarity: 0.8995
+contextrelevancy: 0.0017
+Faithfulness: 0.8444
+answerrelevancy: 0.9802
+
+phi3:
+Faithfulness: 0.6852
+answerrelevancy: 0.9981
+answercorrectness: 0.4172
+answersimilarity: 0.8992
+contextrelevancy: 0.0017\fi
