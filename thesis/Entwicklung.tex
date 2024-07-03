@@ -1,32 +1,62 @@
 \chapter{Entwicklung}
 \label{c:dev}
 Nach dem Abschluss der Konzeption kann zur Entwicklung über gegangen werden.
+Die Rahmenbedingungen hierbei sind, dass der Hetzner Server, welcher in 
+\ref*{s:konz:ser} beschrieben wurde verwendet wird und auf diesem ist Ubuntu
+22 installiert.
 
 \section{Vorbereitung}
 Bevor mit der Entwicklung begonnen werden kann, müssen ein paar 
-Dinge vorbereitet werden, damit ohne Probleme entwickelt werden
-kann.
+Dinge vorbereitet werden, damit man entiwckeln kann. 
+
 \subsection{Modelle}
 Der erste Schritt ist es die Modelle vorzubereiten.\par
+Damit man die Modelle vorbereiten kann, wird als erstes 
+Ollama installiert.
+Dies kann über das Install Skript, welches auf Github zu finden \cite{OllamaOllama2024}
+ist getan werden. Dazu werden noch die Nvidia Cuda Driver installiert, 
+damit Ollama diese nutzen kann. Nun können die Modelle vorbereitet werden.\par
 Hierfür werden die Modelle, die in \ref{s:konz:mod} vorgestellt
 wurden über Huggingface gedownloadet.
 Dies ist relativ simple über Git LFS zu erledigen.
 Die Repositories der Modelle werden einfach über git clone kopiert.
 Wenn die Dateien fertig gedownloadet sind, kann man die Modelle 
 für das Importieren in Ollama vorbereiten.
-Hierfür 
+Hierfür \par
+Nachdem Ragas nicht mit den von Huggingface in Ollama geladenen 
+Modellen funktioniert hat, wurde auf Ollama Modelle gewechselt. 
+Die über \verb|Ollama pull model| geladen, wobei model der Name
+des Models ist, welches man herunterladen möchte. Hierbei kann
+man mittels \verb|model:latest| noch die Version angeben, welche man 
+haben möchte. Hierbei kann man teils ebenfalls Größen angeben. Es kommt 
+auf das jeweilige Model an, welche Optionen es gibt. Auf Ollama.com
+findet man die jeweiligen Modelle und die Versionen, die man herunterladen kann.
 
 \subsection{Google Cloud}
 Hier geht es um die Vorbereitung des Google Cloud Projekts für die Verbindung 
 mit der Google Chat API.\par
-Der erste Schritt hierbei ist es, dein Google Cloud Projekt zu erstellen.
+Der erste Schritt hierbei ist es, ein Google Cloud Projekt zu erstellen.
 Wenn dies erledigt ist, kann man die Google Chat API aktivieren.\par
+Dazu wird ein Google Service Account benötigt.
+Die Konfiguration der API und des Service Accounts werden stattfinden, nachdem der Server konfiguriert wurde 
+und das System funktionsfähig ist.
+
 \subsection{Python Umgebung}
+
+\subsection{Datenbank}
+Hierfür wird auf dem Server Docker installiert.
+Dazu wird \verb|chromadb/chroma| über \verb|docker pull| 
+heruntergeladen und dann mittels \verb|docker run| gestartet.
 
 \section{System}
 Wie in der Konzeption beschrieben wird 
 das System auf dem der Chatbot erstellt wird ist ein
-Hetzner Server, auf dem ebenfalls die Datenbank liegt
+Hetzner Server, auf dem ebenfalls die Datenbank liegt.
+Nachdem die Vorbereitungen des Servers abgeschlossen sind
+kann mit der eigentlichen Entwicklung begonnen werden.\par
+\par
+
+
 
 
 

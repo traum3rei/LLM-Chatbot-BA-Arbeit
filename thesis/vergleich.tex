@@ -146,13 +146,43 @@ Sätze in der \verb|ground_truth| mit den abgerufenen Dokumenten verglichen
 und es wird überprüft, ob man die Behauptungen in der \verb|ground_truth|
 dem abgerufenen Dokument zuschreiben könnte.
 \[\text{context recall} = \frac{|\text{Anzahl von Ground Truth Sätze die man von Dokumenten herleiten kann}|}{|\text{Anzahl von Sätzen in der Ground Truth}}|\]
+
 \subsubsection{Context precision}
-''Context precision`` oder zu Deutsch ''Kontexgenauigkeit``
+Die ''Context precision`` oder zu Deutsch ''Kontexgenauigkeit`` bewertet,
+ob die Kontexte beziehungsweise die Dokumente in der \verb|contexts| Spalte,
+die die \verb|ground_truth| beinhalten höher bewertet werden, als die jeweils anderen.
+Hierfür werden die Spalten \verb|ground_truth|, \verb|question| und \verb|contexts| verwendet.\par
+Der Context Precision Wert kann einen Wert zwischen 0 und 1 haben und höher 
+bedeutet hier einen besseren Wert, wie bei den Werten zuvor.\par
+Die Formel hierfür ist: 
+\[\text{Context Precision@K}=\frac{\sum_{k=1}^{K}(\text{Precision@k} \times v_k)}{\text{Total number of relevant items in the top K results}}\]
+\[\text{Precision@K}=\frac{(\text{true positives@k}}{(\text{true positives@k + false positives@k})}\]
+
+Wobei $\mathbf{K}$ die Gesamtmenge der Kontexte in der \verb|contexts| Spalte
+und \[v_k \in {0,1}\]
 
 \subsubsection{Context relevancy}
-''Context relevancy`` oder zu Deutsch ''Kontextrelevanz``
+Die ''Context relevancy`` oder zu Deutsch ''Kontextrelevanz`` bewertet den 
+Relevanz des abgerufenen Kontexts. Dieser Wert fällt zwischen 0 und 1 und
+hier ist ein höherer Wert besser. \par
+Hierbei wird berechnet, wie viele Sätze der abgerufene Kontext beinhaltet,
+die wichtige Informationen für die Beantwortung der Frage beinhaltet und dies 
+wird durch die Gesamtzahl der Sätze im abgerufenen Kontext geteilt.
+
+Die Formel hierfür ist: 
+\[\text{context relevancy} = \frac{|\mathbf{S}|}{|\text{Total number of sentences in retrieved context}|}\]
+
 \subsubsection{Context entity recall}
-''Context entity recall`` oder zu Deutsch ''Kontext-Entitäts-Rückruf``
+Beim ''Context entity recall`` oder zu Deutsch ''Kontext-Entitäts-Rückruf``
+handelt es sich um die Metrik, die genutzt wird um zu vergleichen, wie viele 
+Objekte im abgerufenen Kontext mit den Objekte in der \verb|ground_truth|
+übereinstimmen.\par
+Für diesen Wert werden die einzelnen Objekte in \verb|contexts| und in 
+\verb|ground_truth| jeweils als Set betrachtet und dann mittels eines logischen 
+
+
+Die Formel hierfür ist: 
+\[\text{context entity recall} = \frac{|\mathbf{CE}\cap\mathbf{GE}|}{|\mathbf{GE}|}\]
 
 \subsection{Ergebnisse}
 Nach erstellen von mehreren Testsets mit verschiedene 
