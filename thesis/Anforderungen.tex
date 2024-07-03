@@ -1,8 +1,23 @@
-\chapter{Anforderungen}
-Es gibt sechs Punkte die laut Experteninterviews gefordert sind. 
+\chapter{Anforderungsanalyse}
 
-\begin{enumerate}
-    \item Der Bot soll selbst gehostet werden
+\section{Ausgangslage}
+Die aktuelle Ausgangslage des IT Supports innerhalb der Techdivision ist, dass 
+der IT-Support hauptsächlich über den internen Google Chat betrieben wird.
+Dies ist eine offene Chatgruppe für Mitarbeiter der Techdivsion und innerhalb 
+diese können Fragen gestellt werden und sie werden von einem der Mitarbeiter 
+des IT-Support Teams beantwortet. Falls es fragen sind, welche nicht über den 
+Chat gelöst werden können, dann wird ein Google Meet Meeting aufgesetzt oder, falls der 
+jeweilige Mitarbeiter sich im Office befindet, dann kann das auch vor Ort stattfinden.
+
+\section{Anforderungen}
+Nun wird gefordert, dass dem IT-Support Gruppenchat ein Chatbot hinzugefügt wird, 
+der den Mitarbeitern des Support Teams helfen soll, indem er einfache Fragen, 
+die bspw. mithilfe von Dokumentationen innerhalb des internen Confluences 
+beatnwortbar wären, beantworten soll. \par
+Im Folgenden werden die Rahmenbedingungen, die der Chat erfüllen sollte 
+vorgestellt.
+
+\subsection{A1 Der Bot soll selbst gehostet werden}
 Das größte Problem, welches beim Betreiben des Chatbots beachtet, ist die 
 DSGVO. Datenschutz ist ein großes Thema bei Unternehmen und vor allem, bei 
 Unternehmen die mit Kundendaten arbeiten müssen oder auch Betriebsgehemnisse,
@@ -14,34 +29,32 @@ Techdivision gehostet wird, was bedeutet es dürfen keine APIs von externen LLM-
 hierfür verwendet
 werden, die von anderen Unternehmen gehostet werden, wie beispielsweise
 die ChatGPT API.
-    \item Der Bot soll in einer Chatgruppe laufen, damit IT-Supportmitarbeiter eingreifen können, falls nötig
+\subsection{A2 Der Bot soll in einer Chatgruppe laufen}
 Auch, wenn die LLMs heutzutage weit entwickelt sind, können diese die
 falschen Informationen weiter geben, oder komplett neue halluzinieren
 und diese dann dem Supportsuchenden weiter geben. Es könnte auch sein, dass
 der Bot dem Mitarbeiter überhaupt nicht helfen kann. Damit in diesen Fällen
 ein Supportmitarbeiter eingreifen kann, sollte der Bot in einer Chatgruppe 
 laufen, von der ein Mitarbeiter des Support Teams ebenfalls Teil ist.
-    \item Der Bot soll Unternehmensdaten verwenden
+\subsection{A3 Der Bot soll Unternehmensdaten verwenden}
 Da die Bots nicht von Haus aus Zugriff auf spezifische Informationen 
 der Techdivion Zugriff haben, soll der Bot auf Unternehmensdaten 
 zugreifen können. Dadurch kann der Bot spezifischer Hilfe leisten und 
 nicht nur allgemeine Hinweise geben, die im Internet zu finden sind.
-    \item Der Bot soll mit der Zeit auf neues Wissen zugreifen können
+\subsection{A4 Der Bot soll mit der Zeit auf neues Wissen zugreifen können}
 Da sich die Unternehmensdaten mit der Zeit ändern und auch neue 
 Datenquellen hinzukommen können, sollte der Bot in der Lage sein 
 mit der Zeit auf neues Wissen zuzugreifen.
-    \item Der Bot soll auf Deutsch arbeiten
+\subsection{A5 Der Bot soll auf Deutsch arbeiten}
 Der Großteil der Techdivion ist deutschsprachig. Die meisten Teile von 
 Datenquellen, wie beispielsweise Confluence sind ebenfalls auf Deutsch. 
 Es gibt ein paar englischsprachige Mitarbeiter, daher wäre ein Bilingualer 
 Bot der beste Fall, da aber die meisten Deutsch sind, wäre Deutsch die bessere
 Option, falls es nur eine Sprache sein kann.
-    \item Der Bot soll Anfragedaten speichern können
+\subsection{A6 Der Bot soll Anfragedaten speichern können}
 Dies ist eine optionale Anfrage des IT-Supports.
 Der Bott soll Anfragedaten speichern können, damit eingesehen werden kann,
 ob zu manchen Themen viele Fragen gestellt werden oder manche Personen 
 besonders viele Fragen stellen. So könnte, falls notwendig zu einem bestimmten
 Thema ein Workshop angeboten werden oder es könnte ein Kurs mit einer 
 Person geben, in der diese Person alles, was sie will erklärt kriegt.
-\end{enumerate}
-

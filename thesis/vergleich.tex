@@ -178,8 +178,8 @@ handelt es sich um die Metrik, die genutzt wird um zu vergleichen, wie viele
 Objekte im abgerufenen Kontext mit den Objekte in der \verb|ground_truth|
 übereinstimmen.\par
 Für diesen Wert werden die einzelnen Objekte in \verb|contexts| und in 
-\verb|ground_truth| jeweils als Set betrachtet und dann mittels eines logischen 
-
+\verb|ground_truth| jeweils als Menge betrachtet und dann mittels einer logischen 
+Überschneidung mit der Menge von Objekte \verb|ground_truth| verglichen.
 
 Die Formel hierfür ist: 
 \[\text{context entity recall} = \frac{|\mathbf{CE}\cap\mathbf{GE}|}{|\mathbf{GE}|}\]
@@ -194,7 +194,9 @@ Ebenfalls wie der TestsetGenerator scheint die \verb|evaluate|
 Funktion aktuell nicht mehr in der Lage zu sein, mit Hugginface
 Modellen zu arbeiten. Weder wenn diese Modelle über Ollama geladen 
 wurden noch über die Transfomer Library, die direkt von Huggingface 
-erstellt wurde. \par
+erstellt wurde. Daher wurde auf die direkt über Ollama ladbaren 
+Versionen der
+Modelle gewechselt.\par
 
 \begin{center}
     \begin{figure}
@@ -208,7 +210,7 @@ erstellt wurde. \par
         \hline
         answer\_relevancy   & 0.9998   & 0.9802 &  0.9981 & 0\\
         answer\_correctness & 0.6126  & 0.3717  &  0.4172 & 0\\
-        answer\_similarity & 0.9032 & 0.8995    &  0.8992 & 0\\
+        answer\_similarity & 0.9032 & 0.8995    &  0.8992/7 & 0\\
         context\_relevancy & 0.0017 & 0.0017    &  0.0017 & 0\\
         faithfulness&   0.7415  & 0.8444       &  0.6852 & 0\\
         \hline
@@ -223,7 +225,7 @@ In der Tabelle \ref*{tab:evaluation} sieht man die Ergebnisse des Ragas Benchmar
 Die verschiedenen Metriken die betrachtet wurden sind \verb|answer_relevancy|, 
 \verb|answer_correctness|, \verb|answer_similarity|, \verb|context_relevancy| und \verb|faithfulness|.
 Alle Metriken außer \verb|faithfulness| sind am höchsten bei llama3 von Meta. \verb|Faithfulness| 
-hat den höchsten Wert bei Mistral2 von Mistral.
+hat den höchsten Wert bei Mistral2 von Mistral. \par
 
 \section{Umfrage Vergleich}
 Hierfür wurden 5 Mitarbeiter aus dem Unternehmen mit einem Fragebogen 
@@ -234,4 +236,22 @@ Der Fragebogen wurde so erstellt, dass es keine genauen Fragen gibt,
 sondern nur Themengebiete, die abgefragt werden sollen. Das wichtige 
 beim Auswählen der Themengebiete war, dass es Informationen waren, die 
 auf der Confluence Instanz, auf die der Chatbot Zugriff hatte, verfügbar 
-waren.
+waren. Die Confluence Instanz die für diese Arbeit verwendet wurde ist ein 
+Testsystem auf das für diese Arbeit verschiedene Blogeinträge und Dokumentationen 
+geladen wurden, die den Einträgen auf dem Produktivsystem ähneln nur ohne kritische 
+Kundendaten und ähnliches. Die Fragen für den Fragebogen werden aus diesen neu erstellten 
+Einträgen erstellt. \par
+\par
+
+Folgende Aufgaben wurde den Teilnehmern gegeben:
+
+\begin{itemize}
+    \item Wie richten sie die VPN ein?
+    \item Finden sie heraus, was bereits bekannte Probleme beim einrichten der VPN sind.
+    \item 
+    \item 
+\end{itemize}
+
+Die LLM könnte bei gleichen Prompts verschiedene Ausgaben 
+generieren, dennoch wurden die Prompts den Teilnehmer nicht 
+vorgegeben, damit diese 
