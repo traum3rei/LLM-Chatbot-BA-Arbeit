@@ -7,9 +7,10 @@ Die Rahmenbedingungen hierbei sind, dass der Hetzner Server, welcher in
 
 \section{Vorbereitung}
 Bevor mit der Entwicklung begonnen werden kann, müssen ein paar 
-Dinge vorbereitet werden, damit man entiwckeln kann. 
+Dinge vorbereitet werden, damit man entiwckeln kann.
 
 \subsection{Modelle}
+\label{s:konz:mod}
 Der erste Schritt ist es die Modelle vorzubereiten.\par
 Damit man die Modelle vorbereiten kann, wird als erstes 
 Ollama installiert.
@@ -41,8 +42,6 @@ Dazu wird ein Google Service Account benötigt.
 Die Konfiguration der API und des Service Accounts werden stattfinden, nachdem der Server konfiguriert wurde 
 und das System funktionsfähig ist.
 
-\subsection{Python Umgebung}
-
 \subsection{Datenbank}
 Hierfür wird auf dem Server Docker installiert.
 Dazu wird \verb|chromadb/chroma| über \verb|docker pull| 
@@ -54,9 +53,190 @@ das System auf dem der Chatbot erstellt wird ist ein
 Hetzner Server, auf dem ebenfalls die Datenbank liegt.
 Nachdem die Vorbereitungen des Servers abgeschlossen sind
 kann mit der eigentlichen Entwicklung begonnen werden.\par
-\par
 
+\subsection{Importer}
+\label{s:ent:imp}
+Für den Importer wird der Langchain \verb|ConfluenceLoader|
+verwendet. Hierfür wird, nachdem der Docker Container, welcher 
+die ChromaDB Datenbank beinhaltet gestartet wurde, eine Verbindung 
+zu diesem hergestellt. Dabei wird dem Chroma Client innerhalb 
+des Python Programms der \verb|host| und der \verb|port| des
+Docker Containers übergeben.\par
+Danach wird das Embedding Modell mittels der \verb|HuggingFaceEmbeddings|
+von langchain geladen. Hier wird der Name des Modells, "intfloat/multilingual-e5-large-instruct" übergeben.
+Dazu gibt es die Option Keyword Arguments mittels \verb|encode_kwargs| und \verb|model_kwargs| mitzugeben.
+Hier geben wir das \verb|device_kwargs| \verb|device| mit dem Wert \verb|cuda| mit. 
+Dies sorgt dafür, dass die GPU für die Berechnungen verwendet wird.\par
+Nun können die Daten aus Confluence mittels \verb|ConfluenceLoader| geladen werden.
+Hier werden \verb|username|, \verb|api_key| und die \verb|url| der Confluence Instanz 
+benötigt. Nach dem Erstellen des Loaders können die Daten geladen werden, hierfür gibt
+es die \verb|load| Funktion, welche einen \verb|space_key| braucht, für 
+den Confluence Space der geladen werden muss.\par
+Die geladenen Dokumente, werden mittels \verb|MarkdownHeaderTextSplitter| ein mal 
+aufgeteilt und mittels \verb|RecursiveCharacterTextSplitter| noch ein weiteres 
+mal aufgeteilt. Den aufgeteilten Dokumenten werden die Metadaten hinzugefügt, damit 
+sie einander zugeordnet werden können.\par
+Anschließend wird eine Langchain Chroma Instanz erstellt, die auf den vorher bereits
+erstellten Client zugreift, dann werden die Dateien mittels \verb|from_documents| 
+innerhalb einer Chroma Collection, die man beim Erstellen über die Chroma Instanz 
+mittels \verb|collection_name| festlegen kann, gespeichert.
 
+\subsection{Chatbot}
+Die Entwicklung des Chatbots wird in die einzelnen Teile der Langchain Chain aufgeteilt.
+Die Chain besteht aus verschiedenen Element, die bereits zu Chains zusammengefügt wurden.
+Das Prompt und die LLM wurden mittels \verb|create_stuff_documents_chain| miteinander 
+verbunden. Diese Chain wurde dann mittels \verb|create_retrieval_chain| mit einem Retriever 
+verbunden. Als letztes wurde diese Chain in eine \verb|RunnableWithMessageHistory| 
+eingebaut. Im Folgenden werden die einzelnen Teile erklärt.
+
+\subsubsection{Retriever}
+Der erste Teil der Chain der entwickelt wird, ist der \verb|Retriever|. 
+Der Retriever ist der Teil der Chain, der auf die Vektordatenbank zugreift und 
+die passenden Dokumente von dieser an die LLM übergibt.\par
+Hierfür wird, wie beim Importer in \ref*{s:ent:imp} ein Chroma Client erstellt, der 
+mit dem Docker Container der Chroma Instanz verbunden wird, dazu wird ebenfalls 
+synchron zum Importer, das Embedding Modell über \verb|HuggingFaceEmbeddings| geladen
+und in der Chroma Instanz als \verb|embedding_function| angegeben.
+Dieser wird dann mit der Funktion \verb|as_retriever()| als Retriever geladen.\par
+Für die Chain wird dazu noch eine Funktion erstellt, welche die Dokumente, die der 
+Retriever abruft zusammenfügt, damit diese der LLM übergeben werden können.
+
+\subsubsection{Prompt}
+Das Prompt, welches benutzt wird, ist Folgendes: \par
+    Dein Name ist Arthur. Du bist ein erfahrenes Mitglied 
+    des IT-Support-Teams der Firma TechDivision. Deine Aufgabe ist es, Mitarbeitern 
+    bei ihren IT-Problemen zu helfen. Beachte folgende Richtlinien: 
+    \begin{enumerate}
+        \item Nutze ausschließlich die Informationen aus dem bereitgestellten Kontext und deinem vorhandenen Wissen über allgemeine IT-Konzepte, um Fragen zu beantworten. 
+        \item Wenn die Antwort nicht im Kontext oder in deinem allgemeinen IT-Wissen enthalten ist, sage ehrlich, dass du die Information nicht hast oder die Frage nicht beantworten kannst.
+        \item Erfinde oder halluziniere keine Informationen. 
+        \item Beziehe dich auf frühere Teile der Konversation, wenn sie relevant sind. 
+        \item Bleibe stets höflich, professionell und hilfsbereit. 
+        \item Wenn nötig, frage nach weiteren Details, um das Problem besser zu verstehen. 
+        \item Gib schrittweise Anleitungen, wenn du eine Lösung vorschlägst. 
+        \item Verweise den Mitarbeiter an andere Abteilungen oder Experten, wenn das Problem außerhalb deines Zuständigkeitsbereichs liegt. 
+        \item Antworte auf Deutsch.
+    \end{enumerate}
+    Kontext: \{\verb|context|\} 
+    Bisheriger Chatverlauf: \{\verb|chat_history|\} 
+    Beantworte die folgende Frage des Mitarbeiters basierend auf diesen Informationen. \par
+Wobei context, über über die Chain übergebene RAG Dokumente sind und chat\_history ebenfalls über
+die Chain übergebene Chat Historie ist. Die Richtlinien, sollen der LLM eine Richtung geben 
+und dazu falsche Informationen und Halluzinationen vermeiden.
+
+\subsubsection{LLM}
+Dieser Schritt kann erst funktionieren, wenn die in 
+\ref*{s:ent:mod} beschriebenen Vorbereitungen abgeschlossen sind. 
+Die LLM wird dafür mit der \verb|Ollama| Community LLM geladen. Wobei 
+der Klasse der Model name aus Ollama übergeben wird. 
+
+\subsubsection{Nachrichten Historie}
+Die Nachrichten Historie wird mittels \verb|RunnableWithMessageHistory| 
+implementiert. Hierfür wurde noch eine \verb|get_session_history| Funktion implementiert, 
+welche aus einer SQLite Datenbank mittels der \verb|session_id| den aktuellen Session 
+Chat abruft. Dem \verb|RunnableWithMessageHistory| muss ein Runnable Objekt 
+übergeben werden, welches als Basis dient. Hier ist das Basis Runnable Objekt, 
+die Retrieval Chain, die aus dem Prompt, dem Retriever und der LLM besteht.
+Dazu wird der Runnable die \verb|get_session_history| Funktion übergeben.
+Da das Basis Runnable ein dict als Input benötigt, muss ein \verb|input_messages_key|
+angegeben werden, was laut dem Prompt, welches verwendet wird der Key \verb|input| ist. 
+Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key|
+\verb|chat_history|. \par\par
+
+Dieses \verb|RunnableWithMessageHistory| Runnable kann mit \verb|runnable.invoke()| angesprochen werden.
+Der Funktion werden zwei dict Objekte mitgegeben. 
+Das dict mit dem \verb|input| Key, der die Eingabe des 
+Nutzers ist und dazu noch ein weiteres dict mit einem 
+\verb|configurable| Key, dessen Wert ein dict ist, 
+mit einem \verb|session_id| key.
+
+\subsection{Google Cloud API}
+\label{s:ent:capi}
+Für die Verbindung an die Google Cloud API wird ein 
+POST Endpunkt erstellt. Dieser Endpunkt nimmt die Nachrichten, 
+die in Google Chat an den Chatbot gesendet werden an.
+\begin{minted}{json}
+{
+    "type": "MESSAGE",
+    "eventTime": "2024-07-04T18:57:11.735759Z",
+    "message": {
+        "name": "spaces/****/messages/****",
+        "sender": {
+            "name": "users/****",
+            "displayName": "Atakan Sentürk",
+            "avatarUrl": "https://lh3.googleusercontent.com/a/****",
+            "email": "a.sentuerk@gsuite-test.tdintern.de",
+            "type": "HUMAN",
+            "domainId": "****"
+        },
+        "createTime": "2024-07-04T18:57:11.735759Z",
+        "text": "@Arthur Hi",
+        "annotations": [
+            {
+                "type": "USER_MENTION",
+                "startIndex": 0,
+                "length": 7,
+                "userMention": {
+                "user": {
+                    "name": "users/****",
+                    "displayName": "Arthur",
+                    "avatarUrl": "https://lh5.googleusercontent.com/****",
+                    "type": "BOT"
+                },
+                "type": "MENTION"
+                }
+            }
+        ],
+        "thread": {
+            "name": "spaces/****/threads/****",
+            "retentionSettings": {
+                "state": "PERMANENT"
+        }
+        },
+        "space": {
+            "name": "spaces/****",
+            "type": "ROOM",
+            "displayName": "Bot Test",
+            "spaceThreadingState": "THREADED_MESSAGES",
+            "spaceType": "SPACE",
+            "spaceHistoryState": "HISTORY_ON",
+            "spaceUri": "https://chat.google.com/room/****?cls=11"
+        },
+        "argumentText": " Hi",
+        "threadReply": true,
+        "retentionSettings": {
+            "state": "PERMANENT"
+        },
+        "messageHistoryState": "HISTORY_ON",
+        "formattedText": "@Arthur Hi"
+    },
+    "user": {
+        "name": "users/****",
+        "displayName": "Atakan Sentürk",
+        "avatarUrl": "https://lh3.googleusercontent.com/a/****",
+        "email": "a.sentuerk@gsuite-test.tdintern.de",
+        "type": "HUMAN",
+        "domainId": "****"
+    },
+    "space": {
+        "name": "spaces/****",
+        "type": "ROOM",
+        "displayName": "Bot Test",
+        "spaceThreadingState": "THREADED_MESSAGES",
+        "spaceType": "SPACE",
+        "spaceHistoryState": "HISTORY_ON",
+        "spaceUri": "https://chat.google.com/room/****?cls=11"
+    },
+    "configCompleteRedirectUrl": "https://chat.google.com/api/****",
+    "common": {
+        "userLocale": "de",
+        "hostApp": "CHAT"
+    }
+}
+\end{minted}
+
+\subsection{Server Konfiguration}
+Für die Konfiguration des Servers wurde Nginx genutzt. 
 
 
 

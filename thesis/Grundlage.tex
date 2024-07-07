@@ -640,13 +640,14 @@ Benchmark, sieht man, dass die Leistung sich messbar bessert.
 \cite{DiscoResearchLlama3German8BHugging2024}
 
 
-
 \subsection{Inference \& Generation}
 \label{s:intro:llm:inf}
 Sobald ein Model trainiert wurde und bereit ist benutzt zu werden, muss man es ausführen. Dieser Prozess nennt sich Inference.
-Um Inference ausführen zu können gibt es heutzutage verschiedene Möglichkeiten. Es gibt die Möglichkeit Inference über 
+Um Inference ausführen zu können gibt es verschiedene Möglichkeiten. Es gibt die Möglichkeit Inference über 
 online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen,
 oder man kann die Modelle lokal ausführen. \par
+
+\subsubsection{Inference}
 Wenn man eine der APIs nutzt um ein Model zu nutzen, dann kann man Anfragen an die API schicken und das Ausführen des Models 
 wird von den Betreibern der API übernommen.\par
 Die andere Option, das Model lokal auszuführen, kann über verschiedene Methoden passieren. Eine Option ist es einen Service
@@ -661,15 +662,21 @@ Andrej Karpathy \cite{KarpathyAndrej} hat gezeigt, dass man mit einen 15 Million
 unter 1000 Zeilen Inferenz betreiben kann \cite{Llama2RunMaster}. Modelle die heute veröffentlicht werden haben aber weit über 15 Millionen Parameter 
 und daher ist die Inferenz mit so einem simplen Programm nicht sehr effektiv. Das Llama2 Model mit 7 Milliarden Parametern generiert auf einem M1 
 Macbook Air einen Token pro 30 Sekunden. Die Modelle in einer Milliarden Größe, brauchen aufgrund ihrer
-Größe ein paar Optimierungen. \par 
+Größe ein paar Optimierungen.\cite{Llama2RunMaster} \par 
 Eine Möglichkeit Modelle schneller zu machen ist es sie zu quantisieren, dieser Prozess wird in \ref{s:intro:llama} genauer 
 erklärt.\par
-Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Framworks zu verwenden.
+Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Frameworks zu verwenden.
 Drei dieser Frameworks werden in \ref*{s:intro:frame} vorgestellt und erklärt.\par
+
+\subsubsection{Generation}
 Die Generation der LLMs kommt auf ihre Trainingsdaten an. Genau wie beim Training arbeiten die LLMs 
-beim generieren ihrer Ausgaben in Tokens. 
+beim generieren ihrer Ausgaben in Tokens. Hierfür nutzen die Modelle ihre vorher durch Training 
+antrainierten Parameter dazu den nächsten Token hervorzusagen.
 
 \subsection{Limitationen \& Halluzinationen}
+Die LLMs lernen viele Informationen, durch ihr Training. Teils kommt es aber dazu, dass
+der LLM trotz dessen Fehler passieren.\par 
+
 Reversal Curse
 \cite{huangSurveyHallucinationLarge2023,
 berglundReversalCurseLLMs2024}

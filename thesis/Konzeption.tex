@@ -2,34 +2,39 @@
 \label{c:konz}
 Bevor mit der Entwicklung begonnen werden kann, muss das Konzept erstellt werden. 
 Zur Konzeption gehört in dieser Arbeit, die Auswahl der technischen Werkzeuge, 
-die Programmiersprache, die Umgebung und die Modelle die benutzt werden sollen.
+die Programmiersprache, die Umgebung, die Modelle die benutzt werden sollen und die 
+Architektur des Systems.
 
 \section{Auswahl der Modelle}
 \label{s:konz:mod}
 Die erste Frage, die beantwortet werden muss, ist, 
 welche Modelle werden benutzt. Da innerhalb dieser Arbeit LLMs miteinander verglichen werden, werden fünf Modelle benötigt. 
 Vier LLMs für
-den Chatbot selbst, der die Nachrichten generieren soll. Des weiteren wird ein Embedding Modell,
+den Chatbot selbst, der die Nachrichten generieren soll und ein Embedding Modell,
 welches für die Einbettungen der Vektordatenbank und der Anfragen zuständig sein wird.
 
 \subsection{Auswahl der Chat LLM}
 Als erstes werden die Chat LLMs ausgwählt.
-Die Anforderung die hier relevant ist, ist die Anforderung Nummer 1. Da der Bot lokal laufen sollte,
+Die Anforderung die hier beachtet werden muss, ist A1. Da der Bot lokal laufen soll,
 werden keine Modelle benutzt, die nur über eine externe API erreichbar sind, wie beispielsweise 
 OpenAIs ChatGPT, um Datensicherheit sicherzustellen. Also ist die einzige Option ein Modell zu downloaden
-und mit diesem zu interagieren. Hier gibt es zur Zeit fast täglich neue Modelle. Viele verschieden 
+und mit diesem zu interagieren. \iffalse Viele verschiedene
 Unternehmen und Instiutionen haben angefangen ihre eigenen Modelle oder abgewandelte Versionen größerer
 Modelle zu trainieren und zu veröffentlichen. Zu den bekanntesten Open Source Modellen gehören die Modelle:  
 \begin{enumerate}
     \item Mistral von Mistral AI 
     \item Llama von Meta AI  
     \item Gemma von Google
-\end{enumerate}
+\end{enumerate}\fi
 In dieser Arbeit werden 4 verschiedene Modelle miteinander verglichen. Ein Hub auf dem viele der Modelle 
 veröffentlicht werden ist hugginface.co (siehe hierzu \ref{s:intro:hug}).\par
- Einige der größeren Modelle wie beispielsweise Gemma und Llama3 wurden mehrsprachig trainiert 
-und verstehen in ihrer Grundversion bereits teilweise beide Sprachen, die wir brauchen. Aus Speicher, Leistungs
-und Generationtime Gründen werden in dieser Arbeit nur Modelle unter 12B Parametern miteinander verglichen.
+ Einige der größeren Modelle wie beispielsweise Gemma von Google und Llama3 von Google wurden mehrsprachig trainiert 
+und verstehen in ihrer Grundversion bereits teilweise beide Sprachen, die in A2 gefordert werden. 
+Innerhalb dieser Arbeit werden nur Modelle unter 14B Parametern miteinander verglichen, da die Generationszeit
+kleinerer Modelle schneller ist und die meisten Informationen mit denen das Modell arbeiten soll innerhalb
+der Vektordatenbank gespeichert sein werden und über RAG dem Modell übergeben werden. Dazu werden nur Modelle 
+über 7B Parametern genutzt, da 
+\iffalse
 Obwohl die oben genannten Modelle Deutsch in einem gewissen Rahmen bereits verstehen, ist in der 8B und 7B 
 Variante der Modelle nicht sichergestellt, ob sie alles verstehen, durch die kleinere Trainingsdaten- und 
 Parametermenge. Dementsprechend werden, wo möglich, finetuned Versionen die auf Deutsch trainiert wurden 
@@ -43,12 +48,17 @@ Die Modelle die innerhalb dieser Arbeit miteinander verglichen werden sind
     \item Gemma von GoogleAI in der Version SauerkrautLM-Gemma-7b von VAGOsolutions
     \item Mistral2 von MistralAI in der Version em\_german\_leo\_mistral von jphme
     \item Phi-3 Von Microsoft in der Version Phi-3-small-8k-instruct von microsoft
-\end{itemize}
+\end{itemize}\fi
+Für diese Arbeit wurden die drei Modelle, die auf Ollama die meisten Downloads haben 
+\begin{enumerate}
+    \item Mistral von Mistral AI 
+    \item Llama3 von Meta AI  
+    \item Gemma 2 von Google
+\end{enumerate}
+ausgewählt. Dazu kommt das zur Zeit der Auswahl neu veröffentlichte Phi3 von 
+Microsoft als letztes Modell dazu.
 
-
-
-
-\section{Auswahl der Embedding Modelle}
+\subsection{Auswahl der Embedding Modelle}
 \label{s:konz:emod}
 Nach der Auswahl des Chatmodels geht es um die Auswahl der nächsten Modelle.
 Es wäre hier möglich das extra Einbettungsmodell weg zu lassen und es mit den 
@@ -69,30 +79,24 @@ indem es mit 1 Milliarde Datensätzen kontrastiv vor trainiert wurde und im
 zweiten Schritt mit den Datensätzen, die für das E5-Mistral Model in der Arbeit 
 "Improving Text Embeddings with Large Language Models" verwendet wurden, trainiert.
 
-\section{Prompting}
-\label{s:konz:prom}
+
 
 \section{Auswahl der Vektor Datenbank}
 \label{s:konz:vec}
-\iffalse
-Eine Möglichkeit wäre es, mittels API auf ein Modell wie Chat-GPT 4 zuzugreifen. Die Probleme hierbei 
-sind, dass die Modelle nicht speziell mit unseren benötigten APIs/Infos vertraut sind. Wir könnten ein 
-Modell suchen, dem wir unsere Daten schicken, aber das könnte teils Probleme mit Datenschutz geben. Durch 
-diese Probleme fallen diese Optionen weg. Das heißt, das Modell muss lokal gehostet werden. Lokal heißt hierbei 
-einfach auf einem Server von uns oder einem Server, bei dem man weiss, dass keiner auf die Daten zugreifen kann. 
-\fi
 Als nächstes kommt die Auswahl der Vektordatenbank.
 Für diesen Protoyp wird eine Vektordatenbank verwendet, die in einem Docker Container betrieben wird.
-Die Vektordatenbank hat drei Anforderungen. 
+Im Bezug auf die Auswahl der Vektordatenbank werden drei Punkte beachtet.
 \begin{enumerate}
     \item Open Source \& selbst hostbar
     \item Integration in Langchain
-    \item Einfache Bedienung
 \end{enumerate}
-Hierfür stehen zwei Optionen zur Vefügung. Chroma und Milvus. 
+Hierfür werden die zwei gängigen Optionen, Chroma und Milvus, miteinander verglichen.
 Beide Optionen sind Open Source und selbst hostbar.
 Beide Optionen erfüllen auch die zweite Anforderung und haben eine Langchain Integration.
-
+Durch die Integration innerhalb von Langchain, gibt es für beide Datenbanken innerhalb
+der Entwicklung des Chatbots eine ähnliche Bedienung. Beide Optionen erfüllen die Anforderungen
+die für die Vektordatenbank erstellt wurden. Aufgrund von persönlicher Erfahrung mit ChromaDB 
+wir daher ChromaDB ausgewählt.
 
 \section{Architektur des Systems}
 \label{s:konz:arc}
@@ -106,7 +110,7 @@ um die anderen Teile der Architektur.
 Abbildung zeigt den konzeptionellen Aufbau des Systems.
 Der Chatbot wird auf einem REST-Server laufen, welcher auf einem dedicated Server läuft, der genauer 
 in \ref{s:konz:ser} erklärt wird. Der Rest Server ist ein Python LangServe Server, der auf FastAPI 
-basiert. \par
+basiert.\par
 Die Python Applikation ist mit einer Vektordatenbank verbunden, die auf dem selben Server in einem 
 Docker Container in Betrieb genommen wird. 
 Die Daten die auf den Docker Container geladen werden kommen von der Confluence Instanz der Techdivision. 
@@ -131,14 +135,15 @@ Begonnen wird hierbei mit dem Chatbot, also dem System, welches direkt auf dem S
 laufen wird und das LLM hosten wird.
 
 \subsubsection{Framework}
+\label{s:konz:frame}
 Bei der Auswahl der Konzeption für den Chatbot ist die Frage, welches Framework verwendet werden soll.
 Die drei Stück die zu Auswahl stehen wurden in \ref*{s:intr:frame} vorgestellt.
 Haystack, Langchain und Llamaindex. Vom Grundprinzip her könnte man jedes 
 der drei Frameworks verwenden um einen nützlichen Chatbot mit RAG zu bauen. 
 Bei allen drei gibt es die Möglichkeit mit RAG zu arbeiten und es ist ein Punkt
 auf den sich alle drei Stück fokussieren. \par 
-Einer der wichtigsten Punkte in Hinsicht auf das Framwork, welches verwendet werden soll, 
-ist die Langlebigkeit des Projekts und ebenfalls die Menge an Dokumentation und Support.
+Die Punkte in Hinsicht auf das Framwork, welches verwendet werden soll, die beachtet 
+werden sind die Langlebigkeit des Projekts und ebenfalls die Menge an Dokumentation und Support.
 Da die Welt der LLM Systeme sich aktuell schnell ändert und viele neue Erkentnisse 
 in der Forschung gesammelt werden, verändern sich auch die AI Frameworks mit den 
 LLM Systemen zusammen \cite{naveedComprehensiveOverviewLarge2024}. Da das System möglichst 
@@ -166,14 +171,35 @@ einfach. Wenn man eine größere Änderung durchführen will, wie beispielweise 
 mit Bildern arbeiten kann dann würde es relevant aufwändige Änderungen in allen
 drei Frameworks erfordern. Daher nehmen wir hier an, dass es bei allen drei 
 den gleichen Aufwand kosten würde.\par
-Hinzu kommt, dass Langchain bereits ein Datenladensystem für Confluence hat, 
+Hinzu kommt, dass Langchain und Llamaindex bereits Datenladesysteme für Confluence haben, 
 welches das System ist welches an die Vektordatenbank angebunden werden soll.
 Dadurch, dass Langchain vielseitiger einsetzbar ist, als LlamaIndex und und Haystack, kommt der Vorteil dazu, 
 dass Erfahrung mit dem Framework gesammelt werden kann und 
 im Anschluss weitere Projekte, die über Chatbots und RAG Systeme hinaus gehen 
 entwickelt werden können. Aus diesen Gründen wird Langchain für diese Projekt ausgewählt.\par 
 
-\subsubsection{}
+\subsubsection{Nachrichten Historie}
+Der Chatbot hat standardmäßig keine Erinnerungen. Falls man in einer Nachricht auf 
+den Kontext in einer vorherigen Nachricht eingehen möchte und diesen 
+nicht erwähnt, dann weiß der Chatbot nicht um welchen Kontext es sich handelt.\par
+Um dieses Problem zu lösen muss eine Nachrichten Historie mit in das 
+System eingebaut werden. Das Framework, welches in \ref{s:konz:frame} festgelegt 
+wurde, gibt einem die Möglichkeit eine \par
+Den abgespeicherten Chats muss eine Session ID gegeben werden, damit 
+die Chats abgerufen werden können. Der Bot soll nur in der Chatgruppe 
+erreicht werden, daher muss sich kein Gedanke über Session IDs in 1:1 
+Chats gemacht werden. \par
+Chats innerhalb des Spaces werden innerhalb von Threads geführt.
+Google gibt den Threads bereits eine ID. Da der Bot dieser 
+Arbeit nur innerhalb dieses einen Spaces arbeiten soll, 
+wird diese ID verwendet um einen Python Hash Wert zu erzeugen,
+welche die Session ID sein wird.
+
+\subsection{Prompting}
+Damit das System weiß, wie es mit den Eingaben eines Nutzers umgehen kann, muss ein 
+System Prompt gesetzt werden, welches mit den Eingaben des Nutzers an das LLM
+geschickt wird.\par
+Dem Chatbot müssen hierbei ein paar Informationen mit übergeben werden.
 
 
 \iffalse
@@ -203,7 +229,7 @@ Hierfür gibt es zwei Optionen, die zur Verfügung stehen.
     \item Eine Compute Engine Instanz in der Google Cloud 
     \item Ein dedicated Hetzner Server
 \end{enumerate}
-Der Hetzner Server der zur Auswahl stehen würde ist der aktuell einzige 
+Der Hetzner Server der zur Auswahl steht ist der aktuell einzige 
 dedicated GPU Server, der bei Hetzner angeboten wird. 
 Er hat einen Intel Core i5-13500 als CPU mit 6 Performance Cores und 
 8 Efficient Cores. 64 GB DDR4 RAM, 2x 1.92 TB Gen3 NVMe SSDs und eine 
@@ -234,9 +260,14 @@ Hierbei gibt Google vier Optionen, wie man mit der API interagieren kann.
 Dialogflow ist keine Option in diesem Fall, da uns dadurch die Option genommen wird 
 unsere eigenen Open Source LLMs selbst zu hosten, wodurch Anforderung A1 verletzt werden 
 würde. \par
-Die anderen drei Optionen wären alle möglich, während die Anforderung eingehalten wird.
+Die anderen drei Optionen wären alle möglich, während die Anforderung A1 eingehalten wird.
 Da bereits ein HTTPS REST Server geplant ist, wird hier die App URL verwendet, wodurch
 direkt mit der API interagiert werden kann und die API Calls, bei ankommenden Nachrichten, 
 direkt an den Server gesendet. \par
-Pub/Sub wäre eine alternative, falls eine Firewall im Weg stehen würde, was hier aber 
-nicht der Fall sein wird.
+Pub/Sub wäre eine Alternative, falls eine Firewall im Weg stehen würde, was hier aber 
+nicht der Fall sein wird. \par
+\par
+Für Google Chat gibt es die Möglichkeit Nachrichten synchron und asynchron zu versenden.
+Für eine synchrone Nachricht muss die Antwort innerhalb von drei Sekunden an die API 
+gesendet werden, nachdem eine Nachricht erhalten wurde. Für den Nutzen innerhalb 
+dieser Arbeit wäre dies genug.
