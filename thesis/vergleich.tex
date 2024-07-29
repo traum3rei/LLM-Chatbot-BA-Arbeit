@@ -77,6 +77,7 @@ Wenn man dieses Dataframe betrachtet sieht man, 4 relevante Spalten.\par
 Mit diesem Testset kann man nun die Chain bewerten.
 
 \subsection{Evaluation}
+\label{metrics}
 Nachdem das Testset generiert wurde kann es zum bewerten
 übergehen. Für die Bewertung gibt es acht verschiedene Metriken, die man 
 betrachten kann. Hiermit kann man die verschiedenen Teile der Rag-Pipeline bewerten.
@@ -184,19 +185,25 @@ Für diesen Wert werden die einzelnen Objekte in \verb|contexts| und in
 Die Formel hierfür ist: 
 \[\text{context entity recall} = \frac{|\mathbf{CE}\cap\mathbf{GE}|}{|\mathbf{GE}|}\]
 
+
 \subsection{Ergebnisse}
 Nach erstellen von mehreren Testsets mit verschiedene 
 Modellen sind bei einer \verb|test_size| von 10 jedes mal 
 mehrere Reihen in der \verb|ground_truth| Spalte leer geblieben.
 Deshalb wurde ein Testset verwendet, welches 8 Reihen hatte, bei
 denen alle Werte gefüllt waren.\par
+\iffalse
 Ebenfalls wie der TestsetGenerator scheint die \verb|evaluate|
 Funktion aktuell nicht mehr in der Lage zu sein, mit Hugginface
 Modellen zu arbeiten. Weder wenn diese Modelle über Ollama geladen 
 wurden noch über die Transfomer Library, die direkt von Huggingface 
 erstellt wurde. Daher wurde auf die direkt über Ollama ladbaren 
-Versionen der
-Modelle gewechselt.\par
+Versionen der Modelle gewechselt.\fi
+Bei den Metriken, die für diesen Vergleich in Betracht gezogen worden sind, wurden 
+die Metriken, die nur mit der RAG Pipeline zu tun haben entfernt, da diese 
+den selben Wert für alle haben. Es wurden nur die Werte beachtet, auf die die 
+genutzte LLM einen Einfluss hat.
+\par
 
 \begin{center}
     \begin{figure}
@@ -208,11 +215,10 @@ Modelle gewechselt.\par
         \hline
         Metrik & llama3 & mistral & phi3 & gemma2 \\
         \hline
-        answer\_relevancy   & 0.9998   & 0.9802 &  0.9981 & 0\\
-        answer\_correctness & 0.6126  & 0.3717  &  0.4172 & 0\\
-        answer\_similarity & 0.9032 & 0.8995    &  0.8992/7 & 0\\
-        context\_relevancy & 0.0017 & 0.0017    &  0.0017 & 0\\
-        faithfulness&   0.7415  & 0.8444       &  0.6852 & 0\\
+        answer\_relevancy   & 0.9998   & 0.9802 &  0.9981 & 0.7481\\
+        answer\_correctness & 0.6126  & 0.3717  &  0.4172 & 0.5011\\
+        answer\_similarity & 0.9032 & 0.8935    &  0.8992 & 0.8712\\
+        faithfulness&   0.7415  & 0.8444       &  0.6852 & 0.5938\\
         \hline
        
        \end{tabular}
@@ -243,15 +249,62 @@ Kundendaten und ähnliches. Die Fragen für den Fragebogen werden aus diesen neu
 Einträgen erstellt. \par
 \par
 
+
 Folgende Aufgaben wurden den Teilnehmern gegeben:
 
-\begin{itemize}
-    \item Wie richten sie die VPN ein?
+\begin{enumerate}
+    \item Wie richten sie die VPN ein? Lassen sie sich eine Anleitung dazu ausgeben.
     \item Wie lösen Sie bei aktiven VPN zur TD das Problem von DNS Auflösung?
     \item Welche Möglichkeiten gibt es zum Teilen von sensitiven Daten?
-    \item Wie stellen sie eine Abwesenheitsnotiz in Gmail ein?
-\end{itemize}
+\end{enumerate}
+Die den Teilnehmern gegeben Aufgaben decken unterschiedliche 
+Kompetenzen des Chatbots ab.\par
+Frage 1, die Einrichtung der VPN: Der Chatbot sollte in 
+der Lage sein, eine klare, schrittweise Anleitung zur 
+VPN-Einrichtung aus dem Confluence-Wissen zu extrahieren 
+und dem Teilnehmer präsentieren.\par
+Frage 2, DNS-Auflösungsproblem bei aktivem VPN:
+Hier sollte der Chatbot Problemlösungsstrategien aus 
+dem Confluence ableiten und dem Benutzer mögliche
+ Lösungsansätze vorschlagen.\par
+Frage 3, Teilen sensitiver Daten:
+Der Chatbot sollte verschiedene in Confluence 
+dokumentierte Methoden zum sicheren Datenaustausch 
+identifizieren und dem Benutzer erklären können.\par
 
-Die LLM könnte bei gleichen Prompts verschiedene Ausgaben 
-generieren, dennoch wurden die Prompts den Teilnehmer nicht 
-vorgegeben, damit diese 
+Die Teilnehmer sollten die Antworten auf einer Skala von 1-5 für beide 
+LLMs bewerten. wobei 1 für sehr schlecht und 5 für sehr gut steht.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \label{bewertung_plot}
+    \begin{axis}[
+        ybar,
+        bar width=14pt,
+        ylabel={Durchschnittliche Bewertung},
+        xlabel={Frage},
+        ymin=0,
+        ymax=5,
+        symbolic x coords={1,2,3},
+        xtick=data,
+        legend style={at={(0.5,-0.15)},
+        anchor=north,legend columns=-1},
+        ylabel near ticks,
+        xlabel near ticks
+    ]
+    \addplot coordinates {(1,3.25) (2,3) (3,3.25)};
+    \addplot coordinates {(1,3.25) (2, 2.75) (3,3.25)};
+    \legend{Llama3 , phi3}
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Bewertungen von Llama3 und Phi3}
+\end{figure}
+
+In \ref*{bewertung_plot} sind die durchschnittlichen Bewertungen der LLMs dargestellt.
+Frage 1 und Frage 3 haben den selben durchschnittlichen Wert bei beiden LLMs wie in \ref*{bewertung_plot}
+erkennbar. Frage 2 ist die Frage in der der durchschnittliche Wert unterschiedlich ist.
+Hier ist der durchschnittliche Wert bei Llama3 um 0.25 besser. 
+
+Dies führt dazu, dass Llama3 insgesamt die bessere Bewertung hat und somit 
+im Vergleich besser ist.

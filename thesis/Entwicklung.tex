@@ -2,44 +2,47 @@
 \label{c:dev}
 Nach dem Abschluss der Konzeption kann zur Entwicklung über gegangen werden.
 Die Rahmenbedingungen hierbei sind, dass der Hetzner Server, welcher in 
-\ref*{s:konz:ser} beschrieben wurde verwendet wird und auf diesem ist Ubuntu
-22 installiert.
+\ref*{s:konz:ser} beschrieben wurde verwendet wird und auf diesem Ubuntu
+22 installiert ist.
 
 \section{Vorbereitung}
 Bevor mit der Entwicklung begonnen werden kann, müssen ein paar 
-Dinge vorbereitet werden, damit man entiwckeln kann.
+Vorbereitungen getroffen werden.
 
 \subsection{Modelle}
 \label{s:konz:mod}
 Der erste Schritt ist es die Modelle vorzubereiten.\par
-Damit man die Modelle vorbereiten kann, wird als erstes 
+Um die Modelle vorbereiten zu können, wird als erstes 
 Ollama installiert.
 Dies kann über das Install Skript, welches auf Github zu finden \cite{OllamaOllama2024}
 ist getan werden. Dazu werden noch die Nvidia Cuda Driver installiert, 
 damit Ollama diese nutzen kann. Nun können die Modelle vorbereitet werden.\par
-Hierfür werden die Modelle, die in \ref{s:konz:mod} vorgestellt
+\iffalse Hierfür werden die Modelle, die in \ref{s:konz:mod} vorgestellt
 wurden über Huggingface gedownloadet.
 Dies ist relativ simple über Git LFS zu erledigen.
 Die Repositories der Modelle werden einfach über git clone kopiert.
 Wenn die Dateien fertig gedownloadet sind, kann man die Modelle 
 für das Importieren in Ollama vorbereiten.
-Hierfür \par
-Nachdem Ragas nicht mit den von Huggingface in Ollama geladenen 
-Modellen funktioniert hat, wurde auf Ollama Modelle gewechselt. 
-Die über \verb|Ollama pull model| geladen, wobei model der Name
+Hierfür \par Nachdem Ragas nicht mit den von Huggingface in Ollama geladenen 
+Modellen funktioniert hat, wurde auf Ollama Modelle gewechselt.\fi
+Hierfür werden die Modelle, die in \ref*{s:konz:mod} vorgestellt 
+wurden über Ollama gedownloadet.
+Die Modelle werden über \verb|Ollama pull model| geladen, wobei \verb|model| der Name
 des Models ist, welches man herunterladen möchte. Hierbei kann
-man mittels \verb|model:latest| noch die Version angeben, welche man 
-haben möchte. Hierbei kann man teils ebenfalls Größen angeben. Es kommt 
-auf das jeweilige Model an, welche Optionen es gibt. Auf Ollama.com
-findet man die jeweiligen Modelle und die Versionen, die man herunterladen kann.
+man mittels \verb|model:latest| noch die Version angeben, die benötigt wird, wobei \verb|latest|, die Version des Modells ist. 
+Darüber kann man teils ebenfalls Größen angeben oder spezielle Versionen der Modelle 
+Anfragen, wie Instruct Modelle. Die verschiedenen Modelle haben verschiedene 
+Optionen. Auf Ollama.com
+können die jeweiligen Modelle und die verschiedenen Versionen, eingesehen werden.
 
 \subsection{Google Cloud}
 Hier geht es um die Vorbereitung des Google Cloud Projekts für die Verbindung 
 mit der Google Chat API.\par
 Der erste Schritt hierbei ist es, ein Google Cloud Projekt zu erstellen.
-Wenn dies erledigt ist, kann man die Google Chat API aktivieren.\par
-Dazu wird ein Google Service Account benötigt.
-Die Konfiguration der API und des Service Accounts werden stattfinden, nachdem der Server konfiguriert wurde 
+Wenn dies erledigt ist, muss die Google Chat API innerhalb des 
+Projekts aktiviert werden.\par
+Dazu wird ein Google Service Account benötigt, der auf die Google Chat API zugreifen kann.
+Die Konfiguration der API wird stattfinden, nachdem der Server konfiguriert wurde 
 und das System funktionsfähig ist.
 
 \subsection{Datenbank}
@@ -48,14 +51,82 @@ Dazu wird \verb|chromadb/chroma| über \verb|docker pull|
 heruntergeladen und dann mittels \verb|docker run| gestartet.
 
 \section{System}
-Wie in der Konzeption beschrieben wird 
-das System auf dem der Chatbot erstellt wird ist ein
+Wie in der Konzeption beschrieben, ist
+das System auf dem der Chatbot erstellt wird ein
 Hetzner Server, auf dem ebenfalls die Datenbank liegt.
 Nachdem die Vorbereitungen des Servers abgeschlossen sind
 kann mit der eigentlichen Entwicklung begonnen werden.\par
+Für die Entwicklung wird innerhalb dieser Arbeit erst Pseudo-Code 
+gegeben und im Text wird dann die genaue Entwicklung mit den 
+benutzten Frameworks beschrieben.
 
 \subsection{Importer}
 \label{s:ent:imp}
+\iffalse
+\begin{algorithm}
+    \caption{Dokumenten-Loader erstellen und Dokumente laden}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Klasse} DocumentLoader:
+    \STATE \textbf{Methode} \_\_init\_\_(config):
+    \STATE \quad Erstelle Document Loader 
+    \STATE \textbf{Methode} load\_documents(space\_key, limit):
+    \STATE \quad Lade Dokumente aus Confluence
+    \STATE \quad Rückgabe: Geladene Dokumente
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+    \caption{Dokumenten-Splitter erstellen und Dokumente aufteilen}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Klasse} DocumentSplitter:
+    \STATE \textbf{Methode} \_\_init\_\_():
+    \STATE \quad Definiere Header zum Aufteilen
+    \STATE \quad Erstelle Text Splitter
+    \STATE \textbf{Methode} split\_documents(docs):
+    \STATE \quad Teile Dokumente auf:
+    \STATE \quad \quad Initialisiere leere Liste für aufgeteilte Dokumente
+    \STATE \quad \quad Für jedes Dokument in docs:
+    \STATE \quad \quad \quad Teile Dokument mit Markdown Splitter
+    \STATE \quad \quad \quad Füge Metadaten hinzu
+    \STATE \quad \quad \quad Füge aufgeteilte Dokumente zur Liste hinzu
+    \STATE \quad Rückgabe: Aufgeteilte Dokumente
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+    \caption{Embedding-Modell erstellen}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Klasse} EmbeddingModel:
+    \STATE \textbf{Methode} \_\_init\_\_(config):
+    \STATE \quad Lade Embedding Modell mit Modellname und Konfigurationsparametern
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+    \caption{Vektor-Datenbank erstellen und Dokumente speichern}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Klasse} VectorDatabase:
+    \STATE \textbf{Methode} \_\_init\_\_(config):
+    \STATE \quad Erstelle Vektor-Datenbank Client
+    \STATE \textbf{Methode} save\_documents(docs, embeddings, collection\_name):
+    \STATE \quad Speichere Dokumente in Vektor-Datenbank:
+    \STATE \quad \quad Erstelle Vektor-Datenbank Instanz mit Dokumenten und Embeddings
+    \STATE \quad \quad Persistiere Vektor-Datenbank
+    \STATE \quad Rückgabe: Vektor-Datenbank Instanz
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+    \caption{Hauptfunktion}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Methode} main():
+    \STATE \quad Initialisiere Konfiguration, Dokumenten-Loader, Dokumenten-Splitter, Embedding Modell und Vektor-Datenbank
+    \STATE \quad Lade Dokumente aus Confluence
+    \STATE \quad Teile Dokumente auf
+    \STATE \quad Speichere aufgeteilte Dokumente in Vektor-Datenbank
+    \end{algorithmic}
+    \end{algorithm}
+\fi
 Für den Importer wird der Langchain \verb|ConfluenceLoader|
 verwendet. Hierfür wird, nachdem der Docker Container, welcher 
 die ChromaDB Datenbank beinhaltet gestartet wurde, eine Verbindung 
@@ -66,23 +137,33 @@ Danach wird das Embedding Modell mittels der \verb|HuggingFaceEmbeddings|
 von langchain geladen. Hier wird der Name des Modells, "intfloat/multilingual-e5-large-instruct" übergeben.
 Dazu gibt es die Option Keyword Arguments mittels \verb|encode_kwargs| und \verb|model_kwargs| mitzugeben.
 Hier geben wir das \verb|device_kwargs| \verb|device| mit dem Wert \verb|cuda| mit. 
-Dies sorgt dafür, dass die GPU für die Berechnungen verwendet wird.\par
+Dies sorgt dafür, dass die GPU für die Berechnungen verwendet wird, was den Prozess 
+beschleunigt.\par
 Nun können die Daten aus Confluence mittels \verb|ConfluenceLoader| geladen werden.
 Hier werden \verb|username|, \verb|api_key| und die \verb|url| der Confluence Instanz 
 benötigt. Nach dem Erstellen des Loaders können die Daten geladen werden, hierfür gibt
 es die \verb|load| Funktion, welche einen \verb|space_key| braucht, für 
-den Confluence Space der geladen werden muss.\par
+den Confluence Space der geladen werden soll.\par
 Die geladenen Dokumente, werden mittels \verb|MarkdownHeaderTextSplitter| ein mal 
 aufgeteilt und mittels \verb|RecursiveCharacterTextSplitter| noch ein weiteres 
 mal aufgeteilt. Den aufgeteilten Dokumenten werden die Metadaten hinzugefügt, damit 
-sie einander zugeordnet werden können.\par
+sie zugeordnet werden können.\par
 Anschließend wird eine Langchain Chroma Instanz erstellt, die auf den vorher bereits
 erstellten Client zugreift, dann werden die Dateien mittels \verb|from_documents| 
 innerhalb einer Chroma Collection, die man beim Erstellen über die Chroma Instanz 
 mittels \verb|collection_name| festlegen kann, gespeichert.
 
 \subsection{Chatbot}
-Die Entwicklung des Chatbots wird in die einzelnen Teile der Langchain Chain aufgeteilt.
+\iffalse
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{figures/chain2.png}
+    \caption{Aufbau der Chain}
+    \label{chain}
+\end{figure}
+\fi
+Die Entwicklung des Chatbots wird in die einzelnen Teile der Langchain Chain aufgeteilt, 
+die in \ref*{chain} dargestellt ist.
 Die Chain besteht aus verschiedenen Element, die bereits zu Chains zusammengefügt wurden.
 Das Prompt und die LLM wurden mittels \verb|create_stuff_documents_chain| miteinander 
 verbunden. Diese Chain wurde dann mittels \verb|create_retrieval_chain| mit einem Retriever 
@@ -90,6 +171,20 @@ verbunden. Als letztes wurde diese Chain in eine \verb|RunnableWithMessageHistor
 eingebaut. Im Folgenden werden die einzelnen Teile erklärt.
 
 \subsubsection{Retriever}
+\iffalse
+\begin{algorithm}
+    \caption{Retriever Initialisierung}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Class} Retriever:
+    \STATE \textbf{Method} \_\_init\_\_(model\_name, model\_kwargs, encode\_kwargs, client\_settings):
+    \STATE \quad Initialisiere Vektorddatenbank Client
+    \STATE \quad Initialisiere Embeddings 
+    \STATE \quad Erstelle Vektordatenbank Instanz mit Embeddings und Client
+    \STATE \quad Erstelle Retriever mit Vektordatenbank Instanz
+    \STATE \quad Rückgabe: Retriever 
+    \end{algorithmic}
+    \end{algorithm}
+    \fi
 Der erste Teil der Chain der entwickelt wird, ist der \verb|Retriever|. 
 Der Retriever ist der Teil der Chain, der auf die Vektordatenbank zugreift und 
 die passenden Dokumente von dieser an die LLM übergibt.\par
@@ -102,6 +197,17 @@ Für die Chain wird dazu noch eine Funktion erstellt, welche die Dokumente, die 
 Retriever abruft zusammenfügt, damit diese der LLM übergeben werden können.
 
 \subsubsection{Prompt}
+\iffalse
+\begin{algorithm}
+    \caption{Initialisierung des Chatbot Prompts}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Class} ChatbotPrompt:
+    \STATE \textbf{Method} \_\_init\_\_():
+    \STATE \quad Definiere Prompvorlage mit Systemnachrichten und Platzhaltern für Benutzereingaben
+    \end{algorithmic}
+    \end{algorithm}
+    \fi
+Das Prompt wird mittels \verb|ChatPromptTemplate.from_messages| erstellt.
 Das Prompt, welches benutzt wird, ist Folgendes: \par
     Dein Name ist Arthur. Du bist ein erfahrenes Mitglied 
     des IT-Support-Teams der Firma TechDivision. Deine Aufgabe ist es, Mitarbeitern 
@@ -125,12 +231,35 @@ die Chain übergebene Chat Historie ist. Die Richtlinien, sollen der LLM eine Ri
 und dazu falsche Informationen und Halluzinationen vermeiden.
 
 \subsubsection{LLM}
+\iffalse
+\begin{algorithm}
+    \caption{LLM Manager}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Class} LLMManager:
+    \STATE \textbf{Method} \_\_init\_\_(model\_name):
+    \STATE \quad Initialisiere Sprachmodell 
+    \STATE \textbf{Method} create\_chain(retriever, prompt):
+    \STATE \quad Erstelle eine Kette zur Kombination von Dokumenten und zum Abrufen von Informationen mit Sprachmodell und Promptvorlage
+    \STATE \quad Rückgabe der erstellten Kette
+    \end{algorithmic}
+    \end{algorithm}
+    \fi
 Dieser Schritt kann erst funktionieren, wenn die in 
 \ref*{s:ent:mod} beschriebenen Vorbereitungen abgeschlossen sind. 
 Die LLM wird dafür mit der \verb|Ollama| Community LLM geladen. Wobei 
 der Klasse der Model name aus Ollama übergeben wird. 
 
 \subsubsection{Nachrichten Historie}
+\iffalse
+\begin{algorithm}
+    \caption{Session Manager}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Class} SessionManager:
+    \STATE \textbf{Method} get\_session\_history(session\_id):
+    \STATE \quad Rückgabe einer Session mit Session Id 
+    \end{algorithmic}
+    \end{algorithm}
+    \fi
 Die Nachrichten Historie wird mittels \verb|RunnableWithMessageHistory| 
 implementiert. Hierfür wurde noch eine \verb|get_session_history| Funktion implementiert, 
 welche aus einer SQLite Datenbank mittels der \verb|session_id| den aktuellen Session 
@@ -152,11 +281,32 @@ mit einem \verb|session_id| key.
 
 \subsection{Google Cloud API}
 \label{s:ent:capi}
-Für die Verbindung an die Google Cloud API wird ein 
-POST Endpunkt erstellt. Dieser Endpunkt nimmt die Nachrichten, 
-die in Google Chat an den Chatbot gesendet werden an.
+\iffalse
+\begin{algorithm}
+    \caption{Google Chat Client}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Class} GoogleChatClient:
+    \STATE \textbf{Method} \_\_init\_\_(credentials\_file, scopes):
+    \STATE \quad Initialisiere Google Chat API-Anmeldedaten aus Datei und richte Chat-Client ein
+    \STATE \textbf{Method} send\_message(space\_name, thread\_name, user\_name, message):
+    \STATE \quad Sende Nachricht an den angegebenen Space und Thread in Google Chat
+    \end{algorithmic}
+    \end{algorithm}
+    \fi
+Um async Nachrichten an die Google Chat API zu senden, wird eine Credential Datei benötigt, von 
+einem Service Account, der mit der Google Chat API verbunden ist. Im Code wird der 
+Scope \verb|https://www.googleapis.com/auth/chat.bot| spezifiziert und aus dem Scope und dem 
+    Service account wird mit der \verb|build| Funktion der client erstellt. 
+Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute()|
+    erstellt und abgesendet. Die Funktion bekommt die notwendigen Informationen für die Nachrichten
+     übergeben. Aus diesen wird die Nachricht aufgebaut und mit der \verb|messageReplyOption|
+     \verb|REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD| abgesendet. Diese sorgt dafür, dass, falls ein Thread, der existiert, angegeben ist, 
+     im jeweiligen Thread geantwortet wird und sonst wird außerhalb des Threads geantwortet.
+
+
+\iffalse 
 \begin{minted}{json}
-{
+    {
     "type": "MESSAGE",
     "eventTime": "2024-07-04T18:57:11.735759Z",
     "message": {
@@ -233,10 +383,67 @@ die in Google Chat an den Chatbot gesendet werden an.
         "hostApp": "CHAT"
     }
 }
-\end{minted}
+\end{minted}\fi
+
+\subsection{Nachrichtenverarbeitung}
+\iffalse
+\begin{algorithm}
+    \caption{POST Endpoint}
+    \begin{algorithmic}[1]
+    \STATE Definiere POST-Endpunkt "/":
+    \STATE \quad Empfange und parse JSON-Anfrage
+    \STATE \quad Extrahiere Nachrichtentext, Benutzerinformationen, Thread-Name und E-Mail-Host
+    \STATE \quad Überprüfe, ob der E-Mail-Host gültig ist
+    \STATE \quad \quad Wenn nicht gültig:
+    \STATE \quad \quad \quad Rückgabe einer Fehlermeldung
+    \STATE \quad Generiere Sitzungs-ID basierend auf dem Thread
+    
+    \STATE \quad Initialisiere Retriever mit angegebenen Einstellungen
+    \STATE \quad Initialisiere ChatbotPrompt zur Abrufung der Promptvorlage
+    
+    \STATE \quad \quad Initialisiere LLMManager mit Modell
+    
+    \STATE \quad Erstelle eine Kette mit LLMManager und Retriever
+    \STATE \quad Initialisiere Kette mit SessionManager 
+    \STATE \quad Führe Kette aus, um Antwort auf Benutzereingabe zu erhalten
+    
+    \STATE \quad Initialisiere GoogleChatClient mit Anmeldedaten
+    \STATE \quad Verwende GoogleChatClient, um Antwortnachricht in Google Chat mit Benutzername und Antwort zu senden
+    
+    \STATE \quad Rückgabe einer Antwort, die anzeigt, dass die Nachricht gesendet wurde
+    \end{algorithmic}
+    \end{algorithm}
+    \fi
+Für die Verbindung an die Google Cloud API wird ein 
+POST Endpunkt erstellt. Dieser Endpunkt nimmt die Nachrichten, 
+die in Google Chat an den Chatbot gesendet werden an.
+Die JSON Nachricht, die man von der API erhält beinhaltet 
+viele Informationen. Für den Chatbot sind die ID des Nutzers, 
+der die Nachricht abschickt, der Thread in dem die Nachricht 
+versendet wurde und die Nachricht, die abgesendet wurde, wichtig.
+Dazu wird noch die Email überprüft, die die Nachricht abgeschickt hat.\par
+Zuerst wird überprüft, ob der Email Host ein valider Email Host ist, der 
+Zugang auf diesen Bot haben sollte. \par
+Die ID des Nutzers, die unter \verb|message.sender.name| zu finden ist,
+wird benutzt um den Nutzer in der Nachricht anzusprechen. Die 
+Nachricht, die abgesendet wird beginngt hierfür mit @message.sender.name
+und dadurch kann über die API ein Nutzer angesprochen werden. Wenn man 
+den \verb|message.sender.displayName| verwendet, dann wird der Nutzer 
+nicht in der Nachricht verlinkt, sondern es ist nur ein Text, der 
+im Google Chat ankommt. \par
+Der Thread ist unter \verb|message.thread.name| zu finden. Die Thread 
+ID, welche der letzte Teil der Nachricht ist, wird verwendet um die 
+Session ID herzustellen und sie wird als \verb|thread.name| an die API
+geschickt.\par
+Ein GoogleChatClient wird initialisiert und die notwendigen Infos 
+werden an diesen übergeben und die Nachricht wird abgesendet.
 
 \subsection{Server Konfiguration}
-Für die Konfiguration des Servers wurde Nginx genutzt. 
+Damit die Google Chat API den Server akzeptiert, wird ein SSL Zertifikat 
+benötigt. In diesem Fall wurde Nginx verwendet um das SSL Zertifikat 
+zu laden und als Reverse-Proxy für den FastAPI Server. 
+Der FastAPI Server wird als Service gestartet und für die Demo 
+wurden 4 Unicorn Worker, für den FastAPI Server benutzt. 
 
 
 

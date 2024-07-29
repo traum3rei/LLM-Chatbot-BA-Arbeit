@@ -1,18 +1,24 @@
 \chapter{Grundlagen}
 \label{c:grun}
 
-\section{Techdivision \& IT-Services}
+
+\section{Techdivision}
 \label{s:intro:tech}
-TD kurz vorstellen
-Die Techdivision ist ein Unternehmen, welches 2007 in Kolbermoor, Deutschland 
-gegründet wurde. Der Grundstein für die Firma wurde aber bereits 1997 in der 
-Garage von Tim Wagner, dem aktuellen CTO, gelegt. Zusammen mit Thomas
-Kalteis begann hier eine kleine Technologie-Schmiede. Im Jahr 2007 wurde 
-daraus eine GmbH, gegründet von den Brüdern Stefan und Josef Willkommer. 
+Die Techdivision GmbH ist ein IT-Dienstleister aus Kolbermoor.
+Sie bietet Leistungen in vier Kernbereichen. 
+\begin{enumerate}
+    \item Consulting
+    \item Software \& Solutions
+    \item Daten \& Prozesse
+    \item Marketing \& Kreation
+\end{enumerate}
+Über diese vier Bereiche möchte die Firma den Kunden 
+bei der digitalen Transformation helfen. \par
+
 
 \section{Chatbots}
 \label{s:intro:bot}
-Laut Wikipedia ist ein Chatbot “ein Chatbot oder kurz Bot ein textbasiertes Dialogsystem, das Chatten mit einem technischen System erlaubt” \cite{Chatbot2024}. 
+Ein Chatbot ist ein Dialogsystem, das den Dialog zwischen einem menschen und einem technischen System erlaubt \cite{adamopoulouChatbotsHistoryTechnology2020}. 
 Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots, wie OpenAis ChatGPT und Anthropics Claude, haben
 einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit Chatbots wie diesen kann man heutzutage über die natürliche
 menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. \par
@@ -63,8 +69,9 @@ eine inhaltslose Antwort oder eine frühere Antwort zurück.
 verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift 
 Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen
 Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sondern antwortet, 
-je nach seinem aktuellen Skript auf den aktuellen Satz. Selbst
-Weizenbaum selbst hat scheinbar mit der Eröffnung in seine Arbeit gezeigt, dass er selbst nicht der 
+je nach seinem aktuellen Skript auf den aktuellen Satz.
+\iffalse
+Weizenbaum selbst hat mit der Eröffnung seiner Arbeit gezeigt, dass er selbst nicht der 
 Meinung war, dass ELIZA wirklich ein intelligentes System ist.\par
 %TODO umschreiben
 Er ist der Meinung, dass Programme im Bereich der künstlichen Intelligenz und im Bereich des heuristischen 
@@ -74,7 +81,7 @@ wie diese Programme funktionieren, verlieren sie ihre Magie
 und es entarnt sich als nichts mehr als eine Reihe von Anweisung, die alleine betrachtet sehr simple sind. 
 Das Ziel seiner Forschungsarbeit ist es, die Magie hinter 
 Eliza zu enttarnen, da er der Meinung ist, dass es wenig andere Dinge gibt, die diese Enttarnung so sehr 
-nötig hatten, wie Eliza \cite{weizenbaumELIZAComputerProgram1966}.\par \iffalse Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine 
+nötig hatten, wie Eliza \cite{weizenbaumELIZAComputerProgram1966}.\par  Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine 
 emotionale Bindung zu seinem System aufgebaut haben.\fi \par
 \subsection{Parry}
 Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickelt wurde. Während Eliza 
@@ -277,10 +284,7 @@ sind stark miteinander verbunden. Sie sind über verschiedene Reihen miteinander
 Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
 keine Verbindung miteinander haben. Wenn die Gewichtung positiv ist, dann hat es eine bestärkende Wirkung und, falls die Gewichtung negativ
 ist, dann hat es eine hemmende Wirkung. \par %wikipedia https://de.wikipedia.org/wiki/Künstliches_Neuron
-Jedes Neuron hat zudem einen sogenannten Bias, der Bias wird benötigt, damit man die Aktivierungsschwelle der Aktivierungsfunktion 
-verschieben kann. Dies sorgt für eine erhöhte Flexibilität, da der Wert der Aktivierungsfunktion ohne den Bias immer null wäre, wenn alle
-Eingaben null sind. Durch den Bias hat das Neuron also eine Grundaktivität, welche während dem Training angepasst werden kann, damit die Ergebnisse 
-besser für den eigenen Fall werden. 
+Jedes Neuron hat zudem einen sogenannten Bias. Durch den Bias hat das Neuron eine Grundaktivität, welche, ebenfalls während dem Training angepasst werden kann \cite{kempkesNeuronUndAktivierungsfunktion2023}.
 Das aktuelle Neuron summiert dann alle gewichteten Werte und addiert den Bias. Wie in dieser Formel dargestellt:
 \[
 \sum_{i} w_i x_i + b
@@ -304,9 +308,9 @@ Die zwei Schichten die es immer gibt sind die Eingabe Schicht und die Ausgabe Sc
 komplexere Zusammenhänge zu bearbeiten, muss es aber nicht.
 Die Eingabe Schicht erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Schicht. 
 Als nächstes werden die Daten weiter an eine verborgene Schicht gegeben, die die Werte dann bearbeitet. 
-Es gibt X verschieden verborgene Reih in einem Neuronalen Netzwerk. Die Anzahl der Reihen und die Anzahl 
-der Neuronen pro versteckter Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
-die für alle Fälle passt. Stattdessen kommen hierbei Erfahrung und Experimentation ins Spiel.\par 
+Es gibt X verschieden verborgene Schicht in einem Neuronalen Netzwerk. Die Anzahl der Reihen und die Anzahl 
+der Neuronen pro verborgener Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
+die für alle Fälle passt. Stattdessen kommen hierbei Erfahrung und Experimentation ins Spiel \cite*{heatonIntroductionNeuralNetworks2008}.\par 
 Es kann sogar sein, dass gar keine versteckte Reihen notwendig sind, wenn das Model linear seperierbar ist. 
 Das liegt daran, dass ein Modell ohne versteckte Schichten bereits in der Lage ist diese Grenze zu erlernen 
 und die Daten dann korrekt zu klassifizieren.\par
@@ -320,8 +324,8 @@ einzelnen Pixel des jeweiligen Bildes sein.\par
 \cite{krishnanHowDetermineNumber2022}
 Die Anzahl der Neuronen in der Ausgabe Schicht kommt darauf an, welche Art von Modell man betrachtet.
 Es wird hier vor allem zwischen zwei verschiedenen Arten unterschieden. Die zwei Arten die es gibt sind 
-Regressoren und Klassifikatoren. Bei Regressoren gibt es ein Ausgabe Neuron. Bei Klassifikatoren kann es 
-mehrere geben.\par Regressoren ordnen die Ergebnisse im Regelfall in eine von zwei Optionen ein. Der Wert den
+Regressoren und Klassifikatoren.\par 
+Es gibt zwei Arten von Regressoren. Einfache Regression, welche einen Wert als Ausgabe hat, der zwischen 0 und 1 liegt. Der Wert den
 das Modell berechnet ist ein Wert zwischen 0 und 1. Aber die Ausgabe des Neuronalen Netzes ist entweder
 eins oder null. Hierbei gibt es einen Schwellenwert, der, wenn er überschritten wird, die Ausgabe des Modells 
 auf eins bringt und, wenn dieser Wert nicht überschritten wird, ist die Ausgabe null. Ein Regressor 
@@ -333,7 +337,7 @@ Beispiele hierfür sind:
     \item Stimmerkennung
     \item Spamfilter in emails
 \end{itemize}
-Die Klassifikatoren haben ein oder auch mehrere Ausgabe Neuronen. Die Anzahl der Neuronen kommt auf die Anzahl der möglichen Ausgaben an.
+Die Klassifikatoren haben ein oder auch mehrere Ausgabe Neuronen. Die Anzahl der Neuronen kommt auf die Anzahl der möglichen Klassen an \ref*{osheaIntroductionConvolutionalNeural2015}.
 Beispielsweise könnte man ein System betrachten, welches lernen soll, welche Art von Fahrzeug auf einem Bild dargestellt ist. 
 In der Abbildung 2.2 ist ein simpler Decision Tree dargestellt. Anhand dieser kann man sehen, welche Optionen es als Asugaben gibt. 
 In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögliche Ausgaben gibt. \par
@@ -353,7 +357,32 @@ In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögli
     \caption{Neuronale Netz}
 \end{figure}
 \fi
-\subsection{Training}
+
+\subsection{RNN}
+Bei der Weiterentwicklung von Neuronalen Netzen wurden Recurrent Neural Networks 
+entwickelt. Bei diesen werden als Eingabe Sequenzen benutzt, die aufgeteilt werden.
+Die einzelnen Teile werden dem Neuronalen Netz als Eingabe gegeben und während der 
+Verarbeitung entsteht ein hidden State in dem RNN, welcher die Verarbeitung 
+der nächsten Teile der Sequenzen beeinflusst \cite{WhatRNNRecurrent}.\par
+Dadurch wird das Problem der Neuronalen Netze beseitigt, bei dem ein Neuronales 
+Netz keine Erinnerungen hat und keinen Kontext hat und deshalb nur auf die aktuelle
+Eingabe reagieren kann. 
+
+\subsection{LSTM}
+Ein Problem bei RNNs ist das Vanishing Gradient Problem, welcher im Zusammenhang 
+steht, mit Backpropagation, welches ein Algorithmus ist, der zum Anpassen der Gewichte 
+und des Biases von der Ausgabe zurückgehend bis zur Eingabe die Gradienten des Fehlers berechnet 
+und dadurch die Leistung des Modells verbessert. Ein Problem hierbei ist, dass 
+Gradienten die weit zurück liegen explodieren oder verschwinden können. \cite{vennerodLongShorttermMemory2021} \par
+Um dieses Problem zu lösen wurde Long Short Term Memory eingeführt. Dieser Ansatz 
+ersetzt die rekurrenten Zellen des RNNs mit LSTM Zellen. Diese Zellen haben nicht 
+nur einen hidden State, sondern auch einen Cell State, der für das Langzeitgedächtnis 
+genutzt wird. Die LSTM Zelle hat drei Gatter, ein Eingabe Gatter, ein Ausgabe Gatter und 
+ein Gatter, welches für das Vergessen von Informationen zuständig ist. \cite{vennerodLongShorttermMemory2021} \par
+Dieser Ansatz löst das Vanishing Gradient Problem und sorgt dafür, dass
+RNNs mit LSTM einen längeren Kontext sinnvoll verarbeiten als alleinstehende RNNs.
+
+
 \subsection{Encoder-Decoder Architektur}
 \label{s:intro:edar}
 Bevor auf die Transformer Architektur eingegangen werden kann, ist es wichtig, die 
@@ -668,18 +697,49 @@ erklärt.\par
 Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Frameworks zu verwenden.
 Drei dieser Frameworks werden in \ref*{s:intro:frame} vorgestellt und erklärt.\par
 
+
+
 \subsubsection{Generation}
 Die Generation der LLMs kommt auf ihre Trainingsdaten an. Genau wie beim Training arbeiten die LLMs 
 beim generieren ihrer Ausgaben in Tokens. Hierfür nutzen die Modelle ihre vorher durch Training 
-antrainierten Parameter dazu den nächsten Token hervorzusagen.
+antrainierten Parameter dazu den nächsten Token hervorzusagen.\par
+Diese Vorhersage findet sequentiell statt und nutzt dabei die neu generierten Tokens bei der Vorhersage 
+des nächsten Tokens. Hierbei werden alle bisherigen Tokens
+für die Generierung des nächsten Tokens berücksichtigt, bis das maximale Kontextfenster, welches in 
+\ref*{context} beschrieben wird, erreicht wurde.\cite{GenerationLLMs}. 
 
-\subsection{Limitationen \& Halluzinationen}
-Die LLMs lernen viele Informationen, durch ihr Training. Teils kommt es aber dazu, dass
-der LLM trotz dessen Fehler passieren.\par 
+\subsubsection*{Kontextfenster}
+\label{context}
+Als Kontextfenster werden die Menge an Tokens bezeichnet, die ein ein Modell 
+maximal zum Zeitpunkt der Generierung betrachten kann. Die Token außerhalb 
+des Kontextfensters, werden bei der Generation nicht mehr berücksichtigt. 
+Das Kontextfenster ist die maximale Eingabesequenzlänge des Transformers \ref*{WhatContextWindow}.
 
-Reversal Curse
-\cite{huangSurveyHallucinationLarge2023,
-berglundReversalCurseLLMs2024}
+\subsection{Limitationen \& bekannte Probleme}
+LLMs haben trotz ihrer ständigen Verbesserungen einige Probleme, 
+die schon seit einige LLM Generationen bekannt sind.\par
+Ein Problem, welches LLMs haben ist, dass die Informationen, die LLMs
+haben, teils veraltet ist. Dies ist darauf zurückzuführen, dass die LLMs 
+zwar mit sehr vielen Datensätzen trainiert werden, welche aber 
+zeitlich begrenzt sind. Der Trainingsprozess ist zeit- und ressourcenintensiv,
+während dem Training und dem Finetuning des Modells entsteht eine Lücke zwischen 
+dem Wissensstand des Modells und der realen Welt. Um diese Problem zu bekämpfen 
+gibt es Ansätze, wie RAG, welches in \ref*{s:intro:rag} näher erklärt wird.\par
+Ein weiteres Problem, ist die feste Kontextfenster der LLMs. Dies führt je nach 
+Aufgabe dazu, dass Kontexte nicht beachtet werden oder Informationen, die zu weit 
+zurück liegen, nicht beachten werden können \ref*{wangLimitsSurveyTechniques2024}. \par
+Obwohl LLMs mit sehr vielen Datensätzen trainiert werden, ist ein Problem, dass 
+LLMs halluzinieren können. Das heißt, das Modell generiert plausibel klingende 
+Informationen, die aber faktisch nicht korrekt sind, entweder im Zusammenhang mit der 
+Eingabe des Nutzers oder der zum Training genutzten Daten \cite{huangSurveyHallucinationLarge2023}. \par
+Das letzte Problem, welches in dieser Arbeit besprochen wird ist der Reversal Curse.
+Dies ist ein Problem der LLMs im Zusammenhang mit Generalisierung von Sprache.
+Der Reversal Curse tritt auf, wenn ein Modell mit einem Satz der Form ''A ist B``
+trainiert wird. Manchmal ist die LLM nicht in der Lage durch diesen Satz die 
+umgekehrte Schlussfolgerung zu lernen. Hier ist ein bekannter Fall in GPT-4 
+in dem GPT-4 die Frage ``Wer ist die Mutter von Tom Cruise?'' in 79\% der 
+Fälle richtig mit ``Mary Lee Pfeiffer'' beantwortet und die Frage ``Wer ist der Sohn von Mary Lee Pfeiffer?''
+nur in 33\% der Fälle richtig beantwortet \cite{berglundReversalCurseLLMs2024}.
 
 \subsection{Prompting}
 \label{s:intro:llm:prom}
@@ -717,23 +777,17 @@ Ein paar der davon sind:
     \item Spezifische Anweisungen und genaue Beschreibungen geben. Auch spezifisch und genau bei den gewollten Ausgaben sein.
     \item Anweisungen die der LLM mitteilen was sie tun soll, statt den Dingen die sie nicht tun soll, sind zu bevorzugen.
 \end{itemize}
-Es gibt auch ein paar fortgeschrittene Methoden die verwendet werden können.
+Es gibt auch ein paar fortgeschrittene Methoden die verwendet werden können \cite{amatriainPromptDesignEngineering2024}.
 Hierzu gehören: \par
 \begin{itemize}
     \item Der LLM "kraftvoll" mitteilen, was man von ihr möchte.\par
     \item Gedankengang Prompting, bei der man die LLM, die einzelnen Schritte die sie 
-    gemacht hat und die Gründe dafür erklären lässt.\cite{amatriainPromptDesignEngineering2024}
+    gemacht hat und die Gründe dafür erklären lässt.
 \end{itemize}
 Es gibt eine spezielle Art der Prompts namens System Prompt. Dieses System Prompt dient dazu 
 das Verhalten der LLM in einem Rahmen zu steuern.
 Durch dieses System Prompt kann der LLM mitgeteilt werden, welche Rolle sie einnimt und 
 unter anderem auch ihren Stil beeinflussen. \par
-
-
-
-
-\subsection*{Backpropagation}
-\label{s:intro:bp}
 
 \section{Vektor Datenbanken}
 \label{s:intro:dat}
@@ -826,18 +880,18 @@ einordnen.\cite{gaoRetrievalAugmentedGenerationLarge2024}
 \subsection{Naive RAG}
 %TODO schreib das nochmal um das ist kinda hart geklaut
 Naive RAG ist die traditionelle Herangehensweise and das Problem der RAG.
-Sie besteht aus drei Stufen. Indexing(Indizierung??), Abfrage und Generierung.\par
+Sie besteht aus drei Stufen. Indexing, Abfrage und Generierung.\par
 Beim Indizieren werden die rohen Eingabedaten gereinigt und extrahiert.
-Dies ist wichtig, da es verschieden Formate haben kann, bei Textdaten 
-gibt es bspw. PDF Dateien, Markdown oder HTML. Diese Texte werden nach der Reinigung
-in Plain Text umgewandelt und dieser Plain Text wird dann in kleinere Teile unterteilt .
-Diese kleineren Parts werden dann über ein Embedding modell in eine 
-Vektordarstellung umgewandelt und dann in einer Vektordatenbank abgespeichert.\par
+Dies ist unter anderem wichtig, da die Daten verschiedene Formate haben 
+können, wie PDF Dateien, Markdown oder HTML. Diese Texte werden nach der Reinigung
+in Plain Text umgewandelt und dieser Plain Text wird dann in kleinere Teile unterteilt.
+Diese kleineren Teile werden dann über ein Embedding modell in eine 
+Vektordarstellung umgewandelt und dann in einer Vektordatenbank abgespeichert.\cite{gaoRetrievalAugmentedGenerationLarge2024}\par
 Bei der Abfrage erhält das RAG System eine Anfrage und benutzt das selbe 
 Embedding Modell, wie in der Indizierungsphase, um die Abfrage in eine 
 Vektordarstellung umzuwandeln. Im Anschluss wird durch einen Semantischen
 Vergleich nach den Top-k Ergebnissen gesucht und diese werden dann 
-ausgegeben.\par
+ausgegeben.\cite{gaoRetrievalAugmentedGenerationLarge2024}\par
 Bei der Generation bekommt die LLM dann die Abfrage und die ausgegeben 
 Ergebnisse in einem Prompt zurück und generiert daraus dann eine Antwort. 
 Was genau hier beachtet wird kommt auf die LLM, das Kontext Fenster und den
@@ -858,12 +912,12 @@ in der Stufe der Abfrage wurde hier einiges geändert. Um die Qualität zu erhö
 wurden der Abfrage pre- und post Strategien hinzugefügt.
 Dazu wurde der Indexing Prozess angepasst.
 Beim Indexing wird nun Metadata mit eingebunden und der Text wird genauer unterteilt.
-Pre-retrieval:
+\subsubsection{Pre-Retrieval}
 Beim pre-retrieval wird vorallem darauf geachtet die Anfrage so klar wie möglich zu machen.
 Hierfür werden Metadaten angehängt, Anfragen umgewandelt, Anfragen erweitert und noch 
 einige weitere Dinge abgeändert. Das Ziel hier ist es die Anfrage zu ändern, sodass sie so 
 klar wie möglich ist und sie für Retrival zu optimieren.\par
-Post Retrieval: 
+\subsubsection{Post-Retrieval}
 Nachdem der Kontext nach dem Retrieval Prozess abgefragt wurde, wird
 versucht die abgerufenen Daten möglichst optimal mit der Anfrage zu verbinden.
 Hierfür werden vorallem das komprimieren und das neu Anordnen des Kontexts 
@@ -946,6 +1000,15 @@ wie zum Beispiel das System Prompt für das Model\cite{OllamaOllama2024}.
 
 \section{Ragas}
 \label{s:intro:ragas}
+Ragas ist das framework, welches zum bewerten und vergleichen der 
+LLMs innerhalb dieser Arbeit verwendet wird.
+Das Framework dient dazu RAG pipelines zu bewerten. Im Rahmen
+davon lassen sich Testsets generieren, die Fragen, Antworten 
+und die dazu passenden RAG Dokumente beinhalten. \par
+Über diese Testsets lassen sich die Pipelines über verschiedene 
+Metriken vergleichen. Die Metriken die zur Verfügung stehen und 
+die die im finalen Vergleich relevant sind, werden in \ref*{metrics}
+genauer beschrieben.
 
 \section{AI Frameworks}
 \label{s:intr:frame}
@@ -1049,15 +1112,7 @@ damit die verglichen werden kann, wie die Modelle mit kurzen und auch mit langen
 Texten umgehen können. Aktuell ist das beste Modell im Durchschnitt in dieser 
 Rangliste das Modell ``SFR-Embedding-2\_R'' von Salesforce Research \cite{muennighoffMTEBMassiveText2023, MTEBLeaderboardHugging}.
 
-\section{Google}
-\subsection{Google Cloud}
-Dadurch, dass die Techdivision ein Google Partner ist und intern versucht 
-möglichst viele Produkte von Google zu nutzen 
-
-\subsection*{Chainlit}
-
-
-\subsection{Google Chat}
+\section{Google Chat}
 Google Chat ist eine von Google entwickelte Chatplattform. Diese Plattform 
 hat 2017 Google Hangout zusammen mit Google Meet ersetzt. Zu Beginn war das 
 Projekt nur im Zusammenhang mit Google Workspace erhältlich und somit war es 
