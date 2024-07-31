@@ -4,47 +4,50 @@ Durch die steigende Popularität von Chatbots wie ChatGPT von OpenAI und Claude 
 den letzten Jahren, wie man in \ref*{fig:trend_gpt} sehen kann, werden die Fortschritte, die im 
 Bereich der künstlichen Intelligenz erreicht werden, immer bekannter und der Nutzen den KI 
 Applikationen im Leben von Menschen haben wird dadurch immer erweitert.\par
-Chatbots übernehmen inzwischen auch Aufgaben im Bereich der Kommunikation 
-mit Kunden. Manche Unternehmen haben statt direktem Kundensupport einen 
-Support Bot, über den Kunden Informationen erhalten können oder den 
-Kundenservice kontaktieren können, falls es nicht möglich ist das Problem
-nur durch den Bot zu lösen.\par
+Chatbots sind inzwischen in der Lage, diverse Aufgaben im Bereich der Kundekommunikation
+zu übernehmen, weshalb Unternehmen den ersten Schritt ihres Kundensupports
+durch diese ersetzen. Dies wird bei manchen Unternehmen über 
+ein Chat Interface auf ihrer Website eingebaut. Über dieses Interface
+können die Nutzer fragen stellen und Probleme lösen lassen, falls 
+keine Lösung gefunden werden kann, werden sie dann an den Kundensupport 
+weitergeleitet \ref*{DistroKidHelpCenter}.
 
 
 \section{Motivation}
 \label{s:intro:mot}
 Die Motivation für diese Bachelorarbeit entspringt der Erkenntnis, dass
 trotz konstanter Forstschritte im Bereich der Large Language Models und 
-Chatbots trotzdem weiterer Forschungs- und Entwicklungsbedarf besteht.\par
+Chatbots, weiterer Forschungs- und Entwicklungsbedarf besteht.\par
 
-Das Thema dieser Arbeit wurde zusammen mit der Techdivision GmbH erarbeitet.
-Die Techdivision hat interne Support Charts, für die Mitarbeiter der Firma, 
-in denen Sie bei technischen Problemen Fragen stellen können um vom 
-IT-Support Team Hilfe erhalten. Einige dieser Fragen sind Routinefragen, 
-welche regelmäßig gestellt werden und teils mithilfe der internen Dokumentation
-gelöst werden könnten. Um die Ressourcen des IT-Teams zu schonen und 
-den Mitarbeitern bei einer schnelleren Lösung ihres Problems zu helfen,
-soll ein Chatbot erstellt werden, der mithilfe interner Daten Fragen 
-beantwortet und somit das IT-Support Team unterstützt. \par
+Die Inhalte dieser Bachelorarbeit wurden zusammen mit der Techdivision GmbH erarbeitet.
+Die Techdivision hat firmenintern Support Chats, in denen die Mitarbeiter der Firma, 
+bei technischen Problemen Fragen stellen können und diese vom IT-Support Team 
+beantwortet werden.
+
+Einige dieser Fragen sind wiederkehrende Fragen, 
+die mithilfe der firmeninternen Dokumentation
+gelöst werden könnten, wie die Frage, wieso man sich nicht bei Bitwarden mit dem 
+Master Passwort einloggen kann. Um die Ressourcen des IT-Teams zu schonen und 
+die Probleme der Fachbereiche schneller zu lösen,
+soll ein Chatbot erstellt werden, durch Zugriff auf Daten der Firma 
+Fragen innerhalb des Support Chats beatnwrotet. \par
 Diese Arbeit zielt darauf ab, einen Beitrag zur Überbrückung der Lücke
  zwischen theoretischen Konzepten und praktischer Anwendung zu leisten. 
- Durch die konzeptionelle Erstellung eines Chatbots und die anschließende 
+ Durch die konzeptionelle Entwicklung eines Chatbots und die anschließende 
  prototypische Implementierung wird ein Ansatz verfolgt, 
  der es ermöglicht, verschiedene LLMs im 
  Kontext realer Anwendungsszenarien zu evaluieren.\par
 Der Vergleich von vier unterschiedlichen LLMs innerhalb des entwickelten 
 Prototyps bietet die Gelegenheit, die Leistungsfähigkeit, 
 Effizienz und Anwendbarkeit dieser Modelle zu untersuchen. Diese 
-vergleichende Analyse soll nicht nur zur Ermittlung des am besten 
-geeigneten Modells für diesen spezifischen Anwendungsfall beitragen, sondern 
-auch wertvolle Einblicke in die generellen Charakteristika und 
-Einsatzmöglichkeiten verschiedener LLMs liefern.\par
+vergleichende Analyse soll zur Ermittlung des am besten 
+geeigneten Modells für diesen spezifischen Anwendungsfall beitragen.\par
 Darüber hinaus adressiert diese Arbeit die wachsende Nachfrage nach 
 praxisorientierten Lösungen im Bereich der KI-gestützten Kommunikation. 
 In einer Zeit, in der Unternehmen und Organisationen zunehmend auf KI-Systeme 
 setzen, um Effizienz zu steigern und Kundenerlebnisse zu verbessern, 
 liefert diese Arbeit konkrete Erkenntnisse für die 
-Entwicklung und den Einsatz moderner Chatbot-Systeme.\par
+Entwicklung und den Einsatz moderner Chatbots.\par
 \iffalse
 \begin{figure}[htbp]
     \centering
@@ -128,24 +131,7 @@ Entwicklung und den Einsatz moderner Chatbot-Systeme.\par
     \label{fig:trend_gpt}
 \end{figure}
 \fi
-\iffalse
-Durch den Aufstieg von verschiedenen textbasierten Chat-Modellen wie OpenAIs Chat-GPT oder Googles Gemini, hat man in 
-den letzten Jahren gesehen, zu was Modelle inzwischen in der Lage sind. Sie sind nicht mehr nur in der Lage, mit Menschen 
-zu kommunizieren, sondern helfen diesen auch bei ihren Jobs oder Schulangelegenheiten. Verschiedene trainierte Modelle 
-sind inzwischen in der Lage, komplizierte Probleme zu lösen und Menschen das Leben einfacher zu machen. 
 
-Die Techdivision ist intern in sogenannten Services strukturiert, die häufig ein intensives Zusammenarbeiten erfordern. 
-Diese Zusammenarbeit findet über verschiedene Kommunikationskanäle statt, darunter JIRA Boards und Support-Chats. Oft 
-werden Routinefragen gestellt, die automatisiert werden könnten. 
-
-Dadurch stellt sich speziell in den Support-Chats die Frage, wie viele der Supportanfragen sich durch einen KI-gesteuerten 
-Chatbot ohne Hilfe eines Mitarbeiters lösen lassen würden und inwiefern ein Chatbot zur Entlastung der Teams und zur 
-schnelleren Lösung von Problemen beitragen könnte.
-Durch die Automatisierung einfacher Supportanfragen könnte zum einen Zeit gespart, zum Anderen auch die Ressourcen der 
-Teams effektiver genutzt werden. Mitarbeiter könnten sich verstärkt auf die schwierigeren Supportanfragen konzentrieren, 
-während der Chatbot die repetitiven und einfachen klärt, was nicht nur das Team entlastet, sondern auch die Reaktionszeit 
-auf Supportanfragen erhöht.
-\fi
 \section{Zielsetzung}
 \label{s:intro:goal}
 \iffalse

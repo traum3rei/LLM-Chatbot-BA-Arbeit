@@ -57,6 +57,10 @@
 \usepackage{minted}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\scr@startchapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
 %\usepackage{multirow}
 % Ende eigene Packages
 

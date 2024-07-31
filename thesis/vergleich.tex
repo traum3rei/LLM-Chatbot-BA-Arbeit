@@ -7,13 +7,37 @@ des Systems. Das System wurde mit vier verschiedenen LLM Modellen implementiert 
 wird im ersten Schritt mit dem Framework RAGAS (siehe \ref{s:intro:ragas}) miteinander 
 verglichen. Nach diesem Schritt werden die zwei bestabschneidensten Modelle 
 für die finale Bewertung von Mitarbeitern aus der Techdivision miteinander 
-verglichen. 
+verglichen. Im Konzept wurden die meisten Anforderungen aus \ref*{s:anf:anf} bereits 
+erfüllt. Hier werden \ref*{s:anf:a4} und \ref*{s:anf:a7} erneut aufgegriffen.
+
+\section*{Modelle}
+Die vier LLM Modelle die bewertet werden sind Metas Llama3,
+Mistrals Mistral 2, Googles Gemma2 und Microsofts Phi-3.\par
+Der größte Unterschied den man zwischen diesen Modellen sieht 
+ist die Parametergröße der Modelle. Mistral hat hierbei 7 Milliarden
+Parameter, Llama3 hat 8B, Gemma2 hat 9B und Phi-3 ist das größte Modell
+mit 14B Parametern.\par
+Alle Modelle sind Decoder Only Transformer, wobei Mistral 
+sliding window attention nutzt, 
+ Gemma2 variiert zwischen sliding window und global attention,
+ Phi-3 nutzt blocksparse attention. Dazu nutzen alle Modelle 
+ Grouped-query Attention. 
+Gemma 2 wurde mit 8 Billionen Tokens trainiert, Llama3 mit 
+15 Billionen und Phi-3 mit 4.8 Billionen \ref*{Mistral, IntroducingMetaLlama, abdinPhi3TechnicalReport2024, gemmateamGemmaImprovingOpen2024}. Die Menge von Tokens
+für Mistral ist nicht bekannt.
 
 \section{RAGAS Vergleich}
-Die erste Ausscheidungsrunde wird über das Benchmarking Frameworks entschieden.
-Die vier LLM Modelle die hier zur Auswahl stehen sind finetuned von Metas Llama3,
-Mistrals Mistral 2 und Googles Gemma. Dazu kommt noch die originale Version von 
-Microsofts Phi 3.\par
+Ragas ist das framework, welches zum bewerten und vergleichen der 
+LLMs innerhalb dieser Arbeit verwendet wird.
+Das Framework dient dazu RAG pipelines zu bewerten. Im Rahmen
+davon lassen sich Testsets generieren, die Fragen, Antworten 
+und die dazu passenden RAG Dokumente beinhalten. \par
+Über diese Testsets lassen sich die Pipelines über verschiedene 
+Metriken vergleichen. Die Metriken die zur Verfügung stehen und 
+die die im finalen Vergleich relevant sind, werden in \ref*{metrics}
+genauer beschrieben.\par
+Die erste Phase des Evaluierungsprozesses findet über dieses Framework statt.
+\par
 
 \subsection{Testset}
 Der erste Schritt für den Vergleich ist es Testsets herzustellen anhand
@@ -45,7 +69,7 @@ von Mistrals Mixtral 8x7B sein und zwar
 Als Critic Modell wird eine Version von Microsofts Phi 3 genutzt, welche
 ebenfalls auf Deutsch finetuned wurde. Die Version die genutzt wird ist 
 "VAGOsolutions/SauerkrautLM-Phi-3-medium", welche eine finetuned Version 
-von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \par\fi
+von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \pa \fi
 Als Critic und als Generator LLM wird das 70 Milliarden 
 Parameter Model Llama3 von Meta verwendet. 
 Die Nutzung von Hugginface Modellen mit Ragas scheint aktuell 
@@ -99,6 +123,7 @@ Kontext verglichen und es wird überprüft, ob die Behauptung aus dem Kontext
 gezogen werden kann.\par
 Die Formel die hierfür verwendet wird ist wie folgt:
 \[\text{Faithfulness score}= \frac{|\text{Anzahl der Behauptung die man aus dem Kontext schließen kann}|}{|\text{Gesamtzahl der Behauptungen}|}\]
+
 \subsubsection{Answer relevancy}
 ''Answer relevancy`` zu Deutsch ''Relevanz der Antwort``, bewertet wie 
 relevant die Antwort für die Eingabe ist. Hier werden Antworten
@@ -109,6 +134,7 @@ Der Wert der Relevanz der Antwort kann zwischen -1 und 1, ist
 in der Praxis aber meisten zwischen 0 und 1 sein.
 Die Formel die hierfür verwendet wird ist: 
 \[\text{answer relevancy} = \frac{1}{N}\sum_{1}^{N}\cos(E_i, E_0)\]
+
 \subsubsection{Answer semantic similarity}
 Bei der Metrik ''Answer semantic similarity``, zu Deutsch ''Semantische Ähnlichkeit der Antwort``,
 werden die \verb|answer| und \verb|ground_truth| miteinander verglichen.
@@ -160,18 +186,7 @@ Die Formel hierfür ist:
 \[\text{Precision@K}=\frac{(\text{true positives@k}}{(\text{true positives@k + false positives@k})}\]
 
 Wobei $\mathbf{K}$ die Gesamtmenge der Kontexte in der \verb|contexts| Spalte
-und \[v_k \in {0,1}\]
-
-\subsubsection{Context relevancy}
-Die ''Context relevancy`` oder zu Deutsch ''Kontextrelevanz`` bewertet den 
-Relevanz des abgerufenen Kontexts. Dieser Wert fällt zwischen 0 und 1 und
-hier ist ein höherer Wert besser. \par
-Hierbei wird berechnet, wie viele Sätze der abgerufene Kontext beinhaltet,
-die wichtige Informationen für die Beantwortung der Frage beinhaltet und dies 
-wird durch die Gesamtzahl der Sätze im abgerufenen Kontext geteilt.
-
-Die Formel hierfür ist: 
-\[\text{context relevancy} = \frac{|\mathbf{S}|}{|\text{Total number of sentences in retrieved context}|}\]
+und $v_k \in {0,1}$ der Relevanz Indikator bei Rang $k$ ist.
 
 \subsubsection{Context entity recall}
 Beim ''Context entity recall`` oder zu Deutsch ''Kontext-Entitäts-Rückruf``
@@ -187,6 +202,7 @@ Die Formel hierfür ist:
 
 
 \subsection{Ergebnisse}
+\label{s:bew}
 Nach erstellen von mehreren Testsets mit verschiedene 
 Modellen sind bei einer \verb|test_size| von 10 jedes mal 
 mehrere Reihen in der \verb|ground_truth| Spalte leer geblieben.
@@ -201,7 +217,7 @@ erstellt wurde. Daher wurde auf die direkt über Ollama ladbaren
 Versionen der Modelle gewechselt.\fi
 Bei den Metriken, die für diesen Vergleich in Betracht gezogen worden sind, wurden 
 die Metriken, die nur mit der RAG Pipeline zu tun haben entfernt, da diese 
-den selben Wert für alle haben. Es wurden nur die Werte beachtet, auf die die 
+den selben Wert für alle haben. Es wurden nur die Metriken betrachtet, auf die die 
 genutzte LLM einen Einfluss hat.
 \par
 
@@ -213,14 +229,14 @@ genutzte LLM einen Einfluss hat.
         \hline
         \multicolumn{5}{|c|}{Model Bewertung} \\
         \hline
-        Metrik & llama3 & mistral & phi3 & gemma2 \\
+        Metrik & llama3 & mistral2 & phi3 & gemma2 \\
         \hline
         answer\_relevancy   & 0.9998   & 0.9802 &  0.9981 & 0.7481\\
         answer\_correctness & 0.6126  & 0.3717  &  0.4172 & 0.5011\\
         answer\_similarity & 0.9032 & 0.8935    &  0.8992 & 0.8712\\
-        faithfulness&   0.7415  & 0.8444       &  0.6852 & 0.5938\\
+        faithfulness &   0.7415  & 0.8444       &  0.6852 & 0.5938\\
         \hline
-       
+
        \end{tabular}
        \caption{Ragas Ergebnisse der vier Modelle.}
        \label{tab:evaluation}
@@ -230,12 +246,29 @@ genutzte LLM einen Einfluss hat.
 In der Tabelle \ref*{tab:evaluation} sieht man die Ergebnisse des Ragas Benchmarks.
 Die verschiedenen Metriken die betrachtet wurden sind \verb|answer_relevancy|, 
 \verb|answer_correctness|, \verb|answer_similarity|, \verb|context_relevancy| und \verb|faithfulness|.
-Alle Metriken außer \verb|faithfulness| sind am höchsten bei llama3 von Meta. \verb|Faithfulness| 
-hat den höchsten Wert bei Mistral2 von Mistral. \par
+Alle Metriken außer \verb|faithfulness| sind am höchsten bei Llama3 von Meta. \verb|Faithfulness| 
+hat den höchsten Wert bei Mistral 2 von Mistral. Das beste Modell hierbei ist Llama3 mit 3 Metriken 
+bei denen es am besten bewertet wurde. Das zweitbeste ist Phi-3 mit zwei Metriken als zweitbestes Modell 
+und zwei als drittes. Das drittbeste Modell ist Mistral mit einer Bewertung als bestes Modell, zwei als drittes 
+und eins als viertes. Das schlechtest Modell innerhalb dieser Ragas Bewertung ist Gemma2 mit einer Metrik 
+als zweitbestes und drei als viertes. \par
+Das worin sich Llama3 von den anderen Modellen am meisten unterscheidet ist die 
+Menge an Tokens die zum trainieren verwendet wurden. Mit 15 Billionen Token ist dies 7 
+Billionen von den für Gemma 2 verwendet 8 Billionen Token entfernt. Aber das zweitbeste Modell 
+in diesem Vergleich, Phi-3, hatte die kleinste bekannte Menge an Trainingsdaten, aber 
+dafür war es mit 14 Milliarden Parametern das größte Modell. Aufgrund dessen lässt 
+sich nicht direkt ein eindeutiger Grund sehen, wieso hier einige Modelle besser als die anderen abschneiden.
 
 \section{Umfrage Vergleich}
-Hierfür wurden 5 Mitarbeiter aus dem Unternehmen mit einem Fragebogen 
-ausgestattet und ihnen wurde Zugang zum System gegeben. 
+Dieser Schritt der Bewertung greift Anforderungen A4 und A7
+erneut auf. A4 wurde bereits durch die RAG Pipeline und den Importer 
+in den Chatbot eingebaut, der nächste Schritt ist es zu überprüfen, ob 
+die richtigen Unternehmensdaten verwendet werden und diese logisch 
+und schlüssig in die Antworten mit eingebaut werden.
+Hierfür wurde 4 Mitarbeitern aus dem Unternehmen ein Fragebogen zum Ausfüllen 
+gegeben und dazu wurde ihnen Zugang zum System freigeschaltet. Dies 
+bewertet gleichzeitig die Antworten und ermöglicht es die 2 Modelle 
+miteinander zu vergleichen.
 
 \subsection{Fragebogen}
 Der Fragebogen wurde so erstellt, dass es keine genauen Fragen gibt, 
@@ -306,5 +339,13 @@ Frage 1 und Frage 3 haben den selben durchschnittlichen Wert bei beiden LLMs wie
 erkennbar. Frage 2 ist die Frage in der der durchschnittliche Wert unterschiedlich ist.
 Hier ist der durchschnittliche Wert bei Llama3 um 0.25 besser. 
 
+In Worten sind beide LLMs bei der Frage in der eine Anleitung erstellt werden 
+sollte und der Frage ob über die Möglichkeiten zum sicheren Datenaustausch etwas besser als Okay.
+Bei der Frage in der die LLMs dem Nutzer Problemlöstungsstrategien geben sollten, ist Llama3 Okay und 
+Phi-3 etwas schlechter als Okay.
+
 Dies führt dazu, dass Llama3 insgesamt die bessere Bewertung hat und somit 
-im Vergleich besser ist.
+im Vergleich besser ist. Genau wie in \ref*{s:bew} bereits erwähnt, ist der 
+größte Unterschied zwischen Llama3 und den anderen Modellen die Menge an für 
+das Trainieren verwendeten Daten. Da Phi-3 besser als Gemma 2 im Ragas Vergleich 
+abgeschlossen hat lässt sich dies aber zumindest in dem Test widerlegen.

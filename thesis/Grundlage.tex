@@ -18,29 +18,32 @@ bei der digitalen Transformation helfen. \par
 
 \section{Chatbots}
 \label{s:intro:bot}
-Ein Chatbot ist ein Dialogsystem, das den Dialog zwischen einem menschen und einem technischen System erlaubt \cite{adamopoulouChatbotsHistoryTechnology2020}. 
-Es gibt verschiedene Arten von Chatbots, diese unterscheiden sich aber in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots, wie OpenAis ChatGPT und Anthropics Claude, haben
-einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit Chatbots wie diesen kann man heutzutage über die natürliche
+Ein Chatbot ist ein Dialogsystem, das den Dialog zwischen einem Menschen und einem technischen System erlaubt \cite{adamopoulouChatbotsHistoryTechnology2020}. 
+Von diesen gibt es verschiedene Arten. Diese unterscheiden sich in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots, wie OpenAIs ChatGPT und Anthropics Claude, haben
+einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit diesen kann man heutzutage über die natürliche
 menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. \par
-Die Generation des Textes eines Chatbots kann in drei verschiedene Kategorien untergeordnet werden: abfragebasiert, generationsbasiert und regelbasiert \cite{adamopoulouChatbotsHistoryTechnology2020}. 
+Die Generation des Textes kann in drei verschiedene Kategorien untergeordnet werden: abfragebasiert, generationsbasiert und regelbasiert \cite{adamopoulouChatbotsHistoryTechnology2020}. 
 Abfragebasierte Chatbots haben eine Wissensdatenbank in der sie nach dem am besten zur Eingabe passenden Eintrag suchen.
-Generationsbasierte Chatbots generieren ihre Antworten selbst, wie ein paar dieser Modelle ihre Antworten generieren wird in 
+Beim generationsbasierten Ansatz generieren sie ihre Antworten selbst, wie ein paar dieser Modelle ihre Antworten generieren wird in 
 \ref{s:intro:gen} erklärt.
 Regelbasierte Chatbos antworten nach vorher in ihrem Skript bestimmten Regeln. Hierbei vergleichen sie die Eingabe 
 mit ihren vorher definierten Regeln und transformieren die Eingabe, falls möglich, in eine vorher 
 definierte Satzstruktur. \cite{adamopoulouChatbotsHistoryTechnology2020}
 Im nächsten Schritt wird darauf eingegangen, wie sich Chatbots in dieser Hinsicht mit der Zeit verändert haben.\par
+
+\subsection{Turing Test}
+\label{s:intro:tur}
 Im Jahr 1950 hat Alan Turing den Turing Test vorgeschlagen, bei dem es darum geht zu erkennen, ob eine Maschine das gleiche Denkvermögen hat wie ein Mensch. Bei
 diesem Test werden einem Tester zwei Gesprächspartner vorgelegt, von denen einer ein Mensch und der andere eine Maschine ist. Der Tester führt dann ein Gespräch
 mit beiden Gesprächspartnern und befragt diese. Nach der Befragung wird überprüft, ob der Tester in der Lage ist, zu sagen, welcher der Partner eine Maschine ist.
 Falls der Tester nicht in der Lage ist zu erkennen, welcher der Partner die Maschine ist, gilt der Turing Test als bestanden und die Maschine ist laut Turing
-intelligent. \iffalse Es gibt Kritik am Turing Test, welche der Meinung ist, dass der Test die Maschine nur auf ihre Funktionalität getestet und nicht wirklich auf
+intelligent \iffalse Es gibt Kritik am Turing Test, welche der Meinung ist, dass der Test die Maschine nur auf ihre Funktionalität getestet und nicht wirklich auf
 Intelligenz. Ein weiterer Kritikpunkt, den Menschen an dem Turing Test haben, ist, dass einige Menschen der Meinung sind, dass der Test eher die menschliche
-Leichtgläubigkeit testet, als die Intelligenz der Maschine. \fi \cite{lacurtsCriticismsTuringTest}\par  
+Leichtgläubigkeit testet, als die Intelligenz der Maschine. \fi \cite{lacurtsCriticismsTuringTest}.\par  
 \subsection{ELIZA}
-Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten Chatbot aus dem Jahr 1966. Damals waren die Chatbots regel basiert. 
+Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten aus dem Jahr 1966. Damals waren die Chatbots regel basiert. 
 Der Name des Chatbots war ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt.
-Mit der Regel basierung von ELIZA hat Weizenbaum fünf Grundprobleme aufgestellt, welche er für die Entwicklung von ELIZA bekämpfen musste . 
+Weizenbaum hat fünf Grundprobleme aufgestellt, welche er für die Entwicklung beachten musste . 
 Die Probleme waren:
 \begin{enumerate}
     \item Die Identifikation von Stichwörtern
@@ -50,50 +53,42 @@ Die Probleme waren:
     \item Bearbeitung der Eliza Skripte
 \end{enumerate}
 \cite{weizenbaumELIZAComputerProgram1966}. \par
-ELIZA wurde so entwickelt, dass sie versucht hat, menschliche Sprache zu imitieren, indem sie den 
-eingegebenen Text nach Stichwörtern durchsucht. Stichwörter sind
-Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA-Script gegeben wurde. Es lässt sich vermuten, 
-dass hierbei besonders Wörter mit einem hohen Informationsgehalt
-verwendet wurden. Jedes Stichwort hatte noch einen sogenannten RANK, welcher die Wichtigkeit des 
+Die Regeln, die ELIZA beachten muss, wurden ihr über Skripte gegeben.
+Sie hat versucht die menschliche Sprache zu imitieren, indem sie den 
+eingegebenen Text nach Stichwörtern durchsucht.
+Stichwörter sind 
+Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA Skript gegeben wurde. 
+Jedes Stichwort hatte noch einen RANK, welcher die Wichtigkeit des 
 jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt
-hat. Nachdem die Stichwörter entdeckt wurden, betrachtet ELIZA die “Transformation Rules”, die 
+hat. Nachdem die Stichwörter entdeckt wurden, betrachtet ELIZA die Transformations Regeln, die 
 in ihrem Skript bestimmt wurden. 
-Diese bestehen aus einer Zerlegungs und einer
-Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beide Phasen. Anhand der Syntax des Satzes wird ausgemacht, 
+Die Transformations Regeln bestehen aus einer Zerlegungs und einer
+Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beide Phasen. Anhand der Syntax des Satzes wird identifiziert, 
 welche Regel für die Zerlegung in Frage kommt und anhand dieser
 wird dann die Zusammensetzung ausgemacht. 
 Dieser Zusammengesetzte Satz wird im Anschluss ausgegeben
-Falls jedoch kein Stichwort gefunden wurde, gibt ELIZA entweder 
-eine inhaltslose Antwort oder eine frühere Antwort zurück.
- Eliza
-verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und Eliza greift 
-Punkte hauptsächlich aus den Eingaben des Nutzers auf, ohne großen
-Zusammenhang mit Themen außerhalb dieses Gesprächs. Der Bot kennt keinen Kontext sondern antwortet, 
-je nach seinem aktuellen Skript auf den aktuellen Satz.
-\iffalse
-Weizenbaum selbst hat mit der Eröffnung seiner Arbeit gezeigt, dass er selbst nicht der 
-Meinung war, dass ELIZA wirklich ein intelligentes System ist.\par
-%TODO umschreiben
-Er ist der Meinung, dass Programme im Bereich der künstlichen Intelligenz und im Bereich des heuristischen 
-Programmierens so aufgebaut sind, dass sie auf wundersame
-Weise funktionieren, sodass sie selbst erfahrene Beobachter faszinieren. Aber sobald man herausfindet, 
-wie diese Programme funktionieren, verlieren sie ihre Magie 
-und es entarnt sich als nichts mehr als eine Reihe von Anweisung, die alleine betrachtet sehr simple sind. 
-Das Ziel seiner Forschungsarbeit ist es, die Magie hinter 
-Eliza zu enttarnen, da er der Meinung ist, dass es wenig andere Dinge gibt, die diese Enttarnung so sehr 
-nötig hatten, wie Eliza \cite{weizenbaumELIZAComputerProgram1966}.\par  Es gibt anekdotische Hinweise von Weizenbaum und seinem Team darauf, dass es Teilnehmer gab, die eine 
-emotionale Bindung zu seinem System aufgebaut haben.\fi \par
+Im Fall, dass kein Stichwort gefunden wurde, wird entweder 
+eine inhaltslose Antwort oder eine frühere Antwort zurück gegeben.
+ELIZA 
+verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und der Chatbot greift 
+Punkte aus den Eingaben des Nutzers auf, ohne großen
+Zusammenhang mit Themen außerhalb dieses Gesprächs und ihrer Regeln. Daraus lässt sich schließen, dass ELIZA keinen Kontext kennt, sondern, 
+je nach seinem aktuellen Skript auf den aktuellen Satz antwortet \cite{weizenbaumELIZAComputerProgram1966}.
+
 \subsection{Parry}
-Nach Eliza kam ein Chatbot namens Parry der an der Stanford University entwickelt wurde. Während Eliza 
-eher einen Psychotherapeuten imitiert hat, hat Parry
+Der nächste Chatbot, Parry, wurde an der Stanford University entwickelt. Während Eliza 
+ einen Psychotherapeuten imitiert hat, hat Parry
 einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines 
-Experiments, der einem Turing Test gleicht. Hier wurden verschieden
+Experiments, der einem Turing Test (siehe \ref*{s:intro:tur}) gleicht. Hier wurden verschieden
 Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen 
 von einem echten Schizophrenen Patienten kommen oder von einem
-Chatbot. Teil des Experiments waren 5 Psychiater, die jeweils 2 "Patienten" zur Beurteilung bekommen 
-haben. Der erste lag bei beiden richtig, der zweite lag bei
-beiden falsch. Der dritte dachte beide Patienten sind echte Patienten und die letzten zwei dachten 
-beide sind Chatbots. Das Problem hierbei war, dass der Pool an
+Chatbot. Teil des Experiments waren 5 Psychiater, die jeweils 2 Patienten zur Beurteilung bekommen 
+haben. 
+
+Von den 5 Teilnehmern lag nur einer bei beiden richtig. Einer lag bei beiden falsch, ein weiterer dachte 
+beide Patienten sind echte Patienten und die letzten zwei dachten, dass beide Patienten Chatbots sind \cite{adamopoulouChatbotsHistoryTechnology2020}.
+
+Das Problem hierbei war jedoch, dass der Pool an
 Probanden mit 5 Psychiatern sehr klein war. Dazu kommt noch der Fakt, dass Patienten mit Schizophrenie 
 ein gewisses Level an Unverständlichkeit in ihren Konversationen
 haben, welches die Beurteilung, ob es generell ein guter Chatbot ist erschwert. Heute wird Parry eher als 
@@ -102,61 +97,60 @@ lernen kann, keinen richtigen Kontext hat und sehr langsam ist. Natürlich ist e
 von den technischen Limitationen die es damals gab, aber es ist
 dennoch wichtig zu beachten \cite{adamopoulouChatbotsHistoryTechnology2020}. 
 \subsection{ALICE}
-1995 wurde der Internet Chatbot ALICE veröffentlicht. Er war im Internet zu finden und er wurde als Open 
+1995 wurde der Internet Chatbot ALICE veröffentlicht. Dies war der erste Chatbot der im Internet zu finden war 
+und er wurde als Open Source Software veröffentlicht. \iffalse Er war im Internet zu finden und er wurde als Open 
 Source Software veröffentlicht, hat aber nicht viele
 Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die 
 Programmiersprache Java gewechselt ist. Das Problem war, dass SETL
-eine eher unbekannte Sprache war. Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen 
-Preise ausgezeichnet, wie beispielsweise dem Loebner Prize. Dieser
-Bot wurde von Weizenbaums Eliza inspiriert und war selbst die Inspiration für den Film "Her", in der 
-die Beziehung zwischen Menschen und Maschinen beleuchtet
-wird \cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Keywords, auf die sie 
-reagieren konnte als Eliza, aber von den Grundprinzipien her,
-hat sie auf die selbe Art und Weise Keywords in den Eingaben des Nutzers gesucht und dann je nach 
+eine eher unbekannte Sprache war. \fi Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen 
+Preise ausgezeichnet, wie beispielsweise dem Loebner Prize, mit dem das Programm ausgezeichnet wird, welches 
+von der Jury als am menschenähnlichsten bewertet wird \ref*{LoebnerPrize}. Dieser
+Chatbot wurde von Weizenbaums ELIZA inspiriert und war selbst die Inspiration für den Film "Her", in der 
+die Beziehung zwischen Menschen und Maschinen betrachtet 
+wird \cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Stichwörtern, auf die sie 
+reagieren konnte als ELIZA,
+aber sie hat auf die selbe Art und Weise Stichwörter in den Eingaben des Nutzers gesucht und dann je nach 
 ihren Datenbankeinträgen darauf geantwortet \cite{adamopoulouChatbotsHistoryTechnology2020, Wallace2009}.
 
 
 
 \subsection{Siri, Google Assistant, Alexa}
-Nach diesen anfänglichen Versuchen im Bereich der Chatbots, welche vorallem im Bereich der 
-Psychologie aufgebaut wurden und die regelbasiert waren wurden immer weiter Fortschritte gemacht.\par
-Eine große Neuerung im Jahr 2010 war Siri, ein persönlicher Assistent, auf dem eigenen Handy.
+Nach diesen anfänglichen Versuchen, welche vorallem im Bereich der 
+Psychologie entwickelt wurden und die regelbasiert waren, wurden immer weiter Fortschritte gemacht.\par
+Eine große Neuerung im Jahr 2010 war Siri, ein persönlicher Assistent auf dem eigenen Handy.
 Siri, welches nur auf Apple Geräten zur Vefügung steht, hilft den Nutzern, welche 
 über Text oder Sprachbefehle mit dem Assistenten kommunizieren können, mit verschiedenen Aufgaben.
-Unter anderem können die Nutzer mittels Siri unter anderem Erinnerungen setzen, Nachrichten senden
+Unter anderem können die Nutzer mittels Siri Erinnerungen setzen, Nachrichten senden
 und Anrufe tätigen. \cite{Siri} \par
-Sprachassistenten wie Siri gibt es auch auf anderen Plattformen, wie auf Samsung Galaxy Geräten mit Galaxy Ai \cite{GalaxyAISamsung} 
-und verschiedenen Android Geräten mit Google Assistant \cite{GoogleAssistantYour}. Diese Bots haben ähnliche Funktionen wie 
-Siri und versuchen dem Nutzer zu helfen\cite{GoogleAssistantYour}.\par
-SmartHome Geräte, wie Smarte Lampen und Steckdosen kann man mit hilfe von diesen 
-Sprachassisten auch kontrollieren.\par
-Man kann auf manche Sprachassistenten auch teilweise über extra Geräte, die für sie 
-hergestellt wurden zugreifen. Ein Beispiel hierfür Amazon Alexa, die 
-der Sprachassistent von Amazon ist, auf dem Echo Dot.
-Der Echo Dot ist ein kleiner Lautsprecher, welcher mit dem internet verbunden ist. 
-Durch diesen kann man dann mit Alexa kommunizieren.
+Sprachassistenten wie Siri gibt es auch auf anderen Plattformen, wie auf Samsung Galaxy Geräten mit Galaxy AI 
+und verschiedenen Android Geräten mit Google Assistant. Diese Assistenten haben ähnliche Funktionen wie 
+Siri und versuchen dem Nutzer zu helfen\cite{GoogleAssistantYour,GalaxyAISamsung}.\par
+SmartHome Geräte, wie Smarte Lampen und Steckdosen lassen sich mit Hilfe von diesen 
+Sprachassisten kontrollieren.\par
+Manche Sprachassistenten lassen sich über extra Geräte, die für diesen Nutzen hergestellte wurden. 
+Ein Beispiel hierfür ist Amazon Alexa, auf dem Echo Dot.
+Der Echo Dot ist ein kleiner Lautsprecher, welcher mit dem Internet verbunden ist. 
+Durch diesen kann man mit Alexa kommunizieren.
 Diese Sprachassisten werden immer weiter entwickelt und bekommen dadurch neue Funktionen, 
-mehr Sprachen oder ein besseres Verständnis für die menschliche Sprache. 
+mehr Sprachen oder die Fähigkeit die menschliche Sprache besser zu interpretieren. 
 
 \subsection{ChatGPT, Claude, Gemini}
-Mit der erhöhten Popularität von Chatbots wie ChatGPT und Claude sind
-Chatbots, wie diese, die größte Neuerung in dieser Welt. 
+Wie in \ref*{\c:intro} bereits gezeigt, steigen aktuell die Anfragen für 
+Chatbots wie ChatGPT und Claude.
 Diese Chatbots basieren auf Large Language Models, welche in \ref{s:intro:llm}
 genauer erklärt werden. Nutzer können teils über Apps und teils über 
 die Website, des jeweiligen Services, mit diesen Bots kommunizieren.\par
-Den bots kann man fragen stellen und diese werden vom jeweiligen System beantwortet.
-Sie können nicht nur per Text antworten, sondern auch in Form von Bildern. ChatGPT 
-kann durch die DALL·E Integration, welches ein weiteres System von OpenAI ist, 
-Bilder generieren.
-ChatGPT hat in der Premium Variante die Möglichkeit Bilder zu generieren.
-Die Bots haben die Fähigkeit viele verschiedene Dinge zu tun. Unter anderem 
-können sie Code, einen Essay oder ein Film Script schreiben.\par
+Den Chatbots werden fragen stellen, welche vom jeweiligen System beantwortet werden.
+Sie können nicht nur in Textform antworten, sondern auch durch Bild oder Audiogenerierung, 
+wie bei ChatGPTs DALL·E Integration.
+Diese Chatbots sind nicht nur in der Lage Fragen zu beantworten, sondern sie können auch Code, 
+einen Essay oder ein Film Script generieren.\par
 
 
 \section{Künstliche Intelligenz}
 \label{s:intro:ki}
 Künstliche Intelligenz ist ein Teil der Informatik der sich damit beschäftigt, Aufgaben, die früher 
-menschliche Intelligenz benötigt hat, von Maschinen bzw. Computern übernehmen zu lassen. 
+menschliche Intelligenz benötigt haben, von Maschinen bzw. Computern übernehmen zu lassen. 
 Zu den Aufgaben gehören unter anderem:
 \begin{itemize}
     \item Erkennen von Mustern
@@ -164,7 +158,7 @@ Zu den Aufgaben gehören unter anderem:
     \item Verstehen von Sprache
 \end{itemize}
 Durch Fortschritte in der künstlichen Intelligenz konnten Forstschritte in all diesen Aufgabenbereichen erreicht werden.
-Die verschiedenen Aufgaben werden teils in verschiedenen Teilbereichen der künstlichen Intelligenz behandelt. Ein paar der Teilbereiche sind:
+Die verschiedenen Aufgaben werden in verschiedenen Teilbereichen der künstlichen Intelligenz behandelt. Ein paar der Teilbereiche sind:
 \begin{itemize}
     \item Computer Vision
     \item Natural Language Processing
@@ -174,11 +168,11 @@ Nun ist die Frage wie Intelligenz definiert werden kann.
 Das ist keine einfache Aufgabe und nicht der Schwerpunkt dieser 
 Arbeit. Im Kontext dieser Arbeit wird das Buch ``Knowledge Science – 
 Grundlagen: Methoden der Künstlichen Intelligenz für die 
-Wissensextraktion aus Texten'' von Lanquillong und Schacht 
-betrachtet. Laut Lanquillon und Schacht ist eine Möglichkeit
+Wissensextraktion aus Texten'' von Lanquillong und Schacht
+ und die Definition von Intelligenz daraus betrachtet. Laut Lanquillon und Schacht ist eine Möglichkeit
 ein paar Eigenschaften anzuschauen, welche an menschliches Verhalten 
-angelehnt sind anzuschauen und davon ausgehend künstliche Intelligenz 
-betrachten oder definieren. Diese Liste ist offen und nicht vollständig. 
+angelehnt sind und davon ausgehend künstliche Intelligenz 
+definieren. Diese Liste ist offen und nicht vollständig. 
 Die Eigenschaften die im Buch genannt werden sind: 
 \begin{itemize}
     \item Wahrnehmung
@@ -194,9 +188,9 @@ Die Eigenschaften die im Buch genannt werden sind:
     \item Organisation
 \end{itemize}
 Die meisten Menschen weisen alle diese Eigenschaften auf, aber 
-es gibt noch keine künstliche Intelligenz, die all diese Eigenschaften 
+es gibt noch keine künstliche Intelligenz, die alle davon 
 aufweisen kann. Da es noch kein System gibt, welches in diese Kategorie 
-fällt, aber es bereits Systeme gibt, die teils ein paar dieser Eigenschaften
+fällt, aber es bereits Systeme gibt, die ein paar dieser Eigenschaften
 aufweisen und dazu noch Probleme in eng definierten Problembereichen lösen 
 können. Ist eine weitere Unterscheidung innerhalb des Bereichs der 
 künstlichen Intelligenz nötig. Daraus formen sich die zwei Begriffe 
@@ -1000,15 +994,7 @@ wie zum Beispiel das System Prompt für das Model\cite{OllamaOllama2024}.
 
 \section{Ragas}
 \label{s:intro:ragas}
-Ragas ist das framework, welches zum bewerten und vergleichen der 
-LLMs innerhalb dieser Arbeit verwendet wird.
-Das Framework dient dazu RAG pipelines zu bewerten. Im Rahmen
-davon lassen sich Testsets generieren, die Fragen, Antworten 
-und die dazu passenden RAG Dokumente beinhalten. \par
-Über diese Testsets lassen sich die Pipelines über verschiedene 
-Metriken vergleichen. Die Metriken die zur Verfügung stehen und 
-die die im finalen Vergleich relevant sind, werden in \ref*{metrics}
-genauer beschrieben.
+
 
 \section{AI Frameworks}
 \label{s:intr:frame}
