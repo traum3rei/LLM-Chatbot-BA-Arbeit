@@ -1,19 +1,7 @@
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{Grundlagen}
 \label{c:grun}
-
-
-\section{Techdivision}
-\label{s:intro:tech}
-Die Techdivision GmbH ist ein IT-Dienstleister aus Kolbermoor.
-Sie bietet Leistungen in vier Kernbereichen. 
-\begin{enumerate}
-    \item Consulting
-    \item Software \& Solutions
-    \item Daten \& Prozesse
-    \item Marketing \& Kreation
-\end{enumerate}
-Über diese vier Bereiche möchte die Firma den Kunden 
-bei der digitalen Transformation helfen. \par
 
 
 \section{Chatbots}
@@ -194,7 +182,7 @@ fällt, aber es bereits Systeme gibt, die ein paar dieser Eigenschaften
 aufweisen und dazu noch Probleme in eng definierten Problembereichen lösen 
 können. Ist eine weitere Unterscheidung innerhalb des Bereichs der 
 künstlichen Intelligenz nötig. Daraus formen sich die zwei Begriffe 
-schwache künstliche Intelligenz und starke künstliche Intelligenz \cite{lanquillonKnowledgeScienceGrundlagen2023}.
+schwache künstliche Intelligenz und starke künstliche Intelligenz \cite[S. 5-7]{lanquillonKnowledgeScienceGrundlagen2023}.
 
 
 \subsection{Schwache künstliche Intelligenz}
@@ -243,12 +231,12 @@ nicht der Fall sein wird \cite{leerainieExpertsImagineImpact2024}.
 Natural Language Processing oder natürliche Spracherkennung, ist ein Teil des Machine Learnings der sich
 auf die Arbeit mit menschlicher, natürlicher Sprache fokussiert. Das Ziel von \ac*{nlp} ist es, Computern 
 die Möglichkeit zu geben, menschliche Sprache zu verstehen und zu verarbeiten, um mit den Menschen 
-kommunizieren zu können. Die schließt Kommunikation in Form von Audio als auch über Text mit ein.\par
+kommunizieren zu können. Dies schließt Kommunikation in Form von Audio als auch über Text mit ein \cite{WhatNLPNatural2021}.\par
 \ac*{nlp} ermöglicht es Computern, durch Kombination verschiedener Machine Learning Verfahren und
-andere linguistischen Verfahren menschliche Sprache zu verstehen und diese auch wiederzugeben.
-Diese System können im Zusammenhang damit, Texte zusammenzufassen, sie zu analysieren, ihre Bedeutung
-zu verstehen und mit Hilfe dieser Fähigkeiten dann sinnvolle und passende Antworten zu generieren.\par
-Anwendungen die \ac*{nlp} nutzen sind vielfältig und beispielsweise Chatbos und Übersetzungssoftware
+anderer linguistischer Verfahren menschliche Sprache zu verstehen und diese auch wiederzugeben.
+Diese Systeme können, Texte zusammenzufassen, sie analysieren, ihre Bedeutung
+zu verstehen und mit Hilfe dieser Fähigkeiten dann sinnvolle und passende Antworten zu generieren.
+Anwendungen die \ac*{nlp} nutzen sind vielfältig, Systeme wie Chatbots und Übersetzungssoftware
 implementieren auch NLP Verfahren.\cite{WhatNLPNatural2021}\par
 
 Da Sprache oft kontextabhängig ist und manche Sprachen, wie Japanisch 
@@ -264,16 +252,16 @@ genauer erklärt.\cite{WhatNLPNatural2021}\par
 NLP stellt eine wichtige Schlüsselstelle in der Human-Computer Interaction 
 oder zu deutsch Mensch-Computer-Interaktion dar. Sie hilft nicht nur dabei
 menschliche Kommunikation mit Computern einfacher und schneller zu machen,
-sondern gibt auch Menschen, die beispielweise aufgrund von körperlichen 
+sondern gibt auch Menschen, die aufgrund von körperlichen 
 Problemen ein Handy nicht ohne Probleme bedienen können, die Möglichkeit 
 mit diesen Geräten zu interagieren\cite{WhatNLPNatural2021}. 
 
 
 \subsection{Neuronale Netzwerke}
 \label{s:intro:nn}
-Neuronale Netze sind ein Teil des Maschinellen Lernens, welche versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
+Neuronale Netze sind ein Teil des Machine Learnings, welcher versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
 Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese ``Neuronen''
-sind stark miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der Abbildung 2.1 dargestellt.\par
+sind miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der \ref*{nn} dargestellt.\par
 
 Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
 keine Verbindung miteinander haben. Wenn die Gewichtung positiv ist, dann hat es eine bestärkende Wirkung und, falls die Gewichtung negativ
@@ -298,61 +286,59 @@ Typische Aktivierungsfunktionen sind
     \caption{Neuron eines Neuronalen Netzwerks}
 \end{figure}
 \fi
-Die zwei Schichten die es immer gibt sind die Eingabe Schicht und die Ausgabe Schicht. Dazwischen kann es verstecke Schicht geben, die benötigt werden um 
-komplexere Zusammenhänge zu bearbeiten, muss es aber nicht.
+\iffalse Die zwei Schichten die es immer gibt sind die Eingabe Schicht und die Ausgabe Schicht. Dazwischen kann es verstecke Schicht geben, die benötigt werden um 
+komplexere Zusammenhänge zu bearbeiten, muss es aber nicht. 
 Die Eingabe Schicht erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Schicht. 
 Als nächstes werden die Daten weiter an eine verborgene Schicht gegeben, die die Werte dann bearbeitet. 
 Es gibt X verschieden verborgene Schicht in einem Neuronalen Netzwerk. Die Anzahl der Reihen und die Anzahl 
 der Neuronen pro verborgener Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
-die für alle Fälle passt. Stattdessen kommen hierbei Erfahrung und Experimentation ins Spiel \cite*{heatonIntroductionNeuralNetworks2008}.\par 
-Es kann sogar sein, dass gar keine versteckte Reihen notwendig sind, wenn das Model linear seperierbar ist. 
-Das liegt daran, dass ein Modell ohne versteckte Schichten bereits in der Lage ist diese Grenze zu erlernen 
-und die Daten dann korrekt zu klassifizieren.\par
+die für alle Fälle passt. Stattdessen wird hier auf Experimente und Erfahrung gesetzt \cite*[129]{heatonIntroductionNeuralNetworks2008}.\par 
 Die Anzahl der Neuronen schwankt zwischen verschiedenen Neuronalen Netzen und auch innerhalb eines Neuronalen Netzes schwankt 
-die Anzahl der Neuronen zwischen den verschiedenen Schichten.
+die Anzahl der Neuronen zwischen den verschiedenen Schichten. \fi
 Bei der Eingabe Schicht kommt es auf die Trainingsdaten an, diese legen die Anzahl der Neuronen fest. 
 Um genau zu sein, kommt es auf die Anzahl der Features an, die die Trainingsdaten beinhalten. Bei einem 
 Neuronalen Netz, welches mit Daten aus einer normalen Tabelle trainiert wird, ist das beispielsweise die Anzahl
 der Spalten, bei einem bei einem Neuronalen Netz, welches mit Bildern trainiert werden soll, könnten das die 
-einzelnen Pixel des jeweiligen Bildes sein.\par
-\cite{krishnanHowDetermineNumber2022}
+einzelnen Pixel des jeweiligen Bildes sein \cite{krishnanHowDetermineNumber2022}.\par
 Die Anzahl der Neuronen in der Ausgabe Schicht kommt darauf an, welche Art von Modell man betrachtet.
-Es wird hier vor allem zwischen zwei verschiedenen Arten unterschieden. Die zwei Arten die es gibt sind 
-Regressoren und Klassifikatoren.\par 
-Es gibt zwei Arten von Regressoren. Einfache Regression, welche einen Wert als Ausgabe hat, der zwischen 0 und 1 liegt. Der Wert den
-das Modell berechnet ist ein Wert zwischen 0 und 1. Aber die Ausgabe des Neuronalen Netzes ist entweder
-eins oder null. Hierbei gibt es einen Schwellenwert, der, wenn er überschritten wird, die Ausgabe des Modells 
-auf eins bringt und, wenn dieser Wert nicht überschritten wird, ist die Ausgabe null. Ein Regressor 
-klassifiziert die Daten in eine von zwei Gruppen, wenn der Wert null ist, gehört die Eingabe in eine Gruppe
-und bei eins in die jeweils andere.\par \par
+Die zwei Arten die hier besprochen werden sind
+Regressoren und Klassifikatoren \cite{krishnanHowDetermineNumber2022}.\par 
+Es gibt zwei Arten von Regressoren. Regressoren sagen für einen Eingabewert einen kontinuierlichen
+Ausgabewert hervor \cite[S. 100]{Goodfellow-et-al-2016}. \par \par
 Beispiele hierfür sind: 
 \begin{itemize}
     \item Gesichtserkennung
     \item Stimmerkennung
     \item Spamfilter in emails
 \end{itemize}
-Die Klassifikatoren haben ein oder auch mehrere Ausgabe Neuronen. Die Anzahl der Neuronen kommt auf die Anzahl der möglichen Klassen an \ref*{osheaIntroductionConvolutionalNeural2015}.
+Klassifikatoren sind dafür zuständig die Eingabe einer bestimmten Klasse zuzuordnen \cite[S. 101]{Goodfellow-et-al-2016}. Die Anzahl der Neuronen kommt auf die Anzahl der möglichen Klassen an \ref*{osheaIntroductionConvolutionalNeural2015}.
 Beispielsweise könnte man ein System betrachten, welches lernen soll, welche Art von Fahrzeug auf einem Bild dargestellt ist. 
-In der Abbildung 2.2 ist ein simpler Decision Tree dargestellt. Anhand dieser kann man sehen, welche Optionen es als Asugaben gibt. 
+In der \ref*{dt} ist ein simpler Decision Tree dargestellt. Anhand dieser kann man sehen, welche Optionen es als Ausgaben gibt. 
 In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögliche Ausgaben gibt. \par
 
 %vmtl raus nehmen is kinda dogshit
 \iffalse
 \begin{figure}[t]
     \centering
+    \label{dt}
     \includegraphics[width=\linewidth]{\figdir/decision-tree}
-    \caption{Neuronale Netz}
+    \caption{Decision Tree}
 \end{figure}
 
 %hier definitiv neues bild machen das kleiner und besser ist 
 \begin{figure}[t]
     \centering
+    \label{nn}
     \includegraphics[width=\linewidth]{\figdir/nn}
     \caption{Neuronale Netz}
 \end{figure}
 \fi
 
 \subsection{RNN}
+Bevor auf die Transformer Architektur eingegangen werden kann, ist es wichtig, die 
+vorangegangenen Architekturen zu verstehen. Dies ist wichtig, um zu verstehen, 
+wie es zu den heutigen Architekturen gekommen ist und um zu erkennen, welche
+Vorteile diese bieten. \par
 Bei der Weiterentwicklung von Neuronalen Netzen wurden Recurrent Neural Networks 
 entwickelt. Bei diesen werden als Eingabe Sequenzen benutzt, die aufgeteilt werden.
 Die einzelnen Teile werden dem Neuronalen Netz als Eingabe gegeben und während der 
@@ -379,21 +365,16 @@ RNNs mit LSTM einen längeren Kontext sinnvoll verarbeiten als alleinstehende RN
 
 \subsection{Encoder-Decoder Architektur}
 \label{s:intro:edar}
-Bevor auf die Transformer Architektur eingegangen werden kann, ist es wichtig, die 
-vorangegangenen Architekturen zu verstehen. Dies ist wichtig, um zu verstehen, 
-wie es zu den heutigen Architekturen gekommen ist und um zu erkennen, welche
-Vorteile diese bieten. 
 %erklaeren wieso das erklaert werden muss
 Diese Technologien haben sich damals vorallem im Kontext des Sequence-to-Sequence Learnings weiterentwickelt. 
 Sequence-to-Sequence Learning oder kurz Seq2Seq Learning, bringt eine Sequenz variabler Länge in eine andere
 Sequenz variabler Länge.\cite{sutskeverSequenceSequenceLearning2014} Beispiele hierfür wären Text Zusammenfassungen und Übersetzungen. Die Architektur aus der sich
-der Transformer, der in dem Abschnitt \ref{s:intro:llm:trans} behandelt wird, der in den LLMs heutzutage 
-verwendet wird, entwickelt hat, ist die Encoder - Decoder Architektur.\par
+der Transformer, der in dem Abschnitt \ref{s:intro:llm:trans} behandelt wird, entwickelt hat, ist die Encoder - Decoder Architektur.\par
 
 Die Encoder-Decoder Architektur besteht aus zwei Rekurrenten Neuralen Netzen. Wie ein Neurales Netz funktioniert wurde bereits im 
 Abschnitt \ref*{s:intro:nn} behandelt. Das besondere an einem Rekurrenten Neuralen Netz ist, dass dieses die vorherigen Aktivierungen 
 der einzelnen Neuronen mit berücksichtigt. Dadurch, dass die vorangeganen Aktivierungen ebenfalls beachtet werden, können Kontexte 
-erkannt werden und Sätze können sinnvoll übersetzt werden.\par
+erkannt werden und Sätze können sinnvoll übersetzt werden \cite{sutskeverSequenceSequenceLearning2014, bahdanauNeuralMachineTranslation2016}.\par
 Hierbei erhählt der Encoder eine Eingabe Sequenz, welche dann Kontext Vektoren erstellt, welcher vom Decoder in eine Ausgabe Sequez
 umgewandelt wird. Das revolutionäre an dieser Technologie war damals, dass 
 die Eingbae und Ausgabesequenzen variable Längen haben konnten. Der Kontext Vektor
@@ -420,27 +401,25 @@ den Trainingsdaten, kann es hier zu Problemen kommen.
 Die Idee auf die die Transformer aufbauen ist die des Attention Mechanism, welcher 2014 in der Arbeit ``Neural Machine Translation by Jointly Learning
 to Align and Translate'' von Bahdanau et al. vorgestellt wurde.
 Zu Beginn wurde der Mechanismus genutzt um die in \ref*{s:intro:edar} beschriebene Encode-Decoder Architektur zu verbessern,
-indem es vorallem auf das Problem der festen Vektorgröße des Kontextfensters eingeht.\par
+indem es vorallem auf das Problem der festen Vektorgröße des Kontextfensters eingeht \cite{bahdanauNeuralMachineTranslation2016}.\par
 Die Grundidee hierbei ist, dass jedes mal, wenn das System ein Wort übersetzt, es im zu übersetzenden Satz an 
 den Stellen an denen sich die relevantesten Informationen sucht und mithilfe der Kontextvektoren der Wörter an 
-diesen Stellen und der Kontextvektoren der Wörter die bereits übersetzt wurden, wird das nächste Wort generiert.\par
+diesen Stellen und der Kontextvektoren der Wörter die bereits übersetzt wurden, wird das nächste Wort generiert \cite{bahdanauNeuralMachineTranslation2016}.\par
 Der größte Unterschied zu originalen Encoder-Decoder Architektur ist dadurch, dass diese neue Architektur nicht
 versucht die gesamte Eingabesequenz in einen Kontextvektor umzuwandeln, sondern die Eingabesequenz in eine Sequenz
-von Vektoren umzuwandelt. Dadurch können die Modelle besser mit längeren Sätzen umgehen.\par
+von Vektoren umzuwandelt. Dadurch können die Modelle besser mit längeren Sätzen umgehen \cite{bahdanauNeuralMachineTranslation2016}.\par
 
-
-\cite{bahdanauNeuralMachineTranslation2016}
 \section{LLMs}
 \label{s:intro:llm}
 Large Language Models sind eine Art der künstlichen Intelligenz, welche mithilfe probalistischer Methoden Text generiert. 
-Im Grunde sind diese LLMs Text Vervollständigungsgeneratoren. Heutzutage basieren Chatbots auf sogenannten Large Language 
-Models. LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, 
+ Heutzutage basieren Chatbots auf sogenannten Large Language 
+Models.\par \iffalse LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, 
 welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet,damit man dieses Neural Network ausführen kann.
 Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abhängigkeiten. Der größere und aufwändigere Part sind 
 die Gewichte. Die Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur 
 basiert, welche 2017 im Paper "All you need is attention" vorgestellt wurde. Der genaue Stack den bspw. OpenAI heutzutage benutzt 
 ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Architektur basiert. 
-\iffalse
+
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -459,17 +438,21 @@ ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Ar
     \caption{LLM Google Trends}
     \label{fig:trend_llm}
 \end{figure}
-\fi
-Wir sehen anhand der \ref{fig:trend_llm}, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse
-an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. 
-Die Daten von Google Trends sind normalisiert zwischen 0 und 100 also können wird dadurch zwar keine genauen Angaben machen, wir sehen aber, dass das
-Wachstum stetig am steigen ist.\par
+
+Wir sehen anhand \ref{fig:trend_llm}, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse
+an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. \par
 Im Grunde sind die LLMs die hinter Chatbots wie ChatGPT von OpenAI und LeChat von MistralAI sogenannte GPTs. Wenn man den Begriff aufteilt sieht man
 was dahinter steckt. GPT steht für Generative pretrained Transformer. Generative steht für die Art und Weise
 auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM vor ihrer Nutzung auf einer Datenmenge trainiert wurde und Transformer
-steht hier für die Transformer Architektur.
+steht hier für die Transformer Architektur.\fi
+Diese Large Language Models sind Machine Learning Modelle, die auf der Transformer Architektur (siehe \ref*{s:intro:trans}) aufbauen. 
+Die Modelle werden mit einer sehr großen Menge an Daten trainiert und lernen anhand dieser ihre jeweilige Aufgabe.
+LLMs haben in verschiedenen Anwendungsgebieten einen nutzen. Heutzutage sind ein paar der bekanntesten Vertretetr 
+Chatbots und Bildgeneratoren, wie Midjourney.
+\cite{WhatLargeLanguage}.
 
 \subsection{Transformer}
+\label{s:intro:trans}
 \iffalse
 \begin{figure}[t]
 \centering
@@ -480,18 +463,18 @@ steht hier für die Transformer Architektur.
 Die Transformer Architektur wurde 2017 von Vaswani et al im Paper "Attention is all you need"
 vorgestellt. Vor dieser Architektur waren die besten Modelle Encoder-Decoder Architekturen (siehe \ref{s:intro:edar}), 
 die mit dem Attention Mechanismus (siehe \ref{s:intro:att}) ergänzt wurden und
- die auf Rekurrenten oder Convolutional Neuronalen Netzen
-aufgebaut haben. \par
+ die auf Recurrent oder Convolutional Neuronalen Netzen
+aufgebaut waren. \par
 Der Originale Transformer, der von Vaswani et al vorgestellt wurde, bestand ebenfalls aus einem 
 Encoder und einem Decoder. Jedoch wurden keine Recurrent oder Convolutional Neuronalen Netze mehr 
 genutzt. 
 Die großen Neuheiten in dieser Architektur war das Konzept der Self-Attention, Parallelisierbarkeit, 
-"Multi-Head Attention" und das weg lassen der recurrent oder Convolutional neuronalen
+"Multi-Head Attention" und das weg lassen der recurrent oder Convolutional Neuronalen
 Netzen. \cite{vaswaniAttentionAllYou2023}
 
 \subsubsection{Self-Attention}
 Während beim ursprünglichen Attention Mechanismus (siehe \ref*{s:intro:att}) Beziehungen 
-zwischen dem Encoder und dem Decoder modelliert, ermöglicht Self-Attention es dem Modell, 
+zwischen dem Encoder und dem Decoder modelliert wurden, ermöglicht Self-Attention es dem Modell, 
  Beziehungen innerhalb einer einzelnen Sequenz zu erfassen. \par
 Dies wird erreicht indem jedes Element einer Sequenz mit allen andere Elementen in Beziehung 
 gesetzt wird. Dies hilft dabei den Kontext zu bestimmen. \par
@@ -532,11 +515,12 @@ Dies gibt uns den Attention Vektor für jeden Token.\cite{vaswaniAttentionAllYou
 
 \subsubsection{Multi-Head Attention}
 Multi-Head Attention wurde ebenfalls mit dem Self-Attention Mechanismus
-in die Transformer Architektur eingeführt. 
-Multi-Head Attention wurde eingeführt, damit das Model 
+in der Transformer Architektur eingeführt. Durch diesen 
+soll dem Transformer die Fähigkeit gegeben werden sich auf 
+verschiedene Positionen zu konzentrieren, statt nur auf eine \cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}.
 \par
 Dieser Mechanismus funktioniert so, dass man statt nur einem Attention
-Head in der Attention Layer mehrere Attention Heads in dieser sind. 
+Head in der Attention Layer mehrere Attention Heads hat. 
 Im originalen Transformer wird mit 8 Attention Heads gearbeitet. 
 jeder dieser Heads führt den Self-Attention Mechanismus aus, aber jeder 
 hat unterschiedliche Gewichts Matrizen 
@@ -546,27 +530,56 @@ hat unterschiedliche Gewichts Matrizen
 Jeder der Heads führt seine Berechnung mit unterschiedlichen 
 Matrizen durch, was dazu führt, dass verschiedene Heads verschiedene 
 Werte auf unterschiedliche Teile des Satzes legen können. Durch diesen 
-Mechanismus kann es zu einem besseren Verständnis für Nuancen kommen.\par
+Mechanismus kann es zu einem besseren Verständnis für Nuancen kommen \cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}.\par
 
 Die finalen Attention Matrix $z$, die dem jeweiligen Token zugeschrieben 
 wird, wird über eine weitere Matrix berechnet. Hierfür werden die 
 Ergebnisse der Attention Heads $head_1, head_2, ..., head_n$ aneinander 
-konkateniert und im Anschluss mit der Gewichts Matrix $W_0$ multipliziert.
+konkateniert und im Anschluss mit der Gewichts Matrix $W_0$ multipliziert \cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}.
 
 \[z = Concat(head_1, head_2, ..., head_n)W_0\]
 
-%TODO Dimension hinzufügen, falls ich raus finde, welche es sind
+\subsubsection{Sliding-Window Attention}
+Sliding Window Attention ist eine Weiterentwicklung der Self-Attention.
+Hierbei werden nicht alle anderen Position betrachtet, sondern nur 
+eine bestimmte Menge an Positionen, die um den aktuellen Token liegen.
+Dies hat den Vorteil, dass durch weniger beachtete Positionen 
+die benötigte Rechenleistung und Zeit, die benötigt wird sinkt.
+Dieser Ansatz ist zwar in der Lage in vielen Fällen, die notwendigen 
+Kontexte erkennen, aber dies ist nicht in allen Fällen sicher. Dennoch
+ist dies durch die Vorteile ein Ansatz, der von einigen Unternehmen 
+für ihre LLMs genutzt wird.
+\cite{beltagyLongformerLongDocumentTransformer2020, gemmateamGemmaImprovingOpen2024}
+
+\subsubsection{Multi-Query Attention}
+Multi-Query Attention ist eine Weiterentwicklung der Multi-Head Attention.
+Dieser Mechanismus funktioniert ähnlich wie Multi-Head Attention, hierbei 
+werden in dieser Variante jedoch die Key und Value Matrizen unter den 
+verschiedenen Heads geteilt. Dadurch müssen diese großen Matrizen nicht
+öfter geladen werden und es wird an Speicher und an Zeit gespart. 
+Dies sorgt vorallem für eine schnellere Inference.
+Hier gibt es auch nur eine kleine Verringerung der Qualität \cite{shazeerFastTransformerDecoding2019}.
+
+\subsubsection{Grouped-Query Attention}
+Die Grouped-Query Attention ist eine weitere Variante der Multi-Head 
+Attention. Diese ist eine Variante, die von der Multi-Query Attention
+abstammt und zwischen Multi-Head Attention und Multi-Query 
+Attention liegt. Hier wird ebenfalls die Anzahl der Key-Value Heads verändert. 
+In dieser Version gibt es davon mehr als eine und weniger als die Anzahl der 
+Query Heads.
+Inference funktioniert hierbei schneller als bei der Multi-Head Attention
+und es geht weniger Qualität verloren als bei Multi-Query Attention \cite{ainslieGQATrainingGeneralized2023}.
 
 \subsection{Tokenizer}
 \label{s:intro:llm:token}
 Tokenizer sind ein wichtiger Part der Machine Learning Toolchain 
 im Zusammenhang mit dem Lernen von menschlicher Sprache.
 Wenn man im Bereich des Natural Language Processing ein Machine 
-Learning trainieren möchte stellt sich die Frage, wie man Texte
+Learning Modell trainieren möchte stellt sich die Frage, wie man Texte
 aufteilen kann, damit das Modell, welches trainiert wird diese 
 verarbeiten kann.\par
 Die Tokenizer teilen die Texte so auf, dass das zu trainierende
-Modell komplexe Sätze besser aufteilen und verstehen kann. 
+Modell komplexe Sätze besser verarbeiten kann. 
 Der Tokenizer macht das, indem er den Text in sogenannte
 Tokens aufteilt. Ein Token kann ein ganzes Wort, ein Teil eines
 Worts oder ein Satzzeichen sein.\par
@@ -575,49 +588,41 @@ Trainingsdaten einen großen Einfluss darauf hat, wie gut die
 \ac{llm} funktioniert. Genau wie bei Compilern, die Programme in
 Tokens aufteilen, benutzen wir bei \ac{llm} Tokenizer, damit wir
 die Texte aufteilen können und die dabei entstandenen Tokens über 
-verschiedene grammatikalische Regeln zusammensetzen können.\par
+verschiedene grammatikalische Regeln zusammensetzen können \cite{perryWhatTokenizationNatural202}.\par
 Eines der größten Probleme hierbei ist, dass verschiedene Sprachen verschiedene
 grammatikalische Regeln haben und somit verschiedene Arten des 
 Zerlegens oder Zusammensetzens brauchen. 
 Ein weiteres Problem ist, dass das selbe Wort teils verschiedene Bedeutungen haben
 kann. Hierbei ist der Kontext wichtig und die Anzahl der Tokens, die das 
 Modell erkennen kann. Man könnte hierbei alle möglichen Token aufnehmen, 
-was aber dafür sorgen kann, dass das System overfitted beim Training.
+was aber dafür sorgen kann, dass das System overfitted.
 Dazu kommt, dass das die notwendigen Kosten zum Trainieren und für die Inference 
 des Systems erhöhen würde \cite{perryWhatTokenizationNatural2021, Llama2RunMaster}.
 
-\iffalse
-\section{Training}
+\subsection{Training}
 \label{s:intro:llm:train}
-Bevor betrachtet wird wie ein \ac*{llm} trainiert wird, wird ein grober 
-Überblick über das Trainieren eines neuronalen Netzes betrachtet.\par
-Wenn ein neuronales Netz trainiert wird, wird ein Datensatz benötigt.
-Dieser Datensatz ist beschriftet, was bedeutet die Ausgabe und die 
-Eingabe wird dem Modell gegeben. Das Modell benutzt  
+Das Training einer LLM hat zwei Schritte. Der erste Schritt 
+ist das Pretraining, bei dem die LLM generell trainiert wird. 
+Der zweite Schritt ist das Finetuning indem das vortrainierte 
+Modell aus Schritt eins mit einem weiteren Datensatz trainiert 
+wird und dadurch speziellere Kompetenzen erreicht, wie bessere 
+Kenntnisse über eine bestimmte Domäne \cite{dasFineTuneLarge2024, craigPretrainingLasso2024}.
 
-Der erste Schritt um ein \ac{llm} zu erstellen ist es diese zu trainieren. 
-Die \ac{llm} trainieren heißt in diesem Fall die LLM mit Daten zu trainieren.
-Dafür werden viele verschiedene Daten gesammelt und die LLM wird dann 
-mit Hilfe dieser Daten trainiert.\par
-Das \ac{llm} teilt in diesem Prozess die Daten die sie erhalten hat mit Hilfe eines
-Tokenizers in verschieden Tokens ab und lernt in diesem Zusammenhang, den 
-Aufbau menschlicher Sprache in der jeweiligen Sprache, die zum trainieren 
-verwendet wird. \par
-\fi
-\subsection{Pretraining}
+
+\subsubsection{Pretraining}
 Das Pretraining einer LLM setzt die Grundlage für die LLM.
 Für das Pretraining einer LLM werden sehr viele Daten benötigt 
 und diese sollten eine hohe Qualität haben. Bessere Qualität 
 dieser Daten, hilft der LLM später bessere Ausgaben zu generieren.
 Daher ist es wichtig eine gute Datenpipeline für die Trainingsdaten
-vorzubereiten, welche die Datenqualität sicherstellen.\par
+vorzubereiten, welche die Datenqualität sicherstellen. \cite{craigPretrainingLasso2024,IntroducingMetaLlama}\par
 Um ein etwas besseres Bild davon zu haben, wie viele Daten benötigt werden, 
  wird Llama3 von Meta 
-betrachtet. Llama3 wurde mit 15 Billionen Tokens trainiert. \par
+betrachtet. Llama3 wurde mit 15 Billionen Token trainiert \cite{IntroducingMetaLlama}. \par
 Um einen Vergleich zu haben, wird der fineweb Datensatz, welcher 
 auf Huggingface zur Verfügung steht, betrachtet. 
 Dieser Datensatz hat ebenfalls 15T Token und hat eine Speichergröße
-von 47.6TB. \par
+von 47.6TB \cite{HuggingFaceFWFinewebDatasets2024}. \par
 Für das Pretraining werden Daten aus den Bereichen benötigt, in denen 
 die LLM später Dinge generieren soll. Ebenfalls die Sprache der Daten
 ist wichtig. Das Verhältnis der Menge der 
@@ -635,19 +640,19 @@ ist der Zusammenschluss von OpenAI und Stackoverflow, wobei OpenAI hofft, dadurc
 ein Model mit besseren Coding Kompetenzen zu erhalten und Stackoverflow
 hofft, dass ihre Nutzer dadurch mehr mit Inhalt auf der Seite interagieren \cite{StackOverflowOpenAI}. 
 
-\subsection{Finetuning}
+\subsubsection{Finetuning}
 Beim Finetuning einer LLM wird auf dem vortrainierten Model aufgebaut und 
 das Model wird mit einem kleineren spezifischeren Datensatz weiter trainiert. 
 Dieser Schritt ist rechnerisch weniger aufwändig als das vortrainieren und 
 ist daher für mehr Unternehmen und Instiutionen zugänglich. Hinzu kommt, dass
-dieser Schritt weniger zeitaufwändig ist.\par
+dieser Schritt weniger zeitaufwändig ist \cite{dasFineTuneLarge2024}.\par
 Um einen Vergleich für den Aufwand zu haben wird "DiscoResearch/Llama3-German-8B"
 auf Huggingface betrachtet. Das Model, welches 1.3 Millionen GPU Stunden für das 
 Pretraining gekostet hat, wird jetzt gefinetuned. DiscoResearch hat hierfür Zugriff 
 auf den Supercomputer 42 von hessian.Ai bekommen. Das Model wurde von 128 GPUs innerhalb 
 von ca 60 Stunden über 65 Milliarden Tokens gefinetuned. Dies heißt, es hat ca 7680 GPU Stunden
 gekostet. Dieser Vergleich zeigt, dass dieser Schritt weniger aufwändig ist 
-als das Pretraining.\par
+als das Pretraining \cite{DiscoResearchLlama3German8BHugging2024}.\par
 Teilweise wird Finetuning verwendet um sogenannte Instruct Modelle zu erstellen.
 Diese Instruct Modelle sind Versionen des Standard Models, die darauf finetuned 
 wurden, Instruktion zu befolgen. Bei einem Model, wie Llama3 von Meta, ist die 
@@ -674,9 +679,9 @@ oder man kann die Modelle lokal ausführen. \par
 Wenn man eine der APIs nutzt um ein Model zu nutzen, dann kann man Anfragen an die API schicken und das Ausführen des Models 
 wird von den Betreibern der API übernommen.\par
 Die andere Option, das Model lokal auszuführen, kann über verschiedene Methoden passieren. Eine Option ist es einen Service
-wie Ollama (siehe \ref{s:intro:oll}) \cite{OllamaOllama2024} oder LM Studio nutzen \cite{LMStudioDiscover}, worüber 
+wie Ollama (siehe \ref{s:intro:oll}) oder LM Studio nutzen \cite{LMStudioDiscover}, worüber 
 man die Modelle downloaden und ausführen kann. Mit Ollama kann man das Model über die CLI ausführen und mit ihr kommunizieren
-und über LM Studio kann man das mittels der GUI machen. Beide Projekte basieren auf llama.cpp (\ref{s:intro:llama}).\par
+und über LM Studio kann man das mittels einer GUI machen. Beide Projekte basieren auf llama.cpp (siehe \ref{s:intro:llama}).\par
 Eine andere Option, das Model lokal auszuführen, ist es die Gewichte der Modelle zu downloaden und diese mittels 
 Code auszuführen. Hierfür kann man die Modelle teils direkt bei den Unternehmen downloaden wie bei Llama von Meta,
 aber eine andere Website auf der viele Modelle veröffentlicht werden, auf der man auch Vergleiche zwischen 
@@ -685,13 +690,11 @@ Andrej Karpathy \cite{KarpathyAndrej} hat gezeigt, dass man mit einen 15 Million
 unter 1000 Zeilen Inferenz betreiben kann \cite{Llama2RunMaster}. Modelle die heute veröffentlicht werden haben aber weit über 15 Millionen Parameter 
 und daher ist die Inferenz mit so einem simplen Programm nicht sehr effektiv. Das Llama2 Model mit 7 Milliarden Parametern generiert auf einem M1 
 Macbook Air einen Token pro 30 Sekunden. Die Modelle in einer Milliarden Größe, brauchen aufgrund ihrer
-Größe ein paar Optimierungen.\cite{Llama2RunMaster} \par 
+Größe ein paar Optimierungen \cite{Llama2RunMaster}. \par 
 Eine Möglichkeit Modelle schneller zu machen ist es sie zu quantisieren, dieser Prozess wird in \ref{s:intro:llama} genauer 
 erklärt.\par
 Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Frameworks zu verwenden.
 Drei dieser Frameworks werden in \ref*{s:intro:frame} vorgestellt und erklärt.\par
-
-
 
 \subsubsection{Generation}
 Die Generation der LLMs kommt auf ihre Trainingsdaten an. Genau wie beim Training arbeiten die LLMs 
@@ -715,11 +718,11 @@ die schon seit einige LLM Generationen bekannt sind.\par
 Ein Problem, welches LLMs haben ist, dass die Informationen, die LLMs
 haben, teils veraltet ist. Dies ist darauf zurückzuführen, dass die LLMs 
 zwar mit sehr vielen Datensätzen trainiert werden, welche aber 
-zeitlich begrenzt sind. Der Trainingsprozess ist zeit- und ressourcenintensiv,
+zeitlich, bis zum Zeitpunkt des Trainings, begrenzt sind. Der Trainingsprozess ist zeit- und ressourcenintensiv,
 während dem Training und dem Finetuning des Modells entsteht eine Lücke zwischen 
-dem Wissensstand des Modells und der realen Welt. Um diese Problem zu bekämpfen 
+dem Wissensstand des Modells und der realen Welt. Um dieses Problem zu lösen 
 gibt es Ansätze, wie RAG, welches in \ref*{s:intro:rag} näher erklärt wird.\par
-Ein weiteres Problem, ist die feste Kontextfenster der LLMs. Dies führt je nach 
+Ein weiteres Problem, ist die feste Größe des Kontextfensters der LLMs. Dies führt je nach 
 Aufgabe dazu, dass Kontexte nicht beachtet werden oder Informationen, die zu weit 
 zurück liegen, nicht beachten werden können \ref*{wangLimitsSurveyTechniques2024}. \par
 Obwohl LLMs mit sehr vielen Datensätzen trainiert werden, ist ein Problem, dass 
@@ -746,13 +749,13 @@ Es gibt verschiedene Methoden, die mit der Zeit gefunden wurden um die Ausgaben
 des Systems zu verbessern. 
 Aufgrund dessen hat sich im Bereich der LLMs eine neue Disziplin namens Prompt Engineering 
 gebildet. Innerhalb dieser geht es darum, Prompts so zu optimieren, dass das LLM System genau 
-das macht was der Nutzer will.\par
+das macht was der Nutzer will \cite{amatriainPromptDesignEngineering2024}.\par
 Egal wie gut eine Prompt ist, manchmal kann eine LLM Applikation die gewollte Ausgabe nicht
 ausgeben. Dies kann verschiedene Gründe haben, wie zum Beispiel fehlende Informationen, die 
 Informationen können fehlen, weil sie nicht mit in den Trainingsdatensatz der LLM aufgenommen 
 wurden, obwohl es sie schon gab, aber es könnte auch sein, dass die Informationen erst veröffentlicht wurden, 
 nachdem die LLM zu Ende trainiert wurde. Aufgrund dessen ist es wichtig, die Limitationen der
-LLM, die verwendet wird, zu kennen.\par
+LLM, die verwendet wird, zu kennen \cite{amatriainPromptDesignEngineering2024}.\par
 Es gibt zwar keinen eindeutigen Weg gute Prompts zu generieren, aber es gibt ein paar
 Best Practices, welche generell anerkannt sind. 
 Im Prompt nur die Aufgaben mitteilen nennt sich Zero-Shot Prompting.
@@ -764,7 +767,7 @@ heißt few-shot prompting. Die Qualität der gewollten Ausgaben lässt sich teil
 von One-Shot oder Few-Shot Prompts statt Zero-Shot Prompts verbessern.
 Jedoch hat der Input Kontext eine begrenzte Größe und umso größer 
 der Input ist, umso größer ist der computational(was heißt das auf deutsch?) Aufwand,
-daher ist das eine begrenzte Lösung, die nicht alle Probleme beseitigen kann.
+daher ist das eine begrenzte Lösung, die nicht alle Probleme beseitigen kann \cite{amatriainPromptDesignEngineering2024}.
 Ein paar der davon sind: 
 \begin{itemize}
     \item Anweisungen an den Anfang oder das Ende des Prompts stellen.

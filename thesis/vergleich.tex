@@ -1,3 +1,5 @@
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{Vergleich}
 \label{vergleich}
 
@@ -102,8 +104,8 @@ Mit diesem Testset kann man nun die Chain bewerten.
 
 \subsection{Evaluation}
 \label{metrics}
-Nachdem das Testset generiert wurde kann es zum bewerten
-übergehen. Für die Bewertung gibt es acht verschiedene Metriken, die man 
+Nachdem das Testset generiert wurde kann mit der Bewertung begonnen werden. 
+Für die Bewertung gibt es acht verschiedene Metriken, die man 
 betrachten kann. Hiermit kann man die verschiedenen Teile der Rag-Pipeline bewerten.
 Im Folgenden werden die acht Metriken die zu Verfügung stehen betrachtet.
 Standardmäßig verwendet die \verb|evaluate| Funktion die OpenAI API, 
@@ -165,7 +167,7 @@ sind aber nicht in der \verb|ground_truth| enthalten sind.
 FN sind falsch negative Fakten. Fakten die in der 
 \verb|ground_truth| enthalten sind, aber nicht in der \verb|answer|.
 
-\subsubsection{Context recall}
+\iffalse \subsubsection{Context recall}
 Die Metrik ''Context recall`` oder zu Deutsch ''Kontext Rückruf`` beurteilt, 
 wie gut die abgerufenen RAG Dokumente mit der \verb|ground_truth| übereinstimen.
 Der Wert kann zwischen 0 und 1 liegen. Hierfür werden die einzelnen 
@@ -199,7 +201,7 @@ Für diesen Wert werden die einzelnen Objekte in \verb|contexts| und in
 
 Die Formel hierfür ist: 
 \[\text{context entity recall} = \frac{|\mathbf{CE}\cap\mathbf{GE}|}{|\mathbf{GE}|}\]
-
+\fi
 
 \subsection{Ergebnisse}
 \label{s:bew}

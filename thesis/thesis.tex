@@ -57,10 +57,6 @@
 \usepackage{minted}
 \usepackage{algorithm}
 \usepackage{algorithmic}
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd{\scr@startchapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
-\makeatother
 %\usepackage{multirow}
 % Ende eigene Packages
 
@@ -134,8 +130,8 @@
 
 \mainmatter
 
-\include{Einführung}
-\include{Grundlage}
+\input{Einführung}
+\input{Grundlage}
 \include{Anforderungen}
 \include{Konzeption}
 \include{Entwicklung}

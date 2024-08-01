@@ -39,7 +39,8 @@
  %---------------------------------------------------------------------
 
 ENTRY
-  { address
+  { 
+    address
     author
     booktitle
     chapter
@@ -60,6 +61,7 @@ ENTRY
     series
     title
     type
+    urldate 
     volume
     year
   }
@@ -369,6 +371,13 @@ INTEGERS { nameptr namesleft numnames }
 
 
 STRINGS  { bibinfo}
+
+FUNCTION {format.urldate}
+{ urldate empty$
+    { "" }
+    { "(besucht am " urldate "urldate" bibinfo.check * ")" * }
+  if$
+}
 
 FUNCTION {format.names}
 { 'bibinfo :=
@@ -874,6 +883,7 @@ FUNCTION {article}
     }
   if$
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -906,6 +916,7 @@ FUNCTION {book}
   format.edition output
   format.date "year" output.check
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -919,6 +930,7 @@ FUNCTION {booklet}
   address "address" bibinfo.check output
   format.date output
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -955,6 +967,7 @@ FUNCTION {inbook}
   format.edition output
   format.date "year" output.check
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -980,6 +993,7 @@ FUNCTION {incollection}
     }
   if$
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -1008,6 +1022,7 @@ FUNCTION {inproceedings}
     }
   if$
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -1044,6 +1059,7 @@ FUNCTION {manual}
   format.edition output
   format.date output
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -1060,6 +1076,7 @@ FUNCTION {mastersthesis}
   address "address" bibinfo.check output
   format.date "year" output.check
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -1073,6 +1090,7 @@ FUNCTION {misc}
   howpublished "howpublished" bibinfo.check output
   format.date output
   new.block
+  format.urldate output
   format.note output
   fin.entry
   empty.misc.check
@@ -1143,6 +1161,7 @@ FUNCTION {techreport}
   address "address" bibinfo.check output
   format.date "year" output.check
   new.block
+  format.urldate output
   format.note output
   fin.entry
 }
@@ -1154,6 +1173,7 @@ FUNCTION {unpublished}
   format.title "title" output.check
   format.date output
   new.block
+  format.urldate output
   format.note "note" output.check
   fin.entry
 }
