@@ -1,5 +1,3 @@
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
 \chapter{Grundlagen}
 \label{c:grun}
 
@@ -12,12 +10,11 @@ einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstel
 menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. \par
 Die Generation des Textes kann in drei verschiedene Kategorien untergeordnet werden: abfragebasiert, generationsbasiert und regelbasiert \cite{adamopoulouChatbotsHistoryTechnology2020}. 
 Abfragebasierte Chatbots haben eine Wissensdatenbank in der sie nach dem am besten zur Eingabe passenden Eintrag suchen.
-Beim generationsbasierten Ansatz generieren sie ihre Antworten selbst, wie ein paar dieser Modelle ihre Antworten generieren wird in 
-\ref{s:intro:gen} erklärt.
+Beim generationsbasierten Ansatz generieren sie ihre Antworten selbst.
 Regelbasierte Chatbos antworten nach vorher in ihrem Skript bestimmten Regeln. Hierbei vergleichen sie die Eingabe 
 mit ihren vorher definierten Regeln und transformieren die Eingabe, falls möglich, in eine vorher 
 definierte Satzstruktur. \cite{adamopoulouChatbotsHistoryTechnology2020}
-Im nächsten Schritt wird darauf eingegangen, wie sich Chatbots in dieser Hinsicht mit der Zeit verändert haben.\par
+Im nächsten Schritt wird darauf eingegangen, wie sich Chatbots mit der Zeit verändert haben.\par
 
 \subsection{Turing Test}
 \label{s:intro:tur}
@@ -29,7 +26,7 @@ intelligent \iffalse Es gibt Kritik am Turing Test, welche der Meinung ist, dass
 Intelligenz. Ein weiterer Kritikpunkt, den Menschen an dem Turing Test haben, ist, dass einige Menschen der Meinung sind, dass der Test eher die menschliche
 Leichtgläubigkeit testet, als die Intelligenz der Maschine. \fi \cite{lacurtsCriticismsTuringTest}.\par  
 \subsection{ELIZA}
-Die Geschichte der Chatbots beginnt in den 1960er Jahren mit dem ersten aus dem Jahr 1966. Damals waren die Chatbots regel basiert. 
+Die Geschichte der Chatbots beginnt in den 1960er Jahren, mit dem ersten aus dem Jahr 1966. Damals waren die Chatbots regel basiert. 
 Der Name des Chatbots war ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt.
 Weizenbaum hat fünf Grundprobleme aufgestellt, welche er für die Entwicklung beachten musste . 
 Die Probleme waren:
@@ -49,14 +46,14 @@ Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA Skript gegeben wurde.
 Jedes Stichwort hatte noch einen RANK, welcher die Wichtigkeit des 
 jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt
 hat. Nachdem die Stichwörter entdeckt wurden, betrachtet ELIZA die Transformations Regeln, die 
-in ihrem Skript bestimmt wurden. 
+in ihrem Skript bestimmt wurden. \par
 Die Transformations Regeln bestehen aus einer Zerlegungs und einer
 Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beide Phasen. Anhand der Syntax des Satzes wird identifiziert, 
 welche Regel für die Zerlegung in Frage kommt und anhand dieser
 wird dann die Zusammensetzung ausgemacht. 
 Dieser Zusammengesetzte Satz wird im Anschluss ausgegeben
 Im Fall, dass kein Stichwort gefunden wurde, wird entweder 
-eine inhaltslose Antwort oder eine frühere Antwort zurück gegeben.
+eine inhaltslose Antwort oder eine frühere Antwort zurück gegeben. \par
 ELIZA 
 verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und der Chatbot greift 
 Punkte aus den Eingaben des Nutzers auf, ohne großen
@@ -69,7 +66,7 @@ Der nächste Chatbot, Parry, wurde an der Stanford University entwickelt. Währe
 einen Patienten mit paranoider Schizophrenie imitiert. Dieser Bot war im Jahr 1979 Teil eines 
 Experiments, der einem Turing Test (siehe \ref*{s:intro:tur}) gleicht. Hier wurden verschieden
 Psychotherapeuten vor Bildschirme gesetzt und mussten erraten, ob die gegenüber gestellten Aussagen 
-von einem echten Schizophrenen Patienten kommen oder von einem
+von einem echten schizophrenen Patienten kommen oder von einem
 Chatbot. Teil des Experiments waren 5 Psychiater, die jeweils 2 Patienten zur Beurteilung bekommen 
 haben. 
 
@@ -91,8 +88,8 @@ Source Software veröffentlicht, hat aber nicht viele
 Mitentwickler gefunden, bis die Software im Jahre 1998 von der Programmiersprache SETL auf die 
 Programmiersprache Java gewechselt ist. Das Problem war, dass SETL
 eine eher unbekannte Sprache war. \fi Im Laufe der Jahre wurde das Projekt mehrmals mit verschiedenen 
-Preise ausgezeichnet, wie beispielsweise dem Loebner Prize, mit dem das Programm ausgezeichnet wird, welches 
-von der Jury als am menschenähnlichsten bewertet wird \ref*{LoebnerPrize}. Dieser
+Preisen ausgezeichnet, einer dieser war beim Loebner Preis. Der Loebner Preis ist ein Wettbewerb,
+bei dem eine Jury entscheidet, welches der teilnehmenden Programme am menschenähnlichsten ist \cite{LoebnerPrize}. Dieser
 Chatbot wurde von Weizenbaums ELIZA inspiriert und war selbst die Inspiration für den Film "Her", in der 
 die Beziehung zwischen Menschen und Maschinen betrachtet 
 wird \cite{moraisCanHumansFall2013}. Alice hatte eine viel größere Sammlung an Stichwörtern, auf die sie 
@@ -115,20 +112,21 @@ und verschiedenen Android Geräten mit Google Assistant. Diese Assistenten haben
 Siri und versuchen dem Nutzer zu helfen\cite{GoogleAssistantYour,GalaxyAISamsung}.\par
 SmartHome Geräte, wie Smarte Lampen und Steckdosen lassen sich mit Hilfe von diesen 
 Sprachassisten kontrollieren.\par
-Manche Sprachassistenten lassen sich über extra Geräte, die für diesen Nutzen hergestellte wurden. 
+Manche Sprachassistenten lassen sich über extra Geräte, die für diesen Nutzen hergestellte wurden bedienen. 
 Ein Beispiel hierfür ist Amazon Alexa, auf dem Echo Dot.
 Der Echo Dot ist ein kleiner Lautsprecher, welcher mit dem Internet verbunden ist. 
-Durch diesen kann man mit Alexa kommunizieren.
+Durch diesen kann man mit Alexa kommunizieren \cite{2022EchoDot}.\par
 Diese Sprachassisten werden immer weiter entwickelt und bekommen dadurch neue Funktionen, 
 mehr Sprachen oder die Fähigkeit die menschliche Sprache besser zu interpretieren. 
 
 \subsection{ChatGPT, Claude, Gemini}
-Wie in \ref*{\c:intro} bereits gezeigt, steigen aktuell die Anfragen für 
+Wie in \ref*{c:intro} bereits gezeigt, steigen aktuell die Anfragen für 
 Chatbots wie ChatGPT und Claude.
 Diese Chatbots basieren auf Large Language Models, welche in \ref{s:intro:llm}
-genauer erklärt werden. Nutzer können teils über Apps und teils über 
-die Website, des jeweiligen Services, mit diesen Bots kommunizieren.\par
-Den Chatbots werden fragen stellen, welche vom jeweiligen System beantwortet werden.
+genauer erklärt werden. Dies macht sie zu generationsbasierten Chatbots. 
+Nutzer können teils über Apps \cite{ChatGPT2024} und teils über 
+die Website \cite{Claude}, des jeweiligen Services, mit diesen Bots kommunizieren.\par
+Den Chatbots werden fragen gestellt, welche vom jeweiligen System beantwortet werden.
 Sie können nicht nur in Textform antworten, sondern auch durch Bild oder Audiogenerierung, 
 wie bei ChatGPTs DALL·E Integration.
 Diese Chatbots sind nicht nur in der Lage Fragen zu beantworten, sondern sie können auch Code, 
@@ -263,7 +261,7 @@ Neuronale Netze sind ein Teil des Machine Learnings, welcher versucht sich stark
 Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese ``Neuronen''
 sind miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der \ref*{nn} dargestellt.\par
 
-Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
+In \ref{neuron} ist ein Neuron dargestellt. Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
 keine Verbindung miteinander haben. Wenn die Gewichtung positiv ist, dann hat es eine bestärkende Wirkung und, falls die Gewichtung negativ
 ist, dann hat es eine hemmende Wirkung. \par %wikipedia https://de.wikipedia.org/wiki/Künstliches_Neuron
 Jedes Neuron hat zudem einen sogenannten Bias. Durch den Bias hat das Neuron eine Grundaktivität, welche, ebenfalls während dem Training angepasst werden kann \cite{kempkesNeuronUndAktivierungsfunktion2023}.
@@ -279,60 +277,53 @@ Typische Aktivierungsfunktionen sind
     \item Tanh: \[f(x)=tanh(x)\]
 \end{itemize}
 \cite{kempkesNeuronUndAktivierungsfunktion2023}
-\iffalse
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/neuron}
+
     \caption{Neuron eines Neuronalen Netzwerks}
+    \label{neuron}
 \end{figure}
-\fi
 \iffalse Die zwei Schichten die es immer gibt sind die Eingabe Schicht und die Ausgabe Schicht. Dazwischen kann es verstecke Schicht geben, die benötigt werden um 
 komplexere Zusammenhänge zu bearbeiten, muss es aber nicht. 
 Die Eingabe Schicht erhält die Eingabedaten von außen und gibt diese dann weiter an die nächste Schicht. 
-Als nächstes werden die Daten weiter an eine verborgene Schicht gegeben, die die Werte dann bearbeitet. 
-Es gibt X verschieden verborgene Schicht in einem Neuronalen Netzwerk. Die Anzahl der Reihen und die Anzahl 
+Als nächstes werden die Daten weiter an eine verborgene Schicht gegeben. 
+Es gibt X verschiedene verborgene Schicht in einem Neuronalen Netzwerk. Die Anzahl der Reihen und die Anzahl 
 der Neuronen pro verborgener Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
-die für alle Fälle passt. Stattdessen wird hier auf Experimente und Erfahrung gesetzt \cite*[129]{heatonIntroductionNeuralNetworks2008}.\par 
+die für alle Fälle passt. Stattdessen wird hier auf Experimente und Erfahrung gesetzt \cite*[129]{heatonIntroductionNeuralNetworks2008}.\par \fi
 Die Anzahl der Neuronen schwankt zwischen verschiedenen Neuronalen Netzen und auch innerhalb eines Neuronalen Netzes schwankt 
-die Anzahl der Neuronen zwischen den verschiedenen Schichten. \fi
+die Anzahl der Neuronen zwischen den verschiedenen Schichten. 
 Bei der Eingabe Schicht kommt es auf die Trainingsdaten an, diese legen die Anzahl der Neuronen fest. 
 Um genau zu sein, kommt es auf die Anzahl der Features an, die die Trainingsdaten beinhalten. Bei einem 
 Neuronalen Netz, welches mit Daten aus einer normalen Tabelle trainiert wird, ist das beispielsweise die Anzahl
 der Spalten, bei einem bei einem Neuronalen Netz, welches mit Bildern trainiert werden soll, könnten das die 
 einzelnen Pixel des jeweiligen Bildes sein \cite{krishnanHowDetermineNumber2022}.\par
+Es gibt X verschiedene verborgene Schicht in einem Neuronalen Netzwerk. Die Anzahl der Schichten und die Anzahl 
+der Neuronen pro verborgener Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
+die für alle Fälle passt. Stattdessen sind hier Erfahrung und Experimentierung wichtig \cite*[129]{heatonIntroductionNeuralNetworks2008}.\par
 Die Anzahl der Neuronen in der Ausgabe Schicht kommt darauf an, welche Art von Modell man betrachtet.
 Die zwei Arten die hier besprochen werden sind
-Regressoren und Klassifikatoren \cite{krishnanHowDetermineNumber2022}.\par 
-Es gibt zwei Arten von Regressoren. Regressoren sagen für einen Eingabewert einen kontinuierlichen
-Ausgabewert hervor \cite[S. 100]{Goodfellow-et-al-2016}. \par \par
+Regressoren und Klassifikatoren \cite[S. 128]{heatonIntroductionNeuralNetworks2008}.\par 
+Regressoren sagen für einen Eingabewert einen oder mehrere kontinuierliche
+Ausgabewerte hervor \cite[S. 100]{Goodfellow-et-al-2016}. \par \par
 Beispiele hierfür sind: 
 \begin{itemize}
     \item Gesichtserkennung
     \item Stimmerkennung
     \item Spamfilter in emails
 \end{itemize}
-Klassifikatoren sind dafür zuständig die Eingabe einer bestimmten Klasse zuzuordnen \cite[S. 101]{Goodfellow-et-al-2016}. Die Anzahl der Neuronen kommt auf die Anzahl der möglichen Klassen an \ref*{osheaIntroductionConvolutionalNeural2015}.
-Beispielsweise könnte man ein System betrachten, welches lernen soll, welche Art von Fahrzeug auf einem Bild dargestellt ist. 
-In der \ref*{dt} ist ein simpler Decision Tree dargestellt. Anhand dieser kann man sehen, welche Optionen es als Ausgaben gibt. 
-In dieser Situation hätte die Ausgangs Schicht drei Neuronen, da es drei mögliche Ausgaben gibt. \par
+Klassifikatoren sind dafür zuständig die Eingabe einer bestimmten Klasse zuzuordnen \cite[S. 101]{Goodfellow-et-al-2016}. Die Anzahl der Neuronen hängt von der Anzahl der möglichen Klassen ab \cite{osheaIntroductionConvolutionalNeural2015}.\par
 
 %vmtl raus nehmen is kinda dogshit
-\iffalse
-\begin{figure}[t]
-    \centering
-    \label{dt}
-    \includegraphics[width=\linewidth]{\figdir/decision-tree}
-    \caption{Decision Tree}
-\end{figure}
 
 %hier definitiv neues bild machen das kleiner und besser ist 
 \begin{figure}[t]
     \centering
-    \label{nn}
+    
     \includegraphics[width=\linewidth]{\figdir/nn}
     \caption{Neuronale Netz}
+    \label{nn}
 \end{figure}
-\fi
 
 \subsection{RNN}
 Bevor auf die Transformer Architektur eingegangen werden kann, ist es wichtig, die 
@@ -369,7 +360,7 @@ RNNs mit LSTM einen längeren Kontext sinnvoll verarbeiten als alleinstehende RN
 Diese Technologien haben sich damals vorallem im Kontext des Sequence-to-Sequence Learnings weiterentwickelt. 
 Sequence-to-Sequence Learning oder kurz Seq2Seq Learning, bringt eine Sequenz variabler Länge in eine andere
 Sequenz variabler Länge.\cite{sutskeverSequenceSequenceLearning2014} Beispiele hierfür wären Text Zusammenfassungen und Übersetzungen. Die Architektur aus der sich
-der Transformer, der in dem Abschnitt \ref{s:intro:llm:trans} behandelt wird, entwickelt hat, ist die Encoder - Decoder Architektur.\par
+der Transformer (siehe \ref{s:intro:trans}) entwickelt hat, ist die Encoder - Decoder Architektur.\par
 
 Die Encoder-Decoder Architektur besteht aus zwei Rekurrenten Neuralen Netzen. Wie ein Neurales Netz funktioniert wurde bereits im 
 Abschnitt \ref*{s:intro:nn} behandelt. Das besondere an einem Rekurrenten Neuralen Netz ist, dass dieses die vorherigen Aktivierungen 
@@ -384,9 +375,7 @@ Dieses Originale Encoder-Decoder Modell hatte trotz der Vorteile, die es geboten
     \item Sequenzielles Verarbeiten: RNNs und LSTMs verarbeiten Sequenzen 
 sequentiell. Dadurch, dass die Daten nich parallel verarbeitet werden, kommt
 es zu längeren Trainingszeiten.
-    \item Abhängigkeiten: In RNNs ist es schwierig langfristige Abhängigkeiten zu erfassen,
-aufgrund des Vanishing Gradient Problems, welches im Abschnitt \ref*{s:intro:bp}
-genauer erklärt wird.
+    \item Abhängigkeiten: In RNNs ist es, aufgrund des Vanishing Gradient Problems, schwierig langfristige Abhängigkeiten zu erfassen.
     \item Festes Kontextfenster: Da die meisten RNNs und LSTMs eine feste
 Kontextgröße haben, kann nur eine begrenzte Menge an Informationen als 
 Kontext, zu einem bestimmte Zeipunkt, beachtet werden. Dadurch kann
@@ -460,6 +449,7 @@ Chatbots und Bildgeneratoren, wie Midjourney.
 \caption{Transformer Architektur}
 \end{figure}
 \fi
+
 Die Transformer Architektur wurde 2017 von Vaswani et al im Paper "Attention is all you need"
 vorgestellt. Vor dieser Architektur waren die besten Modelle Encoder-Decoder Architekturen (siehe \ref{s:intro:edar}), 
 die mit dem Attention Mechanismus (siehe \ref{s:intro:att}) ergänzt wurden und
@@ -511,7 +501,7 @@ Dies wird durch Matrix Berechnungen in einem Schritt erledigt mit der Formel:
 
 \[Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V\]
 
-Dies gibt uns den Attention Vektor für jeden Token.\cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}\par
+Dies gibt uns den Attention Vektor für jeden Token \cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}.\par
 
 \subsubsection{Multi-Head Attention}
 Multi-Head Attention wurde ebenfalls mit dem Self-Attention Mechanismus
@@ -588,7 +578,7 @@ Trainingsdaten einen großen Einfluss darauf hat, wie gut die
 \ac{llm} funktioniert. Genau wie bei Compilern, die Programme in
 Tokens aufteilen, benutzen wir bei \ac{llm} Tokenizer, damit wir
 die Texte aufteilen können und die dabei entstandenen Tokens über 
-verschiedene grammatikalische Regeln zusammensetzen können \cite{perryWhatTokenizationNatural202}.\par
+verschiedene grammatikalische Regeln zusammensetzen können \cite{perryWhatTokenizationNatural2021}.\par
 Eines der größten Probleme hierbei ist, dass verschiedene Sprachen verschiedene
 grammatikalische Regeln haben und somit verschiedene Arten des 
 Zerlegens oder Zusammensetzens brauchen. 
@@ -694,7 +684,7 @@ Größe ein paar Optimierungen \cite{Llama2RunMaster}. \par
 Eine Möglichkeit Modelle schneller zu machen ist es sie zu quantisieren, dieser Prozess wird in \ref{s:intro:llama} genauer 
 erklärt.\par
 Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Frameworks zu verwenden.
-Drei dieser Frameworks werden in \ref*{s:intro:frame} vorgestellt und erklärt.\par
+Drei dieser Frameworks werden in \ref*{s:intr:frame} vorgestellt und erklärt.\par
 
 \subsubsection{Generation}
 Die Generation der LLMs kommt auf ihre Trainingsdaten an. Genau wie beim Training arbeiten die LLMs 
@@ -710,7 +700,7 @@ für die Generierung des nächsten Tokens berücksichtigt, bis das maximale Kont
 Als Kontextfenster werden die Menge an Tokens bezeichnet, die ein ein Modell 
 maximal zum Zeitpunkt der Generierung betrachten kann. Die Token außerhalb 
 des Kontextfensters, werden bei der Generation nicht mehr berücksichtigt. 
-Das Kontextfenster ist die maximale Eingabesequenzlänge des Transformers \ref*{WhatContextWindow}.
+Das Kontextfenster ist die maximale Eingabesequenzlänge des Transformers \cite{WhatContextWindow}.
 
 \subsection{Limitationen \& bekannte Probleme}
 LLMs haben trotz ihrer ständigen Verbesserungen einige Probleme, 
@@ -724,7 +714,7 @@ dem Wissensstand des Modells und der realen Welt. Um dieses Problem zu lösen
 gibt es Ansätze, wie RAG, welches in \ref*{s:intro:rag} näher erklärt wird.\par
 Ein weiteres Problem, ist die feste Größe des Kontextfensters der LLMs. Dies führt je nach 
 Aufgabe dazu, dass Kontexte nicht beachtet werden oder Informationen, die zu weit 
-zurück liegen, nicht beachten werden können \ref*{wangLimitsSurveyTechniques2024}. \par
+zurück liegen, nicht beachten werden können \cite{wangLimitsSurveyTechniques2024}. \par
 Obwohl LLMs mit sehr vielen Datensätzen trainiert werden, ist ein Problem, dass 
 LLMs halluzinieren können. Das heißt, das Modell generiert plausibel klingende 
 Informationen, die aber faktisch nicht korrekt sind, entweder im Zusammenhang mit der 
@@ -784,7 +774,7 @@ Hierzu gehören: \par
 Es gibt eine spezielle Art der Prompts namens System Prompt. Dieses System Prompt dient dazu 
 das Verhalten der LLM in einem Rahmen zu steuern.
 Durch dieses System Prompt kann der LLM mitgeteilt werden, welche Rolle sie einnimt und 
-unter anderem auch ihren Stil beeinflussen. \par
+unter anderem auch ihren Stil beeinflussen \cite{GivingClaudeRole}. \par
 
 \section{Vektor Datenbanken}
 \label{s:intro:dat}
@@ -793,36 +783,33 @@ speichern können. Diese Vektoren sind mathematische Repräsentationen
 von Attributen oder Merkmalen. Je nachdem wie granular die Daten, die 
 abgespeichert werden sollen sind, kann es sein, dass die Daten tausende
 Dimensionen haben. Die Rohdaten werden mittels Einbettungsfunktion oder 
-Transformationen in ihre Vektordarstellung umgewandelt und dann abgespeichert.\par
+Transformationen in ihre Vektordarstellung umgewandelt und dann abgespeichert \cite{hanComprehensiveSurveyVector2023}.\par
 Diese Art der Datenbanken hat für den AI und Machine Learning Bereich ein 
 paar Vorteile im Vergleich zu traditionellen Datenbanken. \par
 Ähnlichkeitssuche: Traditionell Datenbanken brauchen klar definierte 
 Kriterien für die Suche. Hier ist es nicht möglich eine Ähnlichkeitssuche, 
 wie bei Vektordatenbanken durchzuführen. Bei Vektordatenbanken kann
 man mittels Ähnlichkeitssuche-Verfahren schnell ähnliche Datensätze
-finden und dann ausgeben. \par
+finden und dann ausgeben \cite{hanComprehensiveSurveyVector2023}. \par
 Support für unstrukturierte und komplexe Daten: 
 Traditionelle Datenbanken brauchen strukturierte Daten. Die Daten 
 die man für Machine Learning benutzt sind oft unstrukturierte Daten,
 die verschieden Formate haben oder komplett verschiedene Datentypen sind,
 dies schließt auch Audio und Videodateien mit ein. Vektordatenbanken
 können diese Dateien durch die Vektordarstellung abspeichern und sind 
-damit besser für diesen Fall geeignet.\par
+damit besser für diesen Fall geeignet \cite{hanComprehensiveSurveyVector2023}.\par
 Skalierbarkeit und Performance:
 Dadurch, dass Vektordatenbanken oft mit Big Data verwendet werden,
 gibt es einige Ansätze zum Verbessern der Performance und Skalierbarkeit.
 Ein paar der Methoden die verwendet werden sind Partitioning, 
-Sharding und Caching. Wie genau diese Methoden funktioniert sind
-irrelevant für diese Arbeit und werden daher nicht weiter angesprochen.
+Sharding und Caching \cite{hanComprehensiveSurveyVector2023}.
 
 
 \section{Embedding Modelle}
 \label{s:intr:emb}
 Embedding Modelle dienen dafür Daten in eine Vektorrepräsentation umzuwandeln.
 Diese Modelle sind in der Lage verschiedene Datenformate umzuwandeln. Unter anderem
-Text, Video und auch Bilder. \iffalse Da der Fokus dieser Arbeit auf LLMs liegt, welche 
-mit Text arbeiten wird diese Einleitung in Embedding Modelle sich auch auf 
-Umwandlung von Texten fokussieren und welche Möglichkeiten das bietet.\fi \par
+Text, Video und auch Bilder. \par
 Diese Vektoren sind hochdiemnsional und sollen dadurch auch Nuancen und die Bedeutung 
 der Wörter mit in die Vektorrepräsentation aufnehmen. Dadurch, dass der Text
 in die jeweilige Vektorrepräsentation umgewandelt wird, können nach der Umwandlung
@@ -832,7 +819,7 @@ Dies sorgt ebenfalls dafür, dass das Arbeiten mit den Daten schneller ist.\par
 Embedding Modelle werden in LLM Applikationen dafür benutzt, Daten in ihre 
 Vektorrepräsentation umzuwandeln und diese Vektoren zusammen mit den 
 dazugehörigen Daten in einer Vektordatenbank zu speichern.  
-\cite{leeNVEmbedImprovedTechniques2024a, mikolovDistributedRepresentationsWords2013, NVIDIAGlossaryWhat}
+\cite{leeNVEmbedImprovedTechniques2024, mikolovDistributedRepresentationsWords2013, NVIDIAGlossaryWhat}
 
 \subsection*{Semantische Suche}
 \label{s:intro:semsea}
@@ -840,7 +827,7 @@ Bei der semantischen Suche handelt es sich um ein Verfahren, welches
 dafür genutzt wird Daten semantisch zu vergleichen. 
 Die Daten werden hierfür in ihre Vektordarstellung umgewandelt und dann werden 
 die Vektoren miteinander verglichen und die top k Vektoren mit der höchsten 
-Semantischen Nähe werden zurückgegeben.\par
+Semantischen Nähe werden zurückgegeben \cite{NVIDIAGlossaryWhat, chandrasekaranEvolutionSemanticSimilarity2022, WhatSemanticSearch}.\par
 Hierfür gibt es verschiedene Verfahren, drei Verfahren, die oft verwendet 
 werden sind: 
 \begin{itemize}
@@ -864,11 +851,10 @@ Dies hilft es den LLM Applikationen dabei, passende Daten schnell abzurufen \cit
 \section{RAG}
 \label{s:intro:rag}
 Eines der größten Probleme der LLMs heutzutage ist, dass die Informationen, die sie zum beantworten für Fragen benutzen, 
-teilweise veraltet sind oder sehr allgemein. Ein weiteres großes Problem ist die im Abschnitt \ref{s:intro:llm} genannte 
-Halluzination, die passieren kann, wenn eine LLM eine Frage zu der es eigentlich nichts weiß, beantwortet. Eine Technologie, 
+teilweise veraltet sind oder sehr allgemein. Eine Technologie, 
 die versucht, dieses Problem zu beseitigen, ist die sogenannte Retrieval Augmented Generation. 
 Die Retrieval Augmented Generation soll das parametrische Gedächtnis der LLM
-mittels eines nicht parametrischen Gedächtnisses erweitern.\cite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021} \par 
+mittels eines nicht parametrischen Gedächtnisses erweitern \cite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}. \par 
 Retrieval Augmented Generation löst ein paar Probleme vor denen LLMs heutzutage 
 stehen, ist aber keine perfekte Lösung und muss sich auch seinen eigenen Problemen
 stellen. In diesem Zusammenhang gibt kann man heute RAG in verschiedene Stufen 
@@ -876,13 +862,13 @@ einordnen.\cite{gaoRetrievalAugmentedGenerationLarge2024}
 
 \subsection{Naive RAG}
 %TODO schreib das nochmal um das ist kinda hart geklaut
-Naive RAG ist die traditionelle Herangehensweise and das Problem der RAG.
+Naive RAG ist die traditionelle Herangehensweise an das Problem der RAG.
 Sie besteht aus drei Stufen. Indexing, Abfrage und Generierung.\par
 Beim Indizieren werden die rohen Eingabedaten gereinigt und extrahiert.
 Dies ist unter anderem wichtig, da die Daten verschiedene Formate haben 
-können, wie PDF Dateien, Markdown oder HTML. Diese Texte werden nach der Reinigung
+können, wie PDF, Markdown oder HTML. Diese Texte werden nach der Reinigung
 in Plain Text umgewandelt und dieser Plain Text wird dann in kleinere Teile unterteilt.
-Diese kleineren Teile werden dann über ein Embedding modell in eine 
+Diese kleineren Teile werden über ein Embedding modell in eine 
 Vektordarstellung umgewandelt und dann in einer Vektordatenbank abgespeichert.\cite{gaoRetrievalAugmentedGenerationLarge2024}\par
 Bei der Abfrage erhält das RAG System eine Anfrage und benutzt das selbe 
 Embedding Modell, wie in der Indizierungsphase, um die Abfrage in eine 
@@ -898,7 +884,7 @@ Das Hauptproblem, welches hier besteht ist die der Abfrage. Bei der Abfrage
 gibt es oft Probleme, welche mit der Genauigkeit zu tun haben. Dementsprechend
 kann es passieren, dass das RAG System falsche oder unpassende Informationen
 zurück gibt. Aufgrund der Probleme bei der Abfrage entstehen dann ebenfalls 
-Probleme bei der Generation der Antwort. Was dazu führt, dass die Qualität 
+Probleme bei der Generierung der Antwort. Was dazu führt, dass die Qualität 
 der Antworten sinkt. Dadurch sinkt dann ebenfalls die Verlässlichkeit auf 
 das System\cite{gaoRetrievalAugmentedGenerationLarge2024}.
 
@@ -907,13 +893,13 @@ Advanced RAG wurde entwickelt um den Problemen der naiven RAG entgegenzuwirken
 bzw. sie zu beseitigen. Dementsprechend werden hier einige Dinge geändert. Vorallem
 in der Stufe der Abfrage wurde hier einiges geändert. Um die Qualität zu erhöhen 
 wurden der Abfrage pre- und post Strategien hinzugefügt.
-Dazu wurde der Indexing Prozess angepasst.
+Dazu wurde der Indexing Prozess angepasst \cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 Beim Indexing wird nun Metadata mit eingebunden und der Text wird genauer unterteilt.
 \subsubsection{Pre-Retrieval}
 Beim pre-retrieval wird vorallem darauf geachtet die Anfrage so klar wie möglich zu machen.
 Hierfür werden Metadaten angehängt, Anfragen umgewandelt, Anfragen erweitert und noch 
 einige weitere Dinge abgeändert. Das Ziel hier ist es die Anfrage zu ändern, sodass sie so 
-klar wie möglich ist und sie für Retrival zu optimieren.\par
+klar wie möglich ist und sie für Retrival zu optimieren \cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.\par
 \subsubsection{Post-Retrieval}
 Nachdem der Kontext nach dem Retrieval Prozess abgefragt wurde, wird
 versucht die abgerufenen Daten möglichst optimal mit der Anfrage zu verbinden.
@@ -964,13 +950,13 @@ der Probleme mit GGML beseitigen soll. Ein großer Vorteil von diesem Format ist
 dass das Modell nun alle Informationen die zum laden des Modells notwendig
 sind beinhaltet und es müssen keine zusätzlichen Informationen mehr vom Nutzer 
 gegeben werden. Unter anderem beinhaltet die Datei nun die Architektur 
-des Modells\par \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}.
+des Modells \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}.
 
 \section{Ollama}
 \label{s:intro:oll}
 Ollama ist ein Open Source Projekt, welches seinen Nutzern dabei helfen 
-soll, auf der Plattform LLMs schneller auf ihren lokalen Maschinen 
-zu starten und mit diesen zu interagieren. 
+soll, LLMs schneller auf ihren lokalen Maschinen 
+zu starten, mit diesen zu interagieren und die Generation der LLMs zu beschleunigen. 
 Das Backend das Ollama unterstützt ist llama.cpp und es soll das Downloaden, 
 Installieren und das Interagieren mit den LLMs einfacher machen. \par
 Ollama hat seine eigene Modellbibliothek über die Nutzer LLM Modelle 
@@ -978,12 +964,12 @@ downloaden können und diese dann direkt nutzen.
 Wenn ein Modell nicht in der Bibliothek zu finden ist, kann man 
 Modelle mittels Modelfile selbst importieren. Dies kann man mit Modellen im GGUF 
 Format, welches in \ref*{s:intro:llama} genauer erklärt wurde, 
- gemacht werden und mit sogenannten safetensor Dateien\cite{OllamaOllama2024}. Das Safetensor 
+ gemacht werden und mit sogenannten safetensor Dateien \cite{OllamaOllama2024}. Das Safetensor 
 Format wurde von Huggingface eingeführt um die Unsicherheiten des 
 vorher genutzten Pickle Formats zu beseitigen. Eines der größten
 Probleme dieses Formats war es, dass beim deserialisieren eines
-Pickle Objekts boshafter Code ausgeführt werden konnte, da 
-Pickle den unterschied zwischen boshaften und nicht boshaften 
+Pickle Objekts schadhafter Code ausgeführt werden konnte, da 
+Pickle den unterschied zwischen schadhaften und sicherem 
 Code nicht erkennen kann.\cite{Safetensors}
 Mit dem neuen Safetensor Format konnte vorallem dieses Problem beseitigt werden.\par
 Ollama kann Safetensor Dateien für die drei Architekturen LlamaForCausalLM, 
@@ -995,44 +981,42 @@ Im Anschluss kann man dann das Modell mithilfe einer Modelfile importieren.
 Innerhalb dieser Modelfile kann man ebenfalls noch weitere Dinge vorher festlegen,
 wie zum Beispiel das System Prompt für das Model\cite{OllamaOllama2024}.
 
-\section{Ragas}
-\label{s:intro:ragas}
-
-
 \section{AI Frameworks}
 \label{s:intr:frame}
-Dadurch, dass künstliche Intelligenz nun ein größeres Thema in den Augen der 
+Dadurch, dass LLMs nun ein größeres Thema im Auge der 
 Öffentlichkeit ist und es durch Bibliotheken wie llama.cpp einfacher geworden ist, 
-für Personen ohne besondere Hardware LLMs zu nutzen, gibt es immer mehr Entwickler,
-die Applikationen, die LLMs nutzen, entwickeln wollen.\par
-Da es immer mehr Applikationen dafür gibt, gibt es auch einige KI Frameworks, die 
-das Arbeiten mit diesen Modellen vereinfachen sollen. Ein großer Fokus bei den meisten 
-der KI Frameworks liegt darauf den Nutzern das Arbeiten mit eigenen Daten einfacher zu 
-machen indem beispielweise eine RAG Pipeline genutzt wird. 
+für Personen, ohne besondere Hardware, LLMs zu nutzen, gibt es immer mehr Interesse an
+Frameworks, mit denen man LLM basierte Applikationen entwickeln kann. Dieses Interesse kann man 
+über Github Stars, die in \ref*{stars} dargestellt sind, beobachten.\par
+
+Diese Frameworks, dienen dazu
+das Arbeiten mit diesen Modellen zu vereinfachen. Ein großer Fokus bei den meisten 
+davon liegt darauf den Nutzern das Arbeiten mit eigenen Daten einfacher zu 
+machen, indem beispielweise eine RAG Pipeline genutzt wird. 
 Hier werden einige der größten 
 Frameworks vorgestellt.
 
 \subsection{Haystack}
 Haystack ist ein Open Source Framework, welches LLM Applikationen erstellen
 kann. Der Fokus hier liegt vorallem auf RAG Applikationen und Such Systemen,
-welche mit großen Mengen an Daten arbeiten können.\par
+welche mit großen Mengen an Daten arbeiten können \cite{WhatHaystack}.\par
 Bei Open Source Frameworks ist die Community einer der wichtigsten Faktoren. 
 Umso mehr Teilnehmer an einem Open Source Projekt es gibt, umso mehr
 Unterstützung gibt es und umso mehr Fehler fallen den Leuten auf, die 
 dann beseitigt werden können. Haystack hat 14.3k Sterne auf Github, zum 
 Zeitpunkt dieser Arbeit. Das macht es zum kleinsten Projekt auf dieser
-Liste. \par
+Liste \cite{DeepsetaiHaystackMag}. \par
 Haystack kann direkt Modelle von Huggingface, OpenAI und anderen Quellen beziehen 
 und diese ausführen. Dazu kann man Modelle nutzen die auf Hosting Plattformen, 
-wie Azure oder Sagemaker gehostet werden.\par
+wie Azure oder Sagemaker gehostet werden \cite{WhatHaystack}.\par
 Die zwei Konzepte die hierbei am wichtigsten sind sind Komponenten und Pipelines. 
 Komponenten sind Blöcke, welche Aufgaben durchführen können. Aufgaben, die eine 
 Komponente ausführen kann, sind zum Beispiel Text Generation und das Erzeugen von
-Einbettungen.\par
+Einbettungen \cite{WhatHaystack}.\par
 Eine Pipeline besteht aus verschiedenen Komponenten. Man setzt diese Komponenten
 zusammen und erhält dadurch eine Pipeline. Dadurch kann man den Datenfluss innerhalb
-seiner Applikation genau beeinflussen.\par
-Die Programmiersprache mit der Haystack arbeiten kann ist Python\cite{WhatHaystack, DeepsetaiHaystackMag}. 
+seiner Applikation genau beeinflussen \cite{WhatHaystack}.\par
+Die Programmiersprache für Haystack ist Python\cite{WhatHaystack, DeepsetaiHaystackMag}. 
 
 \subsection{Langchain}
 \label{s:intro:lang}
@@ -1040,23 +1024,23 @@ Langchain ist ein weiteres Open Source Framework, welches für das Erstellen von
 LLM Applikationen erstellt wurde. Im Gegensatz zu Haystack ist Langchain nicht 
 nur auf das Erstellen von RAG Applikationen und Such Systemen fokussiert. Langhchain 
 versucht möglichst vielseitig einsetzbar zu sein. "One Framework. Infinite Use Cases" 
-werben sie auf ihrer Homepage.\par
+werben sie auf ihrer Homepage \cite{LangChain}.\par
 Langchain ist, in Hinsicht auf die Github Sterne das größte Framwork, welches 
 hier vorgestellt wird. Zur Zeitpunkt des Schreibens dieser Arbeit, hat das 
-Projekt 87.6k Sterne auf Github. \par
+Projekt 87.6k Sterne auf Github \cite{chaseLangChain2022}. \par
 Für die Entwicklung liegt der Fokus bei Langchain auf Chains. Welche ähnlich
 wie Pipelines den Datenfluss bestimmen. Man erstellt hier die einzelnen
 Teile die man braucht, wie einen Retriever der mit einer Vektor 
 Datenbank verbunden ist und einer LLM. Diese verbindet man dann noch 
 mit der Eingabe des Nutzers und hat dann eine fertige Chain, die man 
 dann einsetzen kann, wie man möchte. Eine Möglichkeit wäre es diese 
-per RestAPI verfügbar zu machen.\par
+per RestAPI verfügbar zu machen \cite{LangChaina}.\par
 Dazu hat gibt es das Paket Langserve, welches darauf ausgelegt 
 ist, einfach Chains als RestAPIs zu veröffentlichen. 
 Dazu kommt ein Paket namens Langsmith, welches zum Monitoring 
 und zum Evaluieren von LLM Applikation dient. Langsmith ist nicht 
 Open Source und kostet für Teams oder für Hobby Entwickler ab einer gewissen
-Menge an Nutzungen ein monatliches Abbonement.\par
+Menge an Nutzungen ein monatliches Abbonement \cite{LangSmith, LangServeLangChain}.\par
 Langchain ist ein Framwork, welches für Javascript und für Python zur Verfügung steht. \cite{chaseLangChain2022, IntroductionLangChain}
 
 
@@ -1065,36 +1049,36 @@ LlamaIndex ist ein weiteres Open Source Framework, das entwickelt wurde, um die 
 von LLM Applikationen zu erleichtern. \par
 Zum Zeitpunkt des Schreibens dieser Arbeit hat das Projekt 32.8k Sterne auf GitHub und ist
 damit das zweitgrößte Projekt, welches hier vorgestellt wird, aber es ist trotzdem
-weniger als halb so groß, wie Langchain. \par
+weniger als halb so groß, wie Langchain \cite{liuLlamaIndex2022}. \par
 Bei LlamaIndex liegt der Fokus auf dem Arbeiten mit Daten. Deshalb ist einer der Fokus 
 Punkte des Frameworks der Index. RAG Use Cases in LlamaIndex benutzen in ihrem Kern 
 den Index als Kernkonzept. Indexe werden aus Dokumenten erstellt und sind im Grunde 
-Knoten-Objekte, welche Teile von den Originaldokumenten respräsentieren.\par
+Knoten-Objekte, welche Teile von den Originaldokumenten respräsentieren \cite{IndexingEmbeddingLlamaIndex, LlamaIndexLlamaIndex}\par
 LlamaIndex hat eine Plattform namens LlamaCloud, welche einen durch generative 
 künstliche Intelligenz angetriebenen Parser hat. Dieses Projekt heißt 
 LlamaParse und lässt sich mit LlamaIndex integrieren. LlamaParse kann man auch ohne 
 die LlamaCloud nutzen. Wenn man die LlamaCloud nutzt hat man noch die Option seine 
 RAG Daten dort über eine API zu speichern. Über die API kann man sich direkt mit 
-verschiedenen Datenquellen verbinden.\par
-LlamaIndex ist ein Framework, welches, wie Langchain, für Javascript und für Python zur Verfügung steht\cite{LlamaCloudLlamaIndex, IntroducingLlamaCloudLlamaParse, liuLlamaIndex2022, LlamaIndexLlamaIndex}.
+verschiedenen Datenquellen verbinden \cite{LlamaCloudLlamaIndex,IntroducingLlamaCloudLlamaParse}.\par
+LlamaIndex ist ein Framework, welches, wie Langchain, für Javascript und für Python zur Verfügung steht\cite{liuLlamaIndex2022}.
 
 \section{Huggingface / MTEB }
 \label{s:intro:hug}
 Huggingface ist eine Plattform, auf der verschiedene Daten 
 gehostet werden, Diskussionen stattfinden und KI Apps 
-zu finden sind. \par
+zu finden sind \cite{HuggingFaceAI2024}. \par
 Auf dieser Plattform werden Daten in Git basierten Repositories 
 gelagert. Zu den Daten die hier zu finden sind,
 gehören unter anderem Open Source LLM Modelle, Open Source Embedding Modelle 
 und Datensätze zum trainieren von solchen Modellen. 
 Es gibt die Möglichkeit KI-basierte Demo Apps in sogenannten Spaces auszuprobieren 
 oder zu hosten. Hinzu kommt es die Möglichkeit Beiträge zu veröffentlichen, 
-ähnlich wie auf Social Media Plattformen, wie X oder Threads.\par
+ähnlich wie auf Social Media Plattformen, wie X oder Threads \cite{HuggingFaceAI2024}.\par
 Neben den Demo Apps die in Spaces zu finden sind, werden auch Ranglisten 
 veröffentlicht. Eine der größten Ranglisten ist die MTEB Rangliste. MTEB 
 steht für Massive Text Embedding Benchmark. Diese Rangliste wurde für Einbettungsmodelle 
 erstellt und wird regelmäßig geupdated. Die Modelle werden hier in 8 verschiedenen Aufgabenbereichen
-verglichen. \par 
+verglichen \cite{muennighoffMTEBMassiveText2023, MTEBLeaderboardHugging}. \par 
 Ein paar der Aufgabenbereiche sind Clustering, Semantische Nähe und Zusammenfassungen. 
 Die Datensätze wurden so ausgewählt, dass es eine verschiedene Länge an Texten gibt,
 damit die verglichen werden kann, wie die Modelle mit kurzen und auch mit langen 
@@ -1107,11 +1091,11 @@ hat 2017 Google Hangout zusammen mit Google Meet ersetzt. Zu Beginn war das
 Projekt nur im Zusammenhang mit Google Workspace erhältlich und somit war es 
 eine Chatplattform die hauptsächlich für Teams und Unternehmen benutzbar war. 
 2021 wurde die Plattform im Early Access auch für normale Benutzer erreichbar 
-gemacht und ist seit 2022 für jeden benutzbar.\par
+gemacht und ist seit 2022 für jeden benutzbar \cite{GoogleChat2024}.\par
 Diese Plattform ist die Plattform, die die Techdivision hauptsächlich intern 
 zur Kommunikation benutzt. Es gibt auf der einen Seite 1 zu 1 Chat in der eine 
 Person mit nur einer anderer Person kommuniziert und auf der anderen Seite gibt es 
 Innerhalb dieses Services die Möglichkeit 
-sogenannte Spaces zu erstellen, welche Gruppenchats ähneln. Ein Teil dieser
-Gruppenchats sind die in \ref*{s:intro:tech} genannten Supportchats in die 
-der Chatbot final eingebaut werden soll.
+sogenannte Spaces zu erstellen, welche Gruppenchats ähneln. In einen
+solchen Space, soll 
+der Chatbot final eingebaut werden.

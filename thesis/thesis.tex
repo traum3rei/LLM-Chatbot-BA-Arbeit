@@ -57,6 +57,9 @@
 \usepackage{minted}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{listings}
+\usepackage{caption}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
 %\usepackage{multirow}
 % Ende eigene Packages
 
@@ -130,8 +133,8 @@
 
 \mainmatter
 
-\input{Einführung}
-\input{Grundlage}
+\include{Einführung}
+\include{Grundlage}
 \include{Anforderungen}
 \include{Konzeption}
 \include{Entwicklung}

@@ -1,6 +1,4 @@
 
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
 \chapter{Anforderungsanalyse}
 
 \section*{Techdivision}
@@ -14,7 +12,7 @@ Sie bietet Leistungen in vier Kernbereichen.
     \item Marketing \& Kreation
 \end{enumerate}
 Über diese vier Bereiche möchte die Firma den Kunden 
-bei der digitalen Transformation helfen. 
+bei der digitalen Transformation helfen \cite{UnserPulsSchlaegt}. \par
 Innerhalb jedem dieser Bereiche gibt es verschiedene Teams 
 die sich um spezifische Aufgaben des Teilbereichs 
 kümmern. \par
@@ -26,17 +24,18 @@ Unterstützung vom IT-Support erhalten.
 
 \section{Ausgangslage}
 Die aktuelle Ausgangslage des IT Supports innerhalb der Techdivision ist, dass 
-der IT-Support hauptsächlich über den internen Google Chat betrieben wird oder 
-über IT-Helpdesk Tickets. Die Tickets werden verwendet, wenn es Probleme sind, 
-welche keine akute Hilfe benötigen. Probleme, welche akute Hilfe benötigen, sind 
-Probleme, die zeitkritisch und Blocker sind. Blocker sind Probleme, 
+der IT-Support hauptsächlich über den internen Google Chat oder 
+über IT-Helpdesk Tickets betrieben wird. Die Tickets werden, wenn es Probleme sind, 
+welche keine akute Hilfe benötigen, verwendet. Probleme, welche akute Hilfe benötigen, sind 
+zeitkritische und blockende
+Probleme. Blockende Probleme sind Probleme, 
 durch die nicht weiter gearbeitet werden kann.\par 
-Wenn es akute Probleme sind, dann meldet man sich beim IT-Support Chat.
+Für akute Probleme ist der IT-Support Chat zuständig.
 Dies ist eine offene Chatgruppe für Mitarbeiter der Techdivsion und innerhalb 
-diese können Fragen gestellt werden und sie werden von einem der Mitarbeiter 
-des IT-Support Teams beantwortet. Falls es fragen sind, welche nicht über den 
+dieser können Fragen gestellt werden, die von einem der Mitarbeiter 
+des IT-Support Teams beantwortet werden. Falls es Fragen sind, welche nicht über den 
 Chat gelöst werden können, dann wird ein Google Meet Meeting aufgesetzt oder, falls der 
-jeweilige Mitarbeiter sich im Office befindet, dann kann das auch vor Ort stattfinden.\par
+jeweilige Mitarbeiter sich im Büro befindet, dann kann das auch vor Ort stattfinden.\par
 Informationen und How To's der Techdivsion sind in den verschiedenen Datenquellen der 
 Techdivsion zu finden.\par
 Hierfür gibt es ein Confluence System. Hier werden die Daten nach Bereichen geordnet, wobei
@@ -50,21 +49,21 @@ Dazu gibt es verschiedene Dateien in Google Drive, die abgespeichert sind.
 \label{s:anf:anf}
 Nun wird gefordert, dass dem IT-Support Gruppenchat ein Chatbot hinzugefügt wird, 
 der den Mitarbeitern des Support Teams helfen soll, indem er einfache Fragen, 
-die bspw. mithilfe von Dokumentationen innerhalb des internen Confluences 
-beantwortbar wären, beantworten soll. \par
-Im Folgenden werden die Anforderungen, die der Chat erfüllen sollte 
-vorgestellt.
+die mithilfe von firmeninterner Dokumentation beantwortet werden kann, beantworten soll. \par
+Im Folgenden werden die Anforderungen, die der Chat erfüllen soll 
+vorgestellt. Diese Anforderungen wurde innerhalb von Meetings aufgestellt und anschließend 
+ausgearbeitet.
 
 \subsection{A1 Selbst Hosting}
 \label{s:anf:a1}
 Das größte Thema, welches beim Betreiben des Chatbots beachtet werden soll, ist der
 Datenschutz. Datenschutz ist ein großes Thema bei Unternehmen und vor allem, bei 
 Unternehmen die mit Kundendaten arbeiten müssen oder auch bei internen Betriebsgehemnissen,
-die nicht an die Öffentlichkeit weiter gegeben werden sollen. \par
+die nicht an die Öffentlichkeit weiter gegeben werden dürfen. \par
 Die Techdivision ist ein IT-Dienstleister und somit ist dies auch ein
 Bereich der bei der Konzeption und Entwicklung dieses Chatbots beachtet werden 
 muss. Aufgrund dieser Sorgen wird gefordert, dass der Chatbot von der 
-Techdivision gehostet wird, was bedeutet es dürfen keine APIs von externen LLM-Systemen 
+Techdivision gehostet wird, was bedeutet, dass keine APIs von externen LLM-Systemen 
 hierfür verwendet
 werden, die von anderen Unternehmen gehostet werden, wie beispielsweise
 die ChatGPT API.
@@ -77,12 +76,14 @@ Dazu kommt, dass der IT-Support innerhalb der Techdivsion
 hautpsächlich im Google Chat stattfindet
 \subsection{A3 Gruppenchat-Funktionalität}
 \label{s:anf:a3}
-Auch, wenn die LLMs heutzutage weit entwickelt sind, können diese die
-falschen Informationen weiter geben, oder komplett neue halluzinieren
+Auch, wenn die LLMs heutzutage weit entwickelt sind, können diese 
+falsche Informationen weiter geben, oder komplett neue halluzinieren
 und diese dann dem Supportsuchenden weiter geben. Es könnte auch sein, dass
 der Bot dem Mitarbeiter überhaupt nicht helfen kann. Damit in diesen Fällen
 ein Supportmitarbeiter eingreifen kann, sollte der Bot in einer Chatgruppe 
-laufen, von der ein Mitarbeiter des Support Teams ebenfalls Teil ist.\par
+laufen, von der ein Mitarbeiter des Support Teams ebenfalls Teil ist. Hierbei 
+sollen die Fragen innerhalb eines Threads beantwortet werden, sodass nicht die 
+ganze Firma eine Benachrichtigung bei jeder Nachricht des Chatbots erhält.\par
 \subsection{A4 Nutzung von Unternehmensdaten}
 \label{s:anf:a4}
 Da die LLMs, die online auffindbar sind, keinen Zugriff auf spezifische Informationen 
@@ -106,7 +107,7 @@ Es gibt aber auch englischsprachige Mitarbeiter, daher wäre ein Bilingualer
 Bot der beste Fall, da aber die meisten Deutsch sind, wäre Deutsch die bessere
 Option, falls es nur eine Sprache sein kann.
 \subsection{A7 Logische \& schlüssige Argumente}
-\label{s:anf:a8}
+\label{s:anf:a7}
 Die Argumente des Chatbots sollen logisch und schlüssig sein. 
 Diese Anforderung hängt mit \ref*{s:anf:a4} zusammen. Der
 Chatbot soll die Fragen logisch und schlüssig ohne Halluzination 

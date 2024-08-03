@@ -1,5 +1,3 @@
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
 \chapter{Entwicklung}
 \label{c:dev}
 Nach dem Abschluss der Konzeption kann zur Entwicklung über gegangen werden.
@@ -12,28 +10,21 @@ Bevor mit der Entwicklung begonnen werden kann, müssen ein paar
 Vorbereitungen getroffen werden.
 
 \subsection{Modelle}
-\label{s:konz:mod}
+\label{s:ent:mod}
 Der erste Schritt ist es die Modelle vorzubereiten.\par
 Um die Modelle vorbereiten zu können, wird als erstes 
 Ollama installiert.
 Dies kann über das Install Skript, welches auf Github zu finden \cite{OllamaOllama2024}
 ist getan werden. Dazu werden noch die Nvidia Cuda Driver installiert, 
 damit Ollama diese nutzen kann. Nun können die Modelle vorbereitet werden.\par
-\iffalse Hierfür werden die Modelle, die in \ref{s:konz:mod} vorgestellt
-wurden über Huggingface gedownloadet.
-Dies ist relativ simple über Git LFS zu erledigen.
-Die Repositories der Modelle werden einfach über git clone kopiert.
-Wenn die Dateien fertig gedownloadet sind, kann man die Modelle 
-für das Importieren in Ollama vorbereiten.
-Hierfür \par Nachdem Ragas nicht mit den von Huggingface in Ollama geladenen 
-Modellen funktioniert hat, wurde auf Ollama Modelle gewechselt.\fi
+
 Hierfür werden die Modelle, die in \ref*{s:konz:mod} vorgestellt 
 wurden über Ollama gedownloadet.
 Die Modelle werden über \verb|Ollama pull model| geladen, wobei \verb|model| der Name
-des Models ist, welches man herunterladen möchte. Hierbei kann
+des Modells ist, welches man herunterladen möchte. Hierbei kann
 man mittels \verb|model:latest| noch die Version angeben, die benötigt wird, wobei \verb|latest|, die Version des Modells ist. 
-Darüber kann man teils ebenfalls Größen angeben oder spezielle Versionen der Modelle 
-Anfragen, wie Instruct Modelle. Die verschiedenen Modelle haben verschiedene 
+Darüber kann man ebenfalls Größen oder spezielle Versionen der Modelle 
+Anfragen. Die verschiedenen Modelle haben verschiedene 
 Optionen. Auf Ollama.com
 können die jeweiligen Modelle und die verschiedenen Versionen, eingesehen werden.
 
@@ -53,18 +44,25 @@ Dazu wird \verb|chromadb/chroma| über \verb|docker pull|
 heruntergeladen und dann mittels \verb|docker run| gestartet.
 
 \section{System}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{\figdir/arch_impl}
+    \caption{Konkrete Architektur}
+    \label{arch_impl}
+\end{figure}
 Wie in der Konzeption beschrieben, ist
 das System auf dem der Chatbot erstellt wird ein
 Hetzner Server, auf dem ebenfalls die Datenbank liegt.
 Nachdem die Vorbereitungen des Servers abgeschlossen sind
 kann mit der eigentlichen Entwicklung begonnen werden.\par
+In \ref*{arch_impl} ist die Architektur mit den genutzten 
+Komponenten dargestellt.\par
 Für die Entwicklung wird innerhalb dieser Arbeit erst Pseudo-Code 
 gegeben und im Text wird dann die genaue Entwicklung mit den 
 benutzten Frameworks beschrieben.
 
 \subsection{Importer}
 \label{s:ent:imp}
-\iffalse
 \begin{algorithm}
     \caption{Dokumenten-Loader erstellen und Dokumente laden}
     \begin{algorithmic}[1]
@@ -128,7 +126,6 @@ benutzten Frameworks beschrieben.
     \STATE \quad Speichere aufgeteilte Dokumente in Vektor-Datenbank
     \end{algorithmic}
     \end{algorithm}
-\fi
 Für den Importer wird der Langchain \verb|ConfluenceLoader|
 verwendet. Hierfür wird, nachdem der Docker Container, welcher 
 die ChromaDB Datenbank beinhaltet gestartet wurde, eine Verbindung 
@@ -136,9 +133,9 @@ zu diesem hergestellt. Dabei wird dem Chroma Client innerhalb
 des Python Programms der \verb|host| und der \verb|port| des
 Docker Containers übergeben.\par
 Danach wird das Embedding Modell mittels der \verb|HuggingFaceEmbeddings|
-von langchain geladen. Hier wird der Name des Modells, "intfloat/multilingual-e5-large-instruct" übergeben.
+von langchain geladen. Hier wird der Name des Modells, ''intfloat/multilingual-e5-large-instruct´´ übergeben.
 Dazu gibt es die Option Keyword Arguments mittels \verb|encode_kwargs| und \verb|model_kwargs| mitzugeben.
-Hier geben wir das \verb|device_kwargs| \verb|device| mit dem Wert \verb|cuda| mit. 
+Hier wird das \verb|device_kwargs| \verb|device| mit dem Wert \verb|cuda| gesetzt. 
 Dies sorgt dafür, dass die GPU für die Berechnungen verwendet wird, was den Prozess 
 beschleunigt.\par
 Nun können die Daten aus Confluence mittels \verb|ConfluenceLoader| geladen werden.
@@ -152,54 +149,45 @@ mal aufgeteilt. Den aufgeteilten Dokumenten werden die Metadaten hinzugefügt, d
 sie zugeordnet werden können.\par
 Anschließend wird eine Langchain Chroma Instanz erstellt, die auf den vorher bereits
 erstellten Client zugreift, dann werden die Dateien mittels \verb|from_documents| 
-innerhalb einer Chroma Collection, die man beim Erstellen über die Chroma Instanz 
-mittels \verb|collection_name| festlegen kann, gespeichert.
+innerhalb einer Chroma Collection, die beim Erstellen über die Chroma Instanz 
+mittels \verb|collection_name| festgelegt wird, gespeichert.
 
 \subsection{Chatbot}
-\iffalse
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/chain2.png}
     \caption{Aufbau der Chain}
     \label{chain}
 \end{figure}
-\fi
-Die Entwicklung des Chatbots wird in die einzelnen Teile der Langchain Chain aufgeteilt, 
-die in \ref*{chain} dargestellt ist.
-Die Chain besteht aus verschiedenen Element, die bereits zu Chains zusammengefügt wurden.
-Das Prompt und die LLM wurden mittels \verb|create_stuff_documents_chain| miteinander 
-verbunden. Diese Chain wurde dann mittels \verb|create_retrieval_chain| mit einem Retriever 
-verbunden. Als letztes wurde diese Chain in eine \verb|RunnableWithMessageHistory| 
+Die Entwicklung des Chatbots wird in die einzelnen Teile der Langchain Chain, die in \ref*{chain} dargestellt ist, aufgeteilt.
+Die Chain besteht aus verschiedenen Chains, in denene Langchain Elemente aneinander gekettet wurden.
+Das Prompt und die LLM werden mittels \verb|create_stuff_documents_chain| miteinander 
+verbunden. Diese Chain wird mittels \verb|create_retrieval_chain| mit einem Retriever 
+verbunden. Als letztes wird diese Chain in eine \verb|RunnableWithMessageHistory| 
 eingebaut. Im Folgenden werden die einzelnen Teile erklärt.
 
 \subsubsection{Retriever}
-\iffalse
 \begin{algorithm}
     \caption{Retriever Initialisierung}
     \begin{algorithmic}[1]
-    \STATE \textbf{Class} Retriever:
+    \STATE \textbf{Class} RetrieverManager:
     \STATE \textbf{Method} \_\_init\_\_(model\_name, model\_kwargs, encode\_kwargs, client\_settings):
     \STATE \quad Initialisiere Vektorddatenbank Client
     \STATE \quad Initialisiere Embeddings 
     \STATE \quad Erstelle Vektordatenbank Instanz mit Embeddings und Client
     \STATE \quad Erstelle Retriever mit Vektordatenbank Instanz
-    \STATE \quad Rückgabe: Retriever 
     \end{algorithmic}
     \end{algorithm}
-    \fi
 Der erste Teil der Chain der entwickelt wird, ist der \verb|Retriever|. 
 Der Retriever ist der Teil der Chain, der auf die Vektordatenbank zugreift und 
 die passenden Dokumente von dieser an die LLM übergibt.\par
 Hierfür wird, wie beim Importer in \ref*{s:ent:imp} ein Chroma Client erstellt, der 
-mit dem Docker Container der Chroma Instanz verbunden wird, dazu wird ebenfalls 
-synchron zum Importer, das Embedding Modell über \verb|HuggingFaceEmbeddings| geladen
+mit dem Docker Container der Chroma Instanz verbunden wird, dazu wird ebenfalls,
+wie beim Importer, das Embedding Modell über \verb|HuggingFaceEmbeddings| geladen
 und in der Chroma Instanz als \verb|embedding_function| angegeben.
 Dieser wird dann mit der Funktion \verb|as_retriever()| als Retriever geladen.\par
-Für die Chain wird dazu noch eine Funktion erstellt, welche die Dokumente, die der 
-Retriever abruft zusammenfügt, damit diese der LLM übergeben werden können.
 
 \subsubsection{Prompt}
-\iffalse
 \begin{algorithm}
     \caption{Initialisierung des Chatbot Prompts}
     \begin{algorithmic}[1]
@@ -208,7 +196,6 @@ Retriever abruft zusammenfügt, damit diese der LLM übergeben werden können.
     \STATE \quad Definiere Prompvorlage mit Systemnachrichten und Platzhaltern für Benutzereingaben
     \end{algorithmic}
     \end{algorithm}
-    \fi
 Das Prompt wird mittels \verb|ChatPromptTemplate.from_messages| erstellt.
 Das Prompt, welches benutzt wird, ist Folgendes: \par
     Dein Name ist Arthur. Du bist ein erfahrenes Mitglied 
@@ -228,62 +215,40 @@ Das Prompt, welches benutzt wird, ist Folgendes: \par
     Kontext: \{\verb|context|\} 
     Bisheriger Chatverlauf: \{\verb|chat_history|\} 
     Beantworte die folgende Frage des Mitarbeiters basierend auf diesen Informationen. \par
-Wobei context, über über die Chain übergebene RAG Dokumente sind und chat\_history ebenfalls über
+Wobei context, die über die Chain übergebenen RAG Dokumente sind und chat\_history die über
 die Chain übergebene Chat Historie ist. Die Richtlinien, sollen der LLM eine Richtung geben 
 und dazu falsche Informationen und Halluzinationen vermeiden.
 
+\subsubsection{Nachrichten Historie}
+\begin{algorithm}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Method} get\_session\_history(session\_id):
+    \STATE \quad Rückgabe einer Session mit Session Id 
+    \end{algorithmic}
+    \end{algorithm}
+Die Nachrichten Historie wird mittels \verb|RunnableWithMessageHistory| 
+implementiert. Hierfür wird noch eine \verb|get_session_history| Funktion implementiert, 
+welche aus einer SQLite Datenbank mittels der \verb|session_id| den aktuellen Session 
+Chat abruft. 
+
 \subsubsection{LLM}
-\iffalse
+\label{entllm}
 \begin{algorithm}
     \caption{LLM Manager}
     \begin{algorithmic}[1]
     \STATE \textbf{Class} LLMManager:
     \STATE \textbf{Method} \_\_init\_\_(model\_name):
     \STATE \quad Initialisiere Sprachmodell 
-    \STATE \textbf{Method} create\_chain(retriever, prompt):
-    \STATE \quad Erstelle eine Kette zur Kombination von Dokumenten und zum Abrufen von Informationen mit Sprachmodell und Promptvorlage
-    \STATE \quad Rückgabe der erstellten Kette
     \end{algorithmic}
     \end{algorithm}
-    \fi
 Dieser Schritt kann erst funktionieren, wenn die in 
 \ref*{s:ent:mod} beschriebenen Vorbereitungen abgeschlossen sind. 
 Die LLM wird dafür mit der \verb|Ollama| Community LLM geladen. Wobei 
-der Klasse der Model name aus Ollama übergeben wird. 
+der Klasse der Name des Modells aus Ollama übergeben wird. \par
 
-\subsubsection{Nachrichten Historie}
-\iffalse
-\begin{algorithm}
-    \caption{Session Manager}
-    \begin{algorithmic}[1]
-    \STATE \textbf{Class} SessionManager:
-    \STATE \textbf{Method} get\_session\_history(session\_id):
-    \STATE \quad Rückgabe einer Session mit Session Id 
-    \end{algorithmic}
-    \end{algorithm}
-    \fi
-Die Nachrichten Historie wird mittels \verb|RunnableWithMessageHistory| 
-implementiert. Hierfür wurde noch eine \verb|get_session_history| Funktion implementiert, 
-welche aus einer SQLite Datenbank mittels der \verb|session_id| den aktuellen Session 
-Chat abruft. Dem \verb|RunnableWithMessageHistory| muss ein Runnable Objekt 
-übergeben werden, welches als Basis dient. Hier ist das Basis Runnable Objekt, 
-die Retrieval Chain, die aus dem Prompt, dem Retriever und der LLM besteht.
-Dazu wird der Runnable die \verb|get_session_history| Funktion übergeben.
-Da das Basis Runnable ein dict als Input benötigt, muss ein \verb|input_messages_key|
-angegeben werden, was laut dem Prompt, welches verwendet wird der Key \verb|input| ist. 
-Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key|
-\verb|chat_history|. \par\par
-
-Dieses \verb|RunnableWithMessageHistory| Runnable kann mit \verb|runnable.invoke()| angesprochen werden.
-Der Funktion werden zwei dict Objekte mitgegeben. 
-Das dict mit dem \verb|input| Key, der die Eingabe des 
-Nutzers ist und dazu noch ein weiteres dict mit einem 
-\verb|configurable| Key, dessen Wert ein dict ist, 
-mit einem \verb|session_id| key.
 
 \subsection{Google Cloud API}
 \label{s:ent:capi}
-\iffalse
 \begin{algorithm}
     \caption{Google Chat Client}
     \begin{algorithmic}[1]
@@ -294,7 +259,6 @@ mit einem \verb|session_id| key.
     \STATE \quad Sende Nachricht an den angegebenen Space und Thread in Google Chat
     \end{algorithmic}
     \end{algorithm}
-    \fi
 Um async Nachrichten an die Google Chat API zu senden, wird eine Credential Datei benötigt, von 
 einem Service Account, der mit der Google Chat API verbunden ist. Im Code wird der 
 Scope \verb|https://www.googleapis.com/auth/chat.bot| spezifiziert und aus dem Scope und dem 
@@ -306,91 +270,9 @@ Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute(
      im jeweiligen Thread geantwortet wird und sonst wird außerhalb des Threads geantwortet.
 
 
-\iffalse 
-\begin{minted}{json}
-    {
-    "type": "MESSAGE",
-    "eventTime": "2024-07-04T18:57:11.735759Z",
-    "message": {
-        "name": "spaces/****/messages/****",
-        "sender": {
-            "name": "users/****",
-            "displayName": "Atakan Sentürk",
-            "avatarUrl": "https://lh3.googleusercontent.com/a/****",
-            "email": "a.sentuerk@gsuite-test.tdintern.de",
-            "type": "HUMAN",
-            "domainId": "****"
-        },
-        "createTime": "2024-07-04T18:57:11.735759Z",
-        "text": "@Arthur Hi",
-        "annotations": [
-            {
-                "type": "USER_MENTION",
-                "startIndex": 0,
-                "length": 7,
-                "userMention": {
-                "user": {
-                    "name": "users/****",
-                    "displayName": "Arthur",
-                    "avatarUrl": "https://lh5.googleusercontent.com/****",
-                    "type": "BOT"
-                },
-                "type": "MENTION"
-                }
-            }
-        ],
-        "thread": {
-            "name": "spaces/****/threads/****",
-            "retentionSettings": {
-                "state": "PERMANENT"
-        }
-        },
-        "space": {
-            "name": "spaces/****",
-            "type": "ROOM",
-            "displayName": "Bot Test",
-            "spaceThreadingState": "THREADED_MESSAGES",
-            "spaceType": "SPACE",
-            "spaceHistoryState": "HISTORY_ON",
-            "spaceUri": "https://chat.google.com/room/****?cls=11"
-        },
-        "argumentText": " Hi",
-        "threadReply": true,
-        "retentionSettings": {
-            "state": "PERMANENT"
-        },
-        "messageHistoryState": "HISTORY_ON",
-        "formattedText": "@Arthur Hi"
-    },
-    "user": {
-        "name": "users/****",
-        "displayName": "Atakan Sentürk",
-        "avatarUrl": "https://lh3.googleusercontent.com/a/****",
-        "email": "a.sentuerk@gsuite-test.tdintern.de",
-        "type": "HUMAN",
-        "domainId": "****"
-    },
-    "space": {
-        "name": "spaces/****",
-        "type": "ROOM",
-        "displayName": "Bot Test",
-        "spaceThreadingState": "THREADED_MESSAGES",
-        "spaceType": "SPACE",
-        "spaceHistoryState": "HISTORY_ON",
-        "spaceUri": "https://chat.google.com/room/****?cls=11"
-    },
-    "configCompleteRedirectUrl": "https://chat.google.com/api/****",
-    "common": {
-        "userLocale": "de",
-        "hostApp": "CHAT"
-    }
-}
-\end{minted}\fi
-
-\subsection{Nachrichtenverarbeitung}
-\iffalse
+\subsection{Post Endpunkt}
 \begin{algorithm}
-    \caption{POST Endpoint}
+    \caption{POST Endpunkt}
     \begin{algorithmic}[1]
     \STATE Definiere POST-Endpunkt "/":
     \STATE \quad Empfange und parse JSON-Anfrage
@@ -404,9 +286,9 @@ Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute(
     \STATE \quad Initialisiere ChatbotPrompt zur Abrufung der Promptvorlage
     
     \STATE \quad \quad Initialisiere LLMManager mit Modell
-    
-    \STATE \quad Erstelle eine Kette mit LLMManager und Retriever
-    \STATE \quad Initialisiere Kette mit SessionManager 
+    \STATE \quad Erstelle eine Chain aus Modell und Prompt
+    \STATE \quad Erstelle eine weitere Chain aus dem Retriever und der vorherigen Chain
+    \STATE \quad Initialisiere Session History Chain 
     \STATE \quad Führe Kette aus, um Antwort auf Benutzereingabe zu erhalten
     
     \STATE \quad Initialisiere GoogleChatClient mit Anmeldedaten
@@ -415,7 +297,8 @@ Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute(
     \STATE \quad Rückgabe einer Antwort, die anzeigt, dass die Nachricht gesendet wurde
     \end{algorithmic}
     \end{algorithm}
-    \fi
+
+\subsubsection{Nachrichtenverarbeitung}
 Für die Verbindung an die Google Cloud API wird ein 
 POST Endpunkt erstellt. Dieser Endpunkt nimmt die Nachrichten, 
 die in Google Chat an den Chatbot gesendet werden an.
@@ -423,29 +306,89 @@ Die JSON Nachricht, die man von der API erhält beinhaltet
 viele Informationen. Für den Chatbot sind die ID des Nutzers, 
 der die Nachricht abschickt, der Thread in dem die Nachricht 
 versendet wurde und die Nachricht, die abgesendet wurde, wichtig.
-Dazu wird noch die Email überprüft, die die Nachricht abgeschickt hat.\par
-Zuerst wird überprüft, ob der Email Host ein valider Email Host ist, der 
+Dazu wird noch die Email überprüft, die die Nachricht abgeschickt hat.
+In \ref*{msg_get} ist das Format der Nachricht, welche der Chatbot 
+erhält, dargestellt.\par
+Zuerst wird überprüft, ob der Email Host ein Email Host ist, der 
 Zugang auf diesen Bot haben sollte. \par
-Die ID des Nutzers, die unter \verb|message.sender.name| zu finden ist,
-wird benutzt um den Nutzer in der Nachricht anzusprechen. Die 
-Nachricht, die abgesendet wird beginngt hierfür mit @message.sender.name
-und dadurch kann über die API ein Nutzer angesprochen werden. Wenn man 
-den \verb|message.sender.displayName| verwendet, dann wird der Nutzer 
-nicht in der Nachricht verlinkt, sondern es ist nur ein Text, der 
-im Google Chat ankommt. \par
 Der Thread ist unter \verb|message.thread.name| zu finden. Die Thread 
 ID, welche der letzte Teil der Nachricht ist, wird verwendet um die 
 Session ID herzustellen und sie wird als \verb|thread.name| an die API
 geschickt.\par
+
+\subsubsection{Chatbot Chain}
+Nachdem die Session ID erstellt wurde, werden aus dem Modell des LLMManagers und dem 
+Prompt des ChatbotPrompts mit der Funktion \verb|create_stuff_document_chain()| eine Stuff 
+Document Chain erstellt. Mit dieser und dem Retriever aus dem RetrieverManager wird über die Funktion \verb|create_retrieval_chain()|
+eine Retrieval Chain erstellt und daraus wird final die Runnable with Message History erstellt.\par
+
+Der \verb|RunnableWithMessageHistory| muss ein Runnable Objekt 
+ welches als Basis dient, übergeben werden. Hier ist das Basis Runnable Objekt, 
+die Retrieval Chain.
+Dazu wird der Runnable die \verb|get_session_history| übergeben.
+Da das Basis Runnable ein dict als Input benötigt, muss ein \verb|input_messages_key|
+angegeben werden, was laut dem Prompt, welches verwendet wird der Key \verb|input| ist. 
+Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key|
+\verb|chat_history|. \par\par
+
+Dieses \verb|RunnableWithMessageHistory| Runnable kann mit \verb|runnable.invoke()| angesprochen werden.
+Der Funktion werden zwei dict Objekte mitgegeben. 
+Das dict mit dem \verb|input| Key, der die Eingabe des 
+Nutzers ist und dazu noch ein weiteres dict mit einem 
+\verb|configurable| Key, dessen Wert ein dict ist, 
+mit einem \verb|session_id| key und der jeweiligen \verb|session_id|. \par
+
+\subsubsection{Absenden der Nachricht}
+Die ID des Nutzers, die unter \verb|message.sender.name| zu finden ist,
+wird benutzt um den Nutzer in der Nachricht anzusprechen. Die 
+Nachricht, die abgesendet wird beginnt hierfür mit \verb|<message.sender.name>|
+und dadurch kann über die API ein Nutzer angesprochen werden. Dies funktioniert nur
+über die ID, wenn man 
+den \verb|message.sender.displayName| verwendet, dann wird der Nutzer 
+nicht in der Nachricht verlinkt. \par
+Das finale JSON Objekt ist in \ref*{msg_send} dargestellt.\par
 Ein GoogleChatClient wird initialisiert und die notwendigen Infos 
 werden an diesen übergeben und die Nachricht wird abgesendet.
+Das wichtige hierbei ist, dass man, wenn man eine asynchrone Nachricht abschickt, 
+am Ende eine leere Antwort zurückgibt. Wenn man dies nicht macht, 
+kann es aktuell passieren, dass die API eine Inaktivität des Bots meldet 
+und die asynchrone Nachricht erst danach ankommt. 
 
 \subsection{Server Konfiguration}
 Damit die Google Chat API den Server akzeptiert, wird ein SSL Zertifikat 
-benötigt. In diesem Fall wurde Nginx verwendet um das SSL Zertifikat 
-zu laden und als Reverse-Proxy für den FastAPI Server. 
+benötigt. Das SSL Zertifikat wurde über certbot generiert und es wurde Nginx verwendet um das SSL Zertifikat 
+zu laden und als Reverse-Proxy für den FastAPI Server zu nutzen. 
 Der FastAPI Server wird als Service gestartet und für die Demo 
 wurden 4 Unicorn Worker, für den FastAPI Server benutzt. 
 
+\subsection{Google Chat API Konfiguration}
+Nachdem der Chatbot fertig gestellt wurde und der Server
+ein SSL Zertifikat und eine URL besitzt, kann die Google Chat 
+API Konfiguration fertig gestellt werden.\par
+Der API muss ein Anwendungsname gegeben werden. Über diesen 
+kann man die API im Chat ansprechen. Dazu wird eine URL zu 
+einem Bild benötigt, welches das Profilbild im Chat sein wird 
+und eine Beschreibung des Projekts.\par
+Die interaktiven Features müssen aktiviert sein und 
+die Option Gruppenbereichen und Unterhaltungen beitreten
+muss ausgewählt sein.\par
+Als Verbindungseinstellung wird Anwendungs-URL ausgewählt und 
+es wird die URL zum Server eingetragen.\par
+Da dies nur ein Prototyp ist, wird dieser noch nicht auf 
+dem Google Workspace Marketplace veröffentlicht. Da Nutzer 
+die App bewerten werden brauchen diese Zugriff, diese können 
+im Abschnitt ''Sichtbarkeit´´ manuell eingetragen werden. 
+Damit ist die Entwicklung des Chatbots und die Konfiguration der API 
+abgeschlossen.
 
-
+\subsection{Eingebauter Chatbot}
+Der Chatbot kann nun über Google Chat wie jeder 
+andere Teilnehmer des Workspaces angeschrieben werden.
+Wenn man den Chatbot einem Space hinzufügen will, dann 
+muss man diesen als App hinzufügen.\par
+In \ref*{chat} ist eine Chatinteraktion mit dem Bot dargestellt.
+Auf der linken Seite ist der generelle Space sichtbar und auf der 
+rechten Seite ein Thread.\par
+In \ref*{thread} ist eine Interaktion dargestellt in der die 
+Erinnerungen des Bots angefragt werden und es ist 
+erkennbar, dass der Bot sich an die vorherige Frage erinnern kann.

@@ -1,6 +1,6 @@
 \chapter{Einführung}
 \label{c:intro}
-Durch die steigende Popularität von Chatbots wie ChatGPT von OpenAI und Claude von Anthropic in 
+Durch die steigende Popularität von Chatbots wie ChatGPT von OpenAI \cite{Claude} und Claude \cite{ChatGPT} von Anthropic in 
 den letzten Jahren, wie man in \ref*{fig:trend_gpt} sehen kann, werden die Fortschritte, die im 
 Bereich der künstlichen Intelligenz erreicht werden, immer bekannter und der Nutzen den KI 
 Applikationen im Leben von Menschen haben wird dadurch immer erweitert.\par
@@ -10,7 +10,7 @@ durch diese ersetzen. Dies wird bei manchen Unternehmen über
 ein Chat Interface auf ihrer Website eingebaut. Über dieses Interface
 können die Nutzer fragen stellen und Probleme lösen lassen, falls 
 keine Lösung gefunden werden kann, werden sie dann an den Kundensupport 
-weitergeleitet \ref*{DistroKidHelpCenter}.
+weitergeleitet \cite{DistroKidHelpCenter}.
 
 
 \section{Motivation}
@@ -26,11 +26,12 @@ beantwortet werden.
 
 Einige dieser Fragen sind wiederkehrende Fragen, 
 die mithilfe der firmeninternen Dokumentation
-gelöst werden könnten, wie die Frage, wieso man sich nicht bei Bitwarden mit dem 
-Master Passwort einloggen kann. Um die Ressourcen des IT-Teams zu schonen und 
+gelöst werden könnten.Ein typisches Beispiel ist die häufig gestellte Frage, warum eine Anmeldung bei Bitwarden mit dem Master-Passwort nicht möglich ist.
+ Um die Ressourcen des IT-Teams effektiver zu nutzen und 
 die Probleme der Fachbereiche schneller zu lösen,
-soll ein Chatbot erstellt werden, durch Zugriff auf Daten der Firma 
-Fragen innerhalb des Support Chats beatnwrotet. \par
+soll ein Chatbot erstellt werden. 
+Dieser Chatbot soll Zugriff auf relevante Unternehmensdaten erhalten und dadurch in 
+der Lage sein, Fragen innerhalb des Support-Chats automatisch und präzise zu beantworten. \par
 Diese Arbeit zielt darauf ab, einen Beitrag zur Überbrückung der Lücke
  zwischen theoretischen Konzepten und praktischer Anwendung zu leisten. 
  Durch die konzeptionelle Entwicklung eines Chatbots und die anschließende 
@@ -48,7 +49,6 @@ In einer Zeit, in der Unternehmen und Organisationen zunehmend auf KI-Systeme
 setzen, um Effizienz zu steigern und Kundenerlebnisse zu verbessern, 
 liefert diese Arbeit konkrete Erkenntnisse für die 
 Entwicklung und den Einsatz moderner Chatbots.\par
-\iffalse
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -92,7 +92,6 @@ Entwicklung und den Einsatz moderner Chatbots.\par
     \caption{ChatGPT und Claude Interesse (Google Trends Data vom 26.06.2022 bis 26.05.2024)}
     \label{fig:trend_gpt}
 \end{figure}
-\fi
 \iffalse
 \begin{figure}[htbp]
     \centering
@@ -134,24 +133,12 @@ Entwicklung und den Einsatz moderner Chatbots.\par
 
 \section{Zielsetzung}
 \label{s:intro:goal}
-\iffalse
-Das Ziel der Arbeit besteht darin, einen Chatbot zu konzipieren und einen Prototyp zu entwickeln, der mit Hilfe der Daten 
-der internen Datenquellen der Techdivision Support leistet und Routinefragen beantwortet. Der Chatbot soll idealerweise 
-innerhalb von Google Chat integriert werden. Dabei ist es wichtig, dass der Chatbot, statt in Einzelchats, in einer Chat 
-Gruppe läuft. Diese beinhaltet neben den Support Suchenden, ebenfalls Mitarbeiter des jeweiligen Services. Auf diese Weise 
-kann, falls notwendig, extern Eingegriffen werden. Außerdem sollte der Chatbot in der Lage sein zu überprüfen, wie viele 
-der aktuellen Supportanfragen er eigenständig beantworten oder lösen kann. Falls der Chatbot keine Antwort auf eine Anfrage 
-haben sollte, soll er in den angebundenen Datenquellen nachschlagen können, um mit dem Wissen seine Wissensbasis zu 
-erweitern und die Fragen entsprechend zu beantworten.
-\fi
+
 Das Ziel der Arbeit besteht darin, einen Chatbot zu konzipieren und einen Prototyp zu entwickeln, der mit Hilfe der Daten 
 der internen Datenquellen der Techdivision Support leistet und Fragen beantwortet. Der Chatbot soll 
 innerhalb von Google Chat integriert werden. Dabei ist es wichtig, dass der Chatbot, statt in Einzelchats, in einer Chat 
 Gruppe läuft. Diese beinhaltet neben den Support Suchenden, ebenfalls Mitarbeiter des jeweiligen Services. Auf diese Weise 
-kann, falls, notwendig, extern eingegriffen werden. Außerdem sollte der Chatbot in der Lage sein zu überprüfen, wie viele 
-der aktuellen Supportanfragen er eigenständig beantworten oder lösen kann. Falls der Chatbot keine Antwort auf eine Anfrage 
-haben sollte, soll er in den angebundenen Datenquellen nachschlagen können, um mit dem Wissen seine Wissensbasis zu 
-erweitern und die Fragen entsprechend zu beantworten.\par
+kann, falls, notwendig, extern eingegriffen werden. \par
 Hierfür wird im Rahmen dieser Arbeit ein Konzept für einen Chatbot erstellt, 
 welches prototypisch implementiert wird. Dazu werden über die Implementierung vier verschiedene LLMs 
 verwendet und miteinander verglichen, um das beste für diesen Anwendungsfall zu ermitteln. 
