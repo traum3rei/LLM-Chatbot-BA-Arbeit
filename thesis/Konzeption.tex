@@ -118,7 +118,7 @@ welche Architektur das gesamte System haben soll.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/architecture.png}
-    \caption{Architektur des Systems}
+    \caption{konzeptionelle Architektur}
     \label{arc}
 \end{figure}
 In \ref*{arc} ist der Aufbau des Systems dargestellt. Im folgenden wird die Umsetzung der spezifischen Teile des
@@ -333,5 +333,12 @@ dieser Arbeit wäre dies genug, aber über synchrone Nachrichte, gibt es keine M
 auf Threads zu antworten, stattdessen werden einzelne Nachrichten versendet. Da die Threads
 benötigt werden, um einen sinnvollen Kontext für den Chatbot über die Nachrichtenhistorie 
 zu erstellen, wird hier der asynchrone Ansatz gewählt. \par
-Die Anbindung an Google Chat erfüllt dadurch die Anforderungen \ref*{s:anf:a2} und \ref*{s:anf:a3}.
+Die Anbindung an Google Chat erfüllt dadurch die Anforderungen A2 und A3.
 
+\subsection{Erfüllung der Anforderungen}
+Durch Nutzung einer lokalen LLM, die deutschsprachige Interaktion unterstützt, werden die Anforderungen A1 und A6 erfüllt. 
+Die Google Chat Anbindung ermöglicht die Umsetzung von A2 und A3.
+Die Einbindung einer Vektordatenbank mit RAG und das Nutzen einer Importers für das Importieren der Daten 
+erfüllen A4 und A5. Das Einbauen der Nachrichten Historie addressiert A8. Die Anforderung A7 wird nicht direkt 
+von einer Komponente abgedeckt und soll in der abschließenden
+Evaluation mithilfe des Fragebogens beurteilt werden.

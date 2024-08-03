@@ -73,6 +73,7 @@ benutzten Frameworks beschrieben.
     \STATE \quad Lade Dokumente aus Confluence
     \STATE \quad Rückgabe: Geladene Dokumente
     \end{algorithmic}
+    \label{DocumentLoader}
     \end{algorithm}
     
     \begin{algorithm}
@@ -81,16 +82,17 @@ benutzten Frameworks beschrieben.
     \STATE \textbf{Klasse} DocumentSplitter:
     \STATE \textbf{Methode} \_\_init\_\_():
     \STATE \quad Definiere Header zum Aufteilen
-    \STATE \quad Erstelle Text Splitter
+    \STATE \quad Erstelle Splitter
     \STATE \textbf{Methode} split\_documents(docs):
     \STATE \quad Teile Dokumente auf:
     \STATE \quad \quad Initialisiere leere Liste für aufgeteilte Dokumente
     \STATE \quad \quad Für jedes Dokument in docs:
-    \STATE \quad \quad \quad Teile Dokument mit Markdown Splitter
+    \STATE \quad \quad \quad Teile Dokument mit Splitter
     \STATE \quad \quad \quad Füge Metadaten hinzu
     \STATE \quad \quad \quad Füge aufgeteilte Dokumente zur Liste hinzu
     \STATE \quad Rückgabe: Aufgeteilte Dokumente
     \end{algorithmic}
+    \label{splitter}
     \end{algorithm}
     
     \begin{algorithm}
@@ -100,6 +102,7 @@ benutzten Frameworks beschrieben.
     \STATE \textbf{Methode} \_\_init\_\_(config):
     \STATE \quad Lade Embedding Modell mit Modellname und Konfigurationsparametern
     \end{algorithmic}
+    \label{embedding}
     \end{algorithm}
     
     \begin{algorithm}
@@ -114,10 +117,11 @@ benutzten Frameworks beschrieben.
     \STATE \quad \quad Persistiere Vektor-Datenbank
     \STATE \quad Rückgabe: Vektor-Datenbank Instanz
     \end{algorithmic}
+    \label{VectorDB}
     \end{algorithm}
     
     \begin{algorithm}
-    \caption{Hauptfunktion}
+    \caption{Importer main}
     \begin{algorithmic}[1]
     \STATE \textbf{Methode} main():
     \STATE \quad Initialisiere Konfiguration, Dokumenten-Loader, Dokumenten-Splitter, Embedding Modell und Vektor-Datenbank
@@ -125,25 +129,29 @@ benutzten Frameworks beschrieben.
     \STATE \quad Teile Dokumente auf
     \STATE \quad Speichere aufgeteilte Dokumente in Vektor-Datenbank
     \end{algorithmic}
+    \label{main}
     \end{algorithm}
+Algorithm \ref*{main} zeigt den generellen Ablauf des Importers.
 Für den Importer wird der Langchain \verb|ConfluenceLoader|
-verwendet. Hierfür wird, nachdem der Docker Container, welcher 
+verwendet. Dieser wird über die DocumentLoader Klasse in Algorithm \ref*{DocumentLoader} gesetzt. 
+Hierfür wird, nachdem der Docker Container, welcher 
 die ChromaDB Datenbank beinhaltet gestartet wurde, eine Verbindung 
 zu diesem hergestellt. Dabei wird dem Chroma Client innerhalb 
 des Python Programms der \verb|host| und der \verb|port| des
-Docker Containers übergeben.\par
-Danach wird das Embedding Modell mittels der \verb|HuggingFaceEmbeddings|
-von langchain geladen. Hier wird der Name des Modells, ''intfloat/multilingual-e5-large-instruct´´ übergeben.
+Docker Containers in Algorithm \ref*{VectorDB} übergeben.\par
+Danach wird das Embedding Modell in Algorithm \ref*{embedding} mittels der \verb|HuggingFaceEmbeddings|
+von langchain geladen. Hier wird der Name des Modells, \verb|intfloat/multilingual-e5-large-instruct|, übergeben.
 Dazu gibt es die Option Keyword Arguments mittels \verb|encode_kwargs| und \verb|model_kwargs| mitzugeben.
 Hier wird das \verb|device_kwargs| \verb|device| mit dem Wert \verb|cuda| gesetzt. 
 Dies sorgt dafür, dass die GPU für die Berechnungen verwendet wird, was den Prozess 
 beschleunigt.\par
 Nun können die Daten aus Confluence mittels \verb|ConfluenceLoader| geladen werden.
 Hier werden \verb|username|, \verb|api_key| und die \verb|url| der Confluence Instanz 
-benötigt. Nach dem Erstellen des Loaders können die Daten geladen werden, hierfür gibt
-es die \verb|load| Funktion, welche einen \verb|space_key| braucht, für 
-den Confluence Space der geladen werden soll.\par
-Die geladenen Dokumente, werden mittels \verb|MarkdownHeaderTextSplitter| ein mal 
+benötigt. Nach dem Erstellen des Loaders können die Daten geladen werden, hierfür wird 
+die \verb|load| Funktion, welche einen \verb|space_key| braucht, für 
+den Confluence Space der geladen werden soll, verwendet.\par
+Die geladenen Dokumente, werden wie in Algorithm \ref*{splitter} dargestellt über Splitter aufgeteilt.
+Hierfür werden die Dokumente mittels \verb|MarkdownHeaderTextSplitter| ein mal 
 aufgeteilt und mittels \verb|RecursiveCharacterTextSplitter| noch ein weiteres 
 mal aufgeteilt. Den aufgeteilten Dokumenten werden die Metadaten hinzugefügt, damit 
 sie zugeordnet werden können.\par
@@ -177,15 +185,19 @@ eingebaut. Im Folgenden werden die einzelnen Teile erklärt.
     \STATE \quad Erstelle Vektordatenbank Instanz mit Embeddings und Client
     \STATE \quad Erstelle Retriever mit Vektordatenbank Instanz
     \end{algorithmic}
+    \label{retriever}
     \end{algorithm}
 Der erste Teil der Chain der entwickelt wird, ist der \verb|Retriever|. 
 Der Retriever ist der Teil der Chain, der auf die Vektordatenbank zugreift und 
 die passenden Dokumente von dieser an die LLM übergibt.\par
+Der Retriever wird über den RetrieverManager in Algorithm \ref{retriever} konfiguriert.
 Hierfür wird, wie beim Importer in \ref*{s:ent:imp} ein Chroma Client erstellt, der 
 mit dem Docker Container der Chroma Instanz verbunden wird, dazu wird ebenfalls,
 wie beim Importer, das Embedding Modell über \verb|HuggingFaceEmbeddings| geladen
 und in der Chroma Instanz als \verb|embedding_function| angegeben.
-Dieser wird dann mit der Funktion \verb|as_retriever()| als Retriever geladen.\par
+Dieser wird dann mit der Funktion \verb|as_retriever()| als Retriever geladen.
+Das wichtige hierbei ist es den selben \verb|collection_name| wie beim Importer 
+anzugeben.\par
 
 \subsubsection{Prompt}
 \begin{algorithm}
@@ -195,8 +207,9 @@ Dieser wird dann mit der Funktion \verb|as_retriever()| als Retriever geladen.\p
     \STATE \textbf{Method} \_\_init\_\_():
     \STATE \quad Definiere Prompt 
     \end{algorithmic}
+    \label{prompt}
     \end{algorithm}
-Das Prompt wird mittels \verb|ChatPromptTemplate.from_messages| erstellt.
+Das Prompt wird über Algorithm \ref{prompt} mittels \verb|ChatPromptTemplate.from_messages| erstellt.
 Das Prompt, welches benutzt wird, ist Folgendes: \par
     Dein Name ist Arthur. Du bist ein erfahrenes Mitglied 
     des IT-Support-Teams der Firma TechDivision. Deine Aufgabe ist es, Mitarbeitern 
@@ -221,15 +234,18 @@ und dazu falsche Informationen und Halluzinationen vermeiden.
 
 \subsubsection{Nachrichten Historie}
 \begin{algorithm}
+    \caption{Nachrichten Historie}
     \begin{algorithmic}[1]
+        
     \STATE \textbf{Method} get\_session\_history(session\_id):
     \STATE \quad Rückgabe einer Session mit Session Id 
     \end{algorithmic}
-    \end{algorithm}
+    \label{sessio}
+\end{algorithm}
 Die Nachrichten Historie wird mittels \verb|RunnableWithMessageHistory| 
-implementiert. Hierfür wird noch eine \verb|get_session_history| Funktion benötigt, 
-welche aus einer SQLite Datenbank mittels der \verb|session_id| den aktuellen Session 
-Chat abruft. 
+implementiert. Hierfür wird noch eine \verb|get_session_history| Funktion, wie in Algorithm \ref{sessio} dargestellt, benötigt.
+Diese ruft über eine SQLite Datenbank mittels der \verb|session_id| und der \verb|SQLChatMessageHistory| Klasse die aktuellen Session
+auf. 
 
 \subsubsection{LLM}
 \label{entllm}
@@ -240,10 +256,11 @@ Chat abruft.
     \STATE \textbf{Method} \_\_init\_\_(model\_name):
     \STATE \quad Initialisiere Sprachmodell 
     \end{algorithmic}
+    \label{llmmanager}
     \end{algorithm}
 Dieser Schritt kann erst funktionieren, wenn die in 
 \ref*{s:ent:mod} beschriebenen Vorbereitungen abgeschlossen sind. 
-Die LLM wird dafür mit der \verb|Ollama| Community LLM geladen. Wobei 
+Die LLM wird dafür mit der \verb|Ollama| Community LLM in der LLMManager Klasse (siehe Algorithm \ref*{llmmanager}) geladen. Wobei 
 der Klasse der Name des Modells aus Ollama übergeben wird. \par
 
 
@@ -258,9 +275,11 @@ der Klasse der Name des Modells aus Ollama übergeben wird. \par
     \STATE \textbf{Method} send\_message(space\_name, thread\_name, user\_name, message):
     \STATE \quad Sende Nachricht an den angegebenen Space und Thread in Google Chat
     \end{algorithmic}
+    \label{gcloud}
     \end{algorithm}
-Um async Nachrichten an die Google Chat API zu senden, wird eine Credential Datei benötigt, von 
-einem Service Account, der mit der Google Chat API verbunden ist. Im Code wird der 
+In Algorithm \ref*{gcloud} ist der Pseudo Code für den Google Chat Client dargestellt.
+Um async Nachrichten an die Google Chat API zu senden, wird eine Credential Datei, von 
+einem Service Account, der mit der Google Chat API verbunden ist, benötigt. Im Code wird der 
 Scope \verb|https://www.googleapis.com/auth/chat.bot| spezifiziert und aus dem Scope und dem 
     Service account wird mit der \verb|build| Funktion der client erstellt. 
 Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute()|
@@ -285,7 +304,7 @@ Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute(
     \STATE \quad Initialisiere Retriever mit angegebenen Einstellungen
     \STATE \quad Initialisiere ChatbotPrompt zur Abrufung der Promptvorlage
     
-    \STATE \quad \quad Initialisiere LLMManager mit Modell
+    \STATE \quad Initialisiere LLMManager mit Modell
     \STATE \quad Erstelle eine Chain aus Modell und Prompt
     \STATE \quad Erstelle eine weitere Chain aus dem Retriever und der vorherigen Chain
     \STATE \quad Initialisiere Session History Chain 
@@ -296,11 +315,13 @@ Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute(
     
     \STATE \quad Rückgabe einer Antwort, die anzeigt, dass die Nachricht gesendet wurde
     \end{algorithmic}
+    \label{post}
     \end{algorithm}
 
 \subsubsection{Nachrichtenverarbeitung}
 Für die Verbindung an die Google Cloud API wird ein 
-POST Endpunkt erstellt. Dieser Endpunkt nimmt die Nachrichten, 
+POST Endpunkt erstellt. Der Pseudo Code des POST Endpunkts 
+ist in Algorithm \ref*{post} dargestellt. Dieser Endpunkt nimmt die Nachrichten, 
 die in Google Chat an den Chatbot gesendet werden an.
 Die JSON Nachricht, die man von der API erhält beinhaltet 
 viele Informationen. Für den Chatbot sind die ID des Nutzers, 
@@ -313,7 +334,7 @@ Zuerst wird überprüft, ob der Email Host ein Email Host ist, der
 Zugang auf diesen Bot haben sollte. \par
 Der Thread ist unter \verb|message.thread.name| zu finden. Die Thread 
 ID, welche der letzte Teil der Nachricht ist, wird verwendet um die 
-Session ID herzustellen und sie wird als \verb|thread.name| an die API
+Session ID herzustellen und sie wird in der Antwort als \verb|thread.name| an die API
 geschickt.\par
 
 \subsubsection{Chatbot Chain}
@@ -325,7 +346,7 @@ eine Retrieval Chain erstellt und daraus wird final die Runnable with Message Hi
 Der \verb|RunnableWithMessageHistory| muss ein Runnable Objekt 
  welches als Basis dient, übergeben werden. Hier ist das Basis Runnable Objekt, 
 die Retrieval Chain.
-Dazu wird der Runnable die \verb|get_session_history| Funktion übergeben.
+Dazu wird der Runnable die \verb|get_session_history| Funktion aus Algorithm \ref{sessio} übergeben.
 Da das Basis Runnable ein dict als Input benötigt, muss ein \verb|input_messages_key|
 angegeben werden, was laut dem Prompt, welches verwendet wird der Key \verb|input| ist. 
 Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key|
@@ -377,11 +398,11 @@ es wird die URL zum Server eingetragen.\par
 Da dies nur ein Prototyp ist, wird dieser noch nicht auf 
 dem Google Workspace Marketplace veröffentlicht. Da Nutzer 
 die App bewerten werden brauchen diese Zugriff, diese können 
-im Abschnitt ''Sichtbarkeit´´ manuell eingetragen werden. 
+im Abschnitt \verb|Sichtbarkeit| manuell eingetragen werden. 
 Damit ist die Entwicklung des Chatbots und die Konfiguration der API 
 abgeschlossen.
 
-\subsection{Eingebauter Chatbot}
+\subsection{Chatbotinteraktion}
 Der Chatbot kann nun über Google Chat wie jeder 
 andere Teilnehmer des Workspaces angeschrieben werden.
 Wenn man den Chatbot einem Space hinzufügen will, dann 

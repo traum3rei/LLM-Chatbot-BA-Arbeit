@@ -2,26 +2,31 @@
 \label{vergleich}
 
 \section{Evaluierung}
-Der finale Teil der Arbeit beschäftigt sich mit dem Vergleich der Performance,
-des Systems. Das System wurde mit vier verschiedenen LLM Modellen implementiert und 
-wird im ersten Schritt mit dem Framework RAGAS miteinander 
-verglichen. Nach diesem Schritt werden die zwei bestabschneidensten Modelle 
-für die finale Bewertung von Mitarbeitern aus der Techdivision miteinander 
-verglichen. Im Konzept wurden die meisten Anforderungen aus \ref*{s:anf:anf} bereits 
-erfüllt. Hier werden \ref*{s:anf:a4} und \ref*{s:anf:a7} erneut aufgegriffen.
+Der abschließende Teil der Arbeit fokussiert sich auf den Leistungsvergleich
+des Systems. Das System wurde mit vier verschiedenen LLMs implementiert und 
+wird zunächst mithilfe des RAGAS-Frameworks evaluiert. 
+Im Anschluss an diese Analyse werden die zwei bestabschneidensten Modelle 
+einer weiteren Bewertung durch Mitarbeitern der Techdivision unterzogen. 
+Während im Konzept bereits die meisten Anforderungen aus \ref*{s:anf:anf} 
+erfüllt wurden, werden in diesem Teil A4 und A7 erneut aufgegriffen.
 
 \section*{Modelle}
-Die vier LLM Modelle die bewertet werden sind Metas Llama3,
-Mistrals Mistral, Googles Gemma2 und Microsofts Phi-3.\par
+Die vier LLM Modelle, die bewertet werden sind Metas Llama3,
+Mistrals Mistral, Googles Gemma 2 und Microsofts Phi-3.\par
 Der größte Unterschied den man zwischen diesen Modellen sieht 
 ist die Parametergröße der Modelle. Mistral hat hierbei 7 Milliarden
-Parameter, Llama3 hat 8B, Gemma2 hat 9B und Phi-3 ist das größte Modell
-mit 14B Parametern.\par
-Alle Modelle sind Decoder Only Transformer, wobei Mistral 
-sliding window attention nutzt, 
- Gemma2 variiert zwischen sliding window und global attention,
- Phi-3 nutzt blocksparse attention. Dazu nutzen alle Modelle 
- Grouped-query Attention. 
+Parameter, Llama3 8 Milliarden, Gemma 2 9 Milliarden und Phi-3 ist das größte Modell
+mit 14 Milliarden Parametern.\par
+Alle Modelle basieren auf der Decoder Only Transformer Architektur, 
+unterscheiden sich jedoch in ihren Attention Mechanismen.
+Mistral verwendet
+sliding window attention (siehe \ref*{swa}), während 
+ Gemma2 zwischen sliding window und global attention variiert.
+ Phi-3 hingegen nutzt blocksparse attention (siehe \ref*{bsa}). 
+ Alle Modelle haben gemeinsame, dass  
+ Grouped-query Attention (siehe \ref*{gqa}) verwendet wird. 
+ Die Modelle unterscheiden sich ebenfalls in der Tokenmenge, die für das 
+ Training verwendet wurde.
 Gemma 2 wurde mit 8 Billionen Tokens trainiert, Llama3 mit 
 15 Billionen und Phi-3 mit 4.8 Billionen \cite{Mistral, IntroducingMetaLlama, abdinPhi3TechnicalReport2024, gemmateamGemmaImprovingOpen2024}. Die Menge von Tokens
 für Mistral ist nicht bekannt.
@@ -42,77 +47,73 @@ Die erste Phase des Evaluierungsprozesses findet über dieses Framework statt.
 \subsection{Testset}
 Der erste Schritt für den Vergleich ist es Testsets herzustellen anhand
 derer Ragas den Benchmark Test durchführen kann.\par
-Die Variante die hierfür verwendet wird ist es einen TestsetGenerator per 
-\par\verb+TestsetGenerator.from_langchain()+
+Die Variante die hierfür verwendet wird ist es einen TestsetGenerator per
+ \verb+TestsetGenerator.from_langchain()+
 herzustellen und mit diesem dann das Testset erstellen zu lassen.\par
 Als Vorbereitung hierfür werden Daten benötigt. 
-Die Daten die als Dokument geladen werden haben alle ein 
+Die Daten die als Dokumente geladen werden haben alle ein 
 Metadata Dictionary. Damit der Generator erkennen kann,
 welche Daten zusammengehören brauchen die Dokumente in 
-diesem Metadata Dictionary ein Key Value Pair mit dem Namen
-''filename``. Der Wert des ''filename`` Schlüssels wird verwendet 
+diesem Metadata Dictionary ein Key Value Pair mit dem Schlüssel 
+\verb|filename|. Der Wert des \verb|filename| Schlüssels wird verwendet 
 um bei der Generation der Testdaten zusammengehörige 
 Dokumententeile zusammenzufügen.\par
-Nach dem Vorbereiten der Daten kann man damit beginnen den 
+Nach dem Vorbereiten der Daten kann damit begonnen werden den 
 Generator zu erstellen.
 Für diesen Generator werden drei Parameter verwendet.
 Die \verb+generator_llm+, \verb+critic_llm+ und \verb+embeddings+.
-Als Embedding Model benutzen wir ebenfalls das Model 
-"intfloat/multilingual-e5-large", wie für den Chatbot und 
-den Importer. 
-\iffalse Als Critic und Generator LLM werden wir zwei verschiedene LLMs
-nutzen.  Da die Geschwindigkeit der Erstellung dieser Daten
-keine große Rolle spielt werden hierfür große Modelle genutzt.
-Das Generator Modell wird eine auf Deutsch finetuned Version
-von Mistrals Mixtral 8x7B sein und zwar 
-"VAGOsolutions/SauerkrautLM-Mixtral-8x7B" \cite{VAGOsolutionsSauerkrautLMMixtral8x7BHugging2023}.
-Als Critic Modell wird eine Version von Microsofts Phi 3 genutzt, welche
-ebenfalls auf Deutsch finetuned wurde. Die Version die genutzt wird ist 
-"VAGOsolutions/SauerkrautLM-Phi-3-medium", welche eine finetuned Version 
-von dem Modell "unsloth/Phi-3-medium-4k-instruct" ist. \pa \fi
+Als Embedding Model wird ebenfalls das Model 
+\verb|intfloat/multilingual-e5-large|, wie für den Chatbot und 
+den Importer, genutzt. 
 Als Critic und als Generator LLM wird das 70 Milliarden 
 Parameter Model Llama3 von Meta verwendet. 
-Die Nutzung von Hugginface Modellen mit Ragas scheint aktuell 
-nicht zu funktionieren, daher wird das Llama3 Model, welches 
+Die Nutzung von Hugginface Modellen mit Ragas funktioniert 
+aktuell nicht, daher wird das Llama3 Modell, welches 
 man direkt über Ollama beziehen kann, verwendet.
-Nach dem Erstellen des Generators und dem vor und aufbereiten der 
-Daten kann man das Testset generieren lassen über die Funktion 
-\verb+generate_with_langchain_docs()+. 
-Für die Generierung kann man drei Parameter setzen.
-Als erstes die \verb+documents+ von denen man die Testsets 
-generieren will.
+Nach dem Erstellen des Generators und dem Vor und Aufbereiten der 
+Daten kann man das Testset über die Funktion 
+\verb+generate_with_langchain_docs()+ generieren lassen. 
+Für die Generierung werden drei Parameter benötigt.
+Als erstes die \verb+documents+ aus denen die Testsets 
+generiert werden sollen.
 Hier werden Documents verwendet die über den \verb+ConfluenceLoader+
-von Langchain geladen werden. Parallel wie beim Importer (\ref{s:ent:imp}).
-Dazu kann man bestimmen, wie viele Elemente im Set enthalten sein sollen.
+von Langchain geladen werden. Dies wird genau wie beim Importer (siehe \ref{s:ent:imp}) umgesetzt.
+Dazu kann bestimmt werden, wie viele Elemente im Set enthalten sein sollen.
 Diese \verb+test_size+ bestimmt wie viele Fragen vom \verb+TestsetGenerator+ generiert werden.
-Dazu kann man die Verteilung der Fragen bestimmen.
-Die Fragen die durch den Generator erstellt werden können dazu drei verschiedene
+Dazu kann die Verteilung der Fragen bestimmt werden.
+Die Fragen die durch den Generator erstellt werden können in diesem Zusammenhang drei verschiedene
 Typen haben. Diese drei Typen sind: \verb+simple+, \verb+reasoning+ und \verb+multi_context+.
-Diese kann man der \verb+generate+ Funktion als dict mitgeben mit der Verteilung 
-die man verwenden möchte. Hier werden diese Werte verwendet: \verb+simple: 0.5+,
+Diese können, der \verb+generate+ Funktion, mit der Verteilung 
+die verwendet werden soll, als dict übergeben werden. Hier werden diese Werte verwendet: \verb+simple: 0.5+,
 \verb+reasoning: 0.2+ und \verb+multi_context: 0.3+.\par
-Das Testset welches hierbei generiert wird kann man mittels 
-\verb+to_pandas()+ als pandas Dataframe ausgeben.
-Wenn man dieses Dataframe betrachtet sieht man, 4 relevante Spalten.\par
+Das Testset welches hierbei generiert wird kann mittels 
+\verb+to_pandas()+ als pandas Dataframe ausgeben werden.
+Wenn dieses Dataframe betrachtet wird, werden 4 relevante Spalten angezeigt.\par
+Diese sind: \par
 \verb+question+: Die Frage die dem Chatbot für das Benchmarking gestellt wird. \par
 \verb+context+: Der Context aus dem die Frage erstellt wurde. \par
 \verb+ground_truth+: Die Antwort auf die Frage. \par
 \verb+question_type+: Der Question Typ, dessen Verhältnis in der \verb+generate+ Funktion bestimmt wurde.\par
-Mit diesem Testset kann man nun die Chain bewerten.
+Mit diesem Testset kann die Chain bewertet werden.
 
 \subsection{Evaluation}
 \label{metrics}
 Nachdem das Testset generiert wurde kann mit der Bewertung begonnen werden. 
 Für die Bewertung gibt es acht verschiedene Metriken, die man 
 betrachten kann. Hiermit kann man die verschiedenen Teile der Rag-Pipeline bewerten.
+Einige der Metriken bewerten nur den RAG Aspekt der Chain, wobei nur die abgerufenen 
+Dokumente bewertet werden. Da in diesem Aspekt keine Änderungen stattfinden, sondern
+nur die LLMs die zur Generation der Antworten genutzt werden, geändert werden, werden
+nicht alle Metriken betrachtet.
 Im Folgenden werden die Metriken die zu zur Bewertung verwendet werden betrachtet.
 Standardmäßig verwendet die \verb|evaluate| Funktion die OpenAI API, 
-dies kann überschrieben werden indem man der der Funktion ein \verb|llm| 
-und ein \verb|embedding| übergibt. Man kann hierbei die Llm und das Embedding Model 
+dies kann überschrieben werden indem der Funktion ein \verb|llm| 
+und ein \verb|embedding| übergen wird. Man kann hierbei die Llm und das Embedding Model 
 in \verb|LangchainLLMWrapper| und in \verb|LangchainEmbeddingsWrapper| verpacken,
 falls man kein Langchain LLM oder Embedding verwendet. Wenn die LLM und das 
 Embedding von Langchain ist, dann kann man diese direkt übergeben und sie werden 
-in der Funktion verpackt.
+in der Funktion verpackt. Diese Funktion ist aktuell aber nicht 
+funktionsfähig, daher wird hierfür die OpenAI API verwendet.
 
 \subsubsection{Faithfulness}
 ''Faithfulness`` zu Deutsch ''Genauigkeit`` ist die Metrik, die die 
@@ -238,33 +239,33 @@ genutzte LLM einen Einfluss hat.
         \hline
 
        \end{tabular}
-       \caption{Ragas Ergebnisse der vier Modelle.}
+       \caption{Ragas Ergebnisse}
        \label{tab:evaluation}
     \end{figure}
 \end{center}
 
-In der Tabelle \ref*{tab:evaluation} sieht man die Ergebnisse des Ragas Benchmarks.
+In der Tabelle \ref*{tab:evaluation} sind die Ergebnisse des Ragas Benchmarks dargestellt.
 Die verschiedenen Metriken die betrachtet wurden sind \verb|answer_relevancy|, 
-\verb|answer_correctness|, \verb|answer_similarity|, \verb|context_relevancy| und \verb|faithfulness|.
-Alle Metriken außer \verb|faithfulness| sind am höchsten bei Llama3 von Meta. \verb|Faithfulness| 
-hat den höchsten Wert bei Mistral von Mistral. Das beste Modell hierbei ist Llama3 mit 3 Metriken 
+\verb|answer_correctness|, \verb|answer_similarity| und \verb|faithfulness|.
+Alle Metriken außer \verb|faithfulness| sind am höchsten bei Llama3. \verb|Faithfulness| 
+hat den höchsten Wert bei Mistral. \par Das beste Modell in diesem Test ist Llama3 mit 3 Metriken,
 bei denen es am besten bewertet wurde. Das zweitbeste ist Phi-3 mit zwei Metriken als zweitbestes Modell 
 und zwei als drittes. Das drittbeste Modell ist Mistral mit einer Bewertung als bestes Modell, zwei als drittes 
-und eins als viertes. Das schlechtest Modell innerhalb dieser Ragas Bewertung ist Gemma2 mit einer Metrik 
+und eins als viertes. Das schlechteste Modell innerhalb dieser Ragas Bewertung ist Gemma2 mit einer Metrik 
 als zweitbestes und drei als viertes. \par
-Das worin sich Llama3 von den anderen Modellen am meisten unterscheidet ist die 
-Menge an Tokens die zum trainieren verwendet wurden. Mit 15 Billionen Token ist dies 7 
-Billionen von den für Gemma 2 verwendet 8 Billionen Token entfernt. Aber das zweitbeste Modell 
-in diesem Vergleich, Phi-3, hatte die kleinste bekannte Menge an Trainingsdaten, aber 
-dafür war es mit 14 Milliarden Parametern das größte Modell. Aufgrund dessen lässt 
-sich nicht direkt ein eindeutiger Grund sehen, wieso hier einige Modelle besser als die anderen abschneiden.
+Der größte Unterschied zwischen Llama3 und den anderen Modellen ist die Menge 
+an Trainingsdaten, die verwendet wurden. Mit 15 Billionen Token ist dies 7 
+Billionen von den für Gemma 2 verwendet 8 Billionen Token entfernt. Das zweitbeste Modell 
+in diesem Vergleich, Phi-3, hatte die kleinste bekannte Menge an Trainingsdaten und war 
+dafür mit 14 Milliarden Parametern das größte Modell. Dies zeigt, dass die Platzierung der Modelle 
+hier weder direkt von der Menge an Trainingsdaten abhängt, noch von der Menge an Parametern.
 
 \section{Umfrage Vergleich}
 Dieser Schritt der Bewertung greift Anforderungen A4 und A7
 erneut auf. A4 wurde bereits durch die RAG Pipeline und den Importer 
 in den Chatbot eingebaut, der nächste Schritt ist es zu überprüfen, ob 
-die richtigen Unternehmensdaten verwendet werden und diese logisch 
-und schlüssig in die Antworten mit eingebaut werden.
+die richtigen Unternehmensdaten verwendet werden und diese verständlich und 
+logisch in die Antworten mit eingebaut werden.
 Hierfür wurde 4 Mitarbeitern aus dem Unternehmen ein Fragebogen zum Ausfüllen 
 gegeben und dazu wurde ihnen Zugang zum System freigeschaltet. Dies 
 bewertet gleichzeitig die Antworten und ermöglicht es die 2 Modelle 
@@ -272,7 +273,8 @@ miteinander zu vergleichen.
 
 \subsection{Fragebogen}
 Der Fragebogen wurde so erstellt, dass es keine genauen Fragen gibt, 
-sondern nur Themengebiete, die abgefragt werden sollen. Das wichtige 
+sondern nur Themengebiete, die abgefragt werden sollen. 
+Das wichtige 
 beim Auswählen der Themengebiete war, dass es Informationen waren, die 
 auf der Confluence Instanz, auf die der Chatbot Zugriff hatte, verfügbar 
 waren. Die Confluence Instanz die für diese Arbeit verwendet wurde ist ein 
@@ -280,8 +282,7 @@ Testsystem auf das für diese Arbeit verschiedene Blogeinträge und Dokumentatio
 geladen wurden, die den Einträgen auf dem Produktivsystem ähneln nur ohne kritische 
 Kundendaten und ähnliches. Die Fragen für den Fragebogen werden aus diesen neu erstellten 
 Einträgen erstellt. \par
-\par
-
+\bigskip
 
 Folgende Aufgaben wurden den Teilnehmern gegeben:
 
@@ -295,29 +296,27 @@ Kompetenzen des Chatbots ab.\par\par
 Frage 1, die Einrichtung der VPN: Der Chatbot sollte in 
 der Lage sein, eine klare, schrittweise Anleitung zur 
 VPN-Einrichtung aus dem Confluence-Wissen zu extrahieren 
-und dem Teilnehmer präsentieren.\par
+und dem Teilnehmer zu präsentieren.\par
 Frage 2, DNS-Auflösungsproblem bei aktivem VPN:
 Hier sollte der Chatbot Problemlösungsstrategien aus 
 dem Confluence ableiten und dem Benutzer mögliche
  Lösungsansätze vorschlagen.\par
 Frage 3, Teilen sensitiver Daten:
 Der Chatbot sollte verschiedene in Confluence 
-dokumentierte Methoden zum sicheren Datenaustausch 
-identifizieren und dem Benutzer erklären können.\par\par
+dokumentierte Methoden zum sicheren Teilen von sensitiven Daten 
+erkennen und dem Benutzer erklären können.\par\par
 
 Die Teilnehmer sollten die Antworten auf einer Skala von 1-5 für beide 
-LLMs bewerten. wobei 1 für sehr schlecht und 5 für sehr gut steht.
+LLMs bewerten, wobei 1 für sehr schlecht und 5 für sehr gut steht. \par\bigskip
 
+In \ref{bewertung} sind die durchschnittlichen Bewertungen der LLMs dargestellt. 
+Die Ergebnisse zeigen, dass Llama3 und Phi-3 bei zwei der drei Fragen identische 
+Durchschnittswerte erreichten. Bei der zweiten Frage übertraf Llama3 Phi-3 um 0,25 Punkte.
 
-
-In \ref{bewertung} sind die durchschnittlichen Bewertungen der LLMs dargestellt.
-Frage 1 und Frage 3 haben bei beiden LLMs den selben durchschnittlichen Wert. Frage 2 ist die Frage in der der durchschnittliche Wert unterschiedlich ist.
-Hier ist der durchschnittliche Wert bei Llama3 um 0.25 besser. 
-
-In Worten sind beide LLMs bei der Frage in der eine Anleitung erstellt werden 
-sollte und der Frage ob über die Möglichkeiten zum sicheren Datenaustausch etwas besser als Okay.
-Bei der Frage in der die LLMs dem Nutzer Problemlöstungsstrategien geben sollten, ist Llama3 Okay und 
-Phi-3 etwas schlechter als Okay.
+Konkret erzielten beide Modelle bei der Erstellung der Anleitung und bei der
+ Frage zum sicheren Datenaustausch Bewertungen, die etwas besser als \verb|Okay|
+  ausfielen. Bei der Frage zur Problemlösungsstrategien wurde Llama3 als 
+  \verb|Okay| eingestuft, während Phi-3 leicht darunter lag.
 
 Dies führt dazu, dass Llama3 insgesamt die bessere Bewertung hat und somit 
 im Vergleich besser ist. Genau wie in \ref*{s:bew} bereits erwähnt, ist der 

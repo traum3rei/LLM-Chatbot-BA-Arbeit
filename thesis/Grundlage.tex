@@ -258,19 +258,19 @@ mit diesen Geräten zu interagieren\cite{WhatNLPNatural2021}.
 \subsection{Neuronale Netzwerke}
 \label{s:intro:nn}
 Neuronale Netze sind ein Teil des Machine Learnings, welcher versucht sich stark an dem Aufbau eines biologischen Gehirns zu orientieren.
-Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese ``Neuronen''
-sind miteinander verbunden. Sie sind über verschiedene Reihen miteinander verbunden, wie in der \ref*{nn} dargestellt.\par
+Dementsprechend bestehen sie aus Tausenden oder sogar Millionen ``Neuronen'', welche durch Knotenpunkte dargestellt werden. Diese Neuronen
+sind über verschiedene Reihen miteinander verbunden. Dieses Schema ist in \ref*{nn} dargestellt \cite[S. 5 - 7]{Goodfellow-et-al-2016}.\par
 
 In \ref{neuron} ist ein Neuron dargestellt. Jeder Eingang an einem Neuron hat eine Gewichtung. Wenn die Gewichtung eines Eingangs 0 ist, dann heißt es, dass zwei Knoten 
 keine Verbindung miteinander haben. Wenn die Gewichtung positiv ist, dann hat es eine bestärkende Wirkung und, falls die Gewichtung negativ
-ist, dann hat es eine hemmende Wirkung. \par %wikipedia https://de.wikipedia.org/wiki/Künstliches_Neuron
+ist, dann hat es eine hemmende Wirkung \cite[S. 5 - 7]{Goodfellow-et-al-2016}. \par %wikipedia https://de.wikipedia.org/wiki/Künstliches_Neuron
 Jedes Neuron hat zudem einen sogenannten Bias. Durch den Bias hat das Neuron eine Grundaktivität, welche, ebenfalls während dem Training angepasst werden kann \cite{kempkesNeuronUndAktivierungsfunktion2023}.
 Das aktuelle Neuron summiert dann alle gewichteten Werte und addiert den Bias. Wie in dieser Formel dargestellt:
 \[
 \sum_{i} w_i x_i + b
 \] 
-Der summierte Wert wird durch die Aktivierungsfunktion transformiert und das Ergebnis wird dann dem nächsten Neuron in der nächsten Schicht weitergeleitet.
-Typische Aktivierungsfunktionen sind
+Der summierte Wert wird durch die Aktivierungsfunktion transformiert und das Ergebnis wird dann dem nächsten Neuron in der nächsten Schicht weitergeleitet \cite[S. 5 - 7]{Goodfellow-et-al-2016}.
+Typische Aktivierungsfunktionen sind:
 \begin{itemize}
     \item Sigmoid Function : \[f(x) = \frac{1}{1 + e^{-x}}\]
     \item ReLu (Rectified Linear Unit): \[f(x) = \max(0, x)\]
@@ -530,6 +530,7 @@ konkateniert und im Anschluss mit der Gewichts Matrix $W_0$ multipliziert \cite{
 \[z = Concat(head_1, head_2, ..., head_n)W_0\]
 
 \subsubsection{Sliding-Window Attention}
+\label{swa}
 Sliding Window Attention ist eine Weiterentwicklung der Self-Attention.
 Hierbei werden nicht alle anderen Position betrachtet, sondern nur 
 eine bestimmte Menge an Positionen, die um den aktuellen Token liegen.
@@ -542,6 +543,7 @@ für ihre LLMs genutzt wird.
 \cite{beltagyLongformerLongDocumentTransformer2020, gemmateamGemmaImprovingOpen2024}
 
 \subsubsection{Multi-Query Attention}
+\label{mqa}
 Multi-Query Attention ist eine Weiterentwicklung der Multi-Head Attention.
 Dieser Mechanismus funktioniert ähnlich wie Multi-Head Attention, hierbei 
 werden in dieser Variante jedoch die Key und Value Matrizen unter den 
@@ -551,6 +553,7 @@ Dies sorgt vorallem für eine schnellere Inference.
 Hier gibt es auch nur eine kleine Verringerung der Qualität \cite{shazeerFastTransformerDecoding2019}.
 
 \subsubsection{Grouped-Query Attention}
+\label{gqa}
 Die Grouped-Query Attention ist eine weitere Variante der Multi-Head 
 Attention. Diese ist eine Variante, die von der Multi-Query Attention
 abstammt und zwischen Multi-Head Attention und Multi-Query 
@@ -559,6 +562,17 @@ In dieser Version gibt es davon mehr als eine und weniger als die Anzahl der
 Query Heads.
 Inference funktioniert hierbei schneller als bei der Multi-Head Attention
 und es geht weniger Qualität verloren als bei Multi-Query Attention \cite{ainslieGQATrainingGeneralized2023}.
+
+\subsubsection{Block Sparse Attention}
+\label{bsa}
+Block Sparse Attention ist eine Kombination 
+aus Sliding, Global und Random Verbindungen.
+Durch die Kombination der drei Verbindungen
+wird hierbei eine effiziente Balance zwischen den 
+lokalen Details und dem globalen Kontext erreicht.
+Des weiteren reduziert dies die benötigte 
+Rechenleistung \cite{blockSparse}.
+
 
 \subsection{Tokenizer}
 \label{s:intro:llm:token}
