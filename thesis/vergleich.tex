@@ -12,7 +12,7 @@ erfüllt. Hier werden \ref*{s:anf:a4} und \ref*{s:anf:a7} erneut aufgegriffen.
 
 \section*{Modelle}
 Die vier LLM Modelle die bewertet werden sind Metas Llama3,
-Mistrals Mistral 2, Googles Gemma2 und Microsofts Phi-3.\par
+Mistrals Mistral, Googles Gemma2 und Microsofts Phi-3.\par
 Der größte Unterschied den man zwischen diesen Modellen sieht 
 ist die Parametergröße der Modelle. Mistral hat hierbei 7 Milliarden
 Parameter, Llama3 hat 8B, Gemma2 hat 9B und Phi-3 ist das größte Modell
@@ -229,7 +229,7 @@ genutzte LLM einen Einfluss hat.
         \hline
         \multicolumn{5}{|c|}{Model Bewertung} \\
         \hline
-        Metrik & llama3 & mistral2 & phi3 & gemma2 \\
+        Metrik & llama3 & mistral & phi3 & gemma2 \\
         \hline
         answer\_relevancy   & 0.9998   & 0.9802 &  0.9981 & 0.7481\\
         answer\_correctness & 0.6126  & 0.3717  &  0.4172 & 0.5011\\
@@ -247,7 +247,7 @@ In der Tabelle \ref*{tab:evaluation} sieht man die Ergebnisse des Ragas Benchmar
 Die verschiedenen Metriken die betrachtet wurden sind \verb|answer_relevancy|, 
 \verb|answer_correctness|, \verb|answer_similarity|, \verb|context_relevancy| und \verb|faithfulness|.
 Alle Metriken außer \verb|faithfulness| sind am höchsten bei Llama3 von Meta. \verb|Faithfulness| 
-hat den höchsten Wert bei Mistral 2 von Mistral. Das beste Modell hierbei ist Llama3 mit 3 Metriken 
+hat den höchsten Wert bei Mistral von Mistral. Das beste Modell hierbei ist Llama3 mit 3 Metriken 
 bei denen es am besten bewertet wurde. Das zweitbeste ist Phi-3 mit zwei Metriken als zweitbestes Modell 
 und zwei als drittes. Das drittbeste Modell ist Mistral mit einer Bewertung als bestes Modell, zwei als drittes 
 und eins als viertes. Das schlechtest Modell innerhalb dieser Ragas Bewertung ist Gemma2 mit einer Metrik 

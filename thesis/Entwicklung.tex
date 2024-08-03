@@ -155,7 +155,7 @@ mittels \verb|collection_name| festgelegt wird, gespeichert.
 \subsection{Chatbot}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{figures/chain2.png}
+    \includegraphics[scale=0.6]{figures/chain.png}
     \caption{Aufbau der Chain}
     \label{chain}
 \end{figure}
@@ -193,7 +193,7 @@ Dieser wird dann mit der Funktion \verb|as_retriever()| als Retriever geladen.\p
     \begin{algorithmic}[1]
     \STATE \textbf{Class} ChatbotPrompt:
     \STATE \textbf{Method} \_\_init\_\_():
-    \STATE \quad Definiere Prompvorlage mit Systemnachrichten und Platzhaltern für Benutzereingaben
+    \STATE \quad Definiere Prompt 
     \end{algorithmic}
     \end{algorithm}
 Das Prompt wird mittels \verb|ChatPromptTemplate.from_messages| erstellt.
@@ -227,7 +227,7 @@ und dazu falsche Informationen und Halluzinationen vermeiden.
     \end{algorithmic}
     \end{algorithm}
 Die Nachrichten Historie wird mittels \verb|RunnableWithMessageHistory| 
-implementiert. Hierfür wird noch eine \verb|get_session_history| Funktion implementiert, 
+implementiert. Hierfür wird noch eine \verb|get_session_history| Funktion benötigt, 
 welche aus einer SQLite Datenbank mittels der \verb|session_id| den aktuellen Session 
 Chat abruft. 
 
@@ -325,13 +325,13 @@ eine Retrieval Chain erstellt und daraus wird final die Runnable with Message Hi
 Der \verb|RunnableWithMessageHistory| muss ein Runnable Objekt 
  welches als Basis dient, übergeben werden. Hier ist das Basis Runnable Objekt, 
 die Retrieval Chain.
-Dazu wird der Runnable die \verb|get_session_history| übergeben.
+Dazu wird der Runnable die \verb|get_session_history| Funktion übergeben.
 Da das Basis Runnable ein dict als Input benötigt, muss ein \verb|input_messages_key|
 angegeben werden, was laut dem Prompt, welches verwendet wird der Key \verb|input| ist. 
 Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key|
 \verb|chat_history|. \par\par
 
-Dieses \verb|RunnableWithMessageHistory| Runnable kann mit \verb|runnable.invoke()| angesprochen werden.
+Dieses \verb|RunnableWithMessageHistory| Runnable kann mit \verb|runnable.invoke()| gestartet werden.
 Der Funktion werden zwei dict Objekte mitgegeben. 
 Das dict mit dem \verb|input| Key, der die Eingabe des 
 Nutzers ist und dazu noch ein weiteres dict mit einem 
