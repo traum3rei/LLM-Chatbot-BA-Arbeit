@@ -13,8 +13,8 @@ erfüllt wurden, werden in diesem Teil A4 und A7 erneut aufgegriffen.
 \section*{Modelle}
 Die vier LLM Modelle, die bewertet werden sind Metas Llama3,
 Mistrals Mistral, Googles Gemma 2 und Microsofts Phi-3.\par
-Der größte Unterschied den man zwischen diesen Modellen sieht 
-ist die Parametergröße der Modelle. Mistral hat hierbei 7 Milliarden
+Der größte Unterschied zwischen diesen Modellen 
+ist die Parametergröße. Mistral hat hierbei 7 Milliarden
 Parameter, Llama3 8 Milliarden, Gemma 2 9 Milliarden und Phi-3 ist das größte Modell
 mit 14 Milliarden Parametern.\par
 Alle Modelle basieren auf der Decoder Only Transformer Architektur, 
@@ -69,10 +69,10 @@ Als Critic und als Generator LLM wird das 70 Milliarden
 Parameter Model Llama3 von Meta verwendet. 
 Die Nutzung von Hugginface Modellen mit Ragas funktioniert 
 aktuell nicht, daher wird das Llama3 Modell, welches 
-man direkt über Ollama beziehen kann, verwendet.
+ direkt über Ollama gedownloadet werden kann, verwendet.
 Nach dem Erstellen des Generators und dem Vor und Aufbereiten der 
-Daten kann man das Testset über die Funktion 
-\verb+generate_with_langchain_docs()+ generieren lassen. 
+Daten kann das Testset über die Funktion 
+\verb+generate_with_langchain_docs()+ generiert werden. 
 Für die Generierung werden drei Parameter benötigt.
 Als erstes die \verb+documents+ aus denen die Testsets 
 generiert werden sollen.
@@ -99,8 +99,8 @@ Mit diesem Testset kann die Chain bewertet werden.
 \subsection{Evaluation}
 \label{metrics}
 Nachdem das Testset generiert wurde kann mit der Bewertung begonnen werden. 
-Für die Bewertung gibt es acht verschiedene Metriken, die man 
-betrachten kann. Hiermit kann man die verschiedenen Teile der Rag-Pipeline bewerten.
+Für die Bewertung gibt es acht verschiedene Metriken, die zur Auswahl stehen. 
+Hiermit können die verschiedenen Teile der Rag-Pipeline bewertet werden.
 Einige der Metriken bewerten nur den RAG Aspekt der Chain, wobei nur die abgerufenen 
 Dokumente bewertet werden. Da in diesem Aspekt keine Änderungen stattfinden, sondern
 nur die LLMs die zur Generation der Antworten genutzt werden, geändert werden, werden
@@ -108,10 +108,10 @@ nicht alle Metriken betrachtet.
 Im Folgenden werden die Metriken die zu zur Bewertung verwendet werden betrachtet.
 Standardmäßig verwendet die \verb|evaluate| Funktion die OpenAI API, 
 dies kann überschrieben werden indem der Funktion ein \verb|llm| 
-und ein \verb|embedding| übergen wird. Man kann hierbei die Llm und das Embedding Model 
-in \verb|LangchainLLMWrapper| und in \verb|LangchainEmbeddingsWrapper| verpacken,
-falls man kein Langchain LLM oder Embedding verwendet. Wenn die LLM und das 
-Embedding von Langchain ist, dann kann man diese direkt übergeben und sie werden 
+und ein \verb|embedding| übergen wird. Die Llm und das Embedding Model können 
+in \verb|LangchainLLMWrapper| und in \verb|LangchainEmbeddingsWrapper| verpackt werden,
+falls kein Langchain LLM oder Embedding verwendet wird. Wenn die LLM und das 
+Embedding von Langchain ist, dann können diese direkt übergeben werden und sie werden 
 in der Funktion verpackt. Diese Funktion ist aktuell aber nicht 
 funktionsfähig, daher wird hierfür die OpenAI API verwendet.
 
@@ -123,7 +123,7 @@ aus der Antwort heraus gesucht und diese werden dann mit dem abgerufenen
 Kontext verglichen und es wird überprüft, ob die Behauptung aus dem Kontext 
 gezogen werden kann \cite{FaithfulnessRagas}.\par
 Die Formel die hierfür verwendet wird ist wie folgt:
-\[\text{Faithfulness score}= \frac{|\text{Anzahl der Behauptung die man aus dem Kontext schließen kann}|}{|\text{Gesamtzahl der Behauptungen}|}\]
+\[\text{Faithfulness score}= \frac{|\text{Anzahl der Behauptung die aus dem Kontext geschlossen werden können}|}{|\text{Gesamtzahl der Behauptungen}|}\]
 
 \subsubsection{Answer relevancy}
 ''Answer relevancy`` zu Deutsch ''Relevanz der Antwort``, bewertet wie 
@@ -171,8 +171,8 @@ Die Metrik ''Context recall`` oder zu Deutsch ''Kontext Rückruf`` beurteilt,
 wie gut die abgerufenen RAG Dokumente mit der \verb|ground_truth| übereinstimen.
 Der Wert kann zwischen 0 und 1 liegen. Hierfür werden die einzelnen 
 Sätze in der \verb|ground_truth| mit den abgerufenen Dokumenten verglichen 
-und es wird überprüft, ob man die Behauptungen in der \verb|ground_truth|
-dem abgerufenen Dokument zuschreiben könnte.
+und es wird überprüft, ob die Behauptungen in der \verb|ground_truth|
+dem abgerufenen Dokument zugeschreiben könnte.
 \[\text{context recall} = \frac{|\text{Anzahl von Ground Truth Sätze die man von Dokumenten herleiten kann}|}{|\text{Anzahl von Sätzen in der Ground Truth}}|\]
 
 \subsubsection{Context precision}

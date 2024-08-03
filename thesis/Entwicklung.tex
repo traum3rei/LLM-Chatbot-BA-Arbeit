@@ -21,10 +21,10 @@ damit Ollama diese nutzen kann. Nun können die Modelle vorbereitet werden.\par
 Hierfür werden die Modelle, die in \ref*{s:konz:mod} vorgestellt 
 wurden über Ollama gedownloadet.
 Die Modelle werden über \verb|Ollama pull model| geladen, wobei \verb|model| der Name
-des Modells ist, welches man herunterladen möchte. Hierbei kann
-man mittels \verb|model:latest| noch die Version angeben, die benötigt wird, wobei \verb|latest|, die Version des Modells ist. 
-Darüber kann man ebenfalls Größen oder spezielle Versionen der Modelle 
-Anfragen. Die verschiedenen Modelle haben verschiedene 
+des Modells ist, welches heruntergeladen werden soll. Hierbei kann
+mittels \verb|model:latest| noch die Version, die benötigt wird, angeben werden, wobei \verb|latest|, die Version des Modells ist. 
+Darüber kann ebenfalls die Größe oder spezielle Version des Modells 
+angefragt werden. Die verschiedenen Modelle haben verschiedene 
 Optionen. Auf Ollama.com
 können die jeweiligen Modelle und die verschiedenen Versionen, eingesehen werden.
 
@@ -323,7 +323,7 @@ Für die Verbindung an die Google Cloud API wird ein
 POST Endpunkt erstellt. Der Pseudo Code des POST Endpunkts 
 ist in Algorithm \ref*{post} dargestellt. Dieser Endpunkt nimmt die Nachrichten, 
 die in Google Chat an den Chatbot gesendet werden an.
-Die JSON Nachricht, die man von der API erhält beinhaltet 
+Die JSON Nachricht, die von der API abgeschickt wird beinhaltet 
 viele Informationen. Für den Chatbot sind die ID des Nutzers, 
 der die Nachricht abschickt, der Thread in dem die Nachricht 
 versendet wurde und die Nachricht, die abgesendet wurde, wichtig.
@@ -364,14 +364,15 @@ Die ID des Nutzers, die unter \verb|message.sender.name| zu finden ist,
 wird benutzt um den Nutzer in der Nachricht anzusprechen. Die 
 Nachricht, die abgesendet wird beginnt hierfür mit \verb|<message.sender.name>|
 und dadurch kann über die API ein Nutzer angesprochen werden. Dies funktioniert nur
-über die ID, wenn man 
-den \verb|message.sender.displayName| verwendet, dann wird der Nutzer 
+über die ID. Wenn stattdessen
+der DisplayName aus \verb|message.sender.displayName| verwendet wird, dann wird der Nutzer 
 nicht in der Nachricht verlinkt. \par
 Das finale JSON Objekt ist in \ref*{msg_send} dargestellt.\par
 Ein GoogleChatClient wird initialisiert und die notwendigen Infos 
 werden an diesen übergeben und die Nachricht wird abgesendet.
-Das wichtige hierbei ist, dass man, wenn man eine asynchrone Nachricht abschickt, 
-am Ende eine leere Antwort zurückgibt. Wenn man dies nicht macht, 
+Das wichtige hierbei ist, dass, wenn eine asynchrone Nachricht abgeschickt wird, 
+am Ende eine leere Antwort als Rückgabewert angegeben wird. Wenn diese leere Antwort nicht
+zurück gegeben wird, 
 kann es aktuell passieren, dass die API eine Inaktivität des Bots meldet 
 und die asynchrone Nachricht erst danach ankommt. 
 
@@ -387,7 +388,7 @@ Nachdem der Chatbot fertig gestellt wurde und der Server
 ein SSL Zertifikat und eine URL besitzt, kann die Google Chat 
 API Konfiguration fertig gestellt werden.\par
 Der API muss ein Anwendungsname gegeben werden. Über diesen 
-kann man die API im Chat ansprechen. Dazu wird eine URL zu 
+kann die API im Chat angesprochen werden. Dazu wird eine URL zu 
 einem Bild benötigt, welches das Profilbild im Chat sein wird 
 und eine Beschreibung des Projekts.\par
 Die interaktiven Features müssen aktiviert sein und 
@@ -405,8 +406,8 @@ abgeschlossen.
 \subsection{Chatbotinteraktion}
 Der Chatbot kann nun über Google Chat wie jeder 
 andere Teilnehmer des Workspaces angeschrieben werden.
-Wenn man den Chatbot einem Space hinzufügen will, dann 
-muss man diesen als App hinzufügen.\par
+Wenn der Chatbot einem Space hinzugefügt werden soll, dann 
+muss dieser als App hinzugefügt werden und nicht als Nutzer.\par
 In \ref*{chat} ist eine Chatinteraktion mit dem Bot dargestellt.
 Auf der linken Seite ist der generelle Space sichtbar und auf der 
 rechten Seite ein Thread.\par

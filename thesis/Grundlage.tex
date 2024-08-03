@@ -6,8 +6,8 @@
 \label{s:intro:bot}
 Ein Chatbot ist ein Dialogsystem, das den Dialog zwischen einem Menschen und einem technischen System erlaubt \cite{adamopoulouChatbotsHistoryTechnology2020}. 
 Von diesen gibt es verschiedene Arten. Diese unterscheiden sich in der Art und Weise, wie sie auf die Eingaben des Nutzers antworten. Chatbots, wie OpenAIs ChatGPT und Anthropics Claude, haben
-einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit diesen kann man heutzutage über die natürliche
-menschliche Sprache kommunizieren und sie versuchen auf dieselbe Art und Weise zu antworten. \par
+einen Bereich zur Texteingabe und einen Bereich, in dem sie ihre Ausgabe darstellen können. Mit diesen kann heutzutage über die natürliche
+menschliche Sprache kommuniziert werden und sie versuchen auf dieselbe Art und Weise zu antworten. \par
 Die Generation des Textes kann in drei verschiedene Kategorien untergeordnet werden: abfragebasiert, generationsbasiert und regelbasiert \cite{adamopoulouChatbotsHistoryTechnology2020}. 
 Abfragebasierte Chatbots haben eine Wissensdatenbank in der sie nach dem am besten zur Eingabe passenden Eintrag suchen.
 Beim generationsbasierten Ansatz generieren sie ihre Antworten selbst.
@@ -28,7 +28,7 @@ Leichtgläubigkeit testet, als die Intelligenz der Maschine. \fi \cite{lacurtsCr
 \subsection{ELIZA}
 Die Geschichte der Chatbots beginnt in den 1960er Jahren, mit dem ersten aus dem Jahr 1966. Damals waren die Chatbots regel basiert. 
 Der Name des Chatbots war ELIZA und er wurde von Joseph Weizenbaum am MIT entwickelt.
-Weizenbaum hat fünf Grundprobleme aufgestellt, welche er für die Entwicklung beachten musste . 
+Weizenbaum hat fünf Grundprobleme aufgestellt, welche er für die Entwicklung beachten musste \cite{weizenbaumELIZAComputerProgram1966}. 
 Die Probleme waren:
 \begin{enumerate}
     \item Die Identifikation von Stichwörtern
@@ -37,7 +37,6 @@ Die Probleme waren:
     \item Generation von Antworten bei Abwesenheit von Stichworten
     \item Bearbeitung der Eliza Skripte
 \end{enumerate}
-\cite{weizenbaumELIZAComputerProgram1966}. \par
 Die Regeln, die ELIZA beachten muss, wurden ihr über Skripte gegeben.
 Sie hat versucht die menschliche Sprache zu imitieren, indem sie den 
 eingegebenen Text nach Stichwörtern durchsucht.
@@ -46,14 +45,14 @@ Wörter, denen besonders hohe Wichtigkeit laut dem ELIZA Skript gegeben wurde.
 Jedes Stichwort hatte noch einen RANK, welcher die Wichtigkeit des 
 jeweiligen Stichworts im Vergleich zu anderen Stichworten festgelegt
 hat. Nachdem die Stichwörter entdeckt wurden, betrachtet ELIZA die Transformations Regeln, die 
-in ihrem Skript bestimmt wurden. \par
+in ihrem Skript bestimmt wurden \cite{weizenbaumELIZAComputerProgram1966}. \par
 Die Transformations Regeln bestehen aus einer Zerlegungs und einer
 Zusammensetzungs-Phase. Es gibt verschiedene Regeln für beide Phasen. Anhand der Syntax des Satzes wird identifiziert, 
 welche Regel für die Zerlegung in Frage kommt und anhand dieser
 wird dann die Zusammensetzung ausgemacht. 
 Dieser Zusammengesetzte Satz wird im Anschluss ausgegeben
 Im Fall, dass kein Stichwort gefunden wurde, wird entweder 
-eine inhaltslose Antwort oder eine frühere Antwort zurück gegeben. \par
+eine inhaltslose Antwort oder eine frühere Antwort zurück gegeben \cite{weizenbaumELIZAComputerProgram1966}. \par
 ELIZA 
 verhält sich wie ein Psychotherapeut. Das heißt, der Nutzer beginnt das Gespräch und der Chatbot greift 
 Punkte aus den Eingaben des Nutzers auf, ohne großen
@@ -115,7 +114,7 @@ Sprachassisten kontrollieren.\par
 Manche Sprachassistenten lassen sich über extra Geräte, die für diesen Nutzen hergestellte wurden bedienen. 
 Ein Beispiel hierfür ist Amazon Alexa, auf dem Echo Dot.
 Der Echo Dot ist ein kleiner Lautsprecher, welcher mit dem Internet verbunden ist. 
-Durch diesen kann man mit Alexa kommunizieren \cite{2022EchoDot}.\par
+Durch diesen kann mit Alexa kommuniziert werden \cite{2022EchoDot}.\par
 Diese Sprachassisten werden immer weiter entwickelt und bekommen dadurch neue Funktionen, 
 mehr Sprachen oder die Fähigkeit die menschliche Sprache besser zu interpretieren. 
 
@@ -301,7 +300,7 @@ einzelnen Pixel des jeweiligen Bildes sein \cite{krishnanHowDetermineNumber2022}
 Es gibt X verschiedene verborgene Schicht in einem Neuronalen Netzwerk. Die Anzahl der Schichten und die Anzahl 
 der Neuronen pro verborgener Schicht kann sich unterscheiden. Es gibt hierbei keine allgemeingültige Größe,
 die für alle Fälle passt. Stattdessen sind hier Erfahrung und Experimentierung wichtig \cite*[129]{heatonIntroductionNeuralNetworks2008}.\par
-Die Anzahl der Neuronen in der Ausgabe Schicht kommt darauf an, welche Art von Modell man betrachtet.
+Die Anzahl der Neuronen in der Ausgabe Schicht ist davon abhängig, welche Art von Modell betrachtet wird.
 Die zwei Arten die hier besprochen werden sind
 Regressoren und Klassifikatoren \cite[S. 128]{heatonIntroductionNeuralNetworks2008}.\par 
 Regressoren sagen für einen Eingabewert einen oder mehrere kontinuierliche
@@ -402,42 +401,11 @@ von Vektoren umzuwandelt. Dadurch können die Modelle besser mit längeren Sätz
 \label{s:intro:llm}
 Large Language Models sind eine Art der künstlichen Intelligenz, welche mithilfe probalistischer Methoden Text generiert. 
  Heutzutage basieren Chatbots auf sogenannten Large Language 
-Models.\par \iffalse LLMs sind in ihrem Kern nur 2 Dateien. Eine Datei die die sogenannten Gewichte des Neural Networks beinhaltet, 
-welche beim Trainieren entstanden sind und eine Datei, welche den Code beinhaltet,damit man dieses Neural Network ausführen kann.
-Der Code lässt sich in ein paar hundert Zeilen Code schreiben, selbst ohne Abhängigkeiten. Der größere und aufwändigere Part sind 
-die Gewichte. Die Gewichte entstehen, beim trainieren des Neural Networks, welches auf der Transformer - Decoder Architektur 
-basiert, welche 2017 im Paper "All you need is attention" vorgestellt wurde. Der genaue Stack den bspw. OpenAI heutzutage benutzt 
-ist nicht bekannt, aber wir wissen, dass dieser ebenfalls auf der Transformer Architektur basiert. 
-
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            xlabel=Woche,
-            ylabel=LLM,
-            date coordinates in=x,
-            xticklabel style={rotate=45,anchor=near xticklabel},
-            date ZERO=2019-05-12, % Set the reference date
-            ]
-        
-            \addplot table [x=Woche, y=LLM, col sep=comma] {data/LLM.csv};
-        
-        \end{axis}
-    \end{tikzpicture}
-    \caption{LLM Google Trends}
-    \label{fig:trend_llm}
-\end{figure}
-
-Wir sehen anhand \ref{fig:trend_llm}, welche über Google Trends das Interesse am Wort "LLM" im Verlauf der letzten 5 Jahre darstellt, dass das Interesse
-an Large Language Models besonder stark im Dezember 2022 angestiegen ist und seitdem immer weiter steigt. \par
-Im Grunde sind die LLMs die hinter Chatbots wie ChatGPT von OpenAI und LeChat von MistralAI sogenannte GPTs. Wenn man den Begriff aufteilt sieht man
-was dahinter steckt. GPT steht für Generative pretrained Transformer. Generative steht für die Art und Weise
-auf der diese LLM ihre Ausgaben generiert, Pretrained steht dafür, dass die LLM vor ihrer Nutzung auf einer Datenmenge trainiert wurde und Transformer
-steht hier für die Transformer Architektur.\fi
+Models.
 Diese Large Language Models sind Machine Learning Modelle, die auf der Transformer Architektur (siehe \ref*{s:intro:trans}) aufbauen. 
 Die Modelle werden mit einer sehr großen Menge an Daten trainiert und lernen anhand dieser ihre jeweilige Aufgabe.
 LLMs haben in verschiedenen Anwendungsgebieten einen nutzen. Heutzutage sind ein paar der bekanntesten Vertretetr 
-Chatbots und Bildgeneratoren, wie Midjourney.
+Chatbots und Bildgeneratoren, wie Midjourney 
 \cite{WhatLargeLanguage}.
 
 \subsection{Transformer}
@@ -509,8 +477,8 @@ in der Transformer Architektur eingeführt. Durch diesen
 soll dem Transformer die Fähigkeit gegeben werden sich auf 
 verschiedene Positionen zu konzentrieren, statt nur auf eine \cite{vaswaniAttentionAllYou2023, alammarIllustratedTransformer}.
 \par
-Dieser Mechanismus funktioniert so, dass man statt nur einem Attention
-Head in der Attention Layer mehrere Attention Heads hat. 
+Bei diesem Mechanismus werden in der Attention Layer 
+statt eines einzigen mehrere Attention Heads verwendet. 
 Im originalen Transformer wird mit 8 Attention Heads gearbeitet. 
 jeder dieser Heads führt den Self-Attention Mechanismus aus, aber jeder 
 hat unterschiedliche Gewichts Matrizen 
@@ -578,9 +546,9 @@ Rechenleistung \cite{blockSparse}.
 \label{s:intro:llm:token}
 Tokenizer sind ein wichtiger Part der Machine Learning Toolchain 
 im Zusammenhang mit dem Lernen von menschlicher Sprache.
-Wenn man im Bereich des Natural Language Processing ein Machine 
-Learning Modell trainieren möchte stellt sich die Frage, wie man Texte
-aufteilen kann, damit das Modell, welches trainiert wird diese 
+Wenn im Bereich des Natural Language Processing ein Machine 
+Learning Modell trainieren werden soll kommt die Frage auf, wie Texte
+aufgeteilt werden können, damit das Modell, diese effektiv
 verarbeiten kann.\par
 Die Tokenizer teilen die Texte so auf, dass das zu trainierende
 Modell komplexe Sätze besser verarbeiten kann. 
@@ -598,8 +566,8 @@ grammatikalische Regeln haben und somit verschiedene Arten des
 Zerlegens oder Zusammensetzens brauchen. 
 Ein weiteres Problem ist, dass das selbe Wort teils verschiedene Bedeutungen haben
 kann. Hierbei ist der Kontext wichtig und die Anzahl der Tokens, die das 
-Modell erkennen kann. Man könnte hierbei alle möglichen Token aufnehmen, 
-was aber dafür sorgen kann, dass das System overfitted.
+Modell erkennen kann. Hierbei könnten alle möglichen Token aufgenommen werden, 
+was aber für Overfitting innerhalb des Modells sorgen kann.
 Dazu kommt, dass das die notwendigen Kosten zum Trainieren und für die Inference 
 des Systems erhöhen würde \cite{perryWhatTokenizationNatural2021, Llama2RunMaster}.
 
@@ -626,7 +594,7 @@ betrachtet. Llama3 wurde mit 15 Billionen Token trainiert \cite{IntroducingMetaL
 Um einen Vergleich zu haben, wird der fineweb Datensatz, welcher 
 auf Huggingface zur Verfügung steht, betrachtet. 
 Dieser Datensatz hat ebenfalls 15T Token und hat eine Speichergröße
-von 47.6TB \cite{HuggingFaceFWFinewebDatasets2024}. \par
+von 47.6TB \cite{penedo2024finewebdatasetsdecantingweb}. \par
 Für das Pretraining werden Daten aus den Bereichen benötigt, in denen 
 die LLM später Dinge generieren soll. Ebenfalls die Sprache der Daten
 ist wichtig. Das Verhältnis der Menge der 
@@ -668,33 +636,33 @@ Hugginface. Eine auf deutsch fine-tuned Version von Llama3. Sie wurde mit Benchm
 veröffentlicht, die uns zeigen, dass die deutsche Leistung des Models sich durch 
 das finetuning mittels 65 Milliarden Tokens verbessert hat. Die Englische Leistung ist 
 etwas verschlechtert, aber vorallem beim hellaswag\_de \cite{LeoLMHellaSwagdeDatasets} 
-Benchmark, sieht man, dass die Leistung sich messbar bessert.
+Benchmark, ist die Leistung messbar besser.
 \cite{DiscoResearchLlama3German8BHugging2024}
 
 
 \subsection{Inference \& Generation}
 \label{s:intro:llm:inf}
-Sobald ein Model trainiert wurde und bereit ist benutzt zu werden, muss man es ausführen. Dieser Prozess nennt sich Inference.
+Sobald ein Model trainiert wurde und bereit ist benutzt zu werden, muss es ausgeführt werden. Dieser Prozess nennt sich Inference.
 Um Inference ausführen zu können gibt es verschiedene Möglichkeiten. Es gibt die Möglichkeit Inference über 
-online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen,
-oder man kann die Modelle lokal ausführen. \par
+online APIs wie beispielsweise die Huggingface Inference API \cite{ServerlessInferenceAPI} oder ähnliche Services auszuführen.
+Eine weitere Möglichkeit ist es diese lokal auszuführen. \par
 
 \subsubsection{Inference}
-Wenn man eine der APIs nutzt um ein Model zu nutzen, dann kann man Anfragen an die API schicken und das Ausführen des Models 
-wird von den Betreibern der API übernommen.\par
+Wenn eine der APIs genutzt wird um mit einem Modell zu arbeiten, können Anfragen an die API geschickt werden
+ und das Ausführen des Models wird von den Betreibern der API übernommen.\par
 Die andere Option, das Model lokal auszuführen, kann über verschiedene Methoden passieren. Eine Option ist es einen Service
 wie Ollama (siehe \ref{s:intro:oll}) oder LM Studio nutzen \cite{LMStudioDiscover}, worüber 
-man die Modelle downloaden und ausführen kann. Mit Ollama kann man das Model über die CLI ausführen und mit ihr kommunizieren
-und über LM Studio kann man das mittels einer GUI machen. Beide Projekte basieren auf llama.cpp (siehe \ref{s:intro:llama}).\par
+die Modelle gedownloadet und ausgeführt werden können. Mit Ollama kann mit dem Modell über die CLI 
+interagiert werden. 
+Über LM Studio kann das mittels einer GUI gemacht werden. Beide Projekte basieren auf llama.cpp (siehe \ref{s:intro:llama}).\par
 Eine andere Option, das Model lokal auszuführen, ist es die Gewichte der Modelle zu downloaden und diese mittels 
-Code auszuführen. Hierfür kann man die Modelle teils direkt bei den Unternehmen downloaden wie bei Llama von Meta,
-aber eine andere Website auf der viele Modelle veröffentlicht werden, auf der man auch Vergleiche zwischen 
-mancher dieser Modelle sehen kann ist hugginface.co (siehe \ref*{s:intro:hug}).\par
-Andrej Karpathy \cite{KarpathyAndrej} hat gezeigt, dass man mit einen 15 Millionen Parameter Model von Llama2 in C ohne externe Libraries innerhalb von
-unter 1000 Zeilen Inferenz betreiben kann \cite{Llama2RunMaster}. Modelle die heute veröffentlicht werden haben aber weit über 15 Millionen Parameter 
-und daher ist die Inferenz mit so einem simplen Programm nicht sehr effektiv. Das Llama2 Model mit 7 Milliarden Parametern generiert auf einem M1 
-Macbook Air einen Token pro 30 Sekunden. Die Modelle in einer Milliarden Größe, brauchen aufgrund ihrer
-Größe ein paar Optimierungen \cite{Llama2RunMaster}. \par 
+Code auszuführen. Hierfür können die Modelle teils direkt bei den Unternehmen gedownloadt werden, wie bei Llama von Meta.
+Eine Website auf der viele Modelle veröffentlicht werden ist Huggingface.co (siehe \ref*{s:intro:hug}).\par
+Andrej Karpathy \cite{KarpathyAndrej} hat gezeigt, dass mit einem 15 Millionen Parameter Model von Llama2 in C ohne externe Bibliotheken in
+unter 1000 Zeilen Inferenz betrieben werden kann \cite{Llama2RunMaster}. Modelle die heute veröffentlicht werden haben weit über 15 Millionen Parameter,
+ daher ist die Inferenz mit so einem Programm nicht sehr effektiv. Das Llama2 Model mit 7 Milliarden Parametern generiert auf einem M1 
+Macbook Air mit diesem Projekt einen Token pro 30 Sekunden. Modelle in einer Milliarden Größe, brauchen aufgrund der 
+Größe ein paar Optimierungen um nutzbar zu sein \cite{Llama2RunMaster}. \par 
 Eine Möglichkeit Modelle schneller zu machen ist es sie zu quantisieren, dieser Prozess wird in \ref{s:intro:llama} genauer 
 erklärt.\par
 Statt den Code für die Inferenz selbst zu schreiben gibt es auch noch die Möglichkeit verschiedene Frameworks zu verwenden.
@@ -754,40 +722,39 @@ des Systems zu verbessern.
 Aufgrund dessen hat sich im Bereich der LLMs eine neue Disziplin namens Prompt Engineering 
 gebildet. Innerhalb dieser geht es darum, Prompts so zu optimieren, dass das LLM System genau 
 das macht was der Nutzer will \cite{amatriainPromptDesignEngineering2024}.\par
-Egal wie gut eine Prompt ist, manchmal kann eine LLM Applikation die gewollte Ausgabe nicht
-ausgeben. Dies kann verschiedene Gründe haben, wie zum Beispiel fehlende Informationen, die 
-Informationen können fehlen, weil sie nicht mit in den Trainingsdatensatz der LLM aufgenommen 
-wurden, obwohl es sie schon gab, aber es könnte auch sein, dass die Informationen erst veröffentlicht wurden, 
-nachdem die LLM zu Ende trainiert wurde. Aufgrund dessen ist es wichtig, die Limitationen der
-LLM, die verwendet wird, zu kennen \cite{amatriainPromptDesignEngineering2024}.\par
-Es gibt zwar keinen eindeutigen Weg gute Prompts zu generieren, aber es gibt ein paar
-Best Practices, welche generell anerkannt sind. 
+Egal wie gut ein Prompt ist, manchmal kann eine LLM Applikation die gewollte Ausgabe nicht
+ausgeben. Dies kann verschiedene Gründe haben, wie zum Beispiel fehlende Informationen. Die 
+Informationen können fehlen, weil sie nicht Teil des Trainingsdatensatz der LLM waren. 
+Aufgrund dessen ist es wichtig, die Limitationen der
+LLM, zu kennen \cite{amatriainPromptDesignEngineering2024}.\par \bigskip
+Es gibt zwar keinen eindeutigen Weg gute Prompts zu generieren, aber es gibt einige
+Best Practices. \par
 Im Prompt nur die Aufgaben mitteilen nennt sich Zero-Shot Prompting.
 Das heißt es werden keine Beispiele mitgegeben und manche LLMs 
-sind in der Lage Zero-Shot prompts in manchen Aufgabenbereichen zu lösen.
+sind in der Lage Zero-Shot Prompts in manchen Aufgabenbereichen zu lösen.
 Der LLM im Prompt ein Beispiel für die gewollte Ausgabe mitzugeben
-nennt sich One-Shot Prompting und mehrere mitegeben 
+nennt sich One-Shot Prompting und statt nur einem Beispiel, mehrere mitgegeben 
 heißt few-shot prompting. Die Qualität der gewollten Ausgaben lässt sich teils mithilfe
 von One-Shot oder Few-Shot Prompts statt Zero-Shot Prompts verbessern.
 Jedoch hat der Input Kontext eine begrenzte Größe und umso größer 
-der Input ist, umso größer ist der computational(was heißt das auf deutsch?) Aufwand,
-daher ist das eine begrenzte Lösung, die nicht alle Probleme beseitigen kann \cite{amatriainPromptDesignEngineering2024}.
-Ein paar der davon sind: 
+der Input ist, umso größer ist der rechnerisch benötigte Aufwand,
+daher ist das eine Lösung, die nicht alle Probleme beseitigen kann \cite{amatriainPromptDesignEngineering2024}.
+Ein paar weitere Tipps sind: 
 \begin{itemize}
     \item Anweisungen an den Anfang oder das Ende des Prompts stellen.
     \item Spezifische Anweisungen und genaue Beschreibungen geben. Auch spezifisch und genau bei den gewollten Ausgaben sein.
     \item Anweisungen die der LLM mitteilen was sie tun soll, statt den Dingen die sie nicht tun soll, sind zu bevorzugen.
 \end{itemize}
-Es gibt auch ein paar fortgeschrittene Methoden die verwendet werden können \cite{amatriainPromptDesignEngineering2024}.
-Hierzu gehören: \par
+Es gibt auch ein paar fortgeschrittene Methoden die verwendet werden können \cite{amatriainPromptDesignEngineering2024}. \par
+Hierzu gehören: 
 \begin{itemize}
-    \item Der LLM "kraftvoll" mitteilen, was man von ihr möchte.\par
-    \item Gedankengang Prompting, bei der man die LLM, die einzelnen Schritte die sie 
-    gemacht hat und die Gründe dafür erklären lässt.
+    \item Der LLM durchsetzungsstark mitteilen, was von ihr verlangt wird. Hierbei kann auch in Großbuchstaben und mit Ausrufezeichen gearbeitet werden.\par
+    \item Gedankengang Prompting, bei dem die LLM, die einzelnen Schritte die sie 
+    gemacht hat und die Gründe dafür erklären soll.
 \end{itemize}
 Es gibt eine spezielle Art der Prompts namens System Prompt. Dieses System Prompt dient dazu 
 das Verhalten der LLM in einem Rahmen zu steuern.
-Durch dieses System Prompt kann der LLM mitgeteilt werden, welche Rolle sie einnimt und 
+Durch dieses System Prompt kann der LLM mitgeteilt werden, welche Rolle sie einnimmt und 
 unter anderem auch ihren Stil beeinflussen \cite{GivingClaudeRole}. \par
 
 \section{Vektor Datenbanken}
@@ -802,12 +769,12 @@ Diese Art der Datenbanken hat für den AI und Machine Learning Bereich ein
 paar Vorteile im Vergleich zu traditionellen Datenbanken. \par
 Ähnlichkeitssuche: Traditionell Datenbanken brauchen klar definierte 
 Kriterien für die Suche. Hier ist es nicht möglich eine Ähnlichkeitssuche, 
-wie bei Vektordatenbanken durchzuführen. Bei Vektordatenbanken kann
-man mittels Ähnlichkeitssuche-Verfahren schnell ähnliche Datensätze
-finden und dann ausgeben \cite{hanComprehensiveSurveyVector2023}. \par
+wie bei Vektordatenbanken durchzuführen. Bei Vektordatenbanken können 
+ mittels Ähnlichkeitssuche-Verfahren schnell ähnliche Datensätze
+gefunden und ausgeben werden \cite{hanComprehensiveSurveyVector2023}. \par
 Support für unstrukturierte und komplexe Daten: 
 Traditionelle Datenbanken brauchen strukturierte Daten. Die Daten 
-die man für Machine Learning benutzt sind oft unstrukturierte Daten,
+die für Machine Learning genutzt werden sind oft unstrukturierte Daten,
 die verschieden Formate haben oder komplett verschiedene Datentypen sind,
 dies schließt auch Audio und Videodateien mit ein. Vektordatenbanken
 können diese Dateien durch die Vektordarstellung abspeichern und sind 
@@ -871,8 +838,8 @@ Die Retrieval Augmented Generation soll das parametrische Gedächtnis der LLM
 mittels eines nicht parametrischen Gedächtnisses erweitern \cite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}. \par 
 Retrieval Augmented Generation löst ein paar Probleme vor denen LLMs heutzutage 
 stehen, ist aber keine perfekte Lösung und muss sich auch seinen eigenen Problemen
-stellen. In diesem Zusammenhang gibt kann man heute RAG in verschiedene Stufen 
-einordnen.\cite{gaoRetrievalAugmentedGenerationLarge2024}
+stellen. In diesem Zusammenhang kann RAG in verschiedene Stufen 
+eingeordnet werden.\cite{gaoRetrievalAugmentedGenerationLarge2024}
 
 \subsection{Naive RAG}
 %TODO schreib das nochmal um das ist kinda hart geklaut
@@ -903,24 +870,24 @@ der Antworten sinkt. Dadurch sinkt dann ebenfalls die Verlässlichkeit auf
 das System\cite{gaoRetrievalAugmentedGenerationLarge2024}.
 
 \subsection{Advanced RAG}
-Advanced RAG wurde entwickelt um den Problemen der naiven RAG entgegenzuwirken
-bzw. sie zu beseitigen. Dementsprechend werden hier einige Dinge geändert. Vorallem
-in der Stufe der Abfrage wurde hier einiges geändert. Um die Qualität zu erhöhen 
-wurden der Abfrage pre- und post Strategien hinzugefügt.
+Advanced RAG wurde entwickelt um den Problemen der naiven RAG entgegenzuwirken. 
+Entsprechend wurden hier einige Änderungen vorgenommen, 
+insbesondere bei der Abfrage. Um die Abfrage zu verbessern 
+wurden dieser pre- und post Strategien hinzugefügt.
 Dazu wurde der Indexing Prozess angepasst \cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 Beim Indexing wird nun Metadata mit eingebunden und der Text wird genauer unterteilt.
-\subsubsection{Pre-Retrieval}
-Beim pre-retrieval wird vorallem darauf geachtet die Anfrage so klar wie möglich zu machen.
+\subsubsection{Pre-Abfrage}
+Bei der pre-Abfrage wird vorallem darauf geachtet die Anfrage so klar wie möglich zu machen.
 Hierfür werden Metadaten angehängt, Anfragen umgewandelt, Anfragen erweitert und noch 
 einige weitere Dinge abgeändert. Das Ziel hier ist es die Anfrage zu ändern, sodass sie so 
 klar wie möglich ist und sie für Retrival zu optimieren \cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.\par
-\subsubsection{Post-Retrieval}
-Nachdem der Kontext nach dem Retrieval Prozess abgefragt wurde, wird
-versucht die abgerufenen Daten möglichst optimal mit der Anfrage zu verbinden.
-Hierfür werden vorallem das komprimieren und das neu Anordnen des Kontexts 
-verwendet. Die wichtigsten Dokumente werden an eines der Enden der Anfrage 
-geschoben und es wird versucht die wichtigsten Informationen heraus zu suchen
-und nur diese zurück zu geben. Dadurch sollte die LLM genug Informationen 
+\subsubsection{Post-Abfrage}
+Nach der Abfrage der relevanten Daten, wird
+versucht diese möglichst optimal mit der Anfrage zu verbinden.
+Hierbei liegt der Fokus darauf diese zu komprimieren und sie neu Anzuordnen. 
+Die wichtigsten Dokumente werden an eines der Enden der Anfrage 
+geschoben und es wird versucht nur die wichtigsten Informationen heraus zu suchen
+und diese zurück zu geben. Dadurch sollte die LLM genug Informationen 
 erlangen, aber nicht zu viele und die Antworten sollten besser werden\cite{gaoRetrievalAugmentedGenerationLarge2024, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 
 \section{llama.cpp}
@@ -930,13 +897,9 @@ ist, dass es schwierig sein kann, für Personen oder Unternehmen, die nicht
 über die nötige Hardware verfügen, LLM Inferenz zu betreiben. 
 Desto größer die LLM, die benutzt werden soll, wird, desto aufwändiger werden
 die Anforderungen an die Hardware. Ein großes Open Source Projekt, welches
-sich mit diesem Problem auseinander setzt ist llama.cpp, gestartet von 
-Georgi Gerganov auf Github.\par
-Dieses Projekt hat zu Beginn viele Nutzer angezogen, da man hier, ohne 
-spezielle Hardware, Inferenz betreiben konnte. Die anderen Bibliotheken,
-die hierfür zu Verfügung standen, wurden oft in Verbindung mit Closed-Source 
-Bibliotheken, wie zum Beispiel Nvidias Cuda entwickelt und waren 
-dadurch nur über bestimmte Hardware zu benutzen.\par
+sich mit diesem Problem auseinander setzt ist llama.cpp.\par
+Dieses Projekt hat zu Beginn viele Nutzer angezogen, da durch dieses Projekt, ohne 
+spezielle Hardware, Inferenz betrieben werden konnte.\par
 Zu Beginn wurde das Projekt hauptsächlich auf Inferenz auf der CPU
 ausgelegt. Dies gab den Nutzern zwar die Möglichkeit auf ihren
 Maschinen ohne GPU Inferenz zu betreiben, aber durch fehlende 
@@ -948,20 +911,20 @@ schnellere Inferenz mit größeren Modellen auszuführen.\par
 Damit die verschiedenen Modelle über llama.cpp nutzbar sind, gab 
 es hier zu Beginn das GGML format. Dies wurde ebenfalls von Gerganov 
 im Zusammenhang mit seinen Projekten entwickelt.Ein Vorteil hierbei war,
-dass das GGML Format das speichern von quantisierten Modellen erlaubt. 
+dass das GGML Format das Speichern von quantisierten Modellen erlaubt. 
 Quantisierte Modelle haben hierbei den Vorteil, dass die Präzision 
 der einzelnen Parameter von bspw. 32 Bit Gleitkommazahlen auf eine niedrigere 
 Genauigkeit, wie bspw. 8 Bit Gleitkommazahlen konvertiert wurde. Der Vorteil 
-hier war, dass die Inferenz der einzelnen Modelle hier weniger intensive
-Rechenarbeiten erfordert haben und auch durch die kleinere Größe auch weniger
-Speicher benötigt. Dadurch war es einfacher möglich, die Inferenz auf der
+davon war, dass die Inferenz der einzelnen Modelle weniger intensive
+Rechenleistung erfordert hat und durch die kleinere Größe auch weniger
+Speicher benötigte. Dadurch war es einfacher möglich, die Inferenz auf der
 CPU durchzuführen. \par Jedoch hatte diese Format einige Probleme. 
 Zum einen hat jede Architektur ihr eigenes Skript benötigt, damit 
 sie in das GGML Format konvertiert werden kann, dazu kam, dass 
 in der Datei nicht erkennbar war, für welche Architektur das Modell war.  
 Heutzutage benutzt llama.cpp ein neues Format, namens GGUF, welche einige 
-der Probleme mit GGML beseitigen soll. Ein großer Vorteil von diesem Format ist,
-dass das Modell nun alle Informationen die zum laden des Modells notwendig
+der Probleme von GGML beseitigen soll. Ein großer Vorteil von diesem Format ist,
+dass das Modell nun alle Informationen die zum Laden des Modells notwendig
 sind beinhaltet und es müssen keine zusätzlichen Informationen mehr vom Nutzer 
 gegeben werden. Unter anderem beinhaltet die Datei nun die Architektur 
 des Modells \cite{gerganovGgerganovGgml2024, gerganovGgerganovLlamaCpp2024}.
@@ -975,33 +938,35 @@ Das Backend das Ollama unterstützt ist llama.cpp und es soll das Downloaden,
 Installieren und das Interagieren mit den LLMs einfacher machen. \par
 Ollama hat seine eigene Modellbibliothek über die Nutzer LLM Modelle 
 downloaden können und diese dann direkt nutzen. 
-Wenn ein Modell nicht in der Bibliothek zu finden ist, kann man 
-Modelle mittels Modelfile selbst importieren. Dies kann man mit Modellen im GGUF 
+Wenn ein Modell nicht in der Bibliothek zu finden ist, können 
+Modelle mittels Modelfile importiert werden. Dies kann mit Modellen im GGUF 
 Format, welches in \ref*{s:intro:llama} genauer erklärt wurde, 
- gemacht werden und mit sogenannten safetensor Dateien \cite{OllamaOllama2024}. Das Safetensor 
+ und mit sogenannten Safetensor Dateien gemacht werden \cite{OllamaOllama2024}. Das Safetensor 
 Format wurde von Huggingface eingeführt um die Unsicherheiten des 
 vorher genutzten Pickle Formats zu beseitigen. Eines der größten
-Probleme dieses Formats war es, dass beim deserialisieren eines
+Probleme dieses Formats war, dass beim Deserialisieren eines
 Pickle Objekts schadhafter Code ausgeführt werden konnte, da 
-Pickle den unterschied zwischen schadhaften und sicherem 
+Pickle den Unterschied zwischen schadhaften und sicherem 
 Code nicht erkennen kann.\cite{Safetensors}
 Mit dem neuen Safetensor Format konnte vorallem dieses Problem beseitigt werden.\par
 Ollama kann Safetensor Dateien für die drei Architekturen LlamaForCausalLM, 
-MistralForCausalLM und GemmaForCausalLM ausführen. Wenn man ein Modell hat, welches nicht 
-das GGUF Format oder das Safetensor Format für eine der drei genannten Architekturen 
-ist dann muss man dieses Modell in GGUF umwandeln. Dafür kann man in das llama.cpp Github
-Projekt und das convert script benutzen.\par
-Im Anschluss kann man dann das Modell mithilfe einer Modelfile importieren. 
-Innerhalb dieser Modelfile kann man ebenfalls noch weitere Dinge vorher festlegen,
-wie zum Beispiel das System Prompt für das Model\cite{OllamaOllama2024}.
+MistralForCausalLM und GemmaForCausalLM ausführen. Wenn ein Modell genutzt werden soll, 
+welches weder  
+das GGUF Format noch das Safetensor Format für eine der drei genannten Architekturen hat,
+ muss dieses Modell erst in GGUF umgewandelt werden. Dafür kann das convert script
+ aus dem llama.cpp Github
+Projekt genutzt werden.\par
+Im Anschluss kann das Modell mithilfe einer Modelfile importiert werden. 
+Innerhalb dieser Modelfile können noch weitere Dinge festgelegt werden,
+wie das System Prompt das genutzt werden soll \cite{OllamaOllama2024}.
 
 \section{AI Frameworks}
 \label{s:intr:frame}
 Dadurch, dass LLMs nun ein größeres Thema im Auge der 
 Öffentlichkeit ist und es durch Bibliotheken wie llama.cpp einfacher geworden ist, 
 für Personen, ohne besondere Hardware, LLMs zu nutzen, gibt es immer mehr Interesse an
-Frameworks, mit denen man LLM basierte Applikationen entwickeln kann. Dieses Interesse kann man 
-über Github Stars, die in \ref*{stars} dargestellt sind, beobachten.\par
+Frameworks, mit denen LLM basierte Applikationen entwickelt werden können. Dieses Interesse kann 
+über Github Stars, die in \ref*{stars} dargestellt sind, beobachtet werden.\par
 
 Diese Frameworks, dienen dazu
 das Arbeiten mit diesen Modellen zu vereinfachen. Ein großer Fokus bei den meisten 
@@ -1021,15 +986,15 @@ dann beseitigt werden können. Haystack hat 14.3k Sterne auf Github, zum
 Zeitpunkt dieser Arbeit. Das macht es zum kleinsten Projekt auf dieser
 Liste \cite{DeepsetaiHaystackMag}. \par
 Haystack kann direkt Modelle von Huggingface, OpenAI und anderen Quellen beziehen 
-und diese ausführen. Dazu kann man Modelle nutzen die auf Hosting Plattformen, 
+und diese ausführen. Dazu können Modelle genutzt werden, die auf Hosting Plattformen, 
 wie Azure oder Sagemaker gehostet werden \cite{WhatHaystack}.\par
 Die zwei Konzepte die hierbei am wichtigsten sind sind Komponenten und Pipelines. 
 Komponenten sind Blöcke, welche Aufgaben durchführen können. Aufgaben, die eine 
 Komponente ausführen kann, sind zum Beispiel Text Generation und das Erzeugen von
 Einbettungen \cite{WhatHaystack}.\par
-Eine Pipeline besteht aus verschiedenen Komponenten. Man setzt diese Komponenten
-zusammen und erhält dadurch eine Pipeline. Dadurch kann man den Datenfluss innerhalb
-seiner Applikation genau beeinflussen \cite{WhatHaystack}.\par
+Eine Pipeline besteht aus verschiedenen Komponenten. Durch das Zusammensetzen 
+von Komponenten zu einer Pipeline kann der Datenfluss innerhalb
+der Applikation genau beeinflusst werden \cite{WhatHaystack}.\par
 Die Programmiersprache für Haystack ist Python\cite{WhatHaystack, DeepsetaiHaystackMag}. 
 
 \subsection{Langchain}
@@ -1043,13 +1008,13 @@ Langchain ist, in Hinsicht auf die Github Sterne das größte Framwork, welches
 hier vorgestellt wird. Zur Zeitpunkt des Schreibens dieser Arbeit, hat das 
 Projekt 87.6k Sterne auf Github \cite{chaseLangChain2022}. \par
 Für die Entwicklung liegt der Fokus bei Langchain auf Chains. Welche ähnlich
-wie Pipelines den Datenfluss bestimmen. Man erstellt hier die einzelnen
-Teile die man braucht, wie einen Retriever der mit einer Vektor 
-Datenbank verbunden ist und einer LLM. Diese verbindet man dann noch 
-mit der Eingabe des Nutzers und hat dann eine fertige Chain, die man 
-dann einsetzen kann, wie man möchte. Eine Möglichkeit wäre es diese 
+wie Pipelines den Datenfluss bestimmen. Hierfür werden die einzelnen 
+Teile, wie ein Retriever, der mit einer Vektor 
+Datenbank verbunden ist, und eine LLM, erstellt. Diese Teile werden im Anschluss 
+zu einer Chain verbunden, mit der interagiert werden kann oder die an einer anderen 
+Stelle eingebaut werden kann. Eine Möglichkeit wäre es diese 
 per RestAPI verfügbar zu machen \cite{LangChaina}.\par
-Dazu hat gibt es das Paket Langserve, welches darauf ausgelegt 
+Dazu gibt es das Paket Langserve, welches darauf ausgelegt 
 ist, einfach Chains als RestAPIs zu veröffentlichen. 
 Dazu kommt ein Paket namens Langsmith, welches zum Monitoring 
 und zum Evaluieren von LLM Applikation dient. Langsmith ist nicht 
@@ -1070,10 +1035,10 @@ den Index als Kernkonzept. Indexe werden aus Dokumenten erstellt und sind im Gru
 Knoten-Objekte, welche Teile von den Originaldokumenten respräsentieren \cite{IndexingEmbeddingLlamaIndex, LlamaIndexLlamaIndex}\par
 LlamaIndex hat eine Plattform namens LlamaCloud, welche einen durch generative 
 künstliche Intelligenz angetriebenen Parser hat. Dieses Projekt heißt 
-LlamaParse und lässt sich mit LlamaIndex integrieren. LlamaParse kann man auch ohne 
-die LlamaCloud nutzen. Wenn man die LlamaCloud nutzt hat man noch die Option seine 
-RAG Daten dort über eine API zu speichern. Über die API kann man sich direkt mit 
-verschiedenen Datenquellen verbinden \cite{LlamaCloudLlamaIndex,IntroducingLlamaCloudLlamaParse}.\par
+LlamaParse und lässt sich mit LlamaIndex integrieren. LlamaParse kann ohne 
+die LlamaCloud genutzt werden. Wenn die LlamaCloud genutzt wird können die für 
+RAG verwendeten Daten dort über eine API gespeichert werden. Über die API können direkt 
+verschiedenen Datenquellen angebunden werden \cite{LlamaCloudLlamaIndex,IntroducingLlamaCloudLlamaParse}.\par
 LlamaIndex ist ein Framework, welches, wie Langchain, für Javascript und für Python zur Verfügung steht\cite{liuLlamaIndex2022}.
 
 \section{Huggingface / MTEB }

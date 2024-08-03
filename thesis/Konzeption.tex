@@ -140,7 +140,7 @@ Das System wird erst ohne Anbindung an das externe Chat-System gebaut und wird d
 mit Chainlit gebaut. Sobald hierbei alles abgeschlossen ist, wird die Verbindung zum anderen 
 Chat-System hergestellt.
 Die Python Applikation des Chatbots ist dann mit der Google Chat API verbunden. Die Optionen 
-über die man diese Verbindung herstellen kann, werden in \ref*{s:konz:gchat} besprochen.\par
+über die die Verbindung hergestellt werden kann, werden in \ref*{s:konz:gchat} besprochen.\par
 \iffalse Die Nachrichten, die das System erhält werden ebenfalls in einer Datenbank abgespeichert, wo das 
 IT-Support Team sie nachher 
 analysieren kann, um die Anforderung A6 zu erfüllen.\fi
@@ -183,8 +183,8 @@ da dadurch verschiedene Konfigurationen ausprobiert werden können ohne große V
 durchführen zu müssen. \par
  Die Community von Langchain ist die größte von den 
 drei Framworks die in dieser Arbeit betrachtet werden, daher ist anzunehmen, dass der 
-Support den man durch die Community erhält und die Menge an Dokumentation, die man finden
-kann hierfür am größten sind. Eine Github Suche nach Haystack gibt 1.7k Ergebnisse zurück. 
+Support der Community und die Menge an Dokumentation, die gefunden werden
+kann hierbei am größten ist. Eine Github Suche nach Haystack gibt 1.7k Ergebnisse zurück. 
 Eine Suche nach Langchain gibt 25k Ergebnisse zurück. Und eine Suche nach LlamaIndex gibt 
 1.3k Ergebnisse zurück. Eine Google Trends Analyse in diesem Bereich wäre vermutlich nicht
 sehr aussagekräftig, da der Begriff Haystack von verschiedenen Unternehmen benutzt wird 
@@ -203,15 +203,15 @@ den gleichen Aufwand kosten würde.\par
 Hinzu kommt, dass Langchain und Llamaindex bereits Datenladesysteme für Confluence haben. 
 Da Confluence das System ist, welches an die Vektordatenbank angebunden werden soll, gibt das noch 
 einen weiteren Vorteil.
-Hinzu kommt, wie man an den Github Stars und den Github Ergebnissen sehen kann, dass 
+Hinzu kommt, wie an den Github Stars und den Github Ergebnissen erkennbar, dass 
 Langchain das größte AI Framework ist. Aus diesen Gründen wird Langchain für diese Projekt ausgewählt.\par 
 
 \subsubsection{Nachrichten Historie}
 Der Chatbot hat  außerhalb der aktuellen Anfrage, der RAG Dokumente und des Prompts, 
 standardmäßig keine Erinnerungen oder Kontext. 
-Falls man in einer Nachricht auf 
-den Kontext in einer vorherigen Nachricht eingehen möchte und diesen 
-nicht erwähnt, dann weiß der Chatbot nicht worum es geht.
+Falls in einer Nachricht auf 
+den Kontext in einer vorherigen Nachricht eingegangen wird und diesen 
+nicht explizit erwähnt, dann weiß der Chatbot nicht worum es geht.
 Dies führt dazu, dass keine Folgefragen gestellt werden können, ohne 
 dass der vorherige Kontext erneut erklärt wird.\par
 Um dieses Problem zu lösen muss eine Nachrichten Historie mit in das 
@@ -290,14 +290,14 @@ Die Kosten für diesen Server wären maximal, wenn der Server 730 Stunden im Mon
 läuft, 218.96€ + 94.01€ einmalige Setupgebühr.\par
 Diese Hardware ist ausreichend für die Anforderungen des Systems und ermöglicht 
 ihn für mehr Applikationen als diesen Chatbot zu nutzen.\par
-Wenn man einen ähnlichen Server in der Compute Engine von Google zusammenstellen 
-würde, dann hat man aktuell die Möglichkeit GPUs hinzuzufügen in den 
-Maschinen Kategorien Allzweck, Rechen optimiert und Beschleunigungsoptimiert.
+Wenn ein ähnlicher Server in der Compute Engine von Google zusammengestellt wird,
+ dann gibt es aktuell die Möglichkeit GPUs in den 
+Maschinen Kategorien Allzweck, Rechen optimiert und Beschleunigungsoptimiert hinzuzufügen.
 Für die Berechnung der Kosten wird erneut angenommen, dass der Server 730 Stunden 
-im Monat läuft. Wenn man einen N1 Allzweck Server mit 64GB RAM, 10 vCPUs, welche 
-mindestens beötigt werden um 64 GB RAM auswählen zu können, und eine 
+im Monat läuft. Wenn ein N1 Allzweck Server mit 64GB RAM, 10 vCPUs, welche 
+mindestens benötigt werden um 64 GB RAM auswählen zu können, und eine 
 Nvidia T4 GPU mit 16GB VRAM hinzufügen, kostet diese Compute Engine 
-Instanz 650€.
+Instanz 650€ pro Monat.
 Der Hetzner Server, ist bei voller Nutzung ca 430€
 billiger im Monat und hat dazu 4GB mehr VRAM, daher wird der 
 Hetzner Server ausgewählt.\par
@@ -305,7 +305,7 @@ Hetzner Server ausgewählt.\par
 \subsection{Anbindung Google Chat}
 \label{s:konz:gchat}
 Die Anbindung an den Google Chat erfolgt über die Google Chat API.
-Hierbei gibt Google den Nutzern vier Optionen dafür, wie man mit der API interagieren kann.\par
+Hierbei gibt Google den Nutzern vier Optionen dafür.\par
 Die vier Optionen sind:
 \begin{enumerate}
     \item App URL mittels https Server mit authentifiziertem SSL Zertifikat
