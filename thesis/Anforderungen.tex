@@ -20,10 +20,10 @@ Die Mitarbeiter der Techdivision kommunizieren, wenn nicht in Person,
 über den Google Chat. Die einzelnen Fachbereiche haben eigene Spaces innerhalb 
 des Google Chats. Einer dieser Chats ist der IT-Support Chat, in dem Mitarbeiter 
 technische Probleme melden oder bei technischen Problemen Fragen stellen können und für diese 
-Unterstützung vom IT-Support erhalten.
+Unterstützung vom IT-Support erhalten. Für diesen soll der Chatbot entwickelt werden.
 
 \section{Ausgangslage}
-Die aktuelle Ausgangslage des IT Supports innerhalb der Techdivision ist, dass 
+Die Ausgangslage des IT Supports innerhalb der Techdivision ist, dass 
 der IT-Support hauptsächlich über den internen Google Chat oder 
 über IT-Helpdesk Tickets betrieben wird. Die Tickets werden, wenn es Probleme sind, 
 welche keine akute Hilfe benötigen, verwendet. Probleme, welche akute Hilfe benötigen, sind 
@@ -58,7 +58,7 @@ ausgearbeitet.
 \label{s:anf:a1}
 Das größte Thema, welches beim Betreiben des Chatbots beachtet werden soll, ist der
 Datenschutz. Datenschutz ist ein großes Thema bei Unternehmen und vor allem, bei 
-Unternehmen die mit Kundendaten arbeiten müssen oder auch bei internen Betriebsgehemnissen,
+Unternehmen die mit Kundendaten arbeiten müssen oder auch bei internen Betriebsgeheimnissen,
 die nicht an die Öffentlichkeit weiter gegeben werden dürfen. \par
 Die Techdivision ist ein IT-Dienstleister und somit ist dies auch ein
 Bereich der bei der Konzeption und Entwicklung dieses Chatbots beachtet werden 
@@ -71,7 +71,7 @@ die ChatGPT API.
 \label{s:anf:a2}
 Das Hauptkommunikationsmittel, welches innerhalb der Techdivsion
 genutzt wird ist Google Chat. Teilweise findet Kommunikation
-auch über Email statt, jedoch ist das nur ein kleiner Teil.\par
+auch über Email statt, jedoch ist dies nur ein kleiner Teil der Kommunikation.\par
 Dazu kommt, dass der IT-Support innerhalb der Techdivsion 
 hautpsächlich im Google Chat stattfindet
 \subsection{A3 Gruppenchat-Funktionalität}
@@ -83,29 +83,29 @@ der Bot dem Mitarbeiter überhaupt nicht helfen kann. Damit in diesen Fällen
 ein Supportmitarbeiter eingreifen kann, sollte der Bot in einer Chatgruppe 
 laufen, von der ein Mitarbeiter des Support Teams ebenfalls Teil ist. Hierbei 
 sollen die Fragen innerhalb eines Threads beantwortet werden, sodass nicht die 
-ganze Firma eine Benachrichtigung bei jeder Nachricht des Chatbots erhält.\par
+jedes Mitglied der Gruppe eine Benachrichtigung bei jeder Nachricht des Chatbots erhält.\par
 \subsection{A4 Nutzung von Unternehmensdaten}
 \label{s:anf:a4}
 Da die LLMs, die online auffindbar sind, keinen Zugriff auf spezifische Informationen 
 der Techdivion haben, soll der Bot auf Unternehmensdaten 
-zugreifen können. Dadurch kann der Bot direkt spezifischere Hilfe leisten und 
+zugreifen können. Dadurch kann der Bot direkt spezifische Hilfe leisten und 
 nicht nur allgemeine Hinweise geben, die im Internet zu finden sind, sondern
-hat auch Zugriff auf Dinge wie Anleitungen aus dem internen Confluence.
+hat auch Zugriff auf die Anleitungen aus dem internen Confluence.
 \subsection{A5 Erweiterbarkeit der Wissensdatenbank}
 \label{s:anf:a5}
 Da sich die Unternehmensdaten mit der Zeit ändern und auch neue 
 Datenquellen hinzukommen können, sollte der Bot in der Lage sein 
 mit der Zeit auf neues Wissen zuzugreifen.\par
 Das bedeutet, die Wissensdatenbank des Chatbots soll kontinuierlich 
-erweitert werden und bei Updates in den Datensystemen der Techdivsion
-regelmäßig aktualisiert werden.
+erweitert werden können und bei Updates in den Datensystemen der Techdivsion
+regelmäßig aktualisiert werden können.
 \subsection{A6 Deutschsprachige Interaktion}
 \label{s:anf:a6}
 Der Großteil der Techdivion ist deutschsprachig. Die meisten Teile von 
 Datenquellen, wie beispielsweise Confluence sind ebenfalls auf Deutsch. 
 Es gibt aber auch englischsprachige Mitarbeiter, daher wäre ein Bilingualer 
 Bot der beste Fall, da aber die meisten Deutsch sind, wäre Deutsch die bessere
-Option, falls es nur eine Sprache sein kann.
+Option, falls nur eine Sprache möglich ist.
 \subsection{A7 Logische \& schlüssige Argumente}
 \label{s:anf:a7}
 Die Argumente des Chatbots sollen logisch und schlüssig sein. 

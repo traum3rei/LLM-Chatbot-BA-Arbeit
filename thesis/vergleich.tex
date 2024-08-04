@@ -2,8 +2,9 @@
 \label{vergleich}
 
 \section{Evaluierung}
-Der abschließende Teil der Arbeit fokussiert sich auf den Leistungsvergleich
-des Systems. Das System wurde mit vier verschiedenen LLMs implementiert und 
+Der abschließende Teil der Arbeit fokussiert sich auf den Vergleich
+des Systems mit verschiedenen LLMs. Hierfür wurde das System mit vier 
+verschiedenen LLMs implementiert und 
 wird zunächst mithilfe des RAGAS-Frameworks evaluiert. 
 Im Anschluss an diese Analyse werden die zwei bestabschneidensten Modelle 
 einer weiteren Bewertung durch Mitarbeitern der Techdivision unterzogen. 
@@ -23,23 +24,23 @@ Mistral verwendet
 sliding window attention (siehe \ref*{swa}), während 
  Gemma2 zwischen sliding window und global attention variiert.
  Phi-3 hingegen nutzt blocksparse attention (siehe \ref*{bsa}). 
- Alle Modelle haben gemeinsame, dass  
+ Alle Modelle haben gemeinsam, dass  
  Grouped-query Attention (siehe \ref*{gqa}) verwendet wird. 
  Die Modelle unterscheiden sich ebenfalls in der Tokenmenge, die für das 
  Training verwendet wurde.
-Gemma 2 wurde mit 8 Billionen Tokens trainiert, Llama3 mit 
-15 Billionen und Phi-3 mit 4.8 Billionen \cite{Mistral, IntroducingMetaLlama, abdinPhi3TechnicalReport2024, gemmateamGemmaImprovingOpen2024}. Die Menge von Tokens
+Gemma 2 wurde mit 8 Billionen Token trainiert, Llama3 mit 
+15 Billionen und Phi-3 mit 4.8 Billionen \cite{Mistral, IntroducingMetaLlama, abdinPhi3TechnicalReport2024, gemmateamGemmaImprovingOpen2024}. Die Menge von Token
 für Mistral ist nicht bekannt.
 
 \section{RAGAS Vergleich}
-Ragas ist das framework, welches zum bewerten und vergleichen der 
+Ragas ist das Framework, welches zum Bewerten und Vergleichen der 
 LLMs innerhalb dieser Arbeit verwendet wird.
-Das Framework dient dazu RAG pipelines zu bewerten. Im Rahmen
+Das Framework dient dazu RAG Pipelines zu bewerten. Im Rahmen
 davon lassen sich Testsets generieren, die Fragen, Antworten 
 und die dazu passenden RAG Dokumente beinhalten. \par
 Über diese Testsets lassen sich die Pipelines über verschiedene 
 Metriken vergleichen. Die Metriken die zur Verfügung stehen und 
-die die im finalen Vergleich relevant sind, werden in \ref*{metrics}
+die im finalen Vergleich relevant sind, werden in \ref*{metrics}
 genauer beschrieben.\par
 Die erste Phase des Evaluierungsprozesses findet über dieses Framework statt.
 \par
@@ -47,9 +48,9 @@ Die erste Phase des Evaluierungsprozesses findet über dieses Framework statt.
 \subsection{Testset}
 Der erste Schritt für den Vergleich ist es Testsets herzustellen anhand
 derer Ragas den Benchmark Test durchführen kann.\par
-Die Variante die hierfür verwendet wird ist es einen TestsetGenerator per
- \verb+TestsetGenerator.from_langchain()+
-herzustellen und mit diesem dann das Testset erstellen zu lassen.\par
+Die Variante die hierfür verwendet wird ist es mit 
+ \verb+TestsetGenerator.from_langchain()+ einen TestsetGenerator 
+herzustellen und mit diesem das Testset erstellen zu lassen.\par
 Als Vorbereitung hierfür werden Daten benötigt. 
 Die Daten die als Dokumente geladen werden haben alle ein 
 Metadata Dictionary. Damit der Generator erkennen kann,
@@ -62,9 +63,9 @@ Nach dem Vorbereiten der Daten kann damit begonnen werden den
 Generator zu erstellen.
 Für diesen Generator werden drei Parameter verwendet.
 Die \verb+generator_llm+, \verb+critic_llm+ und \verb+embeddings+.
-Als Embedding Model wird ebenfalls das Model 
-\verb|intfloat/multilingual-e5-large|, wie für den Chatbot und 
-den Importer, genutzt. 
+Als Embedding Modell wird, wie für den Chatbot und 
+den Importer, ebenfalls das Modell 
+\verb|intfloat/multilingual-e5-large-instruct| genutzt. 
 Als Critic und als Generator LLM wird das 70 Milliarden 
 Parameter Model Llama3 von Meta verwendet. 
 Die Nutzung von Hugginface Modellen mit Ragas funktioniert 
@@ -76,7 +77,7 @@ Daten kann das Testset über die Funktion
 Für die Generierung werden drei Parameter benötigt.
 Als erstes die \verb+documents+ aus denen die Testsets 
 generiert werden sollen.
-Hier werden Documents verwendet die über den \verb+ConfluenceLoader+
+Hier werden Dokumente verwendet die über den \verb+ConfluenceLoader+
 von Langchain geladen werden. Dies wird genau wie beim Importer (siehe \ref{s:ent:imp}) umgesetzt.
 Dazu kann bestimmt werden, wie viele Elemente im Set enthalten sein sollen.
 Diese \verb+test_size+ bestimmt wie viele Fragen vom \verb+TestsetGenerator+ generiert werden.
@@ -102,17 +103,17 @@ Nachdem das Testset generiert wurde kann mit der Bewertung begonnen werden.
 Für die Bewertung gibt es acht verschiedene Metriken, die zur Auswahl stehen. 
 Hiermit können die verschiedenen Teile der Rag-Pipeline bewertet werden.
 Einige der Metriken bewerten nur den RAG Aspekt der Chain, wobei nur die abgerufenen 
-Dokumente bewertet werden. Da in diesem Aspekt keine Änderungen stattfinden, sondern
+Dokumente bewertet werden. Da in diesem Aspekt innerhalb dieses Vergleichs keine Änderungen stattfinden, sondern
 nur die LLMs die zur Generation der Antworten genutzt werden, geändert werden, werden
 nicht alle Metriken betrachtet.
-Im Folgenden werden die Metriken die zu zur Bewertung verwendet werden betrachtet.
+Im Folgenden werden die Metriken die zu zur Bewertung verwendet werden vorgestellt.
 Standardmäßig verwendet die \verb|evaluate| Funktion die OpenAI API, 
 dies kann überschrieben werden indem der Funktion ein \verb|llm| 
-und ein \verb|embedding| übergen wird. Die Llm und das Embedding Model können 
+und ein \verb|embedding| übergeben wird. Die Llm und das Embedding Model können 
 in \verb|LangchainLLMWrapper| und in \verb|LangchainEmbeddingsWrapper| verpackt werden,
 falls kein Langchain LLM oder Embedding verwendet wird. Wenn die LLM und das 
-Embedding von Langchain ist, dann können diese direkt übergeben werden und sie werden 
-in der Funktion verpackt. Diese Funktion ist aktuell aber nicht 
+Embedding von Langchain sind, dann können diese direkt übergeben werden. 
+Diese Funktion ist aktuell aber nicht 
 funktionsfähig, daher wird hierfür die OpenAI API verwendet.
 
 \subsubsection{Faithfulness}
@@ -125,16 +126,16 @@ gezogen werden kann \cite{FaithfulnessRagas}.\par
 Die Formel die hierfür verwendet wird ist wie folgt:
 \[\text{Faithfulness score}= \frac{|\text{Anzahl der Behauptung die aus dem Kontext geschlossen werden können}|}{|\text{Gesamtzahl der Behauptungen}|}\]
 
-\subsubsection{Answer relevancy}
-''Answer relevancy`` zu Deutsch ''Relevanz der Antwort``, bewertet wie 
+\subsubsection{Answer relevance}
+''Answer relevance`` zu Deutsch ''Relevanz der Antwort``, bewertet wie 
 relevant die Antwort für die Eingabe ist. Hier werden Antworten
 mit überflüssigen Informationen oder unvollständige Antworten 
 geringer bewertet und Antworten die die Frage vollständig beantworten 
 und keine überflüssigen Informationen beinhalten, werden höher bewertet.
 Der Wert der Relevanz der Antwort kann zwischen -1 und 1, ist 
-in der Praxis aber meisten zwischen 0 und 1 sein \cite{AnswerRelevanceRagas}. \par
+in der Praxis aber meistens zwischen 0 und 1 \cite{AnswerRelevanceRagas}. \par
 Die Formel die hierfür verwendet wird ist: 
-\[\text{answer relevancy} = \frac{1}{N}\sum_{1}^{N}\cos(E_i, E_0)\]
+\[\text{answer relevancy} = \frac{1}{N}\sum_{1}^{N}\cos(E_gi, E_0)\]
 
 \subsubsection{Answer semantic similarity}
 Bei der Metrik ''Answer semantic similarity``, zu Deutsch ''Semantische Ähnlichkeit der Antwort``,
@@ -148,7 +149,7 @@ verglichen. Die Formel hierfür ist in \ref*{s:intro:semsea}
 bereits vorgestellt worden \cite{AnswerSemanticSimilarity}.
 
 \subsubsection{Answer correctness}
-Bei der Metrik ''Answer correctness`` oder zu Deutsch ''Korrektheit der Antwort``,
+Bei der Metrik ''Answer correctness``, zu Deutsch ''Korrektheit der Antwort``,
 wird die Korrektheit der Antwort überprüft. 
 Dieser Wert ist ebenfalls eine Gleitkommazahl zwischen 0 und 1.
 Höhere Werte bedeuten hier eine höhere Korrektheit.
@@ -204,7 +205,7 @@ Die Formel hierfür ist:
 
 \subsection{Ergebnisse}
 \label{s:bew}
-Nach erstellen von mehreren Testsets mit verschiedene 
+Nach Erstellen von mehreren Testsets mit verschiedene 
 Modellen sind bei einer \verb|test_size| von 10 jedes mal 
 mehrere Reihen in der \verb|ground_truth| Spalte leer geblieben.
 Deshalb wurde ein Testset verwendet, welches 8 Reihen hatte, bei
@@ -215,11 +216,11 @@ Funktion aktuell nicht mehr in der Lage zu sein, mit Hugginface
 Modellen zu arbeiten. Weder wenn diese Modelle über Ollama geladen 
 wurden noch über die Transfomer Library, die direkt von Huggingface 
 erstellt wurde. Daher wurde auf die direkt über Ollama ladbaren 
-Versionen der Modelle gewechselt.\fi
+Versionen der Modelle gewechselt.
 Bei den Metriken, die für diesen Vergleich in Betracht gezogen worden sind, wurden 
 die Metriken, die nur mit der RAG Pipeline zu tun haben entfernt, da diese 
 den selben Wert für alle haben. Es wurden nur die Metriken betrachtet, auf die die 
-genutzte LLM einen Einfluss hat.
+genutzte LLM einen Einfluss hat.\fi
 \par
 
 \begin{center}
@@ -279,8 +280,8 @@ beim Auswählen der Themengebiete war, dass es Informationen waren, die
 auf der Confluence Instanz, auf die der Chatbot Zugriff hatte, verfügbar 
 waren. Die Confluence Instanz die für diese Arbeit verwendet wurde ist ein 
 Testsystem auf das für diese Arbeit verschiedene Blogeinträge und Dokumentationen 
-geladen wurden, die den Einträgen auf dem Produktivsystem ähneln nur ohne kritische 
-Kundendaten und ähnliches. Die Fragen für den Fragebogen werden aus diesen neu erstellten 
+geladen wurden, die den Einträgen auf dem Produktivsystem ähneln. 
+Die Fragen für den Fragebogen werden aus diesen neu erstellten 
 Einträgen erstellt. \par
 \bigskip
 
@@ -309,17 +310,19 @@ erkennen und dem Benutzer erklären können.\par\par
 Die Teilnehmer sollten die Antworten auf einer Skala von 1-5 für beide 
 LLMs bewerten, wobei 1 für sehr schlecht und 5 für sehr gut steht. \par\bigskip
 
+\subsection{Fragebogen Ergebnisse}
 In \ref{bewertung} sind die durchschnittlichen Bewertungen der LLMs dargestellt. 
 Die Ergebnisse zeigen, dass Llama3 und Phi-3 bei zwei der drei Fragen identische 
 Durchschnittswerte erreichten. Bei der zweiten Frage übertraf Llama3 Phi-3 um 0,25 Punkte.
 
 Konkret erzielten beide Modelle bei der Erstellung der Anleitung und bei der
  Frage zum sicheren Datenaustausch Bewertungen, die etwas besser als \verb|Okay|
-  ausfielen. Bei der Frage zur Problemlösungsstrategien wurde Llama3 als 
-  \verb|Okay| eingestuft, während Phi-3 leicht darunter lag.
+  ausfielen. Bei der Frage zur Problemlösungsstrategie wurde Llama3 als 
+  \verb|Okay| eingestuft, während Phi-3 leicht darunter lag.\par
 
 Dies führt dazu, dass Llama3 insgesamt die bessere Bewertung hat und somit 
 im Vergleich besser ist. Genau wie in \ref*{s:bew} bereits erwähnt, ist der 
 größte Unterschied zwischen Llama3 und den anderen Modellen die Menge an für 
-das Trainieren verwendeten Daten. Da Phi-3 besser als Gemma 2 im Ragas Vergleich 
-abgeschlossen hat lässt sich dies aber zumindest in dem Test widerlegen.
+das Trainierer verwendeten Daten. Da Phi-3 besser als Gemma 2 im Ragas Vergleich 
+abgeschlossen hat lässt sich die Abhängigkeit der Platzierung von der Menge der 
+zum Training verwendeten Token innerhalb dieses Kontexts widerlegen.

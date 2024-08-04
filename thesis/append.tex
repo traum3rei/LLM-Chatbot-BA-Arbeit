@@ -87,7 +87,7 @@
 }
 }
 \end{minted}
-\caption{JSON Objekt, welches der Chatbot von der API erhält}
+\caption{JSON Nachricht der Google Chat API}
 \label{msg_get}
 \end{figure}
 
@@ -104,19 +104,21 @@
     }
 }
 \end{minted}
-\caption{Message Objekt, welches asynchron als Antwort an die API gesendet wird}
+\caption{Asynchrones Message Objekt}
 \label{msg_send}
 \end{figure}
+\iffalse
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/Chat}
     \caption{Darstellung des Google Chats und eines Threads}
     \label{chat}
 \end{figure}
+\fi
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/Thread}
-    \caption{Darstellung der Erinnerung an alte Nachrichten innerhalb eines Threads}
+    \caption{Darstellung Threadinteraktion}
     \label{thread}
 \end{figure}
 \begin{figure}
@@ -142,14 +144,14 @@
     \legend{Llama3 , phi3}
     \end{axis}
     \end{tikzpicture}
-    \caption{Durchschnittliche Fragebogen Bewertungen von Llama3 und Phi3}
+    \caption{Durchschnittliche Bewertungen von Llama3 und Phi3}
     \label{bewertung}
 \end{figure}
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{\figdir/stars}
-    \caption{Github Star Historie von den Frameworks Langchain, Haystack und LlamaIndex}
+    \caption{Github Star Historie der Frameworks Langchain, Haystack und LlamaIndex}
     \label{stars}
     \end{figure}
 %%% Local Variables: 

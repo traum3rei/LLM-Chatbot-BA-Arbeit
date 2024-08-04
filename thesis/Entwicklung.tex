@@ -50,9 +50,10 @@ heruntergeladen und dann mittels \verb|docker run| gestartet.
     \caption{Konkrete Architektur}
     \label{arch_impl}
 \end{figure}
+\pagebreak
 Wie in der Konzeption beschrieben, ist
 das System auf dem der Chatbot erstellt wird ein
-Hetzner Server, auf dem ebenfalls die Datenbank liegt.
+Hetzner Server auf dem ebenfalls die Datenbank liegt.
 Nachdem die Vorbereitungen des Servers abgeschlossen sind
 kann mit der eigentlichen Entwicklung begonnen werden.\par
 In \ref*{arch_impl} ist die Architektur mit den genutzten 
@@ -63,6 +64,17 @@ benutzten Frameworks beschrieben.
 
 \subsection{Importer}
 \label{s:ent:imp}
+\begin{algorithm}
+    \caption{Importer main}
+    \begin{algorithmic}[1]
+    \STATE \textbf{Methode} main():
+    \STATE \quad Initialisiere Konfiguration, Dokumenten-Loader, Dokumenten-Splitter, Embedding Modell und Vektor-Datenbank
+    \STATE \quad Lade Dokumente aus Confluence
+    \STATE \quad Teile Dokumente auf
+    \STATE \quad Speichere aufgeteilte Dokumente in Vektor-Datenbank
+    \end{algorithmic}
+    \label{main}
+    \end{algorithm} 
 \begin{algorithm}
     \caption{Dokumenten-Loader erstellen und Dokumente laden}
     \begin{algorithmic}[1]
@@ -120,17 +132,8 @@ benutzten Frameworks beschrieben.
     \label{VectorDB}
     \end{algorithm}
     
-    \begin{algorithm}
-    \caption{Importer main}
-    \begin{algorithmic}[1]
-    \STATE \textbf{Methode} main():
-    \STATE \quad Initialisiere Konfiguration, Dokumenten-Loader, Dokumenten-Splitter, Embedding Modell und Vektor-Datenbank
-    \STATE \quad Lade Dokumente aus Confluence
-    \STATE \quad Teile Dokumente auf
-    \STATE \quad Speichere aufgeteilte Dokumente in Vektor-Datenbank
-    \end{algorithmic}
-    \label{main}
-    \end{algorithm}
+    
+
 Algorithm \ref*{main} zeigt den generellen Ablauf des Importers.
 Für den Importer wird der Langchain \verb|ConfluenceLoader|
 verwendet. Dieser wird über die DocumentLoader Klasse in Algorithm \ref*{DocumentLoader} gesetzt. 
@@ -139,8 +142,8 @@ die ChromaDB Datenbank beinhaltet gestartet wurde, eine Verbindung
 zu diesem hergestellt. Dabei wird dem Chroma Client innerhalb 
 des Python Programms der \verb|host| und der \verb|port| des
 Docker Containers in Algorithm \ref*{VectorDB} übergeben.\par
-Danach wird das Embedding Modell in Algorithm \ref*{embedding} mittels der \verb|HuggingFaceEmbeddings|
-von langchain geladen. Hier wird der Name des Modells, \verb|intfloat/multilingual-e5-large-instruct|, übergeben.
+Danach wird das Embedding Modell in Algorithm \ref*{embedding} über die \verb|HuggingFaceEmbeddings|
+von Langchain geladen. Der Wert \verb|intfloat/multilingual-e5-large-instruct| wird dafür übergeben.
 Dazu gibt es die Option Keyword Arguments mittels \verb|encode_kwargs| und \verb|model_kwargs| mitzugeben.
 Hier wird das \verb|device_kwargs| \verb|device| mit dem Wert \verb|cuda| gesetzt. 
 Dies sorgt dafür, dass die GPU für die Berechnungen verwendet wird, was den Prozess 
@@ -152,8 +155,8 @@ die \verb|load| Funktion, welche einen \verb|space_key| braucht, für
 den Confluence Space der geladen werden soll, verwendet.\par
 Die geladenen Dokumente, werden wie in Algorithm \ref*{splitter} dargestellt über Splitter aufgeteilt.
 Hierfür werden die Dokumente mittels \verb|MarkdownHeaderTextSplitter| ein mal 
-aufgeteilt und mittels \verb|RecursiveCharacterTextSplitter| noch ein weiteres 
-mal aufgeteilt. Den aufgeteilten Dokumenten werden die Metadaten hinzugefügt, damit 
+aufgeteilt und mittels \verb|RecursiveCharacterTextSplitter| weiter 
+aufgeteilt. Den aufgeteilten Dokumenten werden die Metadaten hinzugefügt, damit 
 sie zugeordnet werden können.\par
 Anschließend wird eine Langchain Chroma Instanz erstellt, die auf den vorher bereits
 erstellten Client zugreift, dann werden die Dateien mittels \verb|from_documents| 
@@ -187,7 +190,7 @@ eingebaut. Im Folgenden werden die einzelnen Teile erklärt.
     \end{algorithmic}
     \label{retriever}
     \end{algorithm}
-Der erste Teil der Chain der entwickelt wird, ist der \verb|Retriever|. 
+Der erste Teil der Chain ist der \verb|Retriever|. 
 Der Retriever ist der Teil der Chain, der auf die Vektordatenbank zugreift und 
 die passenden Dokumente von dieser an die LLM übergibt.\par
 Der Retriever wird über den RetrieverManager in Algorithm \ref{retriever} konfiguriert.
@@ -228,7 +231,7 @@ Das Prompt, welches benutzt wird, ist Folgendes: \par
     Kontext: \{\verb|context|\} 
     Bisheriger Chatverlauf: \{\verb|chat_history|\} 
     Beantworte die folgende Frage des Mitarbeiters basierend auf diesen Informationen. \par
-Wobei context, die über die Chain übergebenen RAG Dokumente sind und chat\_history die über
+Wobei \verb|context|, die über die Chain übergebenen RAG Dokumente sind und \verb|chat\_history| die über
 die Chain übergebene Chat Historie ist. Die Richtlinien, sollen der LLM eine Richtung geben 
 und dazu falsche Informationen und Halluzinationen vermeiden.
 
@@ -250,7 +253,7 @@ auf.
 \subsubsection{LLM}
 \label{entllm}
 \begin{algorithm}
-    \caption{LLM Manager}
+    \caption{LLM-Manager}
     \begin{algorithmic}[1]
     \STATE \textbf{Class} LLMManager:
     \STATE \textbf{Method} \_\_init\_\_(model\_name):
@@ -260,7 +263,7 @@ auf.
     \end{algorithm}
 Dieser Schritt kann erst funktionieren, wenn die in 
 \ref*{s:ent:mod} beschriebenen Vorbereitungen abgeschlossen sind. 
-Die LLM wird dafür mit der \verb|Ollama| Community LLM in der LLMManager Klasse (siehe Algorithm \ref*{llmmanager}) geladen. Wobei 
+Das LLM wird dafür mit der \verb|Ollama| Community LLM in der LLMManager Klasse (siehe Algorithm \ref*{llmmanager}) geladen. Wobei 
 der Klasse der Name des Modells aus Ollama übergeben wird. \par
 
 
@@ -282,11 +285,12 @@ Um async Nachrichten an die Google Chat API zu senden, wird eine Credential Date
 einem Service Account, der mit der Google Chat API verbunden ist, benötigt. Im Code wird der 
 Scope \verb|https://www.googleapis.com/auth/chat.bot| spezifiziert und aus dem Scope und dem 
     Service account wird mit der \verb|build| Funktion der client erstellt. 
-Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute()|
+Die Nachricht wird mit der Funktion \verb|Client.spaces().message().create().execute()|
     erstellt und abgesendet. Die Funktion bekommt die notwendigen Informationen für die Nachrichten
      übergeben. Aus diesen wird die Nachricht aufgebaut und mit der \verb|messageReplyOption|
      \verb|REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD| abgesendet. Diese sorgt dafür, dass, falls ein Thread, der existiert, angegeben ist, 
-     im jeweiligen Thread geantwortet wird und sonst wird außerhalb des Threads geantwortet.
+     im jeweiligen Thread geantwortet wird und sonst wird außerhalb des Threads geantwortet. Das finale Objekt, welches an die API
+     geschickt wird ist in \ref*{msg_send} dargestellt.
 
 
 \subsection{Post Endpunkt}
@@ -313,7 +317,7 @@ Die Nachricht mit der Funktion \verb|Client.spaces().message().create().execute(
     \STATE \quad Initialisiere GoogleChatClient mit Anmeldedaten
     \STATE \quad Verwende GoogleChatClient, um Antwortnachricht in Google Chat mit Benutzername und Antwort zu senden
     
-    \STATE \quad Rückgabe einer Antwort, die anzeigt, dass die Nachricht gesendet wurde
+    \STATE \quad Rückgabe einer leeren Antwort
     \end{algorithmic}
     \label{post}
     \end{algorithm}
@@ -324,16 +328,14 @@ POST Endpunkt erstellt. Der Pseudo Code des POST Endpunkts
 ist in Algorithm \ref*{post} dargestellt. Dieser Endpunkt nimmt die Nachrichten, 
 die in Google Chat an den Chatbot gesendet werden an.
 Die JSON Nachricht, die von der API abgeschickt wird beinhaltet 
-viele Informationen. Für den Chatbot sind die ID des Nutzers, 
+alle notwendigen Informationen. Für den Chatbot sind die ID des Nutzers, 
 der die Nachricht abschickt, der Thread in dem die Nachricht 
 versendet wurde und die Nachricht, die abgesendet wurde, wichtig.
-Dazu wird noch die Email überprüft, die die Nachricht abgeschickt hat.
+Dazu wird noch der Email Host, von dem Nutzer von dem die Nachricht kommt, überprüft.
 In \ref*{msg_get} ist das Format der Nachricht, welche der Chatbot 
 erhält, dargestellt.\par
-Zuerst wird überprüft, ob der Email Host ein Email Host ist, der 
-Zugang auf diesen Bot haben sollte. \par
 Der Thread ist unter \verb|message.thread.name| zu finden. Die Thread 
-ID, welche der letzte Teil der Nachricht ist, wird verwendet um die 
+ID, welche der letzte Teil davon ist, wird verwendet um die 
 Session ID herzustellen und sie wird in der Antwort als \verb|thread.name| an die API
 geschickt.\par
 
@@ -341,16 +343,34 @@ geschickt.\par
 Nachdem die Session ID erstellt wurde, werden aus dem Modell des LLMManagers und dem 
 Prompt des ChatbotPrompts mit der Funktion \verb|create_stuff_document_chain()| eine Stuff 
 Document Chain erstellt. Mit dieser und dem Retriever aus dem RetrieverManager wird über die Funktion \verb|create_retrieval_chain()|
-eine Retrieval Chain erstellt und daraus wird final die Runnable with Message History erstellt.\par
+eine Retrieval Chain erstellt und daraus wird final die \verb|RunnableWithMessageHistory| erstellt.\par
 
-Der \verb|RunnableWithMessageHistory| muss ein Runnable Objekt 
- welches als Basis dient, übergeben werden. Hier ist das Basis Runnable Objekt, 
+
+\begin{figure}[H]
+\begin{minted}{python}
+
+RunnableWithMessageHistory(
+    retrieval_chain,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="chat_history",
+    output_messages_key="answer",
+)
+\end{minted}
+\caption{RunnableWithMessageHistory}
+\label{runnable}
+\end{figure}
+
+
+Der \verb|RunnableWithMessageHistory| muss ein Runnable Objekt,
+ welches als Basis dient, übergeben werden. Das Schema für \verb|RunnableWithMessageHistory| ist in \ref{runnable} dargestellt. 
+ Hier ist das Basis Runnable Objekt, 
 die Retrieval Chain.
 Dazu wird der Runnable die \verb|get_session_history| Funktion aus Algorithm \ref{sessio} übergeben.
 Da das Basis Runnable ein dict als Input benötigt, muss ein \verb|input_messages_key|
 angegeben werden, was laut dem Prompt, welches verwendet wird der Key \verb|input| ist. 
-Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key|
-\verb|chat_history|. \par\par
+Dazu wird der \verb|output_messages_key| \verb|answer| übergeben und der \verb|history_messages_key| der Wert 
+\verb|chat_history|. Der \verb|chat_history| Wert wird aus dem Prompt abgeleitet.\par\par
 
 Dieses \verb|RunnableWithMessageHistory| Runnable kann mit \verb|runnable.invoke()| gestartet werden.
 Der Funktion werden zwei dict Objekte mitgegeben. 
@@ -367,8 +387,7 @@ und dadurch kann über die API ein Nutzer angesprochen werden. Dies funktioniert
 über die ID. Wenn stattdessen
 der DisplayName aus \verb|message.sender.displayName| verwendet wird, dann wird der Nutzer 
 nicht in der Nachricht verlinkt. \par
-Das finale JSON Objekt ist in \ref*{msg_send} dargestellt.\par
-Ein GoogleChatClient wird initialisiert und die notwendigen Infos 
+Ein GoogleChatClient wird initialisiert, die notwendigen Infos 
 werden an diesen übergeben und die Nachricht wird abgesendet.
 Das wichtige hierbei ist, dass, wenn eine asynchrone Nachricht abgeschickt wird, 
 am Ende eine leere Antwort als Rückgabewert angegeben wird. Wenn diese leere Antwort nicht
@@ -388,9 +407,9 @@ Nachdem der Chatbot fertig gestellt wurde und der Server
 ein SSL Zertifikat und eine URL besitzt, kann die Google Chat 
 API Konfiguration fertig gestellt werden.\par
 Der API muss ein Anwendungsname gegeben werden. Über diesen 
-kann die API im Chat angesprochen werden. Dazu wird eine URL zu 
-einem Bild benötigt, welches das Profilbild im Chat sein wird 
-und eine Beschreibung des Projekts.\par
+muss die API im Chat angesprochen werden. Dazu wird eine URL zu 
+einem Bild, welches das Profilbild im Chat sein wird, benötigt.
+Dazu muss eine Beschreibung des Projekts angegeben werden.\par
 Die interaktiven Features müssen aktiviert sein und 
 die Option Gruppenbereichen und Unterhaltungen beitreten
 muss ausgewählt sein.\par
@@ -398,7 +417,7 @@ Als Verbindungseinstellung wird Anwendungs-URL ausgewählt und
 es wird die URL zum Server eingetragen.\par
 Da dies nur ein Prototyp ist, wird dieser noch nicht auf 
 dem Google Workspace Marketplace veröffentlicht. Da Nutzer 
-die App bewerten werden brauchen diese Zugriff, diese können 
+die App bewerten werden brauchen diese Zugriff. Diese können 
 im Abschnitt \verb|Sichtbarkeit| manuell eingetragen werden. 
 Damit ist die Entwicklung des Chatbots und die Konfiguration der API 
 abgeschlossen.
@@ -408,9 +427,6 @@ Der Chatbot kann nun über Google Chat wie jeder
 andere Teilnehmer des Workspaces angeschrieben werden.
 Wenn der Chatbot einem Space hinzugefügt werden soll, dann 
 muss dieser als App hinzugefügt werden und nicht als Nutzer.\par
-In \ref*{chat} ist eine Chatinteraktion mit dem Bot dargestellt.
-Auf der linken Seite ist der generelle Space sichtbar und auf der 
-rechten Seite ein Thread.\par
-In \ref*{thread} ist eine Interaktion dargestellt in der die 
+In \ref*{thread} ist eine Interaktion innerhalb eines Threads dargestellt, in der die 
 Erinnerungen des Bots angefragt werden und es ist 
 erkennbar, dass der Bot sich an die vorherige Frage erinnern kann.
